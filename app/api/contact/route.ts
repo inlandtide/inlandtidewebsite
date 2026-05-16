@@ -26,7 +26,41 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // --- 2. Send notification email via Resend ---
+    // --- 2. Save lead to Google Sheets (must succeed before email) ---
+    const sheetsUrl = process.env.GOOGLE_SHEETS_WEBAPP_URL;
+    if (!sheetsUrl) {
+      console.error("GOOGLE_SHEETS_WEBAPP_URL is not set.");
+      return NextResponse.json(
+        { error: "Server configuration error. Please try again later." },
+        { status: 500 }
+      );
+    }
+
+    const sheetsPayload: Record<string, string> = {
+      name: String(name),
+      email: String(email),
+      phone: String(phone ?? ""),
+      message: String(message),
+    };
+
+    const sheetsRes = await fetch(sheetsUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(sheetsPayload),
+    });
+
+    if (!sheetsRes.ok) {
+      const sheetsText = await sheetsRes.text().catch(() => "(no body)");
+      console.error("Google Sheets error:", sheetsRes.status, sheetsText);
+      return NextResponse.json(
+        { error: "Failed to save your submission. Please try again." },
+        { status: 500 }
+      );
+    }
+
+    console.log("Lead saved to Google Sheets successfully.");
+
+    // --- 3. Send notification email via Resend ---
     const { data, error } = await resend.emails.send({
       from: "Moulding Saint Louis <contact@mouldingstl.com>",
       to: NOTIFY_EMAILS,
@@ -68,14 +102,12 @@ export async function POST(req: NextRequest) {
     });
 
     if (error) {
-      console.error("Resend error:", JSON.stringify(error));
-      return NextResponse.json(
-        { error: "Failed to send email. Please try again.", detail: error },
-        { status: 500 }
-      );
+      // Lead is already saved — log the email failure but still return success to the user
+      console.error("Resend error (lead already saved):", JSON.stringify(error));
+    } else {
+      console.log("Notification email sent successfully, id:", data?.id);
     }
 
-    console.log("Email sent successfully, id:", data?.id);
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (err) {
     console.error("Contact route error:", err);
