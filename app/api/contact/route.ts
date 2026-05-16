@@ -26,52 +26,66 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // --- 2. Save lead to Google Sheets (must succeed before email) ---
+    // --- 2. Attempt to save lead to Google Sheets (non-blocking) ---
+    let sheetsSaved = false;
     const sheetsUrl = process.env.GOOGLE_SHEETS_WEBAPP_URL;
+
     if (!sheetsUrl) {
       console.error("GOOGLE_SHEETS_WEBAPP_URL is not set.");
-      return NextResponse.json(
-        { error: "Server configuration error. Please try again later." },
-        { status: 500 }
-      );
+    } else {
+      try {
+        const sheetsRes = await fetch(sheetsUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: String(name),
+            email: String(email),
+            phone: String(phone ?? ""),
+            message: String(message),
+          }),
+        });
+
+        if (sheetsRes.ok) {
+          sheetsSaved = true;
+          console.log("Lead saved to Google Sheets successfully.");
+        } else {
+          const sheetsText = await sheetsRes.text().catch(() => "(no body)");
+          console.error("Google Sheets error:", sheetsRes.status, sheetsText);
+        }
+      } catch (sheetsErr) {
+        console.error("Google Sheets fetch threw an exception:", sheetsErr);
+      }
     }
 
-    const sheetsPayload: Record<string, string> = {
-      name: String(name),
-      email: String(email),
-      phone: String(phone ?? ""),
-      message: String(message),
-    };
+    // --- 3. Always send notification email via Resend ---
+    const sheetsAlertBanner = !sheetsSaved
+      ? `
+        <div style="background: #7f1d1d; border: 2px solid #ef4444; padding: 16px 20px; margin-bottom: 24px; text-align: center;">
+          <p style="color: #fecaca; font-family: Georgia, serif; font-size: 15px; font-weight: bold; margin: 0; letter-spacing: 1px;">
+            ⚠️ GOOGLE SHEETS DID NOT SAVE THIS LEAD
+          </p>
+          <p style="color: #fca5a5; font-family: Georgia, serif; font-size: 13px; margin: 8px 0 0 0;">
+            The backup spreadsheet may be broken or misconfigured. Please check the Google Apps Script and Vercel environment variables immediately.
+          </p>
+        </div>
+      `
+      : "";
 
-    const sheetsRes = await fetch(sheetsUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(sheetsPayload),
-    });
-
-    if (!sheetsRes.ok) {
-      const sheetsText = await sheetsRes.text().catch(() => "(no body)");
-      console.error("Google Sheets error:", sheetsRes.status, sheetsText);
-      return NextResponse.json(
-        { error: "Failed to save your submission. Please try again." },
-        { status: 500 }
-      );
-    }
-
-    console.log("Lead saved to Google Sheets successfully.");
-
-    // --- 3. Send notification email via Resend ---
     const { data, error } = await resend.emails.send({
       from: "Moulding Saint Louis <contact@mouldingstl.com>",
       to: NOTIFY_EMAILS,
       replyTo: email,
-      subject: `New Contact Form Submission — ${name}`,
+      subject: sheetsSaved
+        ? `New Contact Form Submission — ${name}`
+        : `⚠️ [SHEETS FAILED] New Contact Form Submission — ${name}`,
       html: `
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; background: #1A0A02; color: #F5ECD7; padding: 32px; border: 1px solid #C9A84C;">
           <h2 style="color: #C9A84C; margin-top: 0; font-size: 22px; letter-spacing: 2px; text-transform: uppercase;">
             New Contact Form Submission
           </h2>
           <hr style="border-color: #C9A84C; margin-bottom: 24px;" />
+
+          ${sheetsAlertBanner}
 
           <table style="width: 100%; border-collapse: collapse;">
             <tr>
@@ -102,12 +116,14 @@ export async function POST(req: NextRequest) {
     });
 
     if (error) {
-      // Lead is already saved — log the email failure but still return success to the user
-      console.error("Resend error (lead already saved):", JSON.stringify(error));
-    } else {
-      console.log("Notification email sent successfully, id:", data?.id);
+      console.error("Resend error:", JSON.stringify(error));
+      return NextResponse.json(
+        { error: "Failed to send email. Please try again.", detail: error },
+        { status: 500 }
+      );
     }
 
+    console.log("Notification email sent successfully, id:", data?.id);
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (err) {
     console.error("Contact route error:", err);

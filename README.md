@@ -17,17 +17,24 @@ This project is built using modern, serverless web technologies designed for hig
 
 The site currently features a "Coming Soon" landing page with a contact form. The contact form does not use any client-side processing; it relies entirely on a secure Next.js serverless API route (`/app/api/contact/route.ts`).
 
-### 1. Lead Backup (Google Sheets)
-To ensure no lead is ever lost due to email delivery failures, the backend first sends the form data to a Google Sheet via a Google Apps Script Webhook.
-*   **Payload Structure:** A JSON object containing exactly four string keys: `name`, `email`, `phone`, `message`.
-*   **Execution Rule:** The Google Sheets POST request *must* succeed before the system attempts to send the notification email.
+The execution order on every form submission is:
 
-### 2. Email Notifications (Resend)
-Once the lead is safely stored in Google Sheets, the system uses the [Resend Node.js SDK](https://resend.com/) to dispatch a transactional email alert to the team.
-*   **From Address:** `contact@mouldingstl.com` (Domain is verified in Resend).
+1.  **Validate** — Server validates that `name`, `email`, and `message` are present and that the email address is well-formed.
+2.  **Attempt Google Sheets save** — The backend tries to POST the lead to Google Sheets. This step is **non-blocking**: if it fails for any reason, execution continues and the failure is noted internally.
+3.  **Always send notification email** — The Resend email fires regardless of whether Google Sheets succeeded. If Sheets failed, the email subject is prefixed with `⚠️ [SHEETS FAILED]` and a bold red alert banner is injected at the top of the email body, prompting the team to check the integration immediately.
+
+This design guarantees that **no inbound lead is ever silently lost** due to a Sheets outage.
+
+### Google Sheets Integration
+Form data is sent to a Google Apps Script Webhook as a JSON POST request.
+*   **Payload keys (all strings):** `name`, `email`, `phone`, `message`
+*   **Requirement:** The Apps Script must be deployed with "Execute as: Me" and "Who has access: Anyone" — otherwise Vercel's server-to-server request will receive a 403.
+
+### Email Notifications (Resend)
+The [Resend Node.js SDK](https://resend.com/) sends a transactional notification email to the team after every valid submission.
+*   **From Address:** `contact@mouldingstl.com` (domain verified in Resend)
 *   **To Addresses:** `tim@inlandtide.com`, `ryan@inlandtide.com`
-*   **Reply-To:** The visitor's submitted email address, allowing the team to reply directly from their inbox.
-*   **Error Handling:** If the email fails to send but the Google Sheet save was successful, the API route still returns a `200 OK` to the client so the user is not confused, but logs the Resend error to the Vercel function logs.
+*   **Reply-To:** The visitor's submitted email address, so the team can reply directly from their inbox.
 
 ## 🔐 Environment Variables
 
@@ -35,19 +42,8 @@ The following environment variables must be configured in Vercel (or locally in 
 
 | Variable Name | Description |
 | :--- | :--- |
-| `RESEND_API` | The API key for the Resend account. Used to authenticate the Resend Node.js SDK. |
-| `GOOGLE_SHEETS_WEBAPP_URL` | The full URL of the deployed Google Apps Script Webhook. Must be deployed to execute as the owner and accessible to "Anyone". |
-
-## 🎨 Brand Guidelines
-
-The site strictly adheres to the Moulding Saint Louis brand guidelines. When making UI changes, maintain these standards:
-
-*   **Primary Background:** Deep Espresso (`#1A0A02`)
-*   **Text & Accents:** Antique Gold (`#C9A84C`) and Aged Cream (`#F5ECD7`)
-*   **Typography:** 
-    *   Headings: *Playfair Display* (via Next.js Google Fonts)
-    *   Body: *Lora* (via Next.js Google Fonts)
-*   **Logos:** Located in the `/public` directory (`logo.png`, `favicon-logo.png`).
+| `RESEND_API` | API key for the Resend account. Used to authenticate the Resend Node.js SDK. |
+| `GOOGLE_SHEETS_WEBAPP_URL` | Full URL of the deployed Google Apps Script Webhook. |
 
 ## 🚀 Getting Started Locally
 
