@@ -1,8 +1,9 @@
 import Image from "next/image";
+import ContactForm from "./components/ContactForm";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-[#1A0A02] px-6">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-[#1A0A02] px-6 py-16">
       {/* Decorative top border */}
       <div className="w-full max-w-2xl border-t border-[#C9A84C] mb-10" />
 
@@ -34,6 +35,9 @@ export default function Home() {
       <p className="text-[#F5ECD7] text-base sm:text-lg text-center max-w-md leading-relaxed mt-2">
         Fine Wood Wainscoting &amp; Architectural Trim &mdash; crafted for Saint Louis homes.
       </p>
+
+      {/* Contact Form */}
+      <ContactForm />
 
       {/* Decorative bottom border */}
       <div className="w-full max-w-2xl border-b border-[#C9A84C] mt-10" />
