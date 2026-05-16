@@ -5,6 +5,7 @@ const NOTIFY_EMAILS = ["tim@inlandtide.com", "ryan@inlandtide.com"];
 
 export async function POST(req: NextRequest) {
   const resend = new Resend(process.env.RESEND_API);
+
   try {
     const body = await req.json();
     const { name, email, phone, message } = body;
@@ -26,8 +27,8 @@ export async function POST(req: NextRequest) {
     }
 
     // --- 2. Send notification email via Resend ---
-    const { error } = await resend.emails.send({
-      from: "Moulding Saint Louis <contact@moudlingstl.com>",
+    const { data, error } = await resend.emails.send({
+      from: "Moulding Saint Louis <contact@mouldingstl.com>",
       to: NOTIFY_EMAILS,
       replyTo: email,
       subject: `New Contact Form Submission — ${name}`,
@@ -60,20 +61,21 @@ export async function POST(req: NextRequest) {
 
           <hr style="border-color: #C9A84C; margin-top: 24px;" />
           <p style="color: #C9A84C; font-size: 11px; text-align: center; margin-bottom: 0;">
-            Moulding Saint Louis — moudlingstl.com
+            Moulding Saint Louis — mouldingstl.com
           </p>
         </div>
       `,
     });
 
     if (error) {
-      console.error("Resend error:", error);
+      console.error("Resend error:", JSON.stringify(error));
       return NextResponse.json(
-        { error: "Failed to send email. Please try again." },
+        { error: "Failed to send email. Please try again.", detail: error },
         { status: 500 }
       );
     }
 
+    console.log("Email sent successfully, id:", data?.id);
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (err) {
     console.error("Contact route error:", err);
