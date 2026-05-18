@@ -2,6 +2,18 @@
 
 Welcome to the repository for the Moulding Saint Louis website. This document provides complete architectural context, integration details, and environment variable requirements for developers or AI agents (like Manus) working on this project in the future.
 
+## ⚠️ Instructions for AI Agents & Developers
+
+Please follow these rules on every contribution:
+
+**1. Update the Changelog before every push.**
+Before committing and pushing any changes, open `CHANGELOG.md` and add a short summary of what was changed, added, or fixed under a new dated entry. This keeps a human-readable history of the project that any future agent or developer can rely on.
+
+**2. All images must be committed directly to this repository.**
+Do not upload images to any external CDN (including Manus's built-in CDN, Cloudinary, or similar services). All image files must be placed in the `/public` directory and committed to GitHub. This ensures images remain under version control, are served directly by Vercel, and are never lost if a third-party CDN account changes or expires.
+
+---
+
 ## 🏗️ Architecture & Infrastructure
 
 This project is built using modern, serverless web technologies designed for high performance and zero-maintenance scaling.
