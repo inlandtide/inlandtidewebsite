@@ -4,6 +4,11 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 
 ---
 
+## [2026-05-18]
+
+### Added
+- Added a temporary `hello world` test phrase under the landing page contact form.
+
 ## [2026-05-16]
 
 ### Added

@@ -39,6 +39,10 @@ export default function Home() {
       {/* Contact Form */}
       <ContactForm />
 
+      <p className="mt-4 text-sm text-[#F5ECD7]/80 text-center">
+        hello world
+      </p>
+
       {/* Decorative bottom border */}
       <div className="w-full max-w-2xl border-b border-[#C9A84C] mt-10" />
     </main>
