@@ -33,8 +33,9 @@ export default function Home() {
           <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#081828] to-transparent" />
           <div className="container-xl relative py-24 text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.52em] text-[#B4904E]">Moulding Saint Louis</p>
-            <h1 className="mx-auto mt-7 max-w-6xl font-heading text-6xl font-semibold leading-[0.9] text-balance sm:text-8xl lg:text-[9rem]">
-              Luxury wood details, made for St. Louis homes.
+            <h1 className="mx-auto mt-7 flex max-w-6xl flex-col items-center font-heading text-7xl font-semibold leading-[0.82] text-balance sm:text-8xl lg:text-[9.5rem]">
+              <span className="text-[#FEFAF1]">Moulding</span>
+              <span className="text-[#B4904E]">Saint Louis</span>
             </h1>
             <p className="mx-auto mt-8 max-w-3xl text-xl leading-9 text-[#FEFAF1]/82">
               High-end moulding, wainscoting, casing, mantels, archways, and custom finish carpentry with a refined customer experience from first conversation to final walkthrough.

@@ -15,6 +15,7 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 - Added About, Process, Gallery, and Contact pages with conversion-focused content and local ownership messaging for Tim Hebel and Ryan Hall.
 
 ### Changed
+- Updated the home page hero headline to display `Moulding` above `Saint Louis`, using Moulding Ivory for `Moulding` and Antique Brass for `Saint Louis`.
 - Refreshed the visual design with a more immersive, image-forward editorial layout while preserving the approved Moulding Saint Louis colors, fonts, sitemap, and service structure.
 - Updated the contact form with project type, location, timeline, and customer-experience-focused messaging while preserving the existing backend payload shape.
 - Updated contact notification email styling to match the new brand palette and safely escape submitted form content.
