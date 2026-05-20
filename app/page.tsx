@@ -36,7 +36,7 @@ export default function Home() {
               <span className="text-[#FEFAF1]">Moulding</span>
               <span className="text-[#B4904E]">Saint Louis</span>
             </h1>
-            <p className="mx-auto mt-8 max-w-3xl text-xl leading-9 text-[#FEFAF1]/82">
+            <p className="mx-auto mt-8 max-w-4xl text-3xl leading-[1.35] text-[#FEFAF1]/86 sm:text-4xl">
               High-end moulding, wainscoting, casing, mantels, archways, and custom finish carpentry with a refined customer experience from first conversation to final walkthrough.
             </p>
             <div className="mt-11 flex flex-col justify-center gap-4 sm:flex-row">
