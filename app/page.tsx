@@ -72,7 +72,7 @@ export default function Home() {
                 It&apos;s all in the details
               </h2>
               <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-[#2E404E]">
-                Explore the finish carpentry services Moulding Saint Louis specializes in. Each service opens a dedicated page with design direction and project details.
+                Explore the finish carpentry services Moulding Saint Louis specializes in.
               </p>
             </div>
 
