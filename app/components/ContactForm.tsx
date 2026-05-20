@@ -113,6 +113,7 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
                 <option>Fireplace Mantels & Surrounds</option>
                 <option>Window & Door Casing</option>
                 <option>Archways & Entryways</option>
+                <option>Gazebos & Pergolas</option>
                 <option>Not sure yet</option>
               </select>
             </Field>

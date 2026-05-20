@@ -68,6 +68,7 @@ The website is structured as a conversion-focused, multi-page site for a luxury 
 | Fireplace Mantels & Surrounds | `/services/fireplace-mantels-surrounds` | Dedicated page for fireplace focal point details. |
 | Window & Door Casing | `/services/window-door-casing` | Dedicated page for upgraded interior casing. |
 | Archways & Entryways | `/services/archways-entryways` | Dedicated page for entry transitions and cased openings. |
+| Gazebos & Pergolas | `/services/gazebos-pergolas` | Dedicated page for custom outdoor wood structures and shade features. |
 | About | `/about` | Local ownership and company values page for Tim Hebel and Ryan Hall. |
 | Gallery | `/gallery` | Future-ready inspiration and portfolio structure. |
 | Contact | `/contact` | Dedicated consultation request page. |

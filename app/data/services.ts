@@ -130,6 +130,22 @@ export const services: Service[] = [
     highlights: ["Refined room transitions", "Custom cased openings", "Coordinated architectural details"],
     cta: "Enhance an Entryway",
   },
+
+  {
+    title: "Gazebos & Pergolas",
+    slug: "gazebos-pergolas",
+    summary:
+      "Custom outdoor wood structures that create shade, define gathering spaces, and extend refined craftsmanship beyond the interior.",
+    hero:
+      "Gazebos and pergolas add structure, shade, and architectural character to outdoor living spaces while keeping the same attention to proportion and finish expected inside the home.",
+    details: [
+      "Outdoor wood structures should feel intentional, not temporary. We help homeowners think through scale, placement, sightlines, shade, and how the structure relates to the home’s exterior and landscape.",
+      "Quality wood products remain our specialty, and we can discuss suitable requested materials when outdoor exposure, maintenance expectations, or design goals call for a different approach.",
+    ],
+    idealFor: ["Patios", "Garden spaces", "Outdoor kitchens", "Poolside areas", "Backyard entertaining"],
+    highlights: ["Custom outdoor structure planning", "Shade and gathering-space definition", "Wood-focused craftsmanship"],
+    cta: "Plan an Outdoor Wood Feature",
+  },
 ];
 
 export function getService(slug: string) {

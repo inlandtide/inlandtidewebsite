@@ -85,14 +85,8 @@ export default function Home() {
                 >
                   <div className="flex items-start justify-between gap-6">
                     <p className="font-heading text-5xl font-semibold leading-none text-[#B4904E]">0{index + 1}</p>
-                    <div className="relative h-20 w-24 shrink-0 overflow-hidden border border-[#D6D2C6]">
-                      <Image
-                        src={`/images/placeholders/${service.slug}.jpg`}
-                        alt={`${service.title} placeholder`}
-                        fill
-                        className="object-cover transition duration-500 group-hover:scale-105"
-                      />
-                    </div>
+                    <span className="mt-2 h-px flex-1 bg-[#D6D2C6]" />
+                    <span className="text-[#B4904E]">◆</span>
                   </div>
                   <h3 className="mt-8 font-heading text-4xl font-semibold leading-tight text-[#081828] text-balance group-hover:text-[#B4904E]">
                     {service.title}
