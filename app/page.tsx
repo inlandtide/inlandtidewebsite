@@ -65,37 +65,44 @@ export default function Home() {
         </section>
 
         <section className="relative overflow-hidden bg-[#FEFAF1] py-24 sm:py-32">
-          <div className="container-xl grid gap-16 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-            <div className="lg:sticky lg:top-32">
+          <div className="container-xl">
+            <div className="mx-auto max-w-4xl text-center">
               <p className="text-sm font-semibold uppercase tracking-[0.4em] text-[#B4904E]">Our Work</p>
               <h2 className="mt-5 font-heading text-5xl font-semibold leading-[0.98] text-[#081828] text-balance sm:text-7xl">
-                The right detail changes the way a room feels.
+                It&apos;s all in the details
               </h2>
-              <p className="mt-7 text-lg leading-8 text-[#2E404E]">
-                Explore the finish carpentry services Moulding Saint Louis specializes in. Each tile opens a dedicated page with design direction and project details.
+              <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-[#2E404E]">
+                Explore the finish carpentry services Moulding Saint Louis specializes in. Each service opens a dedicated page with design direction and project details.
               </p>
             </div>
 
-            <div className="grid gap-6 sm:grid-cols-2">
+            <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((service, index) => (
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}
-                  className={`group relative min-h-[430px] overflow-hidden bg-[#081828] text-[#FEFAF1] luxury-shadow ${index % 3 === 0 ? "sm:translate-y-10" : ""}`}
+                  className="group flex min-h-[360px] flex-col border border-[#D6D2C6] bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#B4904E] hover:shadow-2xl"
                 >
-                  <Image
-                    src={`/images/placeholders/${service.slug}.jpg`}
-                    alt={`${service.title} placeholder`}
-                    fill
-                    className="object-cover opacity-75 transition duration-700 group-hover:scale-105 group-hover:opacity-55"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#081828] via-[#081828]/50 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-7">
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#B4904E]">0{index + 1}</p>
-                    <h3 className="mt-3 font-heading text-4xl font-semibold leading-tight text-balance">{service.title}</h3>
-                    <p className="mt-4 line-clamp-3 leading-7 text-[#FEFAF1]/78">{service.summary}</p>
-                    <p className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-[#B4904E]">Learn More</p>
+                  <div className="flex items-start justify-between gap-6">
+                    <p className="font-heading text-5xl font-semibold leading-none text-[#B4904E]">0{index + 1}</p>
+                    <div className="relative h-20 w-24 shrink-0 overflow-hidden border border-[#D6D2C6]">
+                      <Image
+                        src={`/images/placeholders/${service.slug}.jpg`}
+                        alt={`${service.title} placeholder`}
+                        fill
+                        className="object-cover transition duration-500 group-hover:scale-105"
+                      />
+                    </div>
                   </div>
+                  <h3 className="mt-8 font-heading text-4xl font-semibold leading-tight text-[#081828] text-balance group-hover:text-[#B4904E]">
+                    {service.title}
+                  </h3>
+                  <p className="mt-5 flex-1 text-base leading-7 text-[#2E404E]">
+                    {service.summary}
+                  </p>
+                  <p className="mt-7 border-t border-[#D6D2C6] pt-5 text-xs font-semibold uppercase tracking-[0.25em] text-[#B4904E]">
+                    Learn More
+                  </p>
                 </Link>
               ))}
             </div>
