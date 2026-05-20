@@ -7,6 +7,7 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 ## [2026-05-20]
 
 ### Added
+- Added license-free placeholder images under `/public/images/placeholders/` for the hero, service tiles, service detail pages, gallery, about, and contact sections.
 - Replaced the temporary coming-soon landing page with a full conversion-focused website using the new Moulding Saint Louis brand system.
 - Added the new logo asset to `/public/moulding-saint-louis-logo.png` and updated the site to use Saint Louis Navy, Moulding Ivory, Antique Brass, Blue Charcoal, and Warm Stone.
 - Added Cormorant Garamond and Zilla Slab as the primary brand fonts.
@@ -14,6 +15,7 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 - Added About, Process, Gallery, and Contact pages with conversion-focused content and local ownership messaging for Tim Hebel and Ryan Hall.
 
 ### Changed
+- Refreshed the visual design with a more immersive, image-forward editorial layout while preserving the approved Moulding Saint Louis colors, fonts, sitemap, and service structure.
 - Updated the contact form with project type, location, timeline, and customer-experience-focused messaging while preserving the existing backend payload shape.
 - Updated contact notification email styling to match the new brand palette and safely escape submitted form content.
 - Added a Services dropdown menu in the desktop navigation with links to every individual service page.

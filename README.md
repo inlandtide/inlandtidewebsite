@@ -44,9 +44,17 @@ The primary logo file currently used by the redesigned site is stored at:
 /public/moulding-saint-louis-logo.png
 ```
 
+The current design also uses license-free placeholder imagery committed directly to the repository at:
+
+```text
+/public/images/placeholders/
+```
+
+These placeholder images support the image-forward home page, services hub, individual service pages, gallery, about page, and contact page until the permanent Moulding Saint Louis content library is ready.
+
 ## Site Structure
 
-The website is now structured as a conversion-focused, multi-page site for a luxury finish carpentry and architectural wood finishes company. The home page includes service tiles that link to dedicated individual service pages.
+The website is structured as a conversion-focused, multi-page site for a luxury finish carpentry and architectural wood finishes company. The current visual direction is immersive and image-forward, with large editorial hero sections, service photography placeholders, and home page service tiles that link to dedicated individual service pages.
 
 | Page | Route | Purpose |
 | :--- | :--- | :--- |

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { PageShell } from "../components/SiteChrome";
 
@@ -17,39 +18,50 @@ const values = [
 export default function AboutPage() {
   return (
     <PageShell>
-      <main>
-        <section className="bg-[#081828] py-24 text-[#FEFAF1]">
-          <div className="container-xl grid gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-end">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">About Moulding Saint Louis</p>
-              <h1 className="mt-5 font-heading text-6xl font-semibold leading-tight text-balance sm:text-7xl">
-                Independently owned, locally operated, and focused on the details that finish a home.
-              </h1>
-            </div>
-            <p className="text-xl leading-9 text-[#FEFAF1]/76">
-              Moulding Saint Louis is led in St. Louis by Tim Hebel and Ryan Hall, with a focus on premium finish carpentry, custom wood details, and a customer experience rooted in care.
-            </p>
+      <main className="bg-[#FEFAF1]">
+        <section className="relative flex min-h-[650px] items-end overflow-hidden bg-[#081828] text-[#FEFAF1]">
+          <Image
+            src="/images/placeholders/window-door-casing.jpg"
+            alt="Door and casing placeholder"
+            fill
+            priority
+            className="object-cover opacity-50"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,24,40,0.30),rgba(8,24,40,0.96))]" />
+          <div className="container-xl relative pb-20 pt-28">
+            <p className="text-sm font-semibold uppercase tracking-[0.42em] text-[#B4904E]">About Moulding Saint Louis</p>
+            <h1 className="mt-5 max-w-6xl font-heading text-6xl font-semibold leading-[0.92] text-balance sm:text-8xl">
+              Independently owned, locally operated, and focused on the details that finish a home.
+            </h1>
           </div>
         </section>
 
-        <section className="bg-[#FEFAF1] py-24">
-          <div className="container-xl grid gap-14 lg:grid-cols-[0.8fr_1.2fr]">
+        <section className="py-24 sm:py-32">
+          <div className="container-xl grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div className="relative min-h-[620px] overflow-hidden bg-[#081828] luxury-shadow">
+              <Image
+                src="/images/placeholders/picture-frame-moulding.jpg"
+                alt="Wall moulding detail placeholder"
+                fill
+                className="object-cover opacity-90"
+              />
+            </div>
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">Our Point of View</p>
-              <h2 className="mt-4 font-heading text-5xl font-semibold leading-tight text-[#081828] text-balance">
-                The right moulding, casing, or wall treatment should look like it was always meant to be there.
+              <h2 className="mt-5 font-heading text-5xl font-semibold leading-[0.98] text-[#081828] text-balance sm:text-7xl">
+                The right detail should look like it was always meant to be there.
               </h2>
-            </div>
-            <div className="space-y-6 text-lg leading-8 text-[#2E404E]">
-              <p>
-                We believe finish carpentry is one of the most effective ways to elevate a home. Thoughtful moulding, wainscoting, fireplace details, and casing can add proportion, warmth, and permanence without changing the entire structure of a room.
-              </p>
-              <p>
-                Our work centers on high-end moulding and wood finishes, but the project conversation always begins with the customer’s goals. We help clarify style, materials, scope, and expectations so the finished detail feels both beautiful and appropriate.
-              </p>
-              <p>
-                Homeowners should also feel cared for during the process. That means clear communication, respect for the home, thoughtful recommendations, and a final result that reflects the level of detail customers expect from a premium finish carpentry specialist.
-              </p>
+              <div className="mt-8 space-y-6 text-lg leading-8 text-[#2E404E]">
+                <p>
+                  Moulding Saint Louis is led in St. Louis by Tim Hebel and Ryan Hall, with a focus on premium finish carpentry, custom wood details, and a customer experience rooted in care.
+                </p>
+                <p>
+                  We believe thoughtful moulding, wainscoting, fireplace details, and casing can add proportion, warmth, and permanence without changing the entire structure of a room.
+                </p>
+                <p>
+                  Our work centers on high-end moulding and wood finishes, but the project conversation always begins with the customer’s goals. We help clarify style, materials, scope, and expectations so the finished detail feels both beautiful and appropriate.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -58,9 +70,9 @@ export default function AboutPage() {
           <div className="container-xl">
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">What We Value</p>
             <div className="mt-8 grid gap-5 md:grid-cols-4">
-              {values.map((value) => (
-                <div key={value} className="border border-[#D6D2C6] bg-white p-7">
-                  <p className="text-[#B4904E]">◆</p>
+              {values.map((value, index) => (
+                <div key={value} className="border border-[#D6D2C6] bg-white p-7 shadow-sm">
+                  <p className="font-heading text-5xl font-semibold text-[#B4904E]">0{index + 1}</p>
                   <h3 className="mt-5 font-heading text-3xl font-semibold leading-tight text-[#081828]">{value}</h3>
                 </div>
               ))}
@@ -72,7 +84,7 @@ export default function AboutPage() {
           <div className="container-xl flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">Work With Us</p>
-              <h2 className="mt-3 font-heading text-5xl font-semibold leading-tight text-balance">
+              <h2 className="mt-3 max-w-4xl font-heading text-5xl font-semibold leading-tight text-balance">
                 Ready to bring custom wood detail into your home?
               </h2>
             </div>
