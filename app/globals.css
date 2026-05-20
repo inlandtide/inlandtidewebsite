@@ -1,18 +1,78 @@
 @import "tailwindcss";
 
 :root {
-  --font-playfair: "Playfair Display", serif;
-  --font-lora: "Lora", serif;
+  --saint-louis-navy: #081828;
+  --moulding-ivory: #fefaf1;
+  --antique-brass: #b4904e;
+  --blue-charcoal: #2e404e;
+  --warm-stone: #d6d2c6;
+  --font-heading: var(--font-cormorant), Georgia, serif;
+  --font-body: var(--font-zilla), Rockwell, serif;
 }
 
-html,
+html {
+  scroll-behavior: smooth;
+  background: var(--moulding-ivory);
+}
+
 body {
   margin: 0;
   padding: 0;
-  background-color: #1a0a02;
-  color: #f5ecd7;
+  background: var(--moulding-ivory);
+  color: var(--blue-charcoal);
+  font-family: var(--font-body);
 }
 
 * {
   box-sizing: border-box;
+}
+
+::selection {
+  background: var(--antique-brass);
+  color: var(--saint-louis-navy);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.container-xl {
+  width: min(1180px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.brass-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(180, 144, 78, 0.95), transparent);
+}
+
+.luxury-shadow {
+  box-shadow: 0 24px 70px rgba(8, 24, 40, 0.14);
+}
+
+.subtle-grid {
+  background-image:
+    linear-gradient(rgba(180, 144, 78, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180, 144, 78, 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
 }

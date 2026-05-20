@@ -1,28 +1,35 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Lora } from "next/font/google";
+import { Cormorant_Garamond, Zilla_Slab } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-cormorant",
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
-const lora = Lora({
+const zilla = Zilla_Slab({
   subsets: ["latin"],
-  variable: "--font-lora",
+  variable: "--font-zilla",
   display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Moulding Saint Louis",
+  metadataBase: new URL("https://mouldingstl.com"),
+  title: {
+    default: "Moulding Saint Louis | Luxury Moulding & Finish Carpentry",
+    template: "%s | Moulding Saint Louis",
+  },
   description:
-    "Fine Wood Wainscoting & Architectural Trim — crafted for Saint Louis homes. Coming Soon.",
+    "Luxury moulding, wainscoting, trim, fireplace mantels, casing, and architectural wood finishes for St. Louis homes.",
   openGraph: {
-    title: "Moulding Saint Louis",
+    title: "Moulding Saint Louis | Luxury Moulding & Finish Carpentry",
     description:
-      "Fine Wood Wainscoting & Architectural Trim — crafted for Saint Louis homes.",
+      "Custom finish carpentry and high-end architectural wood details for St. Louis homes.",
     siteName: "Moulding Saint Louis",
+    images: ["/moulding-saint-louis-logo.png"],
   },
 };
 
@@ -32,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${lora.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${zilla.variable}`}>
       <body className="antialiased">{children}</body>
     </html>
   );
