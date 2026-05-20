@@ -19,7 +19,7 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 - Increased the home page hero supporting statement size and confirmed the small gold hero eyebrow above the main title is removed.
 - Updated the home page `Our Work` headline to `It's all in the details` and redesigned the service tiles into a cleaner, readable benefits-style grid.
 - Removed pictures from the home page service tiles and added a new `Gazebos & Pergolas` service tile, service route, contact form option, and placeholder image asset.
-- Changed the first home page service tile preview so it uses the normal light tile styling by default and switches to the inverted Saint Louis Navy treatment only on hover.
+- Applied the hover inversion effect to all home page service tiles so each uses the normal light tile style by default and switches to the Saint Louis Navy treatment on hover.
 - Refreshed the visual design with a more immersive, image-forward editorial layout while preserving the approved Moulding Saint Louis colors, fonts, sitemap, and service structure.
 - Updated the contact form with project type, location, timeline, and customer-experience-focused messaging while preserving the existing backend payload shape.
 - Updated contact notification email styling to match the new brand palette and safely escape submitted form content.

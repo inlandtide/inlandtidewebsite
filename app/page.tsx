@@ -77,42 +77,28 @@ export default function Home() {
             </div>
 
             <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map((service, index) => {
-                const hasHoverInversionPreview = index === 0;
-
-                return (
-                  <Link
-                    key={service.slug}
-                    href={`/services/${service.slug}`}
-                    className={`group flex min-h-[360px] flex-col border border-[#D6D2C6] bg-white p-7 text-[#2E404E] shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#B4904E] hover:shadow-2xl ${
-                      hasHoverInversionPreview ? "hover:bg-[#081828]" : ""
-                    }`}
-                  >
-                    <div className="flex items-start justify-between gap-6">
-                      <p className="font-heading text-5xl font-semibold leading-none text-[#B4904E]">0{index + 1}</p>
-                      <span className={`mt-2 h-px flex-1 bg-[#D6D2C6] transition-colors duration-300 ${hasHoverInversionPreview ? "group-hover:bg-[#B4904E]/60" : ""}`} />
-                      <span className="text-[#B4904E]">◆</span>
-                    </div>
-                    <h3
-                      className={`mt-8 font-heading text-4xl font-semibold leading-tight text-[#081828] text-balance transition-colors duration-300 group-hover:text-[#B4904E] ${
-                        hasHoverInversionPreview ? "group-hover:text-[#FEFAF1]" : ""
-                      }`}
-                    >
-                      {service.title}
-                    </h3>
-                    <p className={`mt-5 flex-1 text-base leading-7 text-[#2E404E] transition-colors duration-300 ${hasHoverInversionPreview ? "group-hover:text-[#FEFAF1]/82" : ""}`}>
-                      {service.summary}
-                    </p>
-                    <p
-                      className={`mt-7 border-t border-[#D6D2C6] pt-5 text-xs font-semibold uppercase tracking-[0.25em] text-[#B4904E] transition-colors duration-300 ${
-                        hasHoverInversionPreview ? "group-hover:border-[#B4904E]/45" : ""
-                      }`}
-                    >
-                      Learn More
-                    </p>
-                  </Link>
-                );
-              })}
+              {services.map((service, index) => (
+                <Link
+                  key={service.slug}
+                  href={`/services/${service.slug}`}
+                  className="group flex min-h-[360px] flex-col border border-[#D6D2C6] bg-white p-7 text-[#2E404E] shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#B4904E] hover:bg-[#081828] hover:shadow-2xl"
+                >
+                  <div className="flex items-start justify-between gap-6">
+                    <p className="font-heading text-5xl font-semibold leading-none text-[#B4904E]">0{index + 1}</p>
+                    <span className="mt-2 h-px flex-1 bg-[#D6D2C6] transition-colors duration-300 group-hover:bg-[#B4904E]/60" />
+                    <span className="text-[#B4904E]">◆</span>
+                  </div>
+                  <h3 className="mt-8 font-heading text-4xl font-semibold leading-tight text-[#081828] text-balance transition-colors duration-300 group-hover:text-[#FEFAF1]">
+                    {service.title}
+                  </h3>
+                  <p className="mt-5 flex-1 text-base leading-7 text-[#2E404E] transition-colors duration-300 group-hover:text-[#FEFAF1]/82">
+                    {service.summary}
+                  </p>
+                  <p className="mt-7 border-t border-[#D6D2C6] pt-5 text-xs font-semibold uppercase tracking-[0.25em] text-[#B4904E] transition-colors duration-300 group-hover:border-[#B4904E]/45">
+                    Learn More
+                  </p>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
