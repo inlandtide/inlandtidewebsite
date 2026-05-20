@@ -16,6 +16,8 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 ### Changed
 - Updated the contact form with project type, location, timeline, and customer-experience-focused messaging while preserving the existing backend payload shape.
 - Updated contact notification email styling to match the new brand palette and safely escape submitted form content.
+- Added a Services dropdown menu in the desktop navigation with links to every individual service page.
+- Removed the standalone Process page and its direct navigation links for now.
 
 ## [2026-05-18]
 

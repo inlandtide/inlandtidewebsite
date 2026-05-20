@@ -143,11 +143,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div className="mt-10 text-center">
-              <Link href="/process" className="inline-flex border border-[#B4904E] px-7 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-[#081828] transition hover:bg-[#B4904E] hover:text-[#081828]">
-                See Our Process
-              </Link>
-            </div>
           </div>
         </section>
 

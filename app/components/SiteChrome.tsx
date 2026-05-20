@@ -22,8 +22,28 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-7 text-sm font-medium uppercase tracking-[0.18em] text-[#FEFAF1]/82 lg:flex">
-          <Link className="transition hover:text-[#B4904E]" href="/services">Services</Link>
-          <Link className="transition hover:text-[#B4904E]" href="/process">Process</Link>
+          <div className="group relative py-3">
+            <Link className="inline-flex items-center gap-2 transition hover:text-[#B4904E] group-hover:text-[#B4904E]" href="/services">
+              Services
+              <span className="text-[10px] leading-none">▾</span>
+            </Link>
+            <div className="invisible absolute left-1/2 top-full w-[360px] -translate-x-1/2 translate-y-3 border border-[#B4904E]/35 bg-[#081828] p-3 opacity-0 shadow-2xl transition duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+              <Link href="/services" className="block border-b border-[#B4904E]/20 px-4 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#B4904E] transition hover:bg-[#FEFAF1]/5">
+                Services Overview
+              </Link>
+              <div className="grid gap-1 py-2">
+                {services.map((service) => (
+                  <Link
+                    key={service.slug}
+                    href={`/services/${service.slug}`}
+                    className="block px-4 py-3 text-sm normal-case tracking-normal text-[#FEFAF1]/78 transition hover:bg-[#FEFAF1]/5 hover:text-[#B4904E]"
+                  >
+                    {service.title}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
           <Link className="transition hover:text-[#B4904E]" href="/gallery">Gallery</Link>
           <Link className="transition hover:text-[#B4904E]" href="/about">About</Link>
           <Link className="transition hover:text-[#B4904E]" href="/contact">Contact</Link>
@@ -77,7 +97,6 @@ export function SiteFooter() {
         </FooterColumn>
 
         <FooterColumn title="Company">
-          <FooterLink href="/process">Our Process</FooterLink>
           <FooterLink href="/gallery">Gallery</FooterLink>
           <FooterLink href="/about">About</FooterLink>
           <FooterLink href="/contact">Contact</FooterLink>

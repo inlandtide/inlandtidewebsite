@@ -50,7 +50,7 @@ The website is now structured as a conversion-focused, multi-page site for a lux
 
 | Page | Route | Purpose |
 | :--- | :--- | :--- |
-| Home | `/` | Premium landing page with brand positioning, service tiles, process preview, ownership messaging, and consultation form. |
+| Home | `/` | Premium landing page with brand positioning, service tiles, customer-experience messaging, ownership details, and consultation form. |
 | Services | `/services` | Services hub for all finish carpentry offerings. |
 | Luxury & Decorative Moulding | `/services/luxury-decorative-moulding` | Dedicated service page for custom moulding and decorative profiles. |
 | Picture Frame Moulding | `/services/picture-frame-moulding` | Dedicated page for wall panel moulding and formal wall treatments. |
@@ -60,7 +60,6 @@ The website is now structured as a conversion-focused, multi-page site for a lux
 | Fireplace Mantels & Surrounds | `/services/fireplace-mantels-surrounds` | Dedicated page for fireplace focal point details. |
 | Window & Door Casing | `/services/window-door-casing` | Dedicated page for upgraded interior casing. |
 | Archways & Entryways | `/services/archways-entryways` | Dedicated page for entry transitions and cased openings. |
-| Process | `/process` | Customer experience and project process page. |
 | About | `/about` | Local ownership and company values page for Tim Hebel and Ryan Hall. |
 | Gallery | `/gallery` | Future-ready inspiration and portfolio structure. |
 | Contact | `/contact` | Dedicated consultation request page. |
