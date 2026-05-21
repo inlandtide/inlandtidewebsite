@@ -17,6 +17,7 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 ### Changed
 - Updated the home page hero headline to display only `Moulding` above `Saint Louis`, using Moulding Ivory for `Moulding` and Antique Brass for `Saint Louis`, in place of the former luxury wood details headline.
 - Increased the home page hero supporting statement size and confirmed the small gold hero eyebrow above the main title is removed.
+- Substantially increased the homepage hero brand title size so the stacked `Moulding` / `Saint Louis` mark is visibly larger.
 - Updated the home page `Our Work` headline to `It's all in the details` and redesigned the service tiles into a cleaner, readable benefits-style grid.
 - Removed pictures from the home page service tiles and added a new `Gazebos & Pergolas` service tile, service route, contact form option, and placeholder image asset.
 - Applied the hover inversion effect to all home page service tiles so each uses the normal light tile style by default and switches to the Saint Louis Navy treatment on hover.
