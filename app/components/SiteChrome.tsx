@@ -100,6 +100,7 @@ export function SiteFooter() {
           <FooterLink href="/gallery">Gallery</FooterLink>
           <FooterLink href="/about">About</FooterLink>
           <FooterLink href="/contact">Contact</FooterLink>
+          <FooterLink href="/seo-dashboard">SEO Dashboard</FooterLink>
         </FooterColumn>
       </div>
 

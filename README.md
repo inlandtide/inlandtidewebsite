@@ -72,6 +72,7 @@ The website is structured as a conversion-focused, multi-page site for a luxury 
 | About | `/about` | Local ownership and company values page for Tim Hebel and Ryan Hall. |
 | Gallery | `/gallery` | Future-ready inspiration and portfolio structure. |
 | Contact | `/contact` | Dedicated consultation request page. |
+| SEO Dashboard | `/seo-dashboard` | Internal noindex dashboard based on the SEO implementation report for tracking SEO foundations and next actions. |
 
 ## Business Positioning
 
@@ -90,6 +91,7 @@ The site includes foundational SEO support for local search visibility in St. Lo
 | Structured data helpers | `app/data/seo.ts` and `app/components/JsonLd.tsx` | Provides JSON-LD for local business, website, services, and breadcrumbs. |
 | Sitemap | `app/sitemap.ts` | Generates `https://mouldingstl.com/sitemap.xml` for the homepage, service pages, and supporting pages. |
 | Robots | `app/robots.ts` | Allows crawler access and points search engines to the sitemap. |
+| SEO Dashboard | `app/seo-dashboard/page.tsx` | Presents SEO implementation status, SimilarWeb baseline context, crawler links, and next actions as a live dashboard page. |
 
 A SimilarWeb analytics check found limited public traffic data for `mouldingstl.com`, so SEO work should be treated as foundational local SEO. Future measurement should prioritize Google Search Console after the site has been crawled and indexed.
 
