@@ -1,18 +1,29 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import JsonLd from "../components/JsonLd";
 import { PageShell } from "../components/SiteChrome";
+import { breadcrumbSchema, siteUrl } from "../data/seo";
 import { services } from "../data/services";
 
-export const metadata = {
-  title: "Gallery",
+export const metadata: Metadata = {
+  title: "Moulding & Finish Carpentry Gallery",
   description:
-    "Explore inspiration categories for luxury moulding, trim, wainscoting, mantels, casing, and architectural wood details.",
+    "View inspiration categories for luxury moulding, wainscoting, trim, mantels, casing, pergolas, gazebos, and architectural wood details in St. Louis.",
+  alternates: { canonical: "/gallery" },
+  openGraph: {
+    title: "Moulding & Finish Carpentry Gallery",
+    description:
+      "Inspiration for moulding, trim, wainscoting, mantels, casing, gazebos, pergolas, and architectural wood finishes.",
+    url: `${siteUrl}/gallery`,
+  },
 };
 
 export default function GalleryPage() {
   return (
     <PageShell>
       <main className="bg-[#FEFAF1]">
+        <JsonLd data={breadcrumbSchema([{ name: "Home", url: siteUrl }, { name: "Gallery", url: `${siteUrl}/gallery` }])} />
         <section className="relative flex min-h-[620px] items-center overflow-hidden bg-[#081828] text-[#FEFAF1]">
           <Image
             src="/images/placeholders/luxury-decorative-moulding.jpg"

@@ -7,6 +7,8 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 ## [2026-05-20]
 
 ### Added
+- Added SEO foundations including page-specific metadata, canonical URLs, Open Graph/Twitter metadata, LocalBusiness JSON-LD, WebSite JSON-LD, Service JSON-LD, breadcrumb JSON-LD, sitemap generation, and robots.txt generation.
+- Added a concise SEO implementation report based on available SimilarWeb analytics context.
 - Added license-free placeholder images under `/public/images/placeholders/` for the hero, service tiles, service detail pages, gallery, about, and contact sections.
 - Replaced the temporary coming-soon landing page with a full conversion-focused website using the new Moulding Saint Louis brand system.
 - Added the new logo asset to `/public/moulding-saint-louis-logo.png` and updated the site to use Saint Louis Navy, Moulding Ivory, Antique Brass, Blue Charcoal, and Warm Stone.

@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import JsonLd from "../../components/JsonLd";
 import { PageShell } from "../../components/SiteChrome";
+import { breadcrumbSchema, serviceSchema, siteUrl } from "../../data/seo";
 import { getService, services } from "../../data/services";
 
 export function generateStaticParams() {
@@ -17,8 +19,22 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   return {
-    title: service.title,
+    title: `${service.title} in St. Louis`,
     description: `${service.title} by Moulding Saint Louis. ${service.summary}`,
+    alternates: { canonical: `/services/${service.slug}` },
+    openGraph: {
+      title: `${service.title} in St. Louis`,
+      description: service.summary,
+      url: `${siteUrl}/services/${service.slug}`,
+      images: [
+        {
+          url: `${siteUrl}/images/placeholders/${service.slug}.jpg`,
+          width: 1800,
+          height: 1200,
+          alt: `${service.title} by Moulding Saint Louis`,
+        },
+      ],
+    },
   };
 }
 
@@ -33,6 +49,12 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   return (
     <PageShell>
       <main className="bg-[#FEFAF1]">
+        <JsonLd data={serviceSchema(service)} />
+        <JsonLd data={breadcrumbSchema([
+          { name: "Home", url: siteUrl },
+          { name: "Services", url: `${siteUrl}/services` },
+          { name: service.title, url: `${siteUrl}/services/${service.slug}` },
+        ])} />
         <section className="relative flex min-h-[680px] items-end overflow-hidden bg-[#081828] text-[#FEFAF1]">
           <Image
             src={`/images/placeholders/${service.slug}.jpg`}

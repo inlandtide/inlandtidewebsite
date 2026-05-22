@@ -1,7 +1,10 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import ContactForm from "./components/ContactForm";
+import JsonLd from "./components/JsonLd";
 import { PageShell } from "./components/SiteChrome";
+import { breadcrumbSchema, defaultOgImage, siteUrl } from "./data/seo";
 import { services } from "./data/services";
 
 const promises = [
@@ -10,6 +13,20 @@ const promises = [
   "Locally Owned in St. Louis",
   "Exceptional Customer Care",
 ];
+
+export const metadata: Metadata = {
+  title: "Luxury Moulding, Wainscoting & Finish Carpentry in St. Louis",
+  description:
+    "Moulding Saint Louis creates high-end moulding, wainscoting, casing, mantels, archways, gazebos, pergolas, and custom finish carpentry for St. Louis homes.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Luxury Moulding, Wainscoting & Finish Carpentry in St. Louis",
+    description:
+      "Custom wood details, architectural moulding, wainscoting, casing, mantels, gazebos, and pergolas for St. Louis homes.",
+    url: siteUrl,
+    images: [{ url: defaultOgImage, width: 1800, height: 1200, alt: "Moulding Saint Louis finish carpentry" }],
+  },
+};
 
 const experiencePoints = [
   "Thoughtful consultation before recommendations begin",
@@ -21,6 +38,7 @@ export default function Home() {
   return (
     <PageShell>
       <main className="bg-[#FEFAF1]">
+        <JsonLd data={breadcrumbSchema([{ name: "Home", url: siteUrl }])} />
         <section className="relative flex min-h-[calc(100vh-89px)] items-center overflow-hidden bg-[#081828] text-[#FEFAF1]">
           <Image
             src="/images/placeholders/hero-workshop.jpg"

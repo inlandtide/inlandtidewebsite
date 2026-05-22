@@ -1,18 +1,29 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import JsonLd from "../components/JsonLd";
 import { PageShell } from "../components/SiteChrome";
+import { breadcrumbSchema, siteUrl } from "../data/seo";
 import { services } from "../data/services";
 
-export const metadata = {
-  title: "Services",
+export const metadata: Metadata = {
+  title: "Finish Carpentry Services in St. Louis",
   description:
-    "Explore luxury moulding, wainscoting, casing, mantels, and finish carpentry services from Moulding Saint Louis.",
+    "Explore luxury moulding, picture frame moulding, crown moulding, wainscoting, casing, mantels, archways, gazebos, pergolas, and finish carpentry services in St. Louis.",
+  alternates: { canonical: "/services" },
+  openGraph: {
+    title: "Finish Carpentry Services in St. Louis",
+    description:
+      "Service pages for luxury moulding, wainscoting, casing, mantels, archways, pergolas, and custom architectural wood finishes.",
+    url: `${siteUrl}/services`,
+  },
 };
 
 export default function ServicesPage() {
   return (
     <PageShell>
       <main className="bg-[#FEFAF1]">
+        <JsonLd data={breadcrumbSchema([{ name: "Home", url: siteUrl }, { name: "Services", url: `${siteUrl}/services` }])} />
         <section className="relative flex min-h-[620px] items-center overflow-hidden bg-[#081828] text-[#FEFAF1]">
           <Image
             src="/images/placeholders/wainscoting-beadboard.jpg"

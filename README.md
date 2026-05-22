@@ -79,6 +79,20 @@ Moulding Saint Louis focuses on high-end moulding, finish carpentry, and quality
 
 The site should maintain a refined, premium, customer-care-focused tone. Preferred language includes terms such as **luxury moulding**, **architectural wood finishes**, **finish carpentry specialists**, **custom wood details**, **clear expectations**, and **exceptional customer care**.
 
+## SEO & Search Visibility
+
+The site includes foundational SEO support for local search visibility in St. Louis. Current SEO files and conventions include:
+
+| SEO Area | File or Location | Purpose |
+| :--- | :--- | :--- |
+| Sitewide metadata | `app/layout.tsx` | Defines default titles, descriptions, Open Graph, Twitter cards, robots directives, and canonical metadata. |
+| Page metadata | Individual `page.tsx` files | Defines page-specific titles, descriptions, canonical URLs, and social metadata. |
+| Structured data helpers | `app/data/seo.ts` and `app/components/JsonLd.tsx` | Provides JSON-LD for local business, website, services, and breadcrumbs. |
+| Sitemap | `app/sitemap.ts` | Generates `https://mouldingstl.com/sitemap.xml` for the homepage, service pages, and supporting pages. |
+| Robots | `app/robots.ts` | Allows crawler access and points search engines to the sitemap. |
+
+A SimilarWeb analytics check found limited public traffic data for `mouldingstl.com`, so SEO work should be treated as foundational local SEO. Future measurement should prioritize Google Search Console after the site has been crawled and indexed.
+
 ## Integrations & Data Flow
 
 The contact form uses a secure Next.js serverless API route at `app/api/contact/route.ts`. The form gathers customer details and enriches the message with project type, project location, and desired timeline, while preserving the backend payload shape used by the existing Google Sheets integration.

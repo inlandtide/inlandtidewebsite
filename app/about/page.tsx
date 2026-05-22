@@ -1,11 +1,21 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import JsonLd from "../components/JsonLd";
 import { PageShell } from "../components/SiteChrome";
+import { breadcrumbSchema, siteUrl } from "../data/seo";
 
-export const metadata = {
-  title: "About",
+export const metadata: Metadata = {
+  title: "About Tim Hebel & Ryan Hall",
   description:
-    "Moulding Saint Louis is independently owned and operated in St. Louis by Tim Hebel and Ryan Hall.",
+    "Moulding Saint Louis is independently owned and operated in St. Louis by Tim Hebel and Ryan Hall, specializing in luxury finish carpentry and architectural wood details.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Moulding Saint Louis",
+    description:
+      "Locally owned finish carpentry and architectural wood finishes company serving St. Louis homes.",
+    url: `${siteUrl}/about`,
+  },
 };
 
 const values = [
@@ -19,6 +29,7 @@ export default function AboutPage() {
   return (
     <PageShell>
       <main className="bg-[#FEFAF1]">
+        <JsonLd data={breadcrumbSchema([{ name: "Home", url: siteUrl }, { name: "About", url: `${siteUrl}/about` }])} />
         <section className="relative flex min-h-[650px] items-end overflow-hidden bg-[#081828] text-[#FEFAF1]">
           <Image
             src="/images/placeholders/window-door-casing.jpg"

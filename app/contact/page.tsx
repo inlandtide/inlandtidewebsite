@@ -1,17 +1,28 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import ContactForm from "../components/ContactForm";
+import JsonLd from "../components/JsonLd";
 import { PageShell } from "../components/SiteChrome";
+import { breadcrumbSchema, siteUrl } from "../data/seo";
 
-export const metadata = {
-  title: "Contact",
+export const metadata: Metadata = {
+  title: "Request a Finish Carpentry Consultation",
   description:
-    "Request a consultation with Moulding Saint Louis for luxury moulding, trim, wainscoting, mantels, casing, and custom finish carpentry.",
+    "Contact Moulding Saint Louis to discuss luxury moulding, wainscoting, casing, mantels, archways, gazebos, pergolas, and custom finish carpentry in St. Louis.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Request a Finish Carpentry Consultation",
+    description:
+      "Start a conversation about custom moulding, wainscoting, trim, mantels, gazebos, pergolas, and architectural wood finishes for your St. Louis home.",
+    url: `${siteUrl}/contact`,
+  },
 };
 
 export default function ContactPage() {
   return (
     <PageShell>
       <main className="bg-[#081828] text-[#FEFAF1]">
+        <JsonLd data={breadcrumbSchema([{ name: "Home", url: siteUrl }, { name: "Contact", url: `${siteUrl}/contact` }])} />
         <section className="grid min-h-[calc(100vh-89px)] lg:grid-cols-[0.92fr_1.08fr]">
           <div className="relative hidden overflow-hidden lg:block">
             <Image
