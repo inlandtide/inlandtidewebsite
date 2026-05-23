@@ -77,6 +77,14 @@ export const metadata: Metadata = {
       "High-end moulding, wainscoting, casing, mantels, pergolas, and custom finish carpentry for St. Louis homes.",
     images: [defaultOgImage],
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
+    shortcut: ["/favicon.ico"],
+  },
 };
 
 export default function RootLayout({
