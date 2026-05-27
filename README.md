@@ -91,9 +91,9 @@ The site includes foundational SEO support for local search visibility in St. Lo
 | Structured data helpers | `app/data/seo.ts` and `app/components/JsonLd.tsx` | Provides JSON-LD for local business, website, services, and breadcrumbs. |
 | Sitemap | `app/sitemap.ts` | Generates `https://mouldingstl.com/sitemap.xml` for the homepage, service pages, and supporting pages. |
 | Robots | `app/robots.ts` | Allows crawler access and points search engines to the sitemap. |
-| SEO Dashboard | `app/seo-dashboard/page.tsx` | Presents SEO implementation status, SimilarWeb baseline context, crawler links, and next actions as a live dashboard page. |
+| SEO Dashboard | `app/seo-dashboard/page.tsx` | Presents SEO implementation status, SimilarWeb baseline context, keyword ranking tracking targets, crawler links, and next actions as a live dashboard page. |
 
-A SimilarWeb analytics check found limited public traffic data for `mouldingstl.com`, so SEO work should be treated as foundational local SEO. Future measurement should prioritize Google Search Console after the site has been crawled and indexed.
+A SimilarWeb analytics check found limited public traffic data for `mouldingstl.com`, so SEO work should be treated as foundational local SEO. The SEO dashboard includes a keyword rankings section, but current rankings are marked as unverified until Google Search Console, Bing Webmaster Tools, or a third-party rank tracking source is connected. Future measurement should prioritize Google Search Console after the site has been crawled and indexed.
 
 ## Integrations & Data Flow
 

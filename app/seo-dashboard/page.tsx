@@ -45,6 +45,18 @@ const trafficSources = [
   "Display Ads",
 ];
 
+const trackedKeywords = [
+  { keyword: "moulding saint louis", intent: "Brand", page: "/", rank: "Not verified yet", source: "Needs Search Console" },
+  { keyword: "st louis moulding", intent: "Local service", page: "/services/luxury-decorative-moulding", rank: "Not verified yet", source: "Needs Search Console" },
+  { keyword: "finish carpentry st louis", intent: "Local service", page: "/services", rank: "Not verified yet", source: "Needs Search Console" },
+  { keyword: "custom wainscoting st louis", intent: "Service-specific", page: "/services/wainscoting-beadboard", rank: "Not verified yet", source: "Needs Search Console" },
+  { keyword: "crown moulding st louis", intent: "Service-specific", page: "/services/crown-moulding", rank: "Not verified yet", source: "Needs Search Console" },
+  { keyword: "picture frame moulding st louis", intent: "Service-specific", page: "/services/picture-frame-moulding", rank: "Not verified yet", source: "Needs Search Console" },
+  { keyword: "fireplace mantels st louis", intent: "Service-specific", page: "/services/fireplace-mantels-surrounds", rank: "Not verified yet", source: "Needs Search Console" },
+  { keyword: "pergolas st louis", intent: "Service-specific", page: "/services/gazebos-pergolas", rank: "Not verified yet", source: "Needs Search Console" },
+];
+
+
 const seoFoundations = [
   {
     title: "Page-specific metadata",
@@ -161,6 +173,51 @@ export default function SeoDashboardPage() {
                     </div>
                     <div className="mt-2 h-3 overflow-hidden bg-[#D6D2C6]/65">
                       <div className="h-full w-[2%] bg-[#B4904E]" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24">
+          <div className="container-xl grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">Keyword Rankings</p>
+              <h2 className="mt-4 font-heading text-5xl font-semibold leading-tight text-[#081828] text-balance">
+                Current keyword rankings need verified Search Console data.
+              </h2>
+              <p className="mt-6 text-lg leading-8 text-[#2E404E]">
+                The SEO is improving structurally because the site now has crawlable service pages, local metadata, schema, sitemap, and robots support. Actual keyword ranking movement cannot be verified from SimilarWeb yet because public ranking and traffic data is not available for the domain. This section therefore shows the keyword set to monitor and will be ready to replace the baseline status with real positions once Google Search Console or another rank-tracking source is connected.
+              </p>
+              <div className="mt-8 border border-[#D6D2C6] bg-white p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#B4904E]">Ranking Data Status</p>
+                <p className="mt-3 font-heading text-4xl font-semibold text-[#081828]">Not verified yet</p>
+                <p className="mt-3 leading-7 text-[#2E404E]">
+                  No Search Console, Bing Webmaster Tools, or third-party rank tracker is currently connected in the repository environment. I will not invent rankings; the table below is a tracking baseline.
+                </p>
+              </div>
+            </div>
+            <div className="overflow-hidden border border-[#D6D2C6] bg-white shadow-sm">
+              <div className="grid grid-cols-[1.2fr_0.85fr_0.85fr] bg-[#081828] px-5 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#FEFAF1]">
+                <p>Keyword</p>
+                <p>Target Page</p>
+                <p>Current Rank</p>
+              </div>
+              <div className="divide-y divide-[#D6D2C6]">
+                {trackedKeywords.map((item) => (
+                  <div key={item.keyword} className="grid gap-3 px-5 py-5 md:grid-cols-[1.2fr_0.85fr_0.85fr] md:items-center">
+                    <div>
+                      <p className="font-semibold text-[#081828]">{item.keyword}</p>
+                      <p className="mt-1 text-sm text-[#2E404E]/75">{item.intent}</p>
+                    </div>
+                    <Link href={item.page} className="text-sm font-semibold text-[#B4904E] underline-offset-4 hover:underline">
+                      {item.page}
+                    </Link>
+                    <div>
+                      <p className="text-sm font-semibold text-[#081828]">{item.rank}</p>
+                      <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[#2E404E]/65">{item.source}</p>
                     </div>
                   </div>
                 ))}

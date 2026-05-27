@@ -11,6 +11,7 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 - Added a concise SEO implementation report based on available SimilarWeb analytics context.
 - Added a live noindex SEO dashboard at `/seo-dashboard` to visualize the report findings, implemented SEO foundations, crawl/indexing links, and next actions.
 - Updated browser favicon and touch icon assets to use the Moulding Saint Louis logo.
+- Added a keyword rankings section to the SEO dashboard showing target keywords, target pages, and current unverified ranking status until Search Console or a rank tracker is connected.
 - Added license-free placeholder images under `/public/images/placeholders/` for the hero, service tiles, service detail pages, gallery, about, and contact sections.
 - Replaced the temporary coming-soon landing page with a full conversion-focused website using the new Moulding Saint Louis brand system.
 - Added the new logo asset to `/public/moulding-saint-louis-logo.png` and updated the site to use Saint Louis Navy, Moulding Ivory, Antique Brass, Blue Charcoal, and Warm Stone.
