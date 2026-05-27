@@ -30,9 +30,9 @@ const baselineMetrics = [
     detail: "Core technical SEO items implemented and ready for crawler discovery.",
   },
   {
-    label: "Primary stage",
-    value: "Baseline",
-    detail: "The site should be measured as a new local SEO property until Search Console data matures.",
+    label: "Search Console",
+    value: "Connected",
+    detail: "The mouldingstl.com domain property is accessible, but Google is still processing performance data.",
   },
 ];
 
@@ -46,14 +46,14 @@ const trafficSources = [
 ];
 
 const trackedKeywords = [
-  { keyword: "moulding saint louis", intent: "Brand", page: "/", rank: "Not verified yet", source: "Needs Search Console" },
-  { keyword: "st louis moulding", intent: "Local service", page: "/services/luxury-decorative-moulding", rank: "Not verified yet", source: "Needs Search Console" },
-  { keyword: "finish carpentry st louis", intent: "Local service", page: "/services", rank: "Not verified yet", source: "Needs Search Console" },
-  { keyword: "custom wainscoting st louis", intent: "Service-specific", page: "/services/wainscoting-beadboard", rank: "Not verified yet", source: "Needs Search Console" },
-  { keyword: "crown moulding st louis", intent: "Service-specific", page: "/services/crown-moulding", rank: "Not verified yet", source: "Needs Search Console" },
-  { keyword: "picture frame moulding st louis", intent: "Service-specific", page: "/services/picture-frame-moulding", rank: "Not verified yet", source: "Needs Search Console" },
-  { keyword: "fireplace mantels st louis", intent: "Service-specific", page: "/services/fireplace-mantels-surrounds", rank: "Not verified yet", source: "Needs Search Console" },
-  { keyword: "pergolas st louis", intent: "Service-specific", page: "/services/gazebos-pergolas", rank: "Not verified yet", source: "Needs Search Console" },
+  { keyword: "moulding saint louis", intent: "Brand", page: "/", rank: "Connected / processing", source: "Search Console" },
+  { keyword: "st louis moulding", intent: "Local service", page: "/services/luxury-decorative-moulding", rank: "Connected / processing", source: "Search Console" },
+  { keyword: "finish carpentry st louis", intent: "Local service", page: "/services", rank: "Connected / processing", source: "Search Console" },
+  { keyword: "custom wainscoting st louis", intent: "Service-specific", page: "/services/wainscoting-beadboard", rank: "Connected / processing", source: "Search Console" },
+  { keyword: "crown moulding st louis", intent: "Service-specific", page: "/services/crown-moulding", rank: "Connected / processing", source: "Search Console" },
+  { keyword: "picture frame moulding st louis", intent: "Service-specific", page: "/services/picture-frame-moulding", rank: "Connected / processing", source: "Search Console" },
+  { keyword: "fireplace mantels st louis", intent: "Service-specific", page: "/services/fireplace-mantels-surrounds", rank: "Connected / processing", source: "Search Console" },
+  { keyword: "pergolas st louis", intent: "Service-specific", page: "/services/gazebos-pergolas", rank: "Connected / processing", source: "Search Console" },
 ];
 
 
@@ -160,7 +160,7 @@ export default function SeoDashboardPage() {
                 SimilarWeb shows a zero-traffic baseline for public channel data.
               </h2>
               <p className="mt-6 text-lg leading-8 text-[#2E404E]">
-                The report found no measurable public rank, traffic, unique visitor, or bounce-rate data. The successful mobile traffic source endpoint showed `0.0` visits across tracked channels for February through April 2026, which makes this a clean baseline for future organic search growth.
+                The report found no measurable public SimilarWeb rank, traffic, unique visitor, or bounce-rate data. Google Search Console is now connected for the domain property, but the Performance report is still processing and currently has no query rows. This creates a clean baseline for future organic search growth.
               </p>
             </div>
             <div className="border border-[#D6D2C6] bg-white p-7 shadow-sm">
@@ -186,16 +186,16 @@ export default function SeoDashboardPage() {
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">Keyword Rankings</p>
               <h2 className="mt-4 font-heading text-5xl font-semibold leading-tight text-[#081828] text-balance">
-                Current keyword rankings need verified Search Console data.
+                Search Console is connected, but keyword data is still processing.
               </h2>
               <p className="mt-6 text-lg leading-8 text-[#2E404E]">
-                The SEO is improving structurally because the site now has crawlable service pages, local metadata, schema, sitemap, and robots support. Actual keyword ranking movement cannot be verified from SimilarWeb yet because public ranking and traffic data is not available for the domain. This section therefore shows the keyword set to monitor and will be ready to replace the baseline status with real positions once Google Search Console or another rank-tracking source is connected.
+                The SEO is improving structurally because the site now has crawlable service pages, local metadata, schema, sitemap, and robots support. Search Console access for the `mouldingstl.com` domain property is now verified, but the Performance report currently shows no query rows while Google processes data. This section shows the keyword set to monitor and will be ready to replace the processing status with real average positions once Search Console begins reporting impressions and queries.
               </p>
               <div className="mt-8 border border-[#D6D2C6] bg-white p-6 shadow-sm">
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#B4904E]">Ranking Data Status</p>
-                <p className="mt-3 font-heading text-4xl font-semibold text-[#081828]">Not verified yet</p>
+                <p className="mt-3 font-heading text-4xl font-semibold text-[#081828]">Connected / processing</p>
                 <p className="mt-3 leading-7 text-[#2E404E]">
-                  No Search Console, Bing Webmaster Tools, or third-party rank tracker is currently connected in the repository environment. I will not invent rankings; the table below is a tracking baseline.
+                  Search Console is accessible for `mouldingstl.com`. The Performance report shows “Processing data, please check again in a day or so” and the Queries table currently shows “No data,” so I will not invent keyword positions.
                 </p>
               </div>
             </div>
@@ -203,7 +203,7 @@ export default function SeoDashboardPage() {
               <div className="grid grid-cols-[1.2fr_0.85fr_0.85fr] bg-[#081828] px-5 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#FEFAF1]">
                 <p>Keyword</p>
                 <p>Target Page</p>
-                <p>Current Rank</p>
+                <p>Current Status</p>
               </div>
               <div className="divide-y divide-[#D6D2C6]">
                 {trackedKeywords.map((item) => (

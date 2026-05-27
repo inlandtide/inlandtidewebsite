@@ -93,7 +93,7 @@ The site includes foundational SEO support for local search visibility in St. Lo
 | Robots | `app/robots.ts` | Allows crawler access and points search engines to the sitemap. |
 | SEO Dashboard | `app/seo-dashboard/page.tsx` | Presents SEO implementation status, SimilarWeb baseline context, keyword ranking tracking targets, crawler links, and next actions as a live dashboard page. |
 
-A SimilarWeb analytics check found limited public traffic data for `mouldingstl.com`, so SEO work should be treated as foundational local SEO. The SEO dashboard includes a keyword rankings section, but current rankings are marked as unverified until Google Search Console, Bing Webmaster Tools, or a third-party rank tracking source is connected. Future measurement should prioritize Google Search Console after the site has been crawled and indexed.
+A SimilarWeb analytics check found limited public traffic data for `mouldingstl.com`, so SEO work should be treated as foundational local SEO. Google Search Console access has been verified for the `mouldingstl.com` domain property, but the Performance report is currently still processing and has no query rows. The SEO dashboard includes a keyword rankings section that shows target keywords as `Connected / processing` until Search Console begins reporting impressions, clicks, and average positions.
 
 ## Integrations & Data Flow
 
