@@ -12,6 +12,7 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 - Added a live noindex SEO dashboard at `/seo-dashboard` to visualize the report findings, implemented SEO foundations, crawl/indexing links, and next actions.
 - Updated browser favicon and touch icon assets to use the Moulding Saint Louis logo.
 - Added a keyword rankings section to the SEO dashboard showing target keywords, target pages, and current unverified ranking status until Search Console or a rank tracker is connected.
+- Replaced the numeric labels on the home page service tiles with service-specific line icons while preserving the hover inversion treatment.
 - Updated the SEO dashboard keyword rankings section to show verified Google Search Console access for `mouldingstl.com` with current processing/no-query-data status.
 - Added license-free placeholder images under `/public/images/placeholders/` for the hero, service tiles, service detail pages, gallery, about, and contact sections.
 - Replaced the temporary coming-soon landing page with a full conversion-focused website using the new Moulding Saint Louis brand system.

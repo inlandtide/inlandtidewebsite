@@ -34,6 +34,102 @@ const experiencePoints = [
   "Clear expectations, careful installation, and respectful jobsite care",
 ];
 
+type ServiceIconProps = {
+  slug: string;
+  title: string;
+};
+
+function ServiceIcon({ slug, title }: ServiceIconProps) {
+  const commonProps = {
+    className: "h-10 w-10",
+    viewBox: "0 0 48 48",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2.2,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true,
+  };
+
+  const icons: Record<string, React.ReactNode> = {
+    "luxury-decorative-moulding": (
+      <svg {...commonProps}>
+        <path d="M10 10h28v28H10z" />
+        <path d="M16 16h16v16H16z" />
+        <path d="M24 7v6M24 35v6M7 24h6M35 24h6" />
+        <path d="M18 24c3-6 9-6 12 0-3 6-9 6-12 0Z" />
+      </svg>
+    ),
+    "picture-frame-moulding": (
+      <svg {...commonProps}>
+        <path d="M8 11h32v26H8z" />
+        <path d="M14 17h20v14H14z" />
+        <path d="M8 11l6 6M40 11l-6 6M8 37l6-6M40 37l-6-6" />
+      </svg>
+    ),
+    "crown-moulding": (
+      <svg {...commonProps}>
+        <path d="M9 34h30" />
+        <path d="M12 30h24" />
+        <path d="M14 30l4-16 6 9 6-9 4 16" />
+        <path d="M18 14h12" />
+      </svg>
+    ),
+    "wainscoting-beadboard": (
+      <svg {...commonProps}>
+        <path d="M8 10h32v28H8z" />
+        <path d="M14 16h8v16h-8zM26 16h8v16h-8z" />
+        <path d="M11 35h26M11 13h26" />
+      </svg>
+    ),
+    "chair-rail-picture-rail": (
+      <svg {...commonProps}>
+        <path d="M8 17h32" />
+        <path d="M8 25h32" />
+        <path d="M8 33h32" />
+        <path d="M14 13v24M34 13v24" />
+      </svg>
+    ),
+    "fireplace-mantels-surrounds": (
+      <svg {...commonProps}>
+        <path d="M10 15h28v7H10z" />
+        <path d="M14 22v17h7V28h6v11h7V22" />
+        <path d="M21 37c-1.5-4 3-6 3-10 3 3 5 5 3 10" />
+      </svg>
+    ),
+    "window-door-casing": (
+      <svg {...commonProps}>
+        <path d="M12 8h24v32H12z" />
+        <path d="M17 13h14v22H17z" />
+        <path d="M31 24h2" />
+        <path d="M12 8l5 5M36 8l-5 5M12 40l5-5M36 40l-5-5" />
+      </svg>
+    ),
+    "archways-entryways": (
+      <svg {...commonProps}>
+        <path d="M12 40V23c0-7 5-13 12-13s12 6 12 13v17" />
+        <path d="M18 40V24c0-4 2.5-8 6-8s6 4 6 8v16" />
+        <path d="M9 40h30" />
+      </svg>
+    ),
+    "gazebos-pergolas": (
+      <svg {...commonProps}>
+        <path d="M8 18h32" />
+        <path d="M12 13h24" />
+        <path d="M14 18v22M34 18v22" />
+        <path d="M18 18l3-5M24 18l3-5M30 18l3-5" />
+        <path d="M10 40h28" />
+      </svg>
+    ),
+  };
+
+  return (
+    <span className="flex h-16 w-16 items-center justify-center border border-[#B4904E]/45 text-[#B4904E] transition-colors duration-300 group-hover:border-[#B4904E] group-hover:bg-[#B4904E]/10" aria-label={`${title} icon`}>
+      {icons[slug] ?? icons["luxury-decorative-moulding"]}
+    </span>
+  );
+}
+
 export default function Home() {
   return (
     <PageShell>
@@ -95,16 +191,16 @@ export default function Home() {
             </div>
 
             <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map((service, index) => (
+              {services.map((service) => (
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}
                   className="group flex min-h-[360px] flex-col border border-[#D6D2C6] bg-white p-7 text-[#2E404E] shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#B4904E] hover:bg-[#081828] hover:shadow-2xl"
                 >
                   <div className="flex items-start justify-between gap-6">
-                    <p className="font-heading text-5xl font-semibold leading-none text-[#B4904E]">0{index + 1}</p>
-                    <span className="mt-2 h-px flex-1 bg-[#D6D2C6] transition-colors duration-300 group-hover:bg-[#B4904E]/60" />
-                    <span className="text-[#B4904E]">◆</span>
+                    <ServiceIcon slug={service.slug} title={service.title} />
+                    <span className="mt-8 h-px flex-1 bg-[#D6D2C6] transition-colors duration-300 group-hover:bg-[#B4904E]/60" />
+                    <span className="mt-5 text-[#B4904E]">◆</span>
                   </div>
                   <h3 className="mt-8 font-heading text-4xl font-semibold leading-tight text-[#081828] text-balance transition-colors duration-300 group-hover:text-[#FEFAF1]">
                     {service.title}
