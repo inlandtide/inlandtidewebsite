@@ -7,7 +7,7 @@ The prior Google Drive browser downloads exposed small thumbnail-sized image fil
 | `hero-workshop.jpg` | `LUwwHrygYJmp.jpg` | Higher-resolution replacement selected for the matching service/category. |
 | `luxury-decorative-moulding.jpg` | `pexels-artbovich-6587823.webp` uploaded by user | High-quality 2048×1366 service hero image for Luxury & Decorative Moulding. |
 | `picture-frame-moulding.jpg` | `pexels-artbovich-7598130.webp` uploaded by user | High-quality 2048×1365 service hero image for Picture Frame Moulding. |
-| `crown-moulding.jpg` | `4QzdZoyvFK7F.jpg` | Higher-resolution replacement selected for the matching service/category. |
+| `crown-moulding.jpg` | `pexels-curtis-adams-1694007-6835131.webp` uploaded by user | High-quality 2048×1365 service hero image for Crown Moulding. |
 | `wainscoting-beadboard.jpg` | `q9MTHaXOqnHM.jpeg` | Higher-resolution replacement selected for the matching service/category. |
 | `chair-rail-picture-rail.jpg` | `C9hLzoW0poRK.jpeg` | Higher-resolution replacement selected for the matching service/category. |
 | `fireplace-mantels-surrounds.jpg` | `Pb08h1dYbSu4.jpg` | Higher-resolution replacement selected for the matching service/category. |
