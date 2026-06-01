@@ -26,7 +26,7 @@ export default function ContactPage() {
         <section className="grid min-h-[calc(100vh-89px)] lg:grid-cols-[0.92fr_1.08fr]">
           <div className="relative hidden overflow-hidden lg:block">
             <Image
-              src="/images/placeholders/fireplace-mantels-surrounds.jpg"
+              src="/images/placeholders/contact-fireplace-surround.jpg"
               alt="Fireplace mantel inspiration placeholder"
               fill
               priority

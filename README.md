@@ -44,13 +44,13 @@ The primary logo file currently used by the redesigned site is stored at:
 /public/moulding-saint-louis-logo.png
 ```
 
-The current design also uses license-free placeholder imagery committed directly to the repository at:
+The current design uses committed site imagery at:
 
 ```text
 /public/images/placeholders/
 ```
 
-These placeholder images support the image-forward home page, services hub, individual service pages, gallery, about page, and contact page until the permanent Moulding Saint Louis content library is ready.
+Most active service and hero images have been replaced with selected assets from the Google Drive Photo Library under `Inland Tide → Moulding St. Louis → Photo Library`. The asset source mapping is documented in `docs/drive-photo-asset-mapping.md`. The Contact page intentionally preserves the previously approved fireplace surround image as `/public/images/placeholders/contact-fireplace-surround.jpg`.
 
 ## Site Structure
 

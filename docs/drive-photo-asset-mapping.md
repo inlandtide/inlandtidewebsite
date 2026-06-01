@@ -1,0 +1,11 @@
+# Drive Photo Library Asset Mapping
+- `chair-rail-picture-rail.jpg` ← Google Drive `cr2.jpg` (`226x226` source)
+- `fireplace-mantels-surrounds.jpg` ← Google Drive `fp1.jpg` (`225x225` source)
+- `window-door-casing.jpg` ← Google Drive `wind casing.jpg` (`225x225` source)
+- `archways-entryways.jpg` ← Google Drive `arch4.jpg` (`287x176` source)
+- `gazebos-pergolas.jpg` ← Google Drive `gaz3.jpg` (`274x184` source)
+- `luxury-decorative-moulding.jpg` ← Google Drive `finish primed.jpg` (`300x168` source)
+- `picture-frame-moulding.jpg` ← Google Drive `pf mould 2.jpg` (`329x153` source)
+- `crown-moulding.jpg` ← Google Drive `imagespfmm.jpg` (`275x183` source)
+- `wainscoting-beadboard.jpg` ← Google Drive `wain 4.jpg` (`183x275` source)
+- `contact-fireplace-surround.jpg` preserves the previous Contact page fireplace image per user request.
