@@ -44,6 +44,15 @@ select {
   font: inherit;
 }
 
+select option {
+  color: #081828;
+  background-color: #FEFAF1;
+}
+
+select option:disabled {
+  color: #2E404E;
+}
+
 .font-heading {
   font-family: var(--font-heading);
 }
