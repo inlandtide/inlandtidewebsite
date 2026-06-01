@@ -6,6 +6,52 @@ import { PageShell } from "../../components/SiteChrome";
 import { breadcrumbSchema, serviceSchema, siteUrl } from "../../data/seo";
 import { getService, services } from "../../data/services";
 
+const luxuryUseCases = [
+  {
+    title: "Formal rooms with a point of view",
+    body: "Living and dining rooms benefit from moulding that gives the space structure before furniture or art is added. The goal is a room that feels intentionally composed, not simply decorated.",
+  },
+  {
+    title: "Feature walls that feel built in",
+    body: "A custom moulding layout can turn a plain wall, stair landing, or entry hall into an architectural moment while still feeling appropriate to the home.",
+  },
+  {
+    title: "Private spaces with quiet polish",
+    body: "Primary suites, studies, and sitting rooms can use decorative profiles to add depth, proportion, and a refined finish without overwhelming the room.",
+  },
+];
+
+function LuxuryBestForAside({ cta }: { cta: string }) {
+  return (
+    <div className="border border-[#D6D2C6] bg-white p-7 shadow-sm">
+      <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">Best For</p>
+      <h2 className="mt-4 font-heading text-4xl font-semibold leading-tight text-[#081828] text-balance">
+        Rooms that deserve architectural intention.
+      </h2>
+      <p className="mt-5 text-base leading-7 text-[#2E404E]">
+        Decorative moulding is strongest when it is planned around how a room is entered, used, and viewed. This treatment is about proportion, rhythm, and a finish that feels permanent.
+      </p>
+      <div className="mt-7 space-y-5">
+        {luxuryUseCases.map((item, index) => (
+          <article key={item.title} className="border-l-2 border-[#B4904E] pl-5">
+            <p className="font-heading text-2xl font-semibold text-[#081828]">
+              <span className="mr-3 text-[#B4904E]">{String(index + 1).padStart(2, "0")}</span>
+              {item.title}
+            </p>
+            <p className="mt-3 text-sm leading-7 text-[#2E404E]">{item.body}</p>
+          </article>
+        ))}
+      </div>
+      <div className="mt-8 bg-[#081828] p-5 text-[#FEFAF1]">
+        <p className="font-heading text-2xl font-semibold leading-tight">A fit for rooms that need presence, not decoration for decoration’s sake.</p>
+      </div>
+      <Link href="/contact" className="mt-8 inline-flex w-full justify-center border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-[#081828] transition hover:bg-transparent">
+        {cta}
+      </Link>
+    </div>
+  );
+}
+
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
 }
@@ -76,17 +122,23 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         <section className="py-24 sm:py-32">
           <div className="container-xl grid gap-14 lg:grid-cols-[0.78fr_1.22fr]">
             <aside className="lg:sticky lg:top-32 lg:self-start">
-              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">Best For</p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                {service.idealFor.map((item) => (
-                  <span key={item} className="border border-[#D6D2C6] bg-white px-4 py-3 text-sm text-[#2E404E] shadow-sm">
-                    {item}
-                  </span>
-                ))}
-              </div>
-              <Link href="/contact" className="mt-8 inline-flex border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-sm font-semibold uppercase tracking-[0.22em] text-[#081828] transition hover:bg-transparent">
-                {service.cta}
-              </Link>
+              {service.slug === "luxury-decorative-moulding" ? (
+                <LuxuryBestForAside cta={service.cta} />
+              ) : (
+                <>
+                  <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">Best For</p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    {service.idealFor.map((item) => (
+                      <span key={item} className="border border-[#D6D2C6] bg-white px-4 py-3 text-sm text-[#2E404E] shadow-sm">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                  <Link href="/contact" className="mt-8 inline-flex border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-sm font-semibold uppercase tracking-[0.22em] text-[#081828] transition hover:bg-transparent">
+                    {service.cta}
+                  </Link>
+                </>
+              )}
             </aside>
 
             <div>
