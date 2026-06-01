@@ -19,6 +19,7 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 - Applied the editorial `Best For` design to all service pages with service-specific copy and replaced the repeated Next Step image with each service’s own quality image.
 - Updated the Luxury & Decorative Moulding service page hero to use the uploaded `finishprimed.jpg` photo in a full-photo-visible composition.
 - Fixed Request a Consultation dropdown option readability by setting option text to Saint Louis Navy on a light background.
+- Replaced the home page hero image with the uploaded high-quality interior moulding photo and optimized it for correct hero scaling.
 - Updated the SEO dashboard keyword rankings section to show verified Google Search Console access for `mouldingstl.com` with current processing/no-query-data status.
 - Added license-free placeholder images under `/public/images/placeholders/` for the hero, service tiles, service detail pages, gallery, about, and contact sections.
 - Replaced the temporary coming-soon landing page with a full conversion-focused website using the new Moulding Saint Louis brand system.

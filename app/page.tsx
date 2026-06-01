@@ -137,8 +137,8 @@ export default function Home() {
         <JsonLd data={breadcrumbSchema([{ name: "Home", url: siteUrl }])} />
         <section className="relative flex min-h-[calc(100vh-89px)] items-center overflow-hidden bg-[#081828] text-[#FEFAF1]">
           <Image
-            src="/images/placeholders/hero-workshop.jpg"
-            alt="Elegant interior wall moulding inspiration"
+            src="/images/placeholders/home-hero-moulding-interior.jpg"
+            alt="Bright luxury interior with decorative wall moulding and refined finish carpentry"
             fill
             priority
             className="object-cover opacity-42"
