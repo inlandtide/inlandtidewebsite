@@ -283,11 +283,11 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         ])} />
         <section className="relative flex min-h-[680px] items-end overflow-hidden bg-[#081828] text-[#FEFAF1]">
           <Image
-            src={`/images/placeholders/${service.slug}.jpg`}
+            src={service.slug === "luxury-decorative-moulding" ? "/images/placeholders/luxury-decorative-moulding-hero.jpg" : `/images/placeholders/${service.slug}.jpg`}
             alt={`${service.title} by Moulding Saint Louis`}
             fill
             priority
-            className="object-cover opacity-62"
+            className={service.slug === "luxury-decorative-moulding" ? "object-contain opacity-88" : "object-cover opacity-62"}
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,24,40,0.28),rgba(8,24,40,0.96))]" />
           <div className="container-xl relative pb-20 pt-28">
