@@ -5,7 +5,7 @@ The prior Google Drive browser downloads exposed small thumbnail-sized image fil
 | Site Asset | Current Source | Notes |
 |---|---|---|
 | `hero-workshop.jpg` | `LUwwHrygYJmp.jpg` | Higher-resolution replacement selected for the matching service/category. |
-| `luxury-decorative-moulding.jpg` | `finishprimed.jpg` uploaded by user | Full-photo-visible composition used for the luxury service imagery. |
+| `luxury-decorative-moulding.jpg` | `pexels-artbovich-6587823.webp` uploaded by user | High-quality 2048×1366 service hero image for Luxury & Decorative Moulding. |
 | `picture-frame-moulding.jpg` | `Qt6NYooeHgTo.jpeg` | Higher-resolution replacement selected for the matching service/category. |
 | `crown-moulding.jpg` | `4QzdZoyvFK7F.jpg` | Higher-resolution replacement selected for the matching service/category. |
 | `wainscoting-beadboard.jpg` | `q9MTHaXOqnHM.jpeg` | Higher-resolution replacement selected for the matching service/category. |
@@ -16,7 +16,7 @@ The prior Google Drive browser downloads exposed small thumbnail-sized image fil
 | `gazebos-pergolas.jpg` | `kJjJfvGgWIOU.jpg` | Higher-resolution replacement selected for the matching service/category. |
 | `contact-fireplace-surround.jpg` | Preserved previous site asset | Kept unchanged per user request. |
 
-| `luxury-decorative-moulding-hero.jpg` | `finishprimed.jpg` uploaded by user | Full-photo-visible hero asset for the Luxury & Decorative Moulding service page. |
+| `luxury-decorative-moulding-hero.jpg` | Replaced by `luxury-decorative-moulding.jpg` | Prior finishprimed-specific full-photo hero treatment is no longer used. |
 
 ## Image Quality Standard
 
