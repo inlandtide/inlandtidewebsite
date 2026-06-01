@@ -10,7 +10,7 @@ The prior Google Drive browser downloads exposed small thumbnail-sized image fil
 | `crown-moulding.jpg` | `pexels-curtis-adams-1694007-6835131.webp` uploaded by user | High-quality 2048×1365 service hero image for Crown Moulding. |
 | `wainscoting-beadboard.jpg` | `pexels-curtis-adams-1694007-10099216.webp` uploaded by user | High-quality 2048×1366 service hero image for Wainscoting & Beadboard. |
 | `chair-rail-picture-rail.jpg` | `pexels-curtis-adams-1694007-8031958.webp` uploaded by user | High-quality 2048×1365 service hero image for Chair Rail & Picture Rail. |
-| `fireplace-mantels-surrounds.jpg` | `Pb08h1dYbSu4.jpg` | Higher-resolution replacement selected for the matching service/category. |
+| `fireplace-mantels-surrounds.jpg` | `pexels-gasparzaldo-8721210.webp` uploaded by user | Portrait fireplace photo composed into a high-quality 2048×1365 service hero without aggressive cropping. |
 | `window-door-casing.jpg` | `pexels-curtis-adams-1694007-3935348.webp` uploaded by user | High-quality 2048×1365 service hero image for Window & Door Casing. |
 | `archways-entryways.jpg` | `uHTUZfWCmoyE.jpg` | Higher-resolution replacement selected for the matching service/category. |
 | `gazebos-pergolas.jpg` | `pexels-bertellifotografia-13871294.webp` uploaded by user | High-quality 2048×1365 service hero image for Gazebos & Pergolas. |
