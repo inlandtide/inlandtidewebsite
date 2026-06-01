@@ -22,6 +22,7 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 - Updated the Window & Door Casing service hero with the uploaded high-quality casing photo and documented the forward-looking image quality standard.
 - Updated the Luxury & Decorative Moulding service hero to use the uploaded high-quality grey panel moulding hallway photo instead of the prior `finishprimed.jpg` treatment.
 - Replaced the second home page photo in the Experience section with the uploaded high-quality moulding lounge photo.
+- Updated the Picture Frame Moulding service hero with the uploaded high-quality moulding fireplace photo.
 - Updated the SEO dashboard keyword rankings section to show verified Google Search Console access for `mouldingstl.com` with current processing/no-query-data status.
 - Added license-free placeholder images under `/public/images/placeholders/` for the hero, service tiles, service detail pages, gallery, about, and contact sections.
 - Replaced the temporary coming-soon landing page with a full conversion-focused website using the new Moulding Saint Louis brand system.
