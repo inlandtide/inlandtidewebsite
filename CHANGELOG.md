@@ -14,6 +14,7 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 - Added a keyword rankings section to the SEO dashboard showing target keywords, target pages, and current unverified ranking status until Search Console or a rank tracker is connected.
 - Replaced the numeric labels on the home page service tiles with service-specific line icons while preserving the hover inversion treatment.
 - Replaced website placeholder imagery with selected assets from the Google Drive Photo Library while preserving the existing Contact page fireplace surround image.
+- Replaced low-quality thumbnail-derived site photos with sharper high-resolution imagery and reduced the home page hero title/supporting copy by roughly 25%.
 - Updated the SEO dashboard keyword rankings section to show verified Google Search Console access for `mouldingstl.com` with current processing/no-query-data status.
 - Added license-free placeholder images under `/public/images/placeholders/` for the hero, service tiles, service detail pages, gallery, about, and contact sections.
 - Replaced the temporary coming-soon landing page with a full conversion-focused website using the new Moulding Saint Louis brand system.

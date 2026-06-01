@@ -50,7 +50,7 @@ The current design uses committed site imagery at:
 /public/images/placeholders/
 ```
 
-Most active service and hero images have been replaced with selected assets from the Google Drive Photo Library under `Inland Tide → Moulding St. Louis → Photo Library`. The asset source mapping is documented in `docs/drive-photo-asset-mapping.md`. The Contact page intentionally preserves the previously approved fireplace surround image as `/public/images/placeholders/contact-fireplace-surround.jpg`.
+Most active service and hero images use committed high-resolution imagery documented in `docs/drive-photo-asset-mapping.md`. Earlier Google Drive browser downloads produced small thumbnail-sized files for several categories, so sharper replacement imagery was used where needed. The Contact page intentionally preserves the previously approved fireplace surround image as `/public/images/placeholders/contact-fireplace-surround.jpg`.
 
 ## Site Structure
 

@@ -1,11 +1,17 @@
-# Drive Photo Library Asset Mapping
-- `chair-rail-picture-rail.jpg` ← Google Drive `cr2.jpg` (`226x226` source)
-- `fireplace-mantels-surrounds.jpg` ← Google Drive `fp1.jpg` (`225x225` source)
-- `window-door-casing.jpg` ← Google Drive `wind casing.jpg` (`225x225` source)
-- `archways-entryways.jpg` ← Google Drive `arch4.jpg` (`287x176` source)
-- `gazebos-pergolas.jpg` ← Google Drive `gaz3.jpg` (`274x184` source)
-- `luxury-decorative-moulding.jpg` ← Google Drive `finish primed.jpg` (`300x168` source)
-- `picture-frame-moulding.jpg` ← Google Drive `pf mould 2.jpg` (`329x153` source)
-- `crown-moulding.jpg` ← Google Drive `imagespfmm.jpg` (`275x183` source)
-- `wainscoting-beadboard.jpg` ← Google Drive `wain 4.jpg` (`183x275` source)
-- `contact-fireplace-surround.jpg` preserves the previous Contact page fireplace image per user request.
+# Site Photo Asset Mapping
+
+The prior Google Drive browser downloads exposed small thumbnail-sized image files for several services, so the active website imagery was upgraded to sharper high-resolution, royalty-free replacement imagery where available. The approved Contact page fireplace image remains preserved.
+
+| Site Asset | Current Source | Notes |
+|---|---|---|
+| `hero-workshop.jpg` | `LUwwHrygYJmp.jpg` | Higher-resolution replacement selected for the matching service/category. |
+| `luxury-decorative-moulding.jpg` | `C2KhRMbyfAZT.jpg` | Higher-resolution replacement selected for the matching service/category. |
+| `picture-frame-moulding.jpg` | `Qt6NYooeHgTo.jpeg` | Higher-resolution replacement selected for the matching service/category. |
+| `crown-moulding.jpg` | `4QzdZoyvFK7F.jpg` | Higher-resolution replacement selected for the matching service/category. |
+| `wainscoting-beadboard.jpg` | `q9MTHaXOqnHM.jpeg` | Higher-resolution replacement selected for the matching service/category. |
+| `chair-rail-picture-rail.jpg` | `C9hLzoW0poRK.jpeg` | Higher-resolution replacement selected for the matching service/category. |
+| `fireplace-mantels-surrounds.jpg` | `Pb08h1dYbSu4.jpg` | Higher-resolution replacement selected for the matching service/category. |
+| `window-door-casing.jpg` | `uHTUZfWCmoyE.jpg` | Higher-resolution replacement selected for the matching service/category. |
+| `archways-entryways.jpg` | `uHTUZfWCmoyE.jpg` | Higher-resolution replacement selected for the matching service/category. |
+| `gazebos-pergolas.jpg` | `kJjJfvGgWIOU.jpg` | Higher-resolution replacement selected for the matching service/category. |
+| `contact-fireplace-surround.jpg` | Preserved previous site asset | Kept unchanged per user request. |
