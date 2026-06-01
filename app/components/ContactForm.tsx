@@ -24,14 +24,12 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
     const email = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
     const phone = (form.elements.namedItem("phone") as HTMLInputElement).value.trim();
     const projectType = (form.elements.namedItem("projectType") as HTMLSelectElement).value.trim();
-    const timeline = (form.elements.namedItem("timeline") as HTMLInputElement).value.trim();
     const location = (form.elements.namedItem("location") as HTMLInputElement).value.trim();
     const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim();
 
     const enrichedMessage = [
       projectType ? `Project type: ${projectType}` : "",
       location ? `Project location: ${location}` : "",
-      timeline ? `Desired timeline: ${timeline}` : "",
       message ? `Project details:\n${message}` : "",
     ]
       .filter(Boolean)
@@ -119,14 +117,9 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
             </Field>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Project Location" labelClass={labelClass}>
-              <input type="text" name="location" className={inputClass} placeholder="St. Louis, Ladue, Clayton..." />
-            </Field>
-            <Field label="Desired Timeline" labelClass={labelClass}>
-              <input type="text" name="timeline" className={inputClass} placeholder="Next month, this season..." />
-            </Field>
-          </div>
+          <Field label="Project Location" labelClass={labelClass}>
+            <input type="text" name="location" className={inputClass} placeholder="St. Louis, Ladue, Clayton..." />
+          </Field>
 
           <Field label="Project Details *" labelClass={labelClass}>
             <textarea

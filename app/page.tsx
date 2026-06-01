@@ -256,7 +256,7 @@ export default function Home() {
                 Tell us what you want the finished space to feel like.
               </h2>
               <p className="mt-7 text-lg leading-8 text-[#2E404E]">
-                Share the rooms, inspiration, timeline, and finish carpentry you have in mind. We will review the details and help determine the best next step for your home.
+                Share the rooms, inspiration, and finish carpentry you have in mind. We will review the details and help determine the best next step for your home.
               </p>
             </div>
             <div className="border border-[#B4904E]/45 bg-[#FEFAF1] p-6 shadow-2xl sm:p-9">

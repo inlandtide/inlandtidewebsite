@@ -30,6 +30,8 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 - Updated the Fireplace Mantels & Surrounds service hero with the uploaded fireplace photo in a correctly sized hero composition.
 - Replaced the Fireplace Mantels & Surrounds service hero again with the newer uploaded high-quality fireplace mantel photo.
 - Updated the Archways & Entryways service hero with the uploaded entryway photo in a correctly sized hero composition.
+- Reprocessed the Archways & Entryways hero as a standard full-bleed service hero so its size and presentation match the other service pages.
+- Removed the Desired Timeline field from the Request a Consultation form and related page copy.
 - Updated the SEO dashboard keyword rankings section to show verified Google Search Console access for `mouldingstl.com` with current processing/no-query-data status.
 - Added license-free placeholder images under `/public/images/placeholders/` for the hero, service tiles, service detail pages, gallery, about, and contact sections.
 - Replaced the temporary coming-soon landing page with a full conversion-focused website using the new Moulding Saint Louis brand system.

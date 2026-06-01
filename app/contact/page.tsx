@@ -42,7 +42,7 @@ export default function ContactPage() {
                 Tell us about the details you want to add to your home.
               </h1>
               <p className="mt-7 max-w-3xl text-xl leading-9 text-[#FEFAF1]/76">
-                Share the rooms, project type, desired timeline, and inspiration you have in mind. We will review your inquiry and help determine the best next step.
+                Share the rooms, project type, and inspiration you have in mind. We will review your inquiry and help determine the best next step.
               </p>
 
               <div className="mt-10 border-l-4 border-[#B4904E] bg-[#FEFAF1]/5 p-6">

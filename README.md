@@ -97,7 +97,7 @@ A SimilarWeb analytics check found limited public traffic data for `mouldingstl.
 
 ## Integrations & Data Flow
 
-The contact form uses a secure Next.js serverless API route at `app/api/contact/route.ts`. The form gathers customer details and enriches the message with project type, project location, and desired timeline, while preserving the backend payload shape used by the existing Google Sheets integration.
+The contact form uses a secure Next.js serverless API route at `app/api/contact/route.ts`. The form gathers customer details and enriches the message with project type and project location, while preserving the backend payload shape used by the existing Google Sheets integration.
 
 The execution order on every form submission is:
 
