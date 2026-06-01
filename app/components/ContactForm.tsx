@@ -76,7 +76,7 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
         <div className={`border px-6 py-8 text-center ${isDark ? "border-[#B4904E] bg-[#FEFAF1]/5" : "border-[#B4904E] bg-white"}`}>
           <p className="font-heading text-3xl font-semibold text-[#B4904E]">Message Received</p>
           <p className={`mt-3 text-base leading-7 ${isDark ? "text-[#FEFAF1]/74" : "text-[#2E404E]"}`}>
-            Thank you for reaching out. Tim, Ryan, or a member of the team will review your project details and follow up shortly.
+            Thank you for reaching out. A member of the Moulding Saint Louis team will review your project details and follow up shortly.
           </p>
           <button
             onClick={() => setFormState("idle")}
