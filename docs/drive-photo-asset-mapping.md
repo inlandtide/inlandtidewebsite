@@ -11,9 +11,13 @@ The prior Google Drive browser downloads exposed small thumbnail-sized image fil
 | `wainscoting-beadboard.jpg` | `q9MTHaXOqnHM.jpeg` | Higher-resolution replacement selected for the matching service/category. |
 | `chair-rail-picture-rail.jpg` | `C9hLzoW0poRK.jpeg` | Higher-resolution replacement selected for the matching service/category. |
 | `fireplace-mantels-surrounds.jpg` | `Pb08h1dYbSu4.jpg` | Higher-resolution replacement selected for the matching service/category. |
-| `window-door-casing.jpg` | `uHTUZfWCmoyE.jpg` | Higher-resolution replacement selected for the matching service/category. |
+| `window-door-casing.jpg` | `pexels-curtis-adams-1694007-3935348.webp` uploaded by user | High-quality 2048×1365 service hero image for Window & Door Casing. |
 | `archways-entryways.jpg` | `uHTUZfWCmoyE.jpg` | Higher-resolution replacement selected for the matching service/category. |
 | `gazebos-pergolas.jpg` | `kJjJfvGgWIOU.jpg` | Higher-resolution replacement selected for the matching service/category. |
 | `contact-fireplace-surround.jpg` | Preserved previous site asset | Kept unchanged per user request. |
 
 | `luxury-decorative-moulding-hero.jpg` | `finishprimed.jpg` uploaded by user | Full-photo-visible hero asset for the Luxury & Decorative Moulding service page. |
+
+## Image Quality Standard
+
+Moving forward, service and hero images should use correctly sized, high-quality source files. Preferred minimum source width is 1800px, with 3:2 landscape images used for service hero assets whenever possible.
