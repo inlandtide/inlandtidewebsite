@@ -9,7 +9,7 @@ The prior Google Drive browser downloads exposed small thumbnail-sized image fil
 | `picture-frame-moulding.jpg` | `pexels-artbovich-7598130.webp` uploaded by user | High-quality 2048×1365 service hero image for Picture Frame Moulding. |
 | `crown-moulding.jpg` | `pexels-curtis-adams-1694007-6835131.webp` uploaded by user | High-quality 2048×1365 service hero image for Crown Moulding. |
 | `wainscoting-beadboard.jpg` | `pexels-curtis-adams-1694007-10099216.webp` uploaded by user | High-quality 2048×1366 service hero image for Wainscoting & Beadboard. |
-| `chair-rail-picture-rail.jpg` | `C9hLzoW0poRK.jpeg` | Higher-resolution replacement selected for the matching service/category. |
+| `chair-rail-picture-rail.jpg` | `pexels-curtis-adams-1694007-8031958.webp` uploaded by user | High-quality 2048×1365 service hero image for Chair Rail & Picture Rail. |
 | `fireplace-mantels-surrounds.jpg` | `Pb08h1dYbSu4.jpg` | Higher-resolution replacement selected for the matching service/category. |
 | `window-door-casing.jpg` | `pexels-curtis-adams-1694007-3935348.webp` uploaded by user | High-quality 2048×1365 service hero image for Window & Door Casing. |
 | `archways-entryways.jpg` | `uHTUZfWCmoyE.jpg` | Higher-resolution replacement selected for the matching service/category. |
