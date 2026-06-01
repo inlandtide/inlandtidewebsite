@@ -221,8 +221,8 @@ export default function Home() {
           <div className="container-xl grid gap-14 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
             <div className="relative min-h-[620px] overflow-hidden">
               <Image
-                src="/images/placeholders/archways-entryways.jpg"
-                alt="Architectural archway placeholder"
+                src="/images/placeholders/home-experience-moulding-lounge.jpg"
+                alt="Bright sitting room with decorative wall moulding and refined finish carpentry"
                 fill
                 className="object-cover"
               />
