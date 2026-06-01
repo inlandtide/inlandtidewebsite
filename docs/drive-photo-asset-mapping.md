@@ -13,7 +13,7 @@ The prior Google Drive browser downloads exposed small thumbnail-sized image fil
 | `fireplace-mantels-surrounds.jpg` | `Pb08h1dYbSu4.jpg` | Higher-resolution replacement selected for the matching service/category. |
 | `window-door-casing.jpg` | `pexels-curtis-adams-1694007-3935348.webp` uploaded by user | High-quality 2048×1365 service hero image for Window & Door Casing. |
 | `archways-entryways.jpg` | `uHTUZfWCmoyE.jpg` | Higher-resolution replacement selected for the matching service/category. |
-| `gazebos-pergolas.jpg` | `kJjJfvGgWIOU.jpg` | Higher-resolution replacement selected for the matching service/category. |
+| `gazebos-pergolas.jpg` | `pexels-bertellifotografia-13871294.webp` uploaded by user | High-quality 2048×1365 service hero image for Gazebos & Pergolas. |
 | `contact-fireplace-surround.jpg` | Preserved previous site asset | Kept unchanged per user request. |
 
 | `luxury-decorative-moulding-hero.jpg` | Replaced by `luxury-decorative-moulding.jpg` | Prior finishprimed-specific full-photo hero treatment is no longer used. |
