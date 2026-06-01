@@ -25,6 +25,7 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 - Updated the Picture Frame Moulding service hero with the uploaded high-quality moulding fireplace photo.
 - Updated the Crown Moulding service hero with the uploaded high-quality living room crown moulding photo.
 - Updated the Gazebos & Pergolas service hero with the uploaded high-quality pergola photo.
+- Updated the Wainscoting & Beadboard service hero with the uploaded high-quality bathroom beadboard photo.
 - Updated the SEO dashboard keyword rankings section to show verified Google Search Console access for `mouldingstl.com` with current processing/no-query-data status.
 - Added license-free placeholder images under `/public/images/placeholders/` for the hero, service tiles, service detail pages, gallery, about, and contact sections.
 - Replaced the temporary coming-soon landing page with a full conversion-focused website using the new Moulding Saint Louis brand system.
