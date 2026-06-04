@@ -10,7 +10,7 @@ import { services } from "./data/services";
 const promises = [
   "Finish Carpentry Specialists",
   "Custom Wood Details",
-  "Locally Owned in St. Louis",
+  "Locally Owned & Operated in St. Louis",
   "Exceptional Customer Care",
 ];
 
