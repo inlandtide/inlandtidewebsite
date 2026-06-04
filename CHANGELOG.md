@@ -45,6 +45,7 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 - Added About, Process, Gallery, and Contact pages with conversion-focused content and local ownership messaging.
 
 ### Changed
+- Moved the Contact page `What happens next?` section below the consultation form.
 - Removed the public Gallery page and its navigation/sitemap references for now so it can be rebuilt later.
 - Updated the desktop homepage hero label to say `Locally Owned & Operated in St. Louis`.
 - Updated the home page hero headline to display only `Moulding` above `Saint Louis`, using Moulding Ivory for `Moulding` and Antique Brass for `Saint Louis`, in place of the former luxury wood details headline.

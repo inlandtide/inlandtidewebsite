@@ -45,15 +45,15 @@ export default function ContactPage() {
                 Share the rooms, project type, and inspiration you have in mind. We will review your inquiry and help determine the best next step. You can also call (314) 818-0815.
               </p>
 
+              <div className="mt-10 border border-[#B4904E]/45 bg-[#FEFAF1]/5 p-6 sm:p-9">
+                <ContactForm variant="dark" compact />
+              </div>
+
               <div className="mt-10 border-l-4 border-[#B4904E] bg-[#FEFAF1]/5 p-6">
                 <p className="font-heading text-3xl font-semibold">What happens next?</p>
                 <p className="mt-3 leading-7 text-[#FEFAF1]/74">
                   A member of the Moulding Saint Louis team will review your message. We may ask for photos, inspiration, room dimensions, or a short conversation so expectations are clear before the project moves forward.
                 </p>
-              </div>
-
-              <div className="mt-10 border border-[#B4904E]/45 bg-[#FEFAF1]/5 p-6 sm:p-9">
-                <ContactForm variant="dark" compact />
               </div>
             </div>
           </div>
