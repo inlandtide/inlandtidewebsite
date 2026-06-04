@@ -7,6 +7,7 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 ## [2026-05-20]
 
 ### Added
+- Installed the Meta Pixel base code sitewide with Pixel ID `3892771434365667`.
 - Added SEO foundations including page-specific metadata, canonical URLs, Open Graph/Twitter metadata, LocalBusiness JSON-LD, WebSite JSON-LD, Service JSON-LD, breadcrumb JSON-LD, sitemap generation, and robots.txt generation.
 - Added a concise SEO implementation report based on available SimilarWeb analytics context.
 - Added a live noindex SEO dashboard at `/seo-dashboard` to visualize the report findings, implemented SEO foundations, crawl/indexing links, and next actions.
