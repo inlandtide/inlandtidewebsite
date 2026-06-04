@@ -69,14 +69,14 @@ The website is structured as a conversion-focused, multi-page site for a luxury 
 | Window & Door Casing | `/services/window-door-casing` | Dedicated page for upgraded interior casing. |
 | Archways & Entryways | `/services/archways-entryways` | Dedicated page for entry transitions and cased openings. |
 | Gazebos & Pergolas | `/services/gazebos-pergolas` | Dedicated page for custom outdoor wood structures and shade features. |
-| About | `/about` | Local ownership and company values page for Tim Hebel and Ryan Hall. |
+| About | `/about` | Local ownership and company values page for Moulding Saint Louis. |
 | Gallery | `/gallery` | Future-ready inspiration and portfolio structure. |
 | Contact | `/contact` | Dedicated consultation request page. |
 | SEO Dashboard | `/seo-dashboard` | Internal noindex dashboard based on the SEO implementation report for tracking SEO foundations and next actions. |
 
 ## Business Positioning
 
-Moulding Saint Louis focuses on high-end moulding, finish carpentry, and quality wood products for St. Louis homes. The company is independently owned and operated in St. Louis by Tim Hebel and Ryan Hall. Wood is the primary specialty, but similar or requested materials may be discussed when they fit the design, performance needs, and finish expectations of the project.
+Moulding Saint Louis focuses on high-end moulding, finish carpentry, and quality wood products for St. Louis homes. The company is independently owned and operated in St. Louis. Wood is the primary specialty, but similar or requested materials may be discussed when they fit the design, performance needs, and finish expectations of the project.
 
 The site should maintain a refined, premium, customer-care-focused tone. Preferred language includes terms such as **luxury moulding**, **architectural wood finishes**, **finish carpentry specialists**, **custom wood details**, **clear expectations**, and **exceptional customer care**.
 

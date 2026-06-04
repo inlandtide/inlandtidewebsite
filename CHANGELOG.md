@@ -32,14 +32,16 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 - Updated the Archways & Entryways service hero with the uploaded entryway photo in a correctly sized hero composition.
 - Reprocessed the Archways & Entryways hero as a standard full-bleed service hero so its size and presentation match the other service pages.
 - Removed the Desired Timeline field from the Request a Consultation form and related page copy.
-- Removed Tim and Ryan from public-facing contact follow-up copy while preserving general team follow-up messaging.
+- Removed personal owner names from public-facing contact follow-up copy while preserving general team follow-up messaging.
+- Added the public phone number `(314) 818-0815` in limited high-intent locations, including the header, footer, contact page, and LocalBusiness structured data.
+- Removed the public footer link to the internal noindex SEO dashboard.
 - Updated the SEO dashboard keyword rankings section to show verified Google Search Console access for `mouldingstl.com` with current processing/no-query-data status.
 - Added license-free placeholder images under `/public/images/placeholders/` for the hero, service tiles, service detail pages, gallery, about, and contact sections.
 - Replaced the temporary coming-soon landing page with a full conversion-focused website using the new Moulding Saint Louis brand system.
 - Added the new logo asset to `/public/moulding-saint-louis-logo.png` and updated the site to use Saint Louis Navy, Moulding Ivory, Antique Brass, Blue Charcoal, and Warm Stone.
 - Added Cormorant Garamond and Zilla Slab as the primary brand fonts.
 - Added a services hub and individual service pages for luxury and decorative moulding, picture frame moulding, crown moulding, wainscoting and beadboard, chair rail and picture rail, fireplace mantels and surrounds, window and door casing, and archways and entryways.
-- Added About, Process, Gallery, and Contact pages with conversion-focused content and local ownership messaging for Tim Hebel and Ryan Hall.
+- Added About, Process, Gallery, and Contact pages with conversion-focused content and local ownership messaging.
 
 ### Changed
 - Updated the home page hero headline to display only `Moulding` above `Saint Louis`, using Moulding Ivory for `Moulding` and Antique Brass for `Saint Louis`, in place of the former luxury wood details headline.

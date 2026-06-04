@@ -49,13 +49,21 @@ export function SiteHeader() {
           <Link className="transition hover:text-[#B4904E]" href="/contact">Contact</Link>
         </nav>
 
-        <Link
-          href="/contact"
-          className="border border-[#B4904E] bg-[#B4904E] px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#081828] transition hover:bg-transparent hover:text-[#B4904E] sm:px-5 sm:tracking-[0.2em]"
-        >
-          <span className="sm:hidden">Contact</span>
-          <span className="hidden sm:inline">Request a Consultation</span>
-        </Link>
+        <div className="flex items-center gap-3">
+          <a
+            href="tel:+13148180815"
+            className="hidden text-sm font-semibold tracking-[0.08em] text-[#FEFAF1]/80 transition hover:text-[#B4904E] xl:inline"
+          >
+            (314) 818-0815
+          </a>
+          <Link
+            href="/contact"
+            className="border border-[#B4904E] bg-[#B4904E] px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#081828] transition hover:bg-transparent hover:text-[#B4904E] sm:px-5 sm:tracking-[0.2em]"
+          >
+            <span className="sm:hidden">Contact</span>
+            <span className="hidden sm:inline">Request a Consultation</span>
+          </Link>
+        </div>
       </div>
     </header>
   );
@@ -100,14 +108,14 @@ export function SiteFooter() {
           <FooterLink href="/gallery">Gallery</FooterLink>
           <FooterLink href="/about">About</FooterLink>
           <FooterLink href="/contact">Contact</FooterLink>
-          <FooterLink href="/seo-dashboard">SEO Dashboard</FooterLink>
+          <a href="tel:+13148180815" className="transition hover:text-[#B4904E]">(314) 818-0815</a>
         </FooterColumn>
       </div>
 
       <div className="border-t border-[#B4904E]/25 py-6">
         <div className="container-xl flex flex-col gap-3 text-sm text-[#FEFAF1]/65 md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Moulding Saint Louis. Independently owned and operated in St. Louis.</p>
-          <p>Tim Hebel & Ryan Hall</p>
+          <p>High-end moulding and custom finish carpentry.</p>
         </div>
       </div>
     </footer>

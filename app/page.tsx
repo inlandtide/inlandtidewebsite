@@ -234,7 +234,7 @@ export default function Home() {
                 Premium finish carpentry should feel personal, organized, and cared for.
               </h2>
               <p className="mt-7 text-lg leading-8 text-[#FEFAF1]/76">
-                Moulding Saint Louis is independently owned and operated in St. Louis by Tim Hebel and Ryan Hall. We focus on custom wood details and high-end finishes that make a home feel more intentional, substantial, and complete.
+                Moulding Saint Louis is independently owned and operated in St. Louis. We focus on custom wood details and high-end finishes that make a home feel more intentional, substantial, and complete.
               </p>
               <div className="mt-9 space-y-4">
                 {experiencePoints.map((point) => (
@@ -256,7 +256,7 @@ export default function Home() {
                 Tell us what you want the finished space to feel like.
               </h2>
               <p className="mt-7 text-lg leading-8 text-[#2E404E]">
-                Share the rooms, inspiration, and finish carpentry you have in mind. We will review the details and help determine the best next step for your home.
+                Share the rooms, inspiration, and finish carpentry you have in mind. We will review the details and help determine the best next step for your home. Prefer to call? (314) 818-0815.
               </p>
             </div>
             <div className="border border-[#B4904E]/45 bg-[#FEFAF1] p-6 shadow-2xl sm:p-9">

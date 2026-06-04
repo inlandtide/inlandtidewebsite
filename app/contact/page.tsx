@@ -8,7 +8,7 @@ import { breadcrumbSchema, siteUrl } from "../data/seo";
 export const metadata: Metadata = {
   title: "Request a Finish Carpentry Consultation",
   description:
-    "Contact Moulding Saint Louis to discuss luxury moulding, wainscoting, casing, mantels, archways, gazebos, pergolas, and custom finish carpentry in St. Louis.",
+    "Contact Moulding Saint Louis at (314) 818-0815 to discuss luxury moulding, wainscoting, casing, mantels, archways, gazebos, pergolas, and custom finish carpentry in St. Louis.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Request a Finish Carpentry Consultation",
@@ -42,7 +42,7 @@ export default function ContactPage() {
                 Tell us about the details you want to add to your home.
               </h1>
               <p className="mt-7 max-w-3xl text-xl leading-9 text-[#FEFAF1]/76">
-                Share the rooms, project type, and inspiration you have in mind. We will review your inquiry and help determine the best next step.
+                Share the rooms, project type, and inspiration you have in mind. We will review your inquiry and help determine the best next step. You can also call (314) 818-0815.
               </p>
 
               <div className="mt-10 border-l-4 border-[#B4904E] bg-[#FEFAF1]/5 p-6">

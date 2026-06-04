@@ -98,7 +98,7 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
 
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Phone" labelClass={labelClass}>
-              <input type="tel" name="phone" className={inputClass} placeholder="(314) 555-0199" />
+              <input type="tel" name="phone" className={inputClass} placeholder="Your phone number" />
             </Field>
             <Field label="Project Type" labelClass={labelClass}>
               <select name="projectType" className={inputClass} defaultValue="">

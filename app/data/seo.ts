@@ -12,6 +12,7 @@ export const localBusinessSchema = {
   name: siteName,
   alternateName: "Moulding STL",
   url: siteUrl,
+  telephone: "+1-314-818-0815",
   logo: logoUrl,
   image: [logoUrl, defaultOgImage],
   description:
@@ -28,10 +29,6 @@ export const localBusinessSchema = {
       name: "Greater St. Louis",
       addressCountry: "US",
     },
-  ],
-  founder: [
-    { "@type": "Person", name: "Tim Hebel" },
-    { "@type": "Person", name: "Ryan Hall" },
   ],
   priceRange: "$$$",
   knowsAbout: [

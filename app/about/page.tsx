@@ -6,9 +6,9 @@ import { PageShell } from "../components/SiteChrome";
 import { breadcrumbSchema, siteUrl } from "../data/seo";
 
 export const metadata: Metadata = {
-  title: "About Tim Hebel & Ryan Hall",
+  title: "About Moulding Saint Louis",
   description:
-    "Moulding Saint Louis is independently owned and operated in St. Louis by Tim Hebel and Ryan Hall, specializing in luxury finish carpentry and architectural wood details.",
+    "Moulding Saint Louis is independently owned and operated in St. Louis, specializing in luxury finish carpentry and architectural wood details.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About Moulding Saint Louis",
@@ -64,7 +64,7 @@ export default function AboutPage() {
               </h2>
               <div className="mt-8 space-y-6 text-lg leading-8 text-[#2E404E]">
                 <p>
-                  Moulding Saint Louis is led in St. Louis by Tim Hebel and Ryan Hall, with a focus on premium finish carpentry, custom wood details, and a customer experience rooted in care.
+                  Moulding Saint Louis is locally led in St. Louis, with a focus on premium finish carpentry, custom wood details, and a customer experience rooted in care.
                 </p>
                 <p>
                   We believe thoughtful moulding, wainscoting, fireplace details, and casing can add proportion, warmth, and permanence without changing the entire structure of a room.
