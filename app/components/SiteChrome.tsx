@@ -44,7 +44,6 @@ export function SiteHeader() {
               </div>
             </div>
           </div>
-          <Link className="transition hover:text-[#B4904E]" href="/gallery">Gallery</Link>
           <Link className="transition hover:text-[#B4904E]" href="/about">About</Link>
           <Link className="transition hover:text-[#B4904E]" href="/contact">Contact</Link>
         </nav>
@@ -105,7 +104,6 @@ export function SiteFooter() {
         </FooterColumn>
 
         <FooterColumn title="Company">
-          <FooterLink href="/gallery">Gallery</FooterLink>
           <FooterLink href="/about">About</FooterLink>
           <FooterLink href="/contact">Contact</FooterLink>
           <a href="tel:+13148180815" className="transition hover:text-[#B4904E]">(314) 818-0815</a>

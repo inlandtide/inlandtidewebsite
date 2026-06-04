@@ -26,11 +26,11 @@ The website was updated with page-specific title tags, meta descriptions, canoni
 | Sitewide metadata | Expanded default title, description, keywords, Open Graph, Twitter card, canonical, and robots metadata in `app/layout.tsx`. |
 | Local business schema | Added JSON-LD for `HomeAndConstructionBusiness`, including service offerings, founders, service area, logo, and description. |
 | Website schema | Added `WebSite` JSON-LD to identify the website and publisher relationship. |
-| Breadcrumb schema | Added breadcrumb JSON-LD to the home, services, service detail, about, gallery, and contact pages. |
+| Breadcrumb schema | Added breadcrumb JSON-LD to the home, services, service detail, about, and contact pages. |
 | Service schema | Added page-specific `Service` JSON-LD for each service page. |
-| Sitemap | Added `app/sitemap.ts` covering the homepage, services hub, all individual service pages, gallery, about, and contact. |
+| Sitemap | Added `app/sitemap.ts` covering the homepage, services hub, all individual service pages, about, and contact. |
 | Robots | Added `app/robots.ts` allowing crawl access and pointing crawlers to `https://mouldingstl.com/sitemap.xml`. |
-| Page metadata | Added stronger local keyword-focused titles and descriptions for home, services, service pages, about, gallery, and contact. |
+| Page metadata | Added stronger local keyword-focused titles and descriptions for home, services, service pages, about, and contact. |
 
 ## References
 

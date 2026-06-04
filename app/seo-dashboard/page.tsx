@@ -61,7 +61,7 @@ const seoFoundations = [
   {
     title: "Page-specific metadata",
     status: "Implemented",
-    copy: "Home, services, service detail pages, about, gallery, and contact now use focused titles, descriptions, canonical URLs, and social metadata.",
+    copy: "Home, services, service detail pages, about, and contact now use focused titles, descriptions, canonical URLs, and social metadata.",
   },
   {
     title: "Local business schema",
@@ -76,7 +76,7 @@ const seoFoundations = [
   {
     title: "Breadcrumb schema",
     status: "Implemented",
-    copy: "Breadcrumb JSON-LD clarifies page hierarchy for the homepage, services hub, service pages, about, gallery, and contact pages.",
+    copy: "Breadcrumb JSON-LD clarifies page hierarchy for the homepage, services hub, service pages, about, and contact pages.",
   },
   {
     title: "Sitemap generation",
