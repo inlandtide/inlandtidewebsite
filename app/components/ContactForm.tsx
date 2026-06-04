@@ -9,6 +9,18 @@ type ContactFormProps = {
   compact?: boolean;
 };
 
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
+function trackMetaLead() {
+  if (typeof window !== "undefined" && typeof window.fbq === "function") {
+    window.fbq("track", "Lead");
+  }
+}
+
 export default function ContactForm({ variant = "light", compact = false }: ContactFormProps) {
   const [formState, setFormState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -55,6 +67,7 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
         setErrorMsg(json.error || "Something went wrong. Please try again.");
         setFormState("error");
       } else {
+        trackMetaLead();
         setFormState("success");
         form.reset();
       }
