@@ -46,6 +46,7 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 - Added About, Process, Gallery, and Contact pages with conversion-focused content and local ownership messaging.
 
 ### Changed
+- Reduced the homepage hero spacing between the CTA buttons and the feature row.
 - Replaced visible website logos with the uploaded inverted Moulding Saint Louis logo and removed adjacent logo text labels.
 - Moved the Contact page `What happens next?` section below the consultation form.
 - Removed the public Gallery page and its navigation/sitemap references for now so it can be rebuilt later.

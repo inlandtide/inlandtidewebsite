@@ -135,7 +135,7 @@ export default function Home() {
     <PageShell>
       <main className="bg-[#FEFAF1]">
         <JsonLd data={breadcrumbSchema([{ name: "Home", url: siteUrl }])} />
-        <section className="relative flex min-h-[calc(100vh-89px)] items-center overflow-hidden bg-[#081828] text-[#FEFAF1]">
+        <section className="relative flex min-h-[calc(92vh-89px)] items-center overflow-hidden bg-[#081828] text-[#FEFAF1] lg:min-h-[calc(88vh-89px)]">
           <Image
             src="/images/placeholders/home-hero-moulding-interior.jpg"
             alt="Bright luxury interior with decorative wall moulding and refined finish carpentry"
