@@ -70,10 +70,11 @@ The website is structured as a conversion-focused, multi-page site for a luxury 
 | Archways & Entryways | `/services/archways-entryways` | Dedicated page for entry transitions and cased openings. |
 | Gazebos & Pergolas | `/services/gazebos-pergolas` | Dedicated page for custom outdoor wood structures and shade features. |
 | About | `/about` | Local ownership and company values page for Moulding Saint Louis. |
+| Gallery | `/gallery` | Rebuilt visual portfolio organized by uploaded photo filename categories. |
 | Contact | `/contact` | Dedicated consultation request page. |
-
-The gallery page has been removed for now and will be rebuilt later when the new gallery direction is ready.
 | SEO Dashboard | `/seo-dashboard` | Internal noindex dashboard based on the SEO implementation report for tracking SEO foundations and next actions. |
+
+The gallery page has been rebuilt as a curated, image-forward portfolio organized from uploaded photo filename categories. Active gallery images are committed under `/public/images/gallery/`, with source-to-site mapping documented in `docs/gallery-image-asset-mapping.md`.
 
 ## Business Positioning
 
@@ -158,3 +159,4 @@ If you are an AI or developer picking up this project:
 ---
 
 *Document prepared for future development context.*
+

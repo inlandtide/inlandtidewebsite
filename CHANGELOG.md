@@ -7,6 +7,7 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 ## [2026-05-20]
 
 ### Added
+- Rebuilt the Gallery page from scratch with 40 uploaded project photos organized into service-based collections, restored Gallery navigation, and added gallery image asset documentation.
 - Added Meta Pixel `Lead` tracking after successful consultation form submission across all shared contact forms.
 - Installed the Meta Pixel base code sitewide with Pixel ID `3892771434365667`.
 - Added SEO foundations including page-specific metadata, canonical URLs, Open Graph/Twitter metadata, LocalBusiness JSON-LD, WebSite JSON-LD, Service JSON-LD, breadcrumb JSON-LD, sitemap generation, and robots.txt generation.
