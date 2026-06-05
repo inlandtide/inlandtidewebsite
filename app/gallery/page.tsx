@@ -4,7 +4,7 @@ import Link from "next/link";
 import JsonLd from "../components/JsonLd";
 import { PageShell } from "../components/SiteChrome";
 import { breadcrumbSchema, defaultOgImage, siteUrl } from "../data/seo";
-import { galleryCategories, galleryImageCount } from "../data/gallery";
+import { galleryCategories } from "../data/gallery";
 
 export const metadata: Metadata = {
   title: "Project Gallery | Moulding Saint Louis",
@@ -77,23 +77,6 @@ export default function GalleryPage() {
                   Explore Services
                 </Link>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="border-y border-[#B4904E]/25 bg-[#081828] text-[#FEFAF1]">
-          <div className="container-xl grid gap-0 md:grid-cols-3">
-            <div className="border-[#B4904E]/25 py-8 md:border-r">
-              <p className="text-sm uppercase tracking-[0.32em] text-[#B4904E]">Photos</p>
-              <p className="mt-2 font-heading text-5xl font-semibold">{galleryImageCount}</p>
-            </div>
-            <div className="border-[#B4904E]/25 py-8 md:border-r md:px-8">
-              <p className="text-sm uppercase tracking-[0.32em] text-[#B4904E]">Collections</p>
-              <p className="mt-2 font-heading text-5xl font-semibold">{galleryCategories.length}</p>
-            </div>
-            <div className="py-8 md:px-8">
-              <p className="text-sm uppercase tracking-[0.32em] text-[#B4904E]">Organized By</p>
-              <p className="mt-4 text-lg leading-7 text-[#FEFAF1]/76">Filename categories, service type, and visual finish detail.</p>
             </div>
           </div>
         </section>
