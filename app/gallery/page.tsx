@@ -95,8 +95,7 @@ export default function GalleryPage() {
                       className="object-cover transition duration-700 group-hover:scale-105"
                     />
                   </div>
-                  <p className="mt-6 text-xs uppercase tracking-[0.26em] text-[#B4904E]">{category.images.length} photos</p>
-                  <h2 className="mt-3 font-heading text-4xl font-semibold leading-tight text-[#081828] transition group-hover:text-[#FEFAF1]">
+                  <h2 className="mt-6 font-heading text-4xl font-semibold leading-tight text-[#081828] transition group-hover:text-[#FEFAF1]">
                     {category.title}
                   </h2>
                   <p className="mt-4 leading-7 text-[#2E404E] transition group-hover:text-[#FEFAF1]/75">{category.description}</p>
@@ -107,13 +106,12 @@ export default function GalleryPage() {
         </section>
 
         <section className="space-y-24 bg-[#FEFAF1] pb-24 sm:pb-32">
-          {galleryCategories.map((category, categoryIndex) => (
+          {galleryCategories.map((category) => (
             <div key={category.slug} id={category.slug} className="scroll-mt-28">
               <div className="container-xl">
                 <div className="mb-10 grid gap-8 border-t border-[#B4904E]/30 pt-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
                   <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.38em] text-[#B4904E]">Collection {String(categoryIndex + 1).padStart(2, "0")}</p>
-                    <h2 className="mt-4 font-heading text-5xl font-semibold leading-none text-[#081828] text-balance sm:text-7xl">
+                    <h2 className="font-heading text-5xl font-semibold leading-none text-[#081828] text-balance sm:text-7xl">
                       {category.title}
                     </h2>
                   </div>
