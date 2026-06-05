@@ -2,7 +2,7 @@ import { services } from "./services";
 
 export const siteUrl = "https://mouldingstl.com";
 export const siteName = "Moulding Saint Louis";
-export const logoUrl = `${siteUrl}/moulding-saint-louis-logo.png`;
+export const logoUrl = `${siteUrl}/moulding-stl-inverted-logo.png`;
 export const defaultOgImage = `${siteUrl}/images/placeholders/hero-workshop.jpg`;
 
 export const localBusinessSchema = {

@@ -38,10 +38,10 @@ The current visual identity uses the following brand palette throughout the webs
 | Secondary Text | Blue Charcoal | `#2E404E` |
 | Secondary Neutral | Warm Stone | `#D6D2C6` |
 
-The primary logo file currently used by the redesigned site is stored at:
+The primary visible logo file currently used by the redesigned site is stored at:
 
 ```text
-/public/moulding-saint-louis-logo.png
+/public/moulding-stl-inverted-logo.webp
 ```
 
 The current design uses committed site imagery at:

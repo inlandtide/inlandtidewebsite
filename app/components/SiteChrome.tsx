@@ -6,19 +6,15 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-[#B4904E]/25 bg-[#081828]/95 text-[#FEFAF1] backdrop-blur">
       <div className="container-xl flex items-center justify-between gap-6 py-4">
-        <Link href="/" className="flex items-center gap-3" aria-label="Moulding Saint Louis home">
+        <Link href="/" className="flex items-center" aria-label="Moulding Saint Louis home">
           <Image
-            src="/moulding-saint-louis-logo.png"
+            src="/moulding-stl-inverted-logo.webp"
             alt="Moulding Saint Louis"
-            width={74}
-            height={74}
-            className="h-14 w-14 rounded-sm object-cover object-top"
+            width={1600}
+            height={1768}
+            className="h-20 w-auto object-contain sm:h-24 lg:h-28"
             priority
           />
-          <div className="leading-none">
-            <p className="font-heading text-2xl font-semibold tracking-wide">Moulding</p>
-            <p className="font-heading text-xl tracking-[0.08em] text-[#B4904E]">Saint Louis</p>
-          </div>
         </Link>
 
         <nav className="hidden items-center gap-7 text-sm font-medium uppercase tracking-[0.18em] text-[#FEFAF1]/82 lg:flex">
@@ -73,18 +69,14 @@ export function SiteFooter() {
     <footer className="bg-[#081828] text-[#FEFAF1]">
       <div className="container-xl grid gap-10 py-14 md:grid-cols-[1.25fr_1fr_1fr_1fr]">
         <div>
-          <Link href="/" className="inline-flex items-center gap-4">
+          <Link href="/" className="inline-flex" aria-label="Moulding Saint Louis home">
             <Image
-              src="/moulding-saint-louis-logo.png"
+              src="/moulding-stl-inverted-logo.webp"
               alt="Moulding Saint Louis"
-              width={86}
-              height={86}
-              className="h-16 w-16 rounded-sm object-cover object-top"
+              width={1600}
+              height={1768}
+              className="h-40 w-auto object-contain sm:h-48"
             />
-            <div>
-              <p className="font-heading text-3xl font-semibold">Moulding Saint Louis</p>
-              <p className="text-sm uppercase tracking-[0.35em] text-[#B4904E]">Made in Wood</p>
-            </div>
           </Link>
           <p className="mt-6 max-w-sm leading-7 text-[#FEFAF1]/72">
             Luxury moulding, finish carpentry, and architectural wood finishes for St. Louis homes.
