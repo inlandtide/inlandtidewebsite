@@ -4,7 +4,7 @@ import Link from "next/link";
 import ContactForm from "./components/ContactForm";
 import JsonLd from "./components/JsonLd";
 import { PageShell } from "./components/SiteChrome";
-import { breadcrumbSchema, defaultOgImage, siteUrl } from "./data/seo";
+import { breadcrumbSchema, defaultOgImage, siteName, siteUrl } from "./data/seo";
 import { services } from "./data/services";
 
 const promises = [
@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     description:
       "Custom wood details, architectural moulding, wainscoting, casing, mantels, gazebos, and pergolas for St. Louis homes.",
     url: siteUrl,
+    siteName,
     images: [{ url: defaultOgImage, width: 1800, height: 1200, alt: "Moulding Saint Louis finish carpentry" }],
   },
 };

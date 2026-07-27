@@ -85,3 +85,8 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 - Google Sheets integration: POSTs lead data to a Google Apps Script Webhook (`GOOGLE_SHEETS_WEBAPP_URL`) before sending the notification email.
 - Updated email-always-fires logic: Google Sheets save is now non-blocking. If Sheets fails, the notification email still sends and includes a bold red alert banner in the subject and body warning the team to check the integration.
 - `README.md` with full architecture, integration, and environment variable documentation.
+
+## [2026-07-27]
+
+### Fixed
+- Added `siteName` ("Moulding Saint Louis") to the homepage `openGraph` metadata block in `app/page.tsx`. The page-level `openGraph` object was overriding the layout-level metadata and dropping the `og:site_name` tag from the rendered HTML, causing Google to fall back to displaying the bare domain name (`mouldingstl.com`) in search results instead of the brand name.
