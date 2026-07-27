@@ -95,3 +95,8 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 
 ### Added
 - Google Analytics 4 tag (ID: G-FWKJVE2EMS) added to root layout (`app/layout.tsx`) via Next.js `<Script strategy="afterInteractive">`. Fires on every page across the entire site.
+
+## [2026-07-27c]
+
+### Added
+- GA4 `generate_lead` key event fires on successful contact form submission via `gtag('event', 'generate_lead')` in `ContactForm.tsx`. Fires client-side only after the API returns a 200 OK, alongside the existing Meta Pixel `Lead` event.

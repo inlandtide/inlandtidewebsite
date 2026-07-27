@@ -12,12 +12,19 @@ type ContactFormProps = {
 declare global {
   interface Window {
     fbq?: (...args: unknown[]) => void;
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
 function trackMetaLead() {
   if (typeof window !== "undefined" && typeof window.fbq === "function") {
     window.fbq("track", "Lead");
+  }
+}
+
+function trackGALead() {
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", "generate_lead");
   }
 }
 
@@ -68,6 +75,7 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
         setFormState("error");
       } else {
         trackMetaLead();
+        trackGALead();
         setFormState("success");
         form.reset();
       }
