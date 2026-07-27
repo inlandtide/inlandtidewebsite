@@ -100,3 +100,8 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 
 ### Added
 - GA4 `generate_lead` key event fires on successful contact form submission via `gtag('event', 'generate_lead')` in `ContactForm.tsx`. Fires client-side only after the API returns a 200 OK, alongside the existing Meta Pixel `Lead` event.
+
+## [2026-07-27d]
+
+### Added
+- New `/privacy-policy` page at `app/privacy-policy/page.tsx`. Covers: information collection, Google Analytics 4, Meta Pixel, log data, cookies, contact form data handling, service providers (Vercel, Resend, Google), security, external links, children's privacy, and policy change notice. Styled to match the site (dark header, cream body, gold accents). Includes breadcrumb JSON-LD and proper metadata with canonical URL.
