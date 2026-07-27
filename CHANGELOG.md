@@ -90,3 +90,8 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 
 ### Fixed
 - Added `siteName` ("Moulding Saint Louis") to the homepage `openGraph` metadata block in `app/page.tsx`. The page-level `openGraph` object was overriding the layout-level metadata and dropping the `og:site_name` tag from the rendered HTML, causing Google to fall back to displaying the bare domain name (`mouldingstl.com`) in search results instead of the brand name.
+
+## [2026-07-27b]
+
+### Added
+- Google Analytics 4 tag (ID: G-FWKJVE2EMS) added to root layout (`app/layout.tsx`) via Next.js `<Script strategy="afterInteractive">`. Fires on every page across the entire site.
