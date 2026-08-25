@@ -12,7 +12,7 @@ The prior Google Drive browser downloads exposed small thumbnail-sized image fil
 | `chair-rail-picture-rail.jpg` | `pexels-curtis-adams-1694007-8031958.webp` uploaded by user | High-quality 2048×1365 service hero image for Chair Rail & Picture Rail. |
 | `fireplace-mantels-surrounds.jpg` | `pexels-curtis-adams-1694007-3935330.webp` uploaded by user | High-quality 2048×1365 service hero image for Fireplace Mantels & Surrounds. |
 | `window-door-casing.jpg` | `pexels-curtis-adams-1694007-3935348.webp` uploaded by user | High-quality 2048×1365 service hero image for Window & Door Casing. |
-| `archways-entryways.jpg` | `pexels-brett-sayles-8364962.webp` uploaded by user | Standard full-bleed 2048×1365 service hero crop to match the rest of the service pages. |
+| `archways-entryways.jpg` | `window & door casings 2.jpg` from Google Drive Photo Library | User-selected high-quality 5472×3648 (3:2) image. Used as the full-bleed hero and Next Step image for the Archways & Entryways page. |
 | `gazebos-pergolas.jpg` | `pexels-bertellifotografia-13871294.webp` uploaded by user | High-quality 2048×1365 service hero image for Gazebos & Pergolas. |
 | `contact-fireplace-surround.jpg` | Preserved previous site asset | Kept unchanged per user request. |
 
