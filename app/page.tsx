@@ -113,6 +113,13 @@ function ServiceIcon({ slug, title }: ServiceIconProps) {
         <path d="M9 40h30" />
       </svg>
     ),
+    contact: (
+      <svg {...commonProps}>
+        <rect x="8" y="12" width="32" height="24" rx="1" />
+        <path d="m10 15 14 11 14-11" />
+        <path d="m10 34 10-9M38 34 28 25" />
+      </svg>
+    ),
     "gazebos-pergolas": (
       <svg {...commonProps}>
         <path d="M8 18h32" />
@@ -214,6 +221,25 @@ export default function Home() {
                   </p>
                 </Link>
               ))}
+              <Link
+                href="/contact"
+                className="group flex min-h-[360px] flex-col border border-[#D6D2C6] bg-white p-7 text-[#2E404E] shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#B4904E] hover:bg-[#081828] hover:shadow-2xl"
+              >
+                <div className="flex items-start justify-between gap-6">
+                  <ServiceIcon slug="contact" title="Contact Us" />
+                  <span className="mt-8 h-px flex-1 bg-[#D6D2C6] transition-colors duration-300 group-hover:bg-[#B4904E]/60" />
+                  <span className="mt-5 text-[#B4904E]">◆</span>
+                </div>
+                <h3 className="mt-8 font-heading text-4xl font-semibold leading-tight text-[#081828] text-balance transition-colors duration-300 group-hover:text-[#FEFAF1]">
+                  Contact Us
+                </h3>
+                <p className="mt-5 flex-1 text-base leading-7 text-[#2E404E] transition-colors duration-300 group-hover:text-[#FEFAF1]/82">
+                  Tell us about your home, inspiration, and the details you want to bring to life. We will help clarify the best next step.
+                </p>
+                <p className="mt-7 border-t border-[#D6D2C6] pt-5 text-xs font-semibold uppercase tracking-[0.25em] text-[#B4904E] transition-colors duration-300 group-hover:border-[#B4904E]/45">
+                  Start a Conversation
+                </p>
+              </Link>
             </div>
           </div>
         </section>
