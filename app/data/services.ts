@@ -7,6 +7,7 @@ export type Service = {
   idealFor: string[];
   highlights: string[];
   cta: string;
+  archived?: boolean;
 };
 
 export const services: Service[] = [
@@ -134,6 +135,7 @@ export const services: Service[] = [
   {
     title: "Gazebos & Pergolas",
     slug: "gazebos-pergolas",
+    archived: true,
     summary:
       "Custom outdoor wood structures that create shade, define gathering spaces, and extend refined craftsmanship beyond the interior.",
     hero:
@@ -147,6 +149,8 @@ export const services: Service[] = [
     cta: "Plan an Outdoor Wood Feature",
   },
 ];
+
+export const publicServices = services.filter((service) => !service.archived);
 
 export function getService(slug: string) {
   return services.find((service) => service.slug === slug);

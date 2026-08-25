@@ -4,6 +4,11 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 
 ---
 
+## [2026-08-25]
+
+### Changed
+- Archived the Gazebos & Pergolas offering without deleting its source content or image records. The route now returns a noindex 404, and the offering is excluded from all public navigation, service listings, consultation options, gallery categories, sitemap entries, structured data, and public metadata.
+
 ## [2026-05-20]
 
 ### Added

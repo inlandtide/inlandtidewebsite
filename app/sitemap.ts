@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteUrl } from "./data/seo";
-import { services } from "./data/services";
+import { publicServices } from "./data/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -38,7 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const serviceRoutes: MetadataRoute.Sitemap = services.map((service) => ({
+  const serviceRoutes: MetadataRoute.Sitemap = publicServices.map((service) => ({
     url: `${siteUrl}/services/${service.slug}`,
     lastModified: now,
     changeFrequency: "monthly",

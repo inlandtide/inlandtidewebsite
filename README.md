@@ -68,7 +68,7 @@ The website is structured as a conversion-focused, multi-page site for a luxury 
 | Fireplace Mantels & Surrounds | `/services/fireplace-mantels-surrounds` | Dedicated page for fireplace focal point details. |
 | Window & Door Casing | `/services/window-door-casing` | Dedicated page for upgraded interior casing. |
 | Archways & Entryways | `/services/archways-entryways` | Dedicated page for entry transitions and cased openings. |
-| Gazebos & Pergolas | `/services/gazebos-pergolas` | Dedicated page for custom outdoor wood structures and shade features. |
+| Gazebos & Pergolas (Archived) | `/services/gazebos-pergolas` | Source content and image records are retained for future restoration; the route returns a noindex 404 and is excluded from visitor-facing navigation, the gallery, and the sitemap. |
 | About | `/about` | Local ownership and company values page for Moulding Saint Louis. |
 | Gallery | `/gallery` | Rebuilt visual portfolio organized by uploaded photo filename categories. |
 | Contact | `/contact` | Dedicated consultation request page. |

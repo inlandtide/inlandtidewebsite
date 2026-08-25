@@ -12,6 +12,7 @@ export type GalleryCategory = {
   title: string;
   description: string;
   images: GalleryImage[];
+  archived?: boolean;
 };
 
 export const galleryCategories: GalleryCategory[] = [
@@ -317,6 +318,7 @@ export const galleryCategories: GalleryCategory[] = [
   {
     "slug": "gazebos-pergolas",
     "title": "Gazebos & Pergolas",
+    "archived": true,
     "description": "Outdoor wood structures, shade elements, and custom exterior carpentry moments.",
     "images": [
       {
@@ -379,4 +381,6 @@ export const galleryCategories: GalleryCategory[] = [
   }
 ];
 
-export const galleryImageCount = galleryCategories.reduce((total, category) => total + category.images.length, 0);
+export const publicGalleryCategories = galleryCategories.filter((category) => !category.archived);
+
+export const galleryImageCount = publicGalleryCategories.reduce((total, category) => total + category.images.length, 0);

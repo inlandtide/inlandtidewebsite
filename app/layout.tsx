@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Moulding Saint Louis",
   },
   description:
-    "Luxury moulding, wainscoting, crown moulding, casing, mantels, gazebos, pergolas, and architectural wood finishes for St. Louis homes.",
+    "Luxury moulding, wainscoting, crown moulding, casing, mantels, archways, and architectural wood finishes for St. Louis homes.",
   applicationName: siteName,
   keywords: [
     "Moulding Saint Louis",
@@ -37,7 +37,6 @@ export const metadata: Metadata = {
     "picture frame moulding St. Louis",
     "fireplace mantels St. Louis",
     "window and door casing St. Louis",
-    "gazebos and pergolas St. Louis",
     "architectural wood finishes",
   ],
   alternates: {
@@ -60,7 +59,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: "Moulding Saint Louis | Luxury Moulding & Finish Carpentry in St. Louis",
     description:
-      "Custom finish carpentry, moulding, wainscoting, casing, mantels, pergolas, and high-end architectural wood details for St. Louis homes.",
+      "Custom finish carpentry, moulding, wainscoting, casing, mantels, archways, and high-end architectural wood details for St. Louis homes.",
     siteName,
     images: [
       {
@@ -75,7 +74,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Moulding Saint Louis | Luxury Moulding & Finish Carpentry",
     description:
-      "High-end moulding, wainscoting, casing, mantels, pergolas, and custom finish carpentry for St. Louis homes.",
+      "High-end moulding, wainscoting, casing, mantels, archways, and custom finish carpentry for St. Louis homes.",
     images: [defaultOgImage],
   },
   icons: {

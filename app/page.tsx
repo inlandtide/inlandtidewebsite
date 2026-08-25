@@ -5,7 +5,7 @@ import ContactForm from "./components/ContactForm";
 import JsonLd from "./components/JsonLd";
 import { PageShell } from "./components/SiteChrome";
 import { breadcrumbSchema, defaultOgImage, siteName, siteUrl } from "./data/seo";
-import { services } from "./data/services";
+import { publicServices } from "./data/services";
 
 const promises = [
   "Finish Carpentry Specialists",
@@ -17,12 +17,12 @@ const promises = [
 export const metadata: Metadata = {
   title: "Luxury Moulding, Wainscoting & Finish Carpentry in St. Louis",
   description:
-    "Moulding Saint Louis creates high-end moulding, wainscoting, casing, mantels, archways, gazebos, pergolas, and custom finish carpentry for St. Louis homes.",
+    "Moulding Saint Louis creates high-end moulding, wainscoting, casing, mantels, archways, and custom finish carpentry for St. Louis homes.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Luxury Moulding, Wainscoting & Finish Carpentry in St. Louis",
     description:
-      "Custom wood details, architectural moulding, wainscoting, casing, mantels, gazebos, and pergolas for St. Louis homes.",
+      "Custom wood details, architectural moulding, wainscoting, casing, mantels, and archways for St. Louis homes.",
     url: siteUrl,
     siteName,
     images: [{ url: defaultOgImage, width: 1800, height: 1200, alt: "Moulding Saint Louis finish carpentry" }],
@@ -192,7 +192,7 @@ export default function Home() {
             </div>
 
             <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map((service) => (
+              {publicServices.map((service) => (
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}

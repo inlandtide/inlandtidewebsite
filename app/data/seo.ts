@@ -1,4 +1,4 @@
-import { services } from "./services";
+import { publicServices } from "./services";
 
 export const siteUrl = "https://mouldingstl.com";
 export const siteName = "Moulding Saint Louis";
@@ -16,7 +16,7 @@ export const localBusinessSchema = {
   logo: logoUrl,
   image: [logoUrl, defaultOgImage],
   description:
-    "Moulding Saint Louis provides luxury moulding, wainscoting, casing, mantels, archways, pergolas, gazebos, and custom finish carpentry for St. Louis homes.",
+    "Moulding Saint Louis provides luxury moulding, wainscoting, casing, mantels, archways, and custom finish carpentry for St. Louis homes.",
   areaServed: [
     {
       "@type": "City",
@@ -39,10 +39,9 @@ export const localBusinessSchema = {
     "Picture frame moulding",
     "Fireplace mantels",
     "Window and door casing",
-    "Gazebos and pergolas",
     "Architectural wood finishes",
   ],
-  makesOffer: services.map((service) => ({
+  makesOffer: publicServices.map((service) => ({
     "@type": "Offer",
     itemOffered: {
       "@type": "Service",

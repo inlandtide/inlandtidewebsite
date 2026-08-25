@@ -4,17 +4,17 @@ import Link from "next/link";
 import JsonLd from "../components/JsonLd";
 import { PageShell } from "../components/SiteChrome";
 import { breadcrumbSchema, siteUrl } from "../data/seo";
-import { services } from "../data/services";
+import { publicServices } from "../data/services";
 
 export const metadata: Metadata = {
   title: "Finish Carpentry Services in St. Louis",
   description:
-    "Explore luxury moulding, picture frame moulding, crown moulding, wainscoting, casing, mantels, archways, gazebos, pergolas, and finish carpentry services in St. Louis.",
+    "Explore luxury moulding, picture frame moulding, crown moulding, wainscoting, casing, mantels, archways, and finish carpentry services in St. Louis.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: "Finish Carpentry Services in St. Louis",
     description:
-      "Service pages for luxury moulding, wainscoting, casing, mantels, archways, pergolas, and custom architectural wood finishes.",
+      "Service pages for luxury moulding, wainscoting, casing, mantels, archways, and custom architectural wood finishes.",
     url: `${siteUrl}/services`,
   },
 };
@@ -47,7 +47,7 @@ export default function ServicesPage() {
         <section className="py-24 sm:py-32">
           <div className="container-xl">
             <div className="grid gap-8">
-              {services.map((service, index) => (
+              {publicServices.map((service, index) => (
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}

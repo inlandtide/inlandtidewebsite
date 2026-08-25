@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import JsonLd from "../../components/JsonLd";
 import { PageShell } from "../../components/SiteChrome";
 import { breadcrumbSchema, serviceSchema, siteUrl } from "../../data/seo";
-import { getService, services, type Service } from "../../data/services";
+import { getService, publicServices, type Service } from "../../data/services";
 
 type EditorialUseCase = {
   title: string;
@@ -233,7 +233,7 @@ function EditorialBestForAside({ service }: { service: Service }) {
 }
 
 export function generateStaticParams() {
-  return services.map((service) => ({ slug: service.slug }));
+  return publicServices.map((service) => ({ slug: service.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -242,6 +242,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!service) {
     return { title: "Service" };
+  }
+
+  if (service.archived) {
+    return {
+      title: "Archived Service",
+      robots: { index: false, follow: false },
+    };
   }
 
   return {
@@ -268,7 +275,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const service = getService(slug);
 
-  if (!service) {
+  if (!service || service.archived) {
     notFound();
   }
 

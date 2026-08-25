@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { services } from "../data/services";
+import { publicServices } from "../data/services";
 
 export function SiteHeader() {
   return (
@@ -28,7 +28,7 @@ export function SiteHeader() {
                 Services Overview
               </Link>
               <div className="grid gap-1 py-2">
-                {services.map((service) => (
+                {publicServices.map((service) => (
                   <Link
                     key={service.slug}
                     href={`/services/${service.slug}`}
@@ -85,13 +85,13 @@ export function SiteFooter() {
         </div>
 
         <FooterColumn title="Services">
-          {services.slice(0, 4).map((service) => (
+          {publicServices.slice(0, 4).map((service) => (
             <FooterLink key={service.slug} href={`/services/${service.slug}`}>{service.title}</FooterLink>
           ))}
         </FooterColumn>
 
         <FooterColumn title="More Services">
-          {services.slice(4).map((service) => (
+          {publicServices.slice(4).map((service) => (
             <FooterLink key={service.slug} href={`/services/${service.slug}`}>{service.title}</FooterLink>
           ))}
         </FooterColumn>

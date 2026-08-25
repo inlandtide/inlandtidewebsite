@@ -8,12 +8,12 @@ import { breadcrumbSchema, siteUrl } from "../data/seo";
 export const metadata: Metadata = {
   title: "Request a Finish Carpentry Consultation",
   description:
-    "Contact Moulding Saint Louis at (314) 818-0815 to discuss luxury moulding, wainscoting, casing, mantels, archways, gazebos, pergolas, and custom finish carpentry in St. Louis.",
+    "Contact Moulding Saint Louis at (314) 818-0815 to discuss luxury moulding, wainscoting, casing, mantels, archways, and custom finish carpentry in St. Louis.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Request a Finish Carpentry Consultation",
     description:
-      "Start a conversation about custom moulding, wainscoting, trim, mantels, gazebos, pergolas, and architectural wood finishes for your St. Louis home.",
+      "Start a conversation about custom moulding, wainscoting, trim, mantels, archways, and architectural wood finishes for your St. Louis home.",
     url: `${siteUrl}/contact`,
   },
 };

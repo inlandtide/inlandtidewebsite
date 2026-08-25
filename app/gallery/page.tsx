@@ -4,23 +4,23 @@ import Link from "next/link";
 import JsonLd from "../components/JsonLd";
 import { PageShell } from "../components/SiteChrome";
 import { breadcrumbSchema, defaultOgImage, siteUrl } from "../data/seo";
-import { galleryCategories } from "../data/gallery";
+import { publicGalleryCategories } from "../data/gallery";
 
 export const metadata: Metadata = {
   title: "Project Gallery | Moulding Saint Louis",
   description:
-    "Explore Moulding Saint Louis project photos organized by decorative moulding, picture frame moulding, wainscoting, casing, fireplace mantels, and outdoor wood structures.",
+    "Explore Moulding Saint Louis project photos organized by decorative moulding, picture frame moulding, wainscoting, casing, and fireplace mantels.",
   alternates: { canonical: "/gallery" },
   openGraph: {
     title: "Project Gallery | Moulding Saint Louis",
     description:
-      "A curated gallery of finish carpentry, moulding, mantels, casing, wainscoting, and outdoor woodwork inspiration for St. Louis homes.",
+      "A curated gallery of finish carpentry, moulding, mantels, casing, and wainscoting inspiration for St. Louis homes.",
     url: `${siteUrl}/gallery`,
     images: [defaultOgImage],
   },
 };
 
-function GalleryTile({ image, index }: { image: (typeof galleryCategories)[number]["images"][number]; index: number }) {
+function GalleryTile({ image, index }: { image: (typeof publicGalleryCategories)[number]["images"][number]; index: number }) {
   const aspectClass = image.orientation === "portrait" ? "aspect-[4/5]" : index % 5 === 0 ? "aspect-[16/10] lg:col-span-2" : "aspect-[4/3]";
 
   return (
@@ -41,7 +41,7 @@ function GalleryTile({ image, index }: { image: (typeof galleryCategories)[numbe
 }
 
 export default function GalleryPage() {
-  const featured = galleryCategories[0]?.images[8] ?? galleryCategories[0]?.images[0];
+  const featured = publicGalleryCategories[0]?.images[8] ?? publicGalleryCategories[0]?.images[0];
 
   return (
     <PageShell>
@@ -67,7 +67,7 @@ export default function GalleryPage() {
                 Finish carpentry, organized by detail.
               </h1>
               <p className="mt-8 max-w-3xl text-xl leading-9 text-[#FEFAF1]/80">
-                Browse a curated collection of moulding, mantels, casing, wainscoting, and outdoor woodwork photos grouped by the type of finish detail shown.
+                Browse a curated collection of moulding, mantels, casing, and wainscoting photos grouped by the type of finish detail shown.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link href="/contact" className="border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-[#081828] transition hover:bg-transparent hover:text-[#B4904E]">
@@ -84,7 +84,7 @@ export default function GalleryPage() {
         <section className="bg-[#FEFAF1] py-20 sm:py-28">
           <div className="container-xl">
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {galleryCategories.map((category) => (
+              {publicGalleryCategories.map((category) => (
                 <a key={category.slug} href={`#${category.slug}`} className="group border border-[#D6D2C6] bg-white p-6 transition hover:-translate-y-1 hover:border-[#B4904E] hover:bg-[#081828] hover:shadow-2xl">
                   <div className="relative aspect-[16/10] overflow-hidden bg-[#D6D2C6]">
                     <Image
@@ -106,7 +106,7 @@ export default function GalleryPage() {
         </section>
 
         <section className="space-y-24 bg-[#FEFAF1] pb-24 sm:pb-32">
-          {galleryCategories.map((category) => (
+          {publicGalleryCategories.map((category) => (
             <div key={category.slug} id={category.slug} className="scroll-mt-28">
               <div className="container-xl">
                 <div className="mb-10 grid gap-8 border-t border-[#B4904E]/30 pt-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">

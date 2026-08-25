@@ -53,7 +53,6 @@ const trackedKeywords = [
   { keyword: "crown moulding st louis", intent: "Service-specific", page: "/services/crown-moulding", rank: "Connected / processing", source: "Search Console" },
   { keyword: "picture frame moulding st louis", intent: "Service-specific", page: "/services/picture-frame-moulding", rank: "Connected / processing", source: "Search Console" },
   { keyword: "fireplace mantels st louis", intent: "Service-specific", page: "/services/fireplace-mantels-surrounds", rank: "Connected / processing", source: "Search Console" },
-  { keyword: "pergolas st louis", intent: "Service-specific", page: "/services/gazebos-pergolas", rank: "Connected / processing", source: "Search Console" },
 ];
 
 
@@ -81,7 +80,7 @@ const seoFoundations = [
   {
     title: "Sitemap generation",
     status: "Implemented",
-    copy: "The live sitemap lists the homepage, services hub, supporting pages, and all individual service pages.",
+    copy: "The live sitemap lists the homepage, services hub, supporting pages, and all active individual service pages.",
   },
   {
     title: "Robots file",
@@ -96,7 +95,7 @@ const seoFoundations = [
   {
     title: "Local keyword focus",
     status: "Implemented",
-    copy: "Metadata references finish carpentry, luxury moulding, wainscoting, casing, mantels, gazebos, pergolas, and St. Louis search intent.",
+    copy: "Metadata references finish carpentry, luxury moulding, wainscoting, casing, mantels, archways, and St. Louis search intent.",
   },
 ];
 
