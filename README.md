@@ -116,8 +116,16 @@ This design guarantees that no inbound lead is silently lost due to a Sheets out
 
 Form data is sent to a Google Apps Script Webhook as a JSON POST request.
 
-* **Payload keys:** `name`, `email`, `phone`, `message`.
+* **Payload keys:** `name`, `email`, `phone`, `message`, plus the normalized attribution fields documented in `integrations/google-apps-script/README.md`.
 * **Requirement:** The Apps Script must be deployed with "Execute as: Me" and "Who has access: Anyone" — otherwise Vercel's server-to-server request will receive a 403.
+
+### Lead Source Attribution
+
+`LeadAttribution` captures the initial browser landing visit sitewide. First-party local storage preserves the first observed source and latest identifiable non-direct source within 30 days. The shared contact form attaches this data without adding a visible input. The server bounds the fields and derives a readable lead source for notification emails and the spreadsheet.
+
+Google advertising click markers or explicit Google paid UTMs indicate Google Ads. Meta Ads requires explicit paid campaign tagging; `fbclid` or a Facebook referrer alone is labeled paid/organic unknown. Search-engine referrers indicate organic search as a best-effort inference. Blocked storage, stripped referrers, other devices, and untagged ads may remain unknown; these labels do not reproduce GA4's attribution model. Raw advertising click IDs, arbitrary URL parameters, and referrer query strings are not copied into lead records.
+
+See `integrations/google-apps-script/README.md` for the coordinated deployment order and campaign-tag examples. Run `node --test scripts/test-lead-attribution.cjs` for the attribution and delivery tests.
 
 ### Email Notifications Using Resend
 

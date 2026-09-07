@@ -17,12 +17,12 @@ export const metadata: Metadata = {
   },
 };
 
-const lastUpdated = "July 27, 2026";
+const lastUpdated = "September 7, 2026";
 
 const sections = [
   {
     heading: "Information We Collect and How We Use It",
-    body: "When you interact with our website — for example, by submitting a contact or consultation request — we may ask you to provide certain personal information including, but not limited to, your name, phone number, email address, and project details. This information is used solely to identify you and respond to your inquiry. We do not sell, rent, or trade your personal information to third parties.",
+    body: "When you interact with our website — for example, by submitting a contact or consultation request — we may ask you to provide certain personal information including, but not limited to, your name, phone number, email address, and project details. We use this information to respond to your inquiry. We also record available referral and campaign information with your inquiry to understand which marketing sources generate requests. We do not sell, rent, or trade your personal information to third parties.",
   },
   {
     heading: "Analytics and Tracking",
@@ -35,15 +35,15 @@ const sections = [
   },
   {
     heading: "Cookies",
-    body: "Our website uses cookies — small data files stored on your device — to support analytics and improve your experience. You may configure your browser to refuse cookies or to alert you when cookies are being sent. Please note that some features of the site may not function properly if cookies are disabled.",
+    body: "Our website uses cookies and similar browser storage to support analytics. We use first-party local storage to remember referral and campaign information for lead attribution, using observations from the preceding 30 days. This can include campaign tags, the landing-page path, referring site, and visit time. Our lead-attribution record stores whether an advertising click identifier was present, rather than its full value. You can clear or block browser storage; submitting a consultation request does not depend on this attribution storage.",
   },
   {
     heading: "Contact Form Submissions",
-    body: "When you submit a contact or consultation request through our website, your submission is processed by our secure backend and delivered to our team via a transactional email service. A copy of your submission may also be stored in an internal spreadsheet for record-keeping purposes. This data is used exclusively to respond to your inquiry and is not shared with third parties for marketing purposes.",
+    body: "When you submit a contact or consultation request through our website, your submission and available lead-source information are processed by our backend and delivered to our team via a transactional email service. A copy may also be stored in our lead spreadsheet for record-keeping. We use these records to respond to inquiries and evaluate our marketing sources. We do not share these lead records with third parties for their own marketing purposes.",
   },
   {
     heading: "Service Providers",
-    body: "We may engage trusted third-party service providers to help us operate our website and deliver our services. These providers are given access to your personal information only to the extent necessary to perform their functions and are obligated not to disclose or use it for any other purpose. Current service providers include Vercel (website hosting), Resend (transactional email delivery), and Google (analytics).",
+    body: "We may engage trusted third-party service providers to help us operate our website and deliver our services. These providers are given access to your personal information only to the extent necessary to perform their functions and are obligated not to disclose or use it for any other purpose. Current service providers include Vercel (website hosting), Resend (transactional email delivery), and Google (analytics and lead spreadsheet storage).",
   },
   {
     heading: "Security",

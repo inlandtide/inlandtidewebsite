@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Cormorant_Garamond, Zilla_Slab } from "next/font/google";
 import JsonLd from "./components/JsonLd";
+import LeadAttribution from "./components/LeadAttribution";
 import { defaultOgImage, localBusinessSchema, siteName, siteUrl, websiteSchema } from "./data/seo";
 import "./globals.css";
 
@@ -95,6 +96,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cormorant.variable} ${zilla.variable}`}>
       <body className="antialiased">
+        <LeadAttribution />
         <Script
           id="meta-pixel"
           strategy="afterInteractive"

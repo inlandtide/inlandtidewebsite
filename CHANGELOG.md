@@ -6,7 +6,14 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 
 ## [2026-09-07]
 
+### Added
+- Added invisible first-party lead attribution with a 30-day lookback, preserving the first observed source and last identifiable source across page navigation and direct return visits.
+- Added lead source to notification subjects and source/campaign details to emails and the Sheets payload; distinguish tagged Meta ads, Google ad clicks, search referrals, social traffic, and unknown visits.
+- Versioned the Apps Script receiver and rollout instructions; target only Web Forms, append attribution after the existing five columns, and treat submitted values as text.
+- Added attribution and delivery tests, including blocked storage, expiry, source precedence, email escaping, script errors, and spreadsheet formula protection. Updated the privacy notice to describe actual attribution use.
+
 ### Changed
+- Require a success receipt from Apps Script before reporting a lead as saved to Sheets; continue email delivery if the spreadsheet fails.
 - Added installation-focused titles, descriptions, introductions, and practical planning FAQs for picture frame moulding, crown moulding, and wainscoting; improved service-specific social metadata.
 - Added visible service breadcrumbs, related-service links, local service-area context, and links between services and matching gallery sections.
 - Removed duplicated brand text from About and Gallery titles and added a text space between the homepage hero title lines.
