@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageShell } from "../components/SiteChrome";
 import { siteUrl } from "../data/seo";
+import sitemap from "../sitemap";
 
 export const metadata: Metadata = {
   title: "SEO Dashboard",
   description:
     "Internal SEO dashboard for tracking Moulding Saint Louis search visibility foundations, crawl readiness, and next actions.",
+  alternates: { canonical: "/seo-dashboard" },
   robots: {
     index: false,
     follow: false,
@@ -16,13 +18,13 @@ export const metadata: Metadata = {
 const baselineMetrics = [
   {
     label: "Public traffic baseline",
-    value: "0.0",
-    detail: "SimilarWeb mobile visits reported across tracked channels for Feb–Apr 2026.",
+    value: "Unavailable",
+    detail: "The historical SimilarWeb report had insufficient data. Missing estimates do not mean zero visitors.",
   },
   {
     label: "Sitemap coverage",
-    value: "14",
-    detail: "Marketing URLs submitted through the generated sitemap, excluding this internal dashboard.",
+    value: String(sitemap().length),
+    detail: "Marketing URLs in the generated sitemap. This count does not confirm submission or indexing.",
   },
   {
     label: "SEO foundations",
@@ -30,29 +32,20 @@ const baselineMetrics = [
     detail: "Core technical SEO items implemented and ready for crawler discovery.",
   },
   {
-    label: "Search Console",
-    value: "Connected",
-    detail: "The mouldingstl.com domain property is accessible, but Google is still processing performance data.",
+    label: "Dashboard data feed",
+    value: "Manual",
+    detail: "This page has no live Search Console or Analytics connection. Open those tools for current performance.",
   },
 ];
 
-const trafficSources = [
-  "Organic Search",
-  "Direct",
-  "Referrals",
-  "Social",
-  "Mail",
-  "Display Ads",
-];
-
 const trackedKeywords = [
-  { keyword: "moulding saint louis", intent: "Brand", page: "/", rank: "Connected / processing", source: "Search Console" },
-  { keyword: "st louis moulding", intent: "Local service", page: "/services/luxury-decorative-moulding", rank: "Connected / processing", source: "Search Console" },
-  { keyword: "finish carpentry st louis", intent: "Local service", page: "/services", rank: "Connected / processing", source: "Search Console" },
-  { keyword: "custom wainscoting st louis", intent: "Service-specific", page: "/services/wainscoting-beadboard", rank: "Connected / processing", source: "Search Console" },
-  { keyword: "crown moulding st louis", intent: "Service-specific", page: "/services/crown-moulding", rank: "Connected / processing", source: "Search Console" },
-  { keyword: "picture frame moulding st louis", intent: "Service-specific", page: "/services/picture-frame-moulding", rank: "Connected / processing", source: "Search Console" },
-  { keyword: "fireplace mantels st louis", intent: "Service-specific", page: "/services/fireplace-mantels-surrounds", rank: "Connected / processing", source: "Search Console" },
+  { keyword: "moulding saint louis", intent: "Brand", page: "/" },
+  { keyword: "st louis moulding", intent: "Local service", page: "/services/luxury-decorative-moulding" },
+  { keyword: "finish carpentry st louis", intent: "Local service", page: "/services" },
+  { keyword: "custom wainscoting st louis", intent: "Service-specific", page: "/services/wainscoting-beadboard" },
+  { keyword: "crown moulding installation st louis", intent: "Service-specific", page: "/services/crown-moulding" },
+  { keyword: "picture frame moulding installation st louis", intent: "Service-specific", page: "/services/picture-frame-moulding" },
+  { keyword: "fireplace mantels st louis", intent: "Service-specific", page: "/services/fireplace-mantels-surrounds" },
 ];
 
 
@@ -100,11 +93,11 @@ const seoFoundations = [
 ];
 
 const nextActions = [
-  "Submit the live sitemap in Google Search Console after deployment finishes.",
-  "Request indexing for the homepage, services hub, and top service pages.",
+  "Confirm access to the mouldingstl.com domain property in Google Search Console and check the sitemap submission status.",
+  "Inspect the homepage and priority service URLs for indexing and Google-selected canonicals before requesting a recrawl.",
   "Monitor impressions, clicks, average position, and indexed page count weekly.",
-  "Replace placeholder imagery with original project photography as soon as the content library is ready.",
-  "Add service-area proof, testimonials, FAQs, and project examples as real customer content becomes available.",
+  "Publish original project stories with permission, describing the location, scope, materials, and finished details.",
+  "Keep business details consistent and add genuine customer reviews and testimonials as they become available.",
 ];
 
 const routeLinks = [
@@ -126,14 +119,14 @@ export default function SeoDashboardPage() {
                 Search visibility foundations for Moulding Saint Louis.
               </h1>
               <p className="mt-7 max-w-3xl text-xl leading-9 text-[#FEFAF1]/78">
-                This dashboard turns the SEO implementation report into a live tracking page for crawl readiness, baseline analytics, completed technical work, and next actions for `mouldingstl.com`.
+                A manually maintained SEO checklist for mouldingstl.com. This page documents site foundations and target queries; it does not fetch live rankings, traffic, or indexing data.
               </p>
             </div>
             <div className="border border-[#B4904E]/45 bg-[#FEFAF1]/5 p-7">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#B4904E]">Domain Reviewed</p>
               <p className="mt-4 font-heading text-4xl font-semibold">mouldingstl.com</p>
               <p className="mt-4 leading-7 text-[#FEFAF1]/72">
-                SimilarWeb data is currently limited, so the current priority is foundational local SEO, indexing, and Search Console measurement.
+                Last checklist review: September 7, 2026. Use Search Console for Google Search performance and Analytics for activity on the website.
               </p>
             </div>
           </div>
@@ -144,7 +137,7 @@ export default function SeoDashboardPage() {
             {baselineMetrics.map((metric) => (
               <div key={metric.label} className="border border-[#D6D2C6] bg-white p-7 shadow-sm">
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#B4904E]">{metric.label}</p>
-                <p className="mt-5 font-heading text-5xl font-semibold text-[#081828]">{metric.value}</p>
+                <p className="mt-5 break-words font-heading text-4xl font-semibold text-[#081828]">{metric.value}</p>
                 <p className="mt-4 leading-7 text-[#2E404E]">{metric.detail}</p>
               </div>
             ))}
@@ -156,26 +149,19 @@ export default function SeoDashboardPage() {
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">Analytics Baseline</p>
               <h2 className="mt-4 font-heading text-5xl font-semibold leading-tight text-[#081828] text-balance">
-                SimilarWeb shows a zero-traffic baseline for public channel data.
+                Measure traffic in the tools that collect it.
               </h2>
               <p className="mt-6 text-lg leading-8 text-[#2E404E]">
-                The report found no measurable public SimilarWeb rank, traffic, unique visitor, or bounce-rate data. Google Search Console is now connected for the domain property, but the Performance report is still processing and currently has no query rows. This creates a clean baseline for future organic search growth.
+                The earlier SimilarWeb report lacked enough public data for a useful estimate. It did not establish a zero-traffic baseline. Search Console reports search impressions, clicks, click-through rate and average position; Analytics reports visits and on-site events. Access to either tool does not automatically connect it to this page.
               </p>
             </div>
             <div className="border border-[#D6D2C6] bg-white p-7 shadow-sm">
-              <div className="grid gap-5">
-                {trafficSources.map((source) => (
-                  <div key={source}>
-                    <div className="flex items-center justify-between gap-4">
-                      <p className="font-semibold text-[#081828]">{source}</p>
-                      <p className="text-sm font-semibold text-[#B4904E]">0.0 visits</p>
-                    </div>
-                    <div className="mt-2 h-3 overflow-hidden bg-[#D6D2C6]/65">
-                      <div className="h-full w-[2%] bg-[#B4904E]" />
-                    </div>
-                  </div>
-                ))}
+              <h3 className="font-heading text-3xl font-semibold text-[#081828]">Open your measurement tools</h3>
+              <div className="mt-6 flex flex-col gap-5 text-[#081828]">
+                <a href="https://search.google.com/search-console" className="underline underline-offset-4">Google Search Console</a>
+                <a href="https://analytics.google.com" className="underline underline-offset-4">Google Analytics</a>
               </div>
+              <p className="mt-6 leading-7 text-[#2E404E]">Compare consistent date ranges and separate branded searches from service searches. Average position varies by query, device, location and date; it is not a universal fixed ranking.</p>
             </div>
           </div>
         </section>
@@ -185,16 +171,16 @@ export default function SeoDashboardPage() {
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">Keyword Rankings</p>
               <h2 className="mt-4 font-heading text-5xl font-semibold leading-tight text-[#081828] text-balance">
-                Search Console is connected, but keyword data is still processing.
+                Target queries to monitor in Search Console.
               </h2>
               <p className="mt-6 text-lg leading-8 text-[#2E404E]">
-                The SEO is improving structurally because the site now has crawlable service pages, local metadata, schema, sitemap, and robots support. Search Console access for the `mouldingstl.com` domain property is now verified, but the Performance report currently shows no query rows while Google processes data. This section shows the keyword set to monitor and will be ready to replace the processing status with real average positions once Search Console begins reporting impressions and queries.
+                These are editorial targets, not measured rankings. Review the actual Queries and Pages reports to see which searches bring visitors and which URL Google shows. Include both “moulding” and “molding” spellings, plus installation and local service queries.
               </p>
               <div className="mt-8 border border-[#D6D2C6] bg-white p-6 shadow-sm">
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#B4904E]">Ranking Data Status</p>
-                <p className="mt-3 font-heading text-4xl font-semibold text-[#081828]">Connected / processing</p>
+                <p className="mt-3 font-heading text-4xl font-semibold text-[#081828]">Not measured here</p>
                 <p className="mt-3 leading-7 text-[#2E404E]">
-                  Search Console is accessible for `mouldingstl.com`. The Performance report shows “Processing data, please check again in a day or so” and the Queries table currently shows “No data,” so I will not invent keyword positions.
+                  No ranking feed is configured. The previous “Connected / processing” labels were static text from an earlier review and did not update automatically. Any future snapshot should include its source, date range and filters.
                 </p>
               </div>
             </div>
@@ -215,8 +201,8 @@ export default function SeoDashboardPage() {
                       {item.page}
                     </Link>
                     <div>
-                      <p className="text-sm font-semibold text-[#081828]">{item.rank}</p>
-                      <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[#2E404E]/65">{item.source}</p>
+                      <p className="text-sm font-semibold text-[#081828]">Not measured here</p>
+                      <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[#2E404E]/65">Target query</p>
                     </div>
                   </div>
                 ))}
@@ -280,7 +266,7 @@ export default function SeoDashboardPage() {
                 The next step is measurement, not more guesswork.
               </h2>
               <p className="mt-6 text-lg leading-8 text-[#2E404E]">
-                Once the sitemap is submitted and Google begins collecting data, this dashboard can be expanded to show real Search Console metrics such as impressions, clicks, click-through rate, indexed pages, and top local queries.
+                Use the linked tools to check actual performance. An authenticated integration or a dated manual report would be needed to show current metrics here; this checklist does not refresh them automatically.
               </p>
             </div>
             <div className="space-y-4">

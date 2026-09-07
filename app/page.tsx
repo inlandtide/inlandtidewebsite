@@ -155,7 +155,7 @@ export default function Home() {
           <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#081828] to-transparent" />
           <div className="container-xl relative py-24 text-center">
             <h1 className="mx-auto flex w-full max-w-[1500px] flex-col items-center font-heading text-[4.875rem] font-semibold leading-[0.76] text-balance sm:text-[7.5rem] lg:text-[11.25rem]">
-              <span className="text-[#FEFAF1]">Moulding</span>
+              <span className="text-[#FEFAF1]">Moulding{" "}</span>
               <span className="text-[#B4904E]">Saint Louis</span>
             </h1>
             <p className="mx-auto mt-8 max-w-4xl text-[1.4rem] leading-[1.35] text-[#FEFAF1]/86 sm:text-[1.7rem]">

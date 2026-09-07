@@ -7,7 +7,7 @@ import { breadcrumbSchema, defaultOgImage, siteUrl } from "../data/seo";
 import { publicGalleryCategories } from "../data/gallery";
 
 export const metadata: Metadata = {
-  title: "Project Gallery | Moulding Saint Louis",
+  title: "Project Gallery",
   description:
     "Explore Moulding Saint Louis project photos organized by decorative moulding, picture frame moulding, wainscoting, casing, and fireplace mantels.",
   alternates: { canonical: "/gallery" },
@@ -46,7 +46,7 @@ export default function GalleryPage() {
   return (
     <PageShell>
       <main className="bg-[#FEFAF1]">
-        <JsonLd data={breadcrumbSchema([{ name: "Gallery", url: `${siteUrl}/gallery` }])} />
+        <JsonLd data={breadcrumbSchema([{ name: "Home", url: siteUrl }, { name: "Gallery", url: `${siteUrl}/gallery` }])} />
 
         <section className="relative overflow-hidden bg-[#081828] text-[#FEFAF1]">
           {featured ? (
@@ -115,9 +115,10 @@ export default function GalleryPage() {
                       {category.title}
                     </h2>
                   </div>
-                  <p className="max-w-2xl text-lg leading-8 text-[#2E404E] lg:justify-self-end">
-                    {category.description} These images are grouped from the uploaded photo names so each collection stays close to the service it represents.
-                  </p>
+                  <div className="max-w-2xl text-lg leading-8 text-[#2E404E] lg:justify-self-end">
+                    <p>{category.description}</p>
+                    <Link href={`/services/${category.slug}`} className="mt-4 inline-block font-semibold text-[#081828] underline underline-offset-4">Explore {category.title.toLowerCase()} services</Link>
+                  </div>
                 </div>
 
                 <div className="grid auto-rows-[220px] gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[260px]">

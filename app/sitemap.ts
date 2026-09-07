@@ -3,36 +3,31 @@ import { siteUrl } from "./data/seo";
 import { publicServices } from "./data/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  // Omit lastModified until dates reflect actual page edits, not build times.
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: siteUrl,
-      lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${siteUrl}/services`,
-      lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${siteUrl}/about`,
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${siteUrl}/gallery`,
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${siteUrl}/contact`,
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -40,7 +35,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const serviceRoutes: MetadataRoute.Sitemap = publicServices.map((service) => ({
     url: `${siteUrl}/services/${service.slug}`,
-    lastModified: now,
     changeFrequency: "monthly",
     priority: 0.85,
   }));
