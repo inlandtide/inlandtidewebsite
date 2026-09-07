@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { getLeadAttribution } from "../lib/browser-attribution";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
@@ -59,6 +60,7 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
       email,
       phone,
       message: enrichedMessage || message,
+      attribution: getLeadAttribution(),
     };
 
     try {

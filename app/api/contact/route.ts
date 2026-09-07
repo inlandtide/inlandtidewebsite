@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { summarizeAttribution } from "../../lib/lead-attribution";
 
 const NOTIFY_EMAILS = ["tim@inlandtide.com", "ryan@inlandtide.com"];
 
@@ -18,6 +19,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { name, email, phone, message } = body;
+    const attribution = summarizeAttribution(body.attribution);
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -49,15 +51,16 @@ export async function POST(req: NextRequest) {
             email: String(email),
             phone: String(phone ?? ""),
             message: String(message),
+            ...attribution,
           }),
         });
 
-        if (sheetsRes.ok) {
+        const receipt = await sheetsRes.json().catch(() => null);
+        if (sheetsRes.ok && receipt?.status === "success") {
           sheetsSaved = true;
           console.log("Lead saved to Google Sheets successfully.");
         } else {
-          const sheetsText = await sheetsRes.text().catch(() => "(no body)");
-          console.error("Google Sheets error:", sheetsRes.status, sheetsText);
+          console.error("Google Sheets did not acknowledge a saved lead:", sheetsRes.status);
         }
       } catch (sheetsErr) {
         console.error("Google Sheets fetch threw an exception:", sheetsErr);
@@ -68,6 +71,11 @@ export async function POST(req: NextRequest) {
     const safeEmail = escapeHtml(email);
     const safePhone = escapeHtml(phone || "—");
     const safeMessage = escapeHtml(message);
+    const attributionRows = [
+      ["Lead source", attribution.leadSource], ["Campaign", attribution.campaign || "Not provided"],
+      ["Source / medium", attribution.sourceMedium || "Unknown"], ["First source", attribution.firstSource || "Unknown"],
+      ["Landing page", attribution.landingPage || "Unknown"], ["Referring site", attribution.referringSite || "Not provided"],
+    ].map(([label, value]) => `<tr><td style="padding: 7px 0; color: #B4904E; vertical-align: top;">${escapeHtml(label)}</td><td style="padding: 7px 0; color: #FEFAF1; overflow-wrap: anywhere;">${escapeHtml(value)}</td></tr>`).join("");
 
     const sheetsAlertBanner = !sheetsSaved
       ? `
@@ -87,8 +95,8 @@ export async function POST(req: NextRequest) {
       to: NOTIFY_EMAILS,
       replyTo: String(email),
       subject: sheetsSaved
-        ? `New Consultation Request — ${String(name)}`
-        : `⚠️ [SHEETS FAILED] New Consultation Request — ${String(name)}`,
+        ? `New Consultation Request [${attribution.leadSource}] — ${String(name)}`
+        : `⚠️ [SHEETS FAILED] New Consultation Request [${attribution.leadSource}] — ${String(name)}`,
       html: `
         <div style="font-family: Georgia, serif; max-width: 640px; margin: 0 auto; background: #081828; color: #FEFAF1; padding: 34px; border: 1px solid #B4904E;">
           <h2 style="color: #B4904E; margin-top: 0; font-size: 24px; letter-spacing: 2px; text-transform: uppercase;">
@@ -100,6 +108,10 @@ export async function POST(req: NextRequest) {
           <hr style="border: 0; border-top: 1px solid #B4904E; margin: 24px 0;" />
 
           ${sheetsAlertBanner}
+
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 12px;">${attributionRows}</table>
+          <p style="font-size: 12px; line-height: 1.6; color: #FEFAF1;">${escapeHtml(attribution.attributionDetails)}</p>
+          <hr style="border: 0; border-top: 1px solid #B4904E; margin: 24px 0;" />
 
           <table style="width: 100%; border-collapse: collapse;">
             <tr>
