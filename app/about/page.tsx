@@ -6,7 +6,7 @@ import { PageShell } from "../components/SiteChrome";
 import { breadcrumbSchema, siteUrl } from "../data/seo";
 
 export const metadata: Metadata = {
-  title: "About Moulding Saint Louis",
+  title: { absolute: "About Moulding Saint Louis" },
   description:
     "Moulding Saint Louis is independently owned and operated in St. Louis, specializing in luxury finish carpentry and architectural wood details.",
   alternates: { canonical: "/about" },

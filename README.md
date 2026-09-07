@@ -93,9 +93,12 @@ The site includes foundational SEO support for local search visibility in St. Lo
 | Structured data helpers | `app/data/seo.ts` and `app/components/JsonLd.tsx` | Provides JSON-LD for local business, website, services, and breadcrumbs. |
 | Sitemap | `app/sitemap.ts` | Generates `https://mouldingstl.com/sitemap.xml` for the homepage, service pages, and supporting pages. |
 | Robots | `app/robots.ts` | Allows crawler access and points search engines to the sitemap. |
-| SEO Dashboard | `app/seo-dashboard/page.tsx` | Presents SEO implementation status, SimilarWeb baseline context, keyword ranking tracking targets, crawler links, and next actions as a live dashboard page. |
+| Service planning content | `app/data/service-guidance.ts` | Supplies installation-focused metadata, introductions, and visible FAQs for picture frame moulding, crown moulding, and wainscoting. |
+| SEO Dashboard | `app/seo-dashboard/page.tsx` | Presents a manual SEO checklist, keyword targets, and links to Search Console and Analytics. It has no live data connection and remains noindex. |
 
-A SimilarWeb analytics check found limited public traffic data for `mouldingstl.com`, so SEO work should be treated as foundational local SEO. Google Search Console access has been verified for the `mouldingstl.com` domain property, but the Performance report is currently still processing and has no query rows. The SEO dashboard includes a keyword rankings section that shows target keywords as `Connected / processing` until Search Console begins reporting impressions, clicks, and average positions.
+Google Search Console access to the `mouldingstl.com` domain property was verified on September 7, 2026, and the existing sitemap was submitted and processed successfully with 13 discovered pages. Performance data is available in Search Console. The website dashboard does not fetch that data: its keyword list is a set of targets, not measured rankings. Historical SimilarWeb estimates were unavailable, which does not imply zero visitors.
+
+The sitemap excludes the dashboard and archived service. It omits `lastModified` until accurate page-edit dates are maintained; rebuilding the website should not mark every page as substantively updated. Service pages include visible breadcrumbs and links to related services and matching gallery sections.
 
 ## Integrations & Data Flow
 
@@ -159,4 +162,3 @@ If you are an AI or developer picking up this project:
 ---
 
 *Document prepared for future development context.*
-

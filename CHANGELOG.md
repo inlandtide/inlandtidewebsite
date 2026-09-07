@@ -4,6 +4,15 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 
 ---
 
+## [2026-09-07]
+
+### Changed
+- Added installation-focused titles, descriptions, introductions, and practical planning FAQs for picture frame moulding, crown moulding, and wainscoting; improved service-specific social metadata.
+- Added visible service breadcrumbs, related-service links, local service-area context, and links between services and matching gallery sections.
+- Removed duplicated brand text from About and Gallery titles and added a text space between the homepage hero title lines.
+- Corrected the noindex SEO dashboard to identify its manual data status and unavailable traffic estimates; derive sitemap coverage from the actual route list and link to the reporting tools.
+- Removed build-time sitemap modification dates and documented the current Search Console setup. Existing sitemap submitted successfully on September 7 with 13 discovered pages.
+
 ## [2026-08-25]
 
 ### Changed

@@ -5,6 +5,8 @@ import JsonLd from "../../components/JsonLd";
 import { PageShell } from "../../components/SiteChrome";
 import { breadcrumbSchema, serviceSchema, siteUrl } from "../../data/seo";
 import { getService, publicServices, type Service } from "../../data/services";
+import { serviceGuidance } from "../../data/service-guidance";
+import { publicGalleryCategories } from "../../data/gallery";
 
 type EditorialUseCase = {
   title: string;
@@ -251,13 +253,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
+  const guidance = serviceGuidance[service.slug];
+  const title = guidance?.title ?? `${service.title} in St. Louis`;
+  const description = guidance?.description ?? `${service.title} by Moulding Saint Louis. ${service.summary}`;
+
   return {
-    title: `${service.title} in St. Louis`,
-    description: `${service.title} by Moulding Saint Louis. ${service.summary}`,
+    title: guidance ? { absolute: title } : title,
+    description,
     alternates: { canonical: `/services/${service.slug}` },
     openGraph: {
-      title: `${service.title} in St. Louis`,
-      description: service.summary,
+      title,
+      description,
       url: `${siteUrl}/services/${service.slug}`,
       images: [
         {
@@ -267,6 +273,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
           alt: `${service.title} by Moulding Saint Louis`,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [`${siteUrl}/images/placeholders/${service.slug}.jpg`],
     },
   };
 }
@@ -278,6 +290,11 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   if (!service || service.archived) {
     notFound();
   }
+
+  const guidance = serviceGuidance[service.slug];
+  const galleryCategory = publicGalleryCategories.find((category) => category.slug === service.slug);
+  const relatedServices = publicServices.filter((item) => item.slug !== service.slug &&
+    ["picture-frame-moulding", "crown-moulding", "wainscoting-beadboard", "chair-rail-picture-rail"].includes(item.slug)).slice(0, 3);
 
   return (
     <PageShell>
@@ -294,15 +311,23 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             alt={`${service.title} by Moulding Saint Louis`}
             fill
             priority
+            sizes="100vw"
             className="object-cover opacity-62"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,24,40,0.28),rgba(8,24,40,0.96))]" />
           <div className="container-xl relative pb-20 pt-28">
-            <p className="text-sm font-semibold uppercase tracking-[0.42em] text-[#B4904E]">Service</p>
+            <nav aria-label="Breadcrumb" className="mb-8 text-sm text-[#FEFAF1]/80">
+              <ol className="flex flex-wrap gap-2">
+                <li><Link href="/" className="underline underline-offset-4">Home</Link></li>
+                <li><span aria-hidden="true">/ </span><Link href="/services" className="underline underline-offset-4">Services</Link></li>
+                <li aria-current="page"><span aria-hidden="true">/ </span>{service.title}</li>
+              </ol>
+            </nav>
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#B4904E]">Design &amp; Installation in St. Louis</p>
             <h1 className="mt-5 max-w-5xl font-heading text-6xl font-semibold leading-[0.92] text-balance sm:text-8xl">
               {service.title}
             </h1>
-            <p className="mt-7 max-w-3xl text-xl leading-9 text-[#FEFAF1]/80">{service.hero}</p>
+            <p className="mt-7 max-w-3xl text-xl leading-9 text-[#FEFAF1]/80">{guidance?.introduction ?? service.hero}</p>
           </div>
         </section>
 
@@ -349,6 +374,38 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {guidance && (
+          <section className="border-t border-[#D6D2C6] py-20">
+            <div className="container-xl max-w-5xl">
+              <h2 className="font-heading text-4xl font-semibold text-[#081828] sm:text-5xl">Planning your {service.title.toLowerCase()} project</h2>
+              <div className="mt-10 divide-y divide-[#D6D2C6]">
+                {guidance.questions.map(({ question, answer }) => (
+                  <article key={question} className="py-7">
+                    <h3 className="font-heading text-3xl font-semibold text-[#081828]">{question}</h3>
+                    <p className="mt-4 text-lg leading-8 text-[#2E404E]">{answer}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        <section className="bg-[#081828] py-20 text-[#FEFAF1]">
+          <div className="container-xl">
+            <h2 className="font-heading text-4xl font-semibold sm:text-5xl">Details that work together</h2>
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
+              {relatedServices.map((related) => (
+                <Link key={related.slug} href={`/services/${related.slug}`} className="border border-[#B4904E]/45 p-6 transition hover:bg-white/10">
+                  <h3 className="font-heading text-3xl font-semibold text-[#B4904E]">{related.title}</h3>
+                  <p className="mt-4 leading-7 text-[#FEFAF1]/80">{related.summary}</p>
+                </Link>
+              ))}
+            </div>
+            {galleryCategory && <Link href={`/gallery#${galleryCategory.slug}`} className="mt-8 inline-block text-[#FEFAF1] underline underline-offset-4">View {service.title.toLowerCase()} photos in the gallery</Link>}
+            <p className="mt-10 max-w-4xl leading-8 text-[#FEFAF1]/80">Serving St. Louis area homes, including Chesterfield, Clayton, Creve Coeur, Kirkwood, Ladue, Town and Country, Webster Groves and Wildwood. Share your project location when you <Link href="/contact" className="underline underline-offset-4">request a consultation</Link>.</p>
           </div>
         </section>
 
