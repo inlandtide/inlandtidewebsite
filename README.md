@@ -121,6 +121,8 @@ Form data is sent to a Google Apps Script Webhook as a JSON POST request.
 
 ### Lead Source Attribution
 
+Native Google Ads lead forms use a separate authenticated endpoint, `/api/google-ads-leads`, which forwards to the same Apps Script receiver and `Web Forms` tab. Google continues sending its native lead notification emails; this endpoint does not send extra emails or fire website conversion events. See `integrations/google-apps-script/README.md` for deployment, field mapping and duplicate handling.
+
 `LeadAttribution` captures the initial browser landing visit sitewide. First-party local storage preserves the first observed source and latest identifiable non-direct source within 30 days. The shared contact form attaches this data without adding a visible input. The server bounds the fields and derives a readable lead source for notification emails and the spreadsheet.
 
 Google advertising click markers or explicit Google paid UTMs indicate Google Ads. Meta Ads requires explicit paid campaign tagging; `fbclid` or a Facebook referrer alone is labeled paid/organic unknown. Search-engine referrers indicate organic search as a best-effort inference. Blocked storage, stripped referrers, other devices, and untagged ads may remain unknown; these labels do not reproduce GA4's attribution model. Raw advertising click IDs, arbitrary URL parameters, and referrer query strings are not copied into lead records.
@@ -143,6 +145,7 @@ The following environment variables must be configured in Vercel, or locally in 
 | :--- | :--- |
 | `RESEND_API` | API key for the Resend account. Used to authenticate the Resend Node.js SDK. |
 | `GOOGLE_SHEETS_WEBAPP_URL` | Full URL of the deployed Google Apps Script Webhook. |
+| `GOOGLE_ADS_LEAD_WEBHOOK_KEY` | Production-only secret shared with Google Ads lead form delivery settings and the bound Apps Script property of the same name. Never commit it or expose it to browser code. |
 
 ## Getting Started Locally
 

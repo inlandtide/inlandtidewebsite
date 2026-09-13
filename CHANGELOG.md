@@ -4,6 +4,14 @@ All notable changes to the Moulding Saint Louis website are recorded here. Any A
 
 ---
 
+## [2026-09-13]
+
+### Added
+- Connect native Google Ads lead forms to the existing Web Forms spreadsheet through an authenticated webhook. Preserve contact information, city, custom answers, campaign and submission time, with a clear Google Ads Lead Form source label.
+- Deduplicate Google lead IDs under the existing script lock, retain receipts for 90 days after manual deletion, and distinguish Google's test payloads from real leads.
+- Return retryable errors when storage is unavailable and acknowledge delivery only after Apps Script confirms the save. Keep existing website form handling and Google notification emails unchanged.
+- Add integration tests for mapping, authentication, retries, interrupted receipts, test data and website compatibility.
+
 ## [2026-09-07]
 
 ### Added
