@@ -16,6 +16,7 @@ function doPost(e) {
       cellText(data.firstSource), cellText(data.landingPage), cellText(data.referringSite), cellText(data.attributionDetails)
     ];
     sheet.appendRow(row);
+    if (typeof crmAfterIntake_ === 'function') crmAfterIntake_(sheet);
     return jsonResponse({ status: 'success' });
   } catch (error) {
     return jsonResponse({ status: 'error', message: 'Lead could not be saved' });
@@ -83,6 +84,7 @@ function saveGoogleAdsLead(sheet, data) {
   ]);
   SpreadsheetApp.flush();
   properties.setProperty(marker, String(Date.now()));
+  if (typeof crmAfterIntake_ === 'function') crmAfterIntake_(sheet);
   // Retain receipts for 90 days even if a spam row is manually deleted.
   // Older retained sheet rows still provide deduplication through column M.
   var cutoff = Date.now() - 90 * 24 * 60 * 60 * 1000;
