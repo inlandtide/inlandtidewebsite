@@ -55,7 +55,9 @@ function crmWrite_(sheet, row, values) {
   sheet.setRowHeight(row,44);
 }
 function crmAppend_(name, values) {
-  var sh = crmBook_().getSheetByName(name), row = Math.max(CRM.first, sh.getLastRow()+1);
+  var sh = crmBook_().getSheetByName(name), row = CRM.first;
+  // Pre-filled formulas count as used rows; place leads after the last actual record.
+  crmRows_().forEach(function(r){if(r.sheet.getName()===name)row=Math.max(row,r.row+1);});
   crmWrite_(sh,row,values); return {sheet:sh,row:row,values:values};
 }
 function crmLog_(v, action, detail) {
@@ -194,8 +196,8 @@ function crmShowCard_(isNew){
 }
 function crmEnable(){
   CRM.sheets.forEach(function(n){if(crmBook_().getSheetByName(n).getRange(5,26).getValue()!=='Lead ID')throw new Error('CRM schema missing');});
-  PropertiesService.getScriptProperties().setProperty('CRM_READY','v1');onOpen();
-  crmBook_().toast('CRM is ready. Use the Moulding CRM menu to open a lead card.','Setup complete',8);
+  PropertiesService.getScriptProperties().setProperty('CRM_READY','v1');crmSyncSilent_();
+  console.log('CRM is ready. Reload the spreadsheet to load the Moulding CRM menu.');
 }
 function crmVerification(){return crmLock_(function(){
   var id='VERIFY-'+Utilities.getUuid(), sh=crmBook_().getSheetByName('Web Forms'), before=sh.getLastRow(), counts=crmRows_().length;

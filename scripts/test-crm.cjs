@@ -18,6 +18,13 @@ function setup(){
   return {c:context,sheets};
 }
 const intake=()=>[new Date('2026-09-13'),'Example Client','sample@example.com','+13145550123','Project type: Crown moulding\n\nProject location: Kirkwood','Google Ads Lead Form','Campaign #1'];
+test('New leads appear beside existing records even when formulas fill the sheet',()=>{
+  const {c,sheets:s}=setup();
+  c.crmSaveCard({fields:{0:'Existing client',1:'New',2:'Tim'}});
+  s['Lead Tracking'].getRange(998,6).setFormula('=IF(A998="","","Set follow-up")');
+  const next=c.crmSaveCard({fields:{0:'Next client',1:'New',2:'Ryan'}});
+  assert.equal(c.crmFind_(next.id).row,7);
+});
 test('Intake IDs survive repeats and the raw archive remains intact through all stage moves',()=>{
   const {c,sheets:s}=setup();const original=intake();s['Web Forms'].appendRow(original);const known={};
   assert.equal(c.crmImportRow_(s['Web Forms'],2,known),true);assert.equal(c.crmImportRow_(s['Web Forms'],2,known),false);

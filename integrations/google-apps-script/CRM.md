@@ -30,7 +30,7 @@ The script operates only within the bound workbook. It adds no email, calendar, 
 
 1. Back up the existing workbook. Preserve existing contacts, addresses, notes, and won/lost classification; do not infer old dates or monetary amounts.
 2. Ensure identical CRM headers and positions, N/O archive headers, and the Dashboard, CRM Guide and Activity sheets exist.
-3. Save both `Code.gs` and `CRM.gs` in the bound project. Run `crmEnable` once after the workbook migration. This sets Script Property `CRM_READY=v1` and registers the menu.
+3. Save both `Code.gs` and `CRM.gs` in the bound project. Run `crmEnable` once after the workbook migration. This sets Script Property `CRM_READY=v1` and reconciles intake. Reload the spreadsheet to register its menu.
 4. Update the **existing web-app deployment** to a new version; keep its URL, execute-as identity and access unchanged. Saving editor code alone updates sheet triggers/menu functions, but does not update the deployed webhook version.
 5. Reload the workbook to get the menu. `crmVerification` creates one isolated, clearly marked test record, verifies intake/deduplication/Won/Lost/reopen routing and archive retention, then removes only its own test rows. It sends no messages and records no ad conversion.
 
@@ -38,4 +38,4 @@ The September 13, 2026 migration retained 10 unique leads: seven active, two won
 
 ## Tests
 
-Run `node --test scripts/test-crm.cjs scripts/test-google-ads-leads.cjs scripts/test-lead-attribution.cjs` from the repository root. This covers intake exclusions, stable IDs, routing, archive retention, separate repeat inquiries, closed-record reconciliation, stale edits, blank amounts, formula escaping and existing form delivery.
+Run `node --test scripts/test-crm.cjs scripts/test-google-ads-leads.cjs scripts/test-lead-attribution.cjs` from the repository root. This covers placement beside existing records despite pre-filled formulas, intake exclusions, stable IDs, routing, archive retention, separate repeat inquiries, closed-record reconciliation, stale edits, blank amounts, formula escaping and existing form delivery.

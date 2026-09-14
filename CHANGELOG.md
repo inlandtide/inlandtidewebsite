@@ -2,6 +2,8 @@
 
 ## 2026-09-13 — Spreadsheet CRM
 
+- Verify live archive retention and stage routing; support setup from the script editor and keep new leads beside existing rows despite pre-filled formulas.
+
 - Added a private spreadsheet-bound lead card, automatic intake synchronization, stage-based Won/Lost routing and stable IDs while retaining original form submissions.
 - Added live dashboard, follow-ups, owners, milestones, proposal/contract/collected amounts, activity history and CRM guide in the existing workbook; preserved all ten leads and backed up the original workbook.
 - Added regression tests for CRM intake, routing, archive preservation and stale-edit protection. Existing lead delivery and email behavior are preserved.
