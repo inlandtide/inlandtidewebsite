@@ -2,6 +2,8 @@
 
 ## 2026-09-13 — Spreadsheet CRM
 
+- Fixed lead-panel saving by registering a submit listener, avoiding a naming collision between the Save button and form handler.
+
 - Verify live archive retention and stage routing; support setup from the script editor and keep new leads beside existing rows despite pre-filled formulas.
 
 - Added a private spreadsheet-bound lead card, automatic intake synchronization, stage-based Won/Lost routing and stable IDs while retaining original form submissions.
