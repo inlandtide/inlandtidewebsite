@@ -100,6 +100,62 @@ export const galleryCategories: GalleryCategory[] = [
         "height": 1467,
         "orientation": "landscape",
         "sourceName": "Luxurydecorativemoulding10.jpg"
+      },
+      {
+        "src": "/images/gallery/luxury-decorative-moulding-11.jpg",
+        "alt": "Luxury & Decorative Moulding project photo 11 by Moulding Saint Louis",
+        "width": 2200,
+        "height": 1650,
+        "orientation": "landscape",
+        "sourceName": "IMG_5950.HEIC"
+      },
+      {
+        "src": "/images/gallery/luxury-decorative-moulding-12.jpg",
+        "alt": "Luxury & Decorative Moulding project photo 12 by Moulding Saint Louis",
+        "width": 2200,
+        "height": 1650,
+        "orientation": "landscape",
+        "sourceName": "IMG_5951.HEIC"
+      },
+      {
+        "src": "/images/gallery/luxury-decorative-moulding-13.jpg",
+        "alt": "Luxury & Decorative Moulding project photo 13 by Moulding Saint Louis",
+        "width": 2048,
+        "height": 1536,
+        "orientation": "landscape",
+        "sourceName": "IMG_5954.webp"
+      },
+      {
+        "src": "/images/gallery/luxury-decorative-moulding-14.jpg",
+        "alt": "Luxury & Decorative Moulding project photo 14 by Moulding Saint Louis",
+        "width": 2200,
+        "height": 1650,
+        "orientation": "landscape",
+        "sourceName": "IMG_5957.HEIC"
+      },
+      {
+        "src": "/images/gallery/luxury-decorative-moulding-15.jpg",
+        "alt": "Luxury & Decorative Moulding project photo 15 by Moulding Saint Louis",
+        "width": 2200,
+        "height": 1650,
+        "orientation": "landscape",
+        "sourceName": "IMG_5958.HEIC"
+      },
+      {
+        "src": "/images/gallery/luxury-decorative-moulding-16.jpg",
+        "alt": "Luxury & Decorative Moulding project photo 16 by Moulding Saint Louis",
+        "width": 1650,
+        "height": 2200,
+        "orientation": "portrait",
+        "sourceName": "IMG_5961.HEIC"
+      },
+      {
+        "src": "/images/gallery/luxury-decorative-moulding-17.jpg",
+        "alt": "Luxury & Decorative Moulding project photo 17 by Moulding Saint Louis",
+        "width": 2200,
+        "height": 1650,
+        "orientation": "landscape",
+        "sourceName": "IMG_5962.HEIC"
       }
     ]
   },

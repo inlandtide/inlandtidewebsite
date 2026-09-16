@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-09-16]
+
+### Added
+- Added seven user-supplied project photos to the public Luxury & Decorative Moulding portfolio collection. Converted HEIC/WebP originals to optimized JPEG gallery assets while preserving full image compositions and source metadata.
+
 ## 2026-09-13 — Spreadsheet CRM
 
 - Fixed lead-panel saving by registering a submit listener, avoiding a naming collision between the Save button and form handler.

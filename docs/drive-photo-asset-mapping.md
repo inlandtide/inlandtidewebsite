@@ -21,3 +21,17 @@ The prior Google Drive browser downloads exposed small thumbnail-sized image fil
 ## Image Quality Standard
 
 Moving forward, service and hero images should use correctly sized, high-quality source files. Preferred minimum source width is 1800px, with 3:2 landscape images used for service hero assets whenever possible.
+
+## Gallery Portfolio Additions — Luxury & Decorative Moulding
+
+The following user-supplied project photos were converted from their original HEIC/WebP formats to gallery-ready JPEGs. Each preserves the original full composition with no cropping and is capped at 2200px on its longest edge for web delivery.
+
+| Source File | Gallery Asset | Site Dimensions |
+|---|---|---:|
+| `IMG_5950.HEIC` | `/public/images/gallery/luxury-decorative-moulding-11.jpg` | 2200×1650 |
+| `IMG_5951.HEIC` | `/public/images/gallery/luxury-decorative-moulding-12.jpg` | 2200×1650 |
+| `IMG_5954.webp` | `/public/images/gallery/luxury-decorative-moulding-13.jpg` | 2048×1536 |
+| `IMG_5957.HEIC` | `/public/images/gallery/luxury-decorative-moulding-14.jpg` | 2200×1650 |
+| `IMG_5958.HEIC` | `/public/images/gallery/luxury-decorative-moulding-15.jpg` | 2200×1650 |
+| `IMG_5961.HEIC` | `/public/images/gallery/luxury-decorative-moulding-16.jpg` | 1650×2200 |
+| `IMG_5962.HEIC` | `/public/images/gallery/luxury-decorative-moulding-17.jpg` | 2200×1650 |
