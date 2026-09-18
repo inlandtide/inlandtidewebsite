@@ -35,3 +35,11 @@ The following user-supplied project photos were converted from their original HE
 | `IMG_5958.HEIC` | `/public/images/gallery/luxury-decorative-moulding-15.jpg` | 2200×1650 |
 | `IMG_5961.HEIC` | `/public/images/gallery/luxury-decorative-moulding-16.jpg` | 1650×2200 |
 | `IMG_5962.HEIC` | `/public/images/gallery/luxury-decorative-moulding-17.jpg` | 2200×1650 |
+
+## Gallery Portfolio Addition — Picture Frame Moulding
+
+The following user-supplied project photo was converted from WebP to a gallery-ready JPEG. Its original 4:3 composition is preserved without cropping.
+
+| Source File | Gallery Asset | Site Dimensions |
+|---|---|---:|
+| `IMG_5965_without_green_tape.webp` | `/public/images/gallery/picture-frame-moulding-12.jpg` | 2048×1536 |

@@ -251,6 +251,14 @@ export const galleryCategories: GalleryCategory[] = [
         "height": 1467,
         "orientation": "landscape",
         "sourceName": "pictureframemoulding11.jpg"
+      },
+      {
+        "src": "/images/gallery/picture-frame-moulding-12.jpg",
+        "alt": "Picture Frame Moulding project photo 12 by Moulding Saint Louis",
+        "width": 2048,
+        "height": 1536,
+        "orientation": "landscape",
+        "sourceName": "IMG_5965_without_green_tape.webp"
       }
     ]
   },

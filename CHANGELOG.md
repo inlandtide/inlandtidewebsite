@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-09-18]
+
+### Added
+- Added the user-supplied blue wall-panel project photo to the public Picture Frame Moulding portfolio collection as an optimized JPEG, preserving its full 4:3 composition and source metadata.
+
 ## [2026-09-16]
 
 ### Added
