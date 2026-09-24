@@ -56,23 +56,36 @@ test('Blocked or corrupt local storage does not block attribution or a form subm
     assert.equal(core.summarizeAttribution(browser.getLeadAttribution()).leadSource, 'Google Ads');
   }
 });
-test('Sheet receipt failure still sends email with alert; success includes source and escapes campaign HTML', async () => {
+test('Email preserves attribution and escaping; unconfirmed background storage sends a separate alert', async () => {
   for (const receipt of [{status:'success'}, {status:'error'}, null]) {
-    let sent, posted;
+    const sent = [], pending = [];
+    let posted;
+    const delivery = load('app/lib/contact-delivery.ts', {'./lead-attribution':core}, {
+      process:{env:{RESEND_API:'test',GOOGLE_SHEETS_WEBAPP_URL:'https://example.test'}}, AbortSignal,
+      fetch:async (url,init)=>{
+        if (url === 'https://api.resend.com/emails') {
+          sent.push(JSON.parse(init.body)); return {ok:true,status:200,json:async()=>({id:'test'})};
+        }
+        posted=JSON.parse(init.body); return {ok:true,status:200,json:async()=>receipt};
+      },
+    });
     const route = load('app/api/contact/route.ts', {
       '../../lib/lead-attribution':core,
-      'next/server':{NextResponse:{json:(body,init)=>({body,...init})}},
-      resend:{Resend:class {emails={send:async payload=>{sent=payload;return {data:{id:'test'}}}}}},
-    }, {process:{env:{RESEND_API:'test',GOOGLE_SHEETS_WEBAPP_URL:'https://example.test'}},
-      fetch:async (_url,init)=>{posted=JSON.parse(init.body);return {ok:true,status:200,json:async()=>receipt}}});
+      '../../lib/contact-delivery':delivery,
+      'next/server':{after:callback=>pending.push(callback),NextResponse:{json:(body,init)=>({body,...init})}},
+    });
     const attribution = core.advanceAttribution(null,touch('?utm_source=facebook&utm_medium=paid_social&utm_campaign=%3Cscript%3Ex%3C%2Fscript%3E'));
     const result = await route.POST({json:async()=>({name:'Test',email:'test@example.com',message:'Example',attribution})});
     assert.equal(result.status,200);
+    assert.equal(posted,undefined);
+    assert.equal(sent.length,1);
+    await pending[0]();
     assert.equal(posted.leadSource,'Meta Ads');
-    assert.ok(sent.subject.includes('[Meta Ads]'));
-    assert.equal(sent.subject.includes('[SHEETS FAILED]'),receipt?.status!=='success');
-    assert.ok(sent.html.includes('&lt;script&gt;'));
-    assert.ok(!sent.html.includes('<script>'));
+    assert.equal(sent.length,receipt?.status==='success'?1:2);
+    assert.ok(sent[0].subject.includes('[Meta Ads]'));
+    assert.equal(sent.at(-1).subject.includes('[CHECK SHEETS]'),receipt?.status!=='success');
+    assert.ok(sent[0].html.includes('&lt;script&gt;'));
+    assert.ok(!sent[0].html.includes('<script>'));
   }
 });
 test('Apps Script writes only Web Forms, preserves original columns, escapes formulas and acknowledges errors', () => {

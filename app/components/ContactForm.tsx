@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { getLeadAttribution } from "../lib/browser-attribution";
 
 type FormState = "idle" | "submitting" | "success" | "error";
@@ -32,10 +32,13 @@ function trackGALead() {
 export default function ContactForm({ variant = "light", compact = false }: ContactFormProps) {
   const [formState, setFormState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const submitting = useRef(false);
   const isDark = variant === "dark";
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submitting.current) return;
+    submitting.current = true;
     setFormState("submitting");
     setErrorMsg("");
 
@@ -68,22 +71,26 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+        keepalive: true,
       });
 
       const json = await res.json();
 
-      if (!res.ok) {
+      if (!res.ok || json.success !== true) {
         setErrorMsg(json.error || "Something went wrong. Please try again.");
         setFormState("error");
       } else {
-        trackMetaLead();
-        trackGALead();
         setFormState("success");
         form.reset();
+        // A blocked or broken analytics script must not undo a received lead.
+        try { trackMetaLead(); } catch { /* best-effort tracking */ }
+        try { trackGALead(); } catch { /* best-effort tracking */ }
       }
     } catch {
       setErrorMsg("Network error. Please check your connection and try again.");
       setFormState("error");
+    } finally {
+      submitting.current = false;
     }
   }
 
@@ -96,7 +103,7 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
   return (
     <div className={compact ? "w-full" : "w-full max-w-2xl"}>
       {formState === "success" ? (
-        <div className={`border px-6 py-8 text-center ${isDark ? "border-[#B4904E] bg-[#FEFAF1]/5" : "border-[#B4904E] bg-white"}`}>
+        <div role="status" className={`border px-6 py-8 text-center ${isDark ? "border-[#B4904E] bg-[#FEFAF1]/5" : "border-[#B4904E] bg-white"}`}>
           <p className="font-heading text-3xl font-semibold text-[#B4904E]">Message Received</p>
           <p className={`mt-3 text-base leading-7 ${isDark ? "text-[#FEFAF1]/74" : "text-[#2E404E]"}`}>
             Thank you for reaching out. A member of the Moulding Saint Louis team will review your project details and follow up shortly.
@@ -109,19 +116,19 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} noValidate className="grid gap-4">
+        <form onSubmit={handleSubmit} aria-busy={formState === "submitting"} className="grid gap-4">
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Full Name *" labelClass={labelClass}>
-              <input type="text" name="name" required className={inputClass} placeholder="Jane Smith" />
+              <input type="text" name="name" required maxLength={200} className={inputClass} placeholder="Jane Smith" />
             </Field>
             <Field label="Email Address *" labelClass={labelClass}>
-              <input type="email" name="email" required className={inputClass} placeholder="jane@example.com" />
+              <input type="email" name="email" required maxLength={254} className={inputClass} placeholder="jane@example.com" />
             </Field>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Phone" labelClass={labelClass}>
-              <input type="tel" name="phone" className={inputClass} placeholder="Your phone number" />
+              <input type="tel" name="phone" maxLength={100} className={inputClass} placeholder="Your phone number" />
             </Field>
             <Field label="Project Type" labelClass={labelClass}>
               <select name="projectType" className={inputClass} defaultValue="">
@@ -140,20 +147,21 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
           </div>
 
           <Field label="Project Location" labelClass={labelClass}>
-            <input type="text" name="location" className={inputClass} placeholder="St. Louis, Ladue, Clayton..." />
+            <input type="text" name="location" maxLength={200} className={inputClass} placeholder="St. Louis, Ladue, Clayton..." />
           </Field>
 
           <Field label="Project Details *" labelClass={labelClass}>
             <textarea
               name="message"
               required
+              maxLength={9000}
               rows={5}
               className={`${inputClass} resize-none`}
               placeholder="Tell us about the rooms, details, inspiration, or finish carpentry you have in mind."
             />
           </Field>
 
-          {formState === "error" && <p className="text-sm text-red-500">{errorMsg}</p>}
+          {formState === "error" && <p role="alert" className="text-sm text-red-500">{errorMsg}</p>}
 
           <button
             type="submit"
