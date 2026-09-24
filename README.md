@@ -107,10 +107,11 @@ The contact form uses a secure Next.js serverless API route at `app/api/contact/
 The execution order on every form submission is:
 
 1. **Validate** — Server validates that `name`, `email`, and `message` are present and that the email address is well formed.
-2. **Attempt Google Sheets save** — The backend tries to POST the lead to Google Sheets. This step is non-blocking: if it fails for any reason, execution continues and the failure is noted internally.
-3. **Always send notification email** — The Resend email fires regardless of whether Google Sheets succeeded. If Sheets failed, the email subject is prefixed with `⚠️ [SHEETS FAILED]` and a red alert banner is injected at the top of the email body, prompting the team to check the integration immediately.
+2. **Secure the notification email** — Send the full lead and attribution to Tim and Ryan via Resend. Wait for Resend's accepted-message ID before acknowledging receipt to the visitor. The email request has a 10-second timeout.
+3. **Confirm promptly, then update Google Sheets** — Next.js `after()` runs the Apps Script call on Vercel after the response, including CRM intake. It continues independently of the visitor's browser, with a 20-second request timeout inside a 60-second function budget. If the save is not acknowledged, send a separate `⚠️ [CHECK SHEETS]` email with the full lead. Check Web Forms before adding manually, since a timeout can hide a successful append.
+4. **Handle an email outage** — If email is not acknowledged, wait for a confirmed Sheets save as the fallback before returning success, then retry the same email once using a Resend idempotency key. If neither destination confirms receipt, return an error and keep the visitor's form filled in.
 
-This design guarantees that no inbound lead is silently lost due to a Sheets outage.
+The normal success response means the email provider has accepted the lead; it does not promise inbox delivery or an already-completed spreadsheet save. `after()` is bounded background work, not a durable retry queue: platform termination can still interrupt it. The accepted email provides a recoverable copy if Sheets or CRM processing fails. Spreadsheet appends are not automatically retried because the existing receiver does not deduplicate website submissions. Logs record a reference and timings without lead details. No new service or Apps Script deployment is needed for this flow.
 
 ### Google Sheets Integration
 
@@ -127,11 +128,11 @@ Native Google Ads lead forms use a separate authenticated endpoint, `/api/google
 
 Google advertising click markers or explicit Google paid UTMs indicate Google Ads. Meta Ads requires explicit paid campaign tagging; `fbclid` or a Facebook referrer alone is labeled paid/organic unknown. Search-engine referrers indicate organic search as a best-effort inference. Blocked storage, stripped referrers, other devices, and untagged ads may remain unknown; these labels do not reproduce GA4's attribution model. Raw advertising click IDs, arbitrary URL parameters, and referrer query strings are not copied into lead records.
 
-See `integrations/google-apps-script/README.md` for the coordinated deployment order and campaign-tag examples. Run `node --test scripts/test-lead-attribution.cjs` for the attribution and delivery tests.
+See `integrations/google-apps-script/README.md` for the coordinated deployment order and campaign-tag examples. Run `node --test scripts/test-contact-delivery.cjs scripts/test-lead-attribution.cjs scripts/test-google-ads-leads.cjs scripts/test-crm.cjs` for delivery, attribution and CRM regression tests.
 
 ### Email Notifications Using Resend
 
-The [Resend Node.js SDK](https://resend.com/) sends a transactional notification email to the team after every valid submission.
+The [Resend API](https://resend.com/) sends a transactional notification email to the team after every valid submission. The direct API request supports an abort timeout; notification and spreadsheet-alert emails have separate idempotency keys.
 
 * **From Address:** `contact@mouldingstl.com`.
 * **To Addresses:** `tim@inlandtide.com`, `ryan@inlandtide.com`.

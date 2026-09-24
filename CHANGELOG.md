@@ -1,5 +1,13 @@
 # Changelog
 
+## [2026-09-23]
+
+### Changed
+- Confirm website inquiries as soon as Resend accepts the notification; continue Sheets and CRM intake after the response using Next.js `after()`, even if the visitor leaves.
+- Bound email and Sheets requests, retain a confirmed-spreadsheet fallback during email outages, and send a separate full-lead alert if background storage is not acknowledged. Add private-safe delivery timing logs and email retry idempotency.
+- Preserve form entries on failure, validate fields before sending, guard duplicate clicks, and keep analytics errors from hiding a successful submission.
+- Add regression coverage for response timing, delayed Sheets writes, integration failures, fallback delivery, attribution and HTML escaping.
+
 ## [2026-09-18]
 
 ### Added

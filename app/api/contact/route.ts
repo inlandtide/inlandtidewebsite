@@ -1,161 +1,61 @@
-import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
+import { randomUUID } from "node:crypto";
+import { after, NextRequest, NextResponse } from "next/server";
 import { summarizeAttribution } from "../../lib/lead-attribution";
+import { type ContactLead, saveToSheets, sendNotification } from "../../lib/contact-delivery";
 
-const NOTIFY_EMAILS = ["tim@inlandtide.com", "ryan@inlandtide.com"];
-
-function escapeHtml(value: unknown) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
+// Includes email, spreadsheet fallback and post-response work; external calls have
+// shorter timeouts. after() keeps Vercel alive even after the visitor leaves.
+export const maxDuration = 60;
 
 export async function POST(req: NextRequest) {
-  const resend = new Resend(process.env.RESEND_API);
-
+  let body;
   try {
-    const body = await req.json();
-    const { name, email, phone, message } = body;
-    const attribution = summarizeAttribution(body.attribution);
-
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: "Name, email, and message are required." },
-        { status: 400 }
-      );
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: "Please provide a valid email address." },
-        { status: 400 }
-      );
-    }
-
-    let sheetsSaved = false;
-    const sheetsUrl = process.env.GOOGLE_SHEETS_WEBAPP_URL;
-
-    if (!sheetsUrl) {
-      console.error("GOOGLE_SHEETS_WEBAPP_URL is not set.");
-    } else {
-      try {
-        const sheetsRes = await fetch(sheetsUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: String(name),
-            email: String(email),
-            phone: String(phone ?? ""),
-            message: String(message),
-            ...attribution,
-          }),
-        });
-
-        const receipt = await sheetsRes.json().catch(() => null);
-        if (sheetsRes.ok && receipt?.status === "success") {
-          sheetsSaved = true;
-          console.log("Lead saved to Google Sheets successfully.");
-        } else {
-          console.error("Google Sheets did not acknowledge a saved lead:", sheetsRes.status);
-        }
-      } catch (sheetsErr) {
-        console.error("Google Sheets fetch threw an exception:", sheetsErr);
-      }
-    }
-
-    const safeName = escapeHtml(name);
-    const safeEmail = escapeHtml(email);
-    const safePhone = escapeHtml(phone || "—");
-    const safeMessage = escapeHtml(message);
-    const attributionRows = [
-      ["Lead source", attribution.leadSource], ["Campaign", attribution.campaign || "Not provided"],
-      ["Source / medium", attribution.sourceMedium || "Unknown"], ["First source", attribution.firstSource || "Unknown"],
-      ["Landing page", attribution.landingPage || "Unknown"], ["Referring site", attribution.referringSite || "Not provided"],
-    ].map(([label, value]) => `<tr><td style="padding: 7px 0; color: #B4904E; vertical-align: top;">${escapeHtml(label)}</td><td style="padding: 7px 0; color: #FEFAF1; overflow-wrap: anywhere;">${escapeHtml(value)}</td></tr>`).join("");
-
-    const sheetsAlertBanner = !sheetsSaved
-      ? `
-        <div style="background: #7f1d1d; border: 2px solid #ef4444; padding: 16px 20px; margin-bottom: 24px; text-align: center;">
-          <p style="color: #fecaca; font-family: Georgia, serif; font-size: 15px; font-weight: bold; margin: 0; letter-spacing: 1px;">
-            GOOGLE SHEETS DID NOT SAVE THIS LEAD
-          </p>
-          <p style="color: #fca5a5; font-family: Georgia, serif; font-size: 13px; margin: 8px 0 0 0;">
-            The backup spreadsheet may be broken or misconfigured. Please check the Google Apps Script and Vercel environment variables immediately.
-          </p>
-        </div>
-      `
-      : "";
-
-    const { data, error } = await resend.emails.send({
-      from: "Moulding Saint Louis <contact@mouldingstl.com>",
-      to: NOTIFY_EMAILS,
-      replyTo: String(email),
-      subject: sheetsSaved
-        ? `New Consultation Request [${attribution.leadSource}] — ${String(name)}`
-        : `⚠️ [SHEETS FAILED] New Consultation Request [${attribution.leadSource}] — ${String(name)}`,
-      html: `
-        <div style="font-family: Georgia, serif; max-width: 640px; margin: 0 auto; background: #081828; color: #FEFAF1; padding: 34px; border: 1px solid #B4904E;">
-          <h2 style="color: #B4904E; margin-top: 0; font-size: 24px; letter-spacing: 2px; text-transform: uppercase;">
-            New Consultation Request
-          </h2>
-          <p style="color: #FEFAF1; line-height: 1.6; margin-top: 0;">
-            A new Moulding Saint Louis inquiry was submitted through mouldingstl.com.
-          </p>
-          <hr style="border: 0; border-top: 1px solid #B4904E; margin: 24px 0;" />
-
-          ${sheetsAlertBanner}
-
-          <table style="width: 100%; border-collapse: collapse; margin-bottom: 12px;">${attributionRows}</table>
-          <p style="font-size: 12px; line-height: 1.6; color: #FEFAF1;">${escapeHtml(attribution.attributionDetails)}</p>
-          <hr style="border: 0; border-top: 1px solid #B4904E; margin: 24px 0;" />
-
-          <table style="width: 100%; border-collapse: collapse;">
-            <tr>
-              <td style="padding: 9px 0; color: #B4904E; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; width: 120px;">Name</td>
-              <td style="padding: 9px 0; color: #FEFAF1;">${safeName}</td>
-            </tr>
-            <tr>
-              <td style="padding: 9px 0; color: #B4904E; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Email</td>
-              <td style="padding: 9px 0; color: #FEFAF1;"><a href="mailto:${safeEmail}" style="color: #B4904E;">${safeEmail}</a></td>
-            </tr>
-            <tr>
-              <td style="padding: 9px 0; color: #B4904E; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Phone</td>
-              <td style="padding: 9px 0; color: #FEFAF1;">${safePhone}</td>
-            </tr>
-          </table>
-
-          <hr style="border: 0; border-top: 1px solid #B4904E; margin: 22px 0;" />
-
-          <p style="color: #B4904E; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Project Details</p>
-          <p style="color: #FEFAF1; line-height: 1.7; white-space: pre-wrap;">${safeMessage}</p>
-
-          <hr style="border: 0; border-top: 1px solid #B4904E; margin-top: 26px;" />
-          <p style="color: #B4904E; font-size: 11px; text-align: center; margin-bottom: 0; letter-spacing: 1px;">
-            Moulding Saint Louis — mouldingstl.com
-          </p>
-        </div>
-      `,
-    });
-
-    if (error) {
-      console.error("Resend error:", JSON.stringify(error));
-      return NextResponse.json(
-        { error: "Failed to send email. Please try again.", detail: error },
-        { status: 500 }
-      );
-    }
-
-    console.log("Notification email sent successfully, id:", data?.id);
-    return NextResponse.json({ success: true }, { status: 200 });
-  } catch (err) {
-    console.error("Contact route error:", err);
-    return NextResponse.json(
-      { error: "An unexpected error occurred." },
-      { status: 500 }
-    );
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Please submit a valid form." }, { status: 400 });
   }
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Please submit a valid form." }, { status: 400 });
+  }
+
+  const { name, email, phone = "", message } = body;
+  if (typeof name !== "string" || !name.trim() || typeof email !== "string" || !email.trim() ||
+      typeof message !== "string" || !message.trim() || typeof phone !== "string") {
+    return NextResponse.json({ error: "Name, email, and message are required." }, { status: 400 });
+  }
+  if (name.length > 200 || email.length > 254 || phone.length > 100 || message.length > 10000) {
+    return NextResponse.json({ error: "Please shorten your form entry and try again." }, { status: 400 });
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
+  }
+
+  const reference = randomUUID();
+  const lead: ContactLead = { name: name.trim(), email: email.trim(), phone: phone.trim(), message: message.trim(), attribution: summarizeAttribution(body.attribution) };
+  const started = Date.now();
+  const emailed = await sendNotification(lead, reference);
+
+  if (emailed) {
+    after(async () => {
+      // Do not blindly retry an append: a lost receipt may hide a successful save.
+      if (!await saveToSheets(lead, reference)) {
+        await sendNotification(lead, reference, true);
+      }
+    });
+    console.info("Contact accepted via email", { reference, durationMs: Date.now() - started });
+    return NextResponse.json({ success: true }, { status: 200 });
+  }
+
+  // Email is normally the fast durable handoff. During an email outage, wait for
+  // a confirmed spreadsheet save instead of claiming receipt or losing the lead.
+  if (await saveToSheets(lead, reference)) {
+    after(async () => { await sendNotification(lead, reference); });
+    console.info("Contact accepted via spreadsheet fallback", { reference, durationMs: Date.now() - started });
+    return NextResponse.json({ success: true }, { status: 200 });
+  }
+
+  return NextResponse.json(
+    { error: "We couldn’t confirm your request. Please try again or call (314) 818-0815." },
+    { status: 503 }
+  );
 }
