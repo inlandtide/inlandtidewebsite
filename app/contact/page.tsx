@@ -3,57 +3,105 @@ import Image from "next/image";
 import ContactForm from "../components/ContactForm";
 import JsonLd from "../components/JsonLd";
 import { PageShell } from "../components/SiteChrome";
+import { Eyebrow } from "../components/Design";
 import { breadcrumbSchema, siteUrl } from "../data/seo";
-
 export const metadata: Metadata = {
-  title: "Request a Finish Carpentry Consultation",
+  title: "Request a Free Finish Carpentry Consultation",
   description:
-    "Contact Moulding Saint Louis at (314) 818-0815 to discuss luxury moulding, wainscoting, casing, mantels, archways, and custom finish carpentry in St. Louis.",
+    "Tell us about your St. Louis home. Request a free moulding, wainscoting or finish carpentry consultation, or call (314) 818-0815.",
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Request a Finish Carpentry Consultation",
-    description:
-      "Start a conversation about custom moulding, wainscoting, trim, mantels, archways, and architectural wood finishes for your St. Louis home.",
-    url: `${siteUrl}/contact`,
+    title: "Your Free Consultation | Moulding Saint Louis",
+    description: "A beautiful room starts with a conversation.",
+    url: siteUrl + "/contact",
   },
 };
-
 export default function ContactPage() {
   return (
-    <PageShell>
-      <main className="bg-[#081828] text-[#FEFAF1]">
-        <JsonLd data={breadcrumbSchema([{ name: "Home", url: siteUrl }, { name: "Contact", url: `${siteUrl}/contact` }])} />
-        <section className="grid min-h-[calc(100vh-89px)] lg:grid-cols-[0.92fr_1.08fr]">
-          <div className="relative hidden overflow-hidden lg:block">
-            <Image
-              src="/images/placeholders/contact-fireplace-surround.jpg"
-              alt="Fireplace mantel inspiration placeholder"
-              fill
-              priority
-              className="object-cover opacity-82"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#081828]/35" />
-          </div>
-
-          <div className="flex items-center py-20">
-            <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-24">
-              <p className="text-sm font-semibold uppercase tracking-[0.42em] text-[#B4904E]">Request a Consultation</p>
-              <h1 className="mt-5 max-w-4xl font-heading text-6xl font-semibold leading-[0.92] text-balance sm:text-7xl">
-                Tell us about the details you want to add to your home.
+    <PageShell ctaHref="#consultation">
+      <main id="main-content">
+        <JsonLd
+          data={breadcrumbSchema([
+            { name: "Home", url: siteUrl },
+            { name: "Contact", url: siteUrl + "/contact" },
+          ])}
+        />
+        <section className="contact-page">
+          <div className="container-xl contact-page-grid">
+            <div className="contact-page-copy">
+              <Eyebrow>Free consultation · St. Louis</Eyebrow>
+              <h1>
+                Every beautiful room
+                <br />
+                starts with a conversation.
               </h1>
-              <p className="mt-7 max-w-3xl text-xl leading-9 text-[#FEFAF1]/76">
-                Share the rooms, project type, and inspiration you have in mind. We will review your inquiry and help determine the best next step. You can also call (314) 818-0815.
+              <p>
+                You do not need all the answers. Share a little about your home,
+                and we will help you work through the possibilities.
               </p>
-
-              <div className="mt-10 border border-[#B4904E]/45 bg-[#FEFAF1]/5 p-6 sm:p-9">
-                <ContactForm variant="dark" compact />
+              <div className="contact-page-photo">
+                <Image
+                  src="/images/placeholders/contact-fireplace-surround.jpg"
+                  alt="Fireplace mantel and surround design inspiration"
+                  fill
+                  sizes="(min-width: 900px) 45vw, 100vw"
+                  className="object-cover"
+                />
+                <span>Design inspiration</span>
               </div>
-
-              <div className="mt-10 border-l-4 border-[#B4904E] bg-[#FEFAF1]/5 p-6">
-                <p className="font-heading text-3xl font-semibold">What happens next?</p>
-                <p className="mt-3 leading-7 text-[#FEFAF1]/74">
-                  A member of the Moulding Saint Louis team will review your message. We may ask for photos, inspiration, room dimensions, or a short conversation so expectations are clear before the project moves forward.
+              <div className="contact-page-details">
+                <div>
+                  <p className="small-label">Call or text</p>
+                  <a href="tel:+13148180815" data-cta="contact_call">
+                    (314) 818-0815
+                  </a>
+                  <a
+                    href="sms:+13148180815"
+                    className="text-link"
+                    data-cta="contact_text"
+                  >
+                    Send a text ↗
+                  </a>
+                </div>
+                <div>
+                  <p className="small-label">Contact hours</p>
+                  <p>
+                    Monday–Friday
+                    <br />
+                    8am–5pm
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div id="consultation" className="contact-page-form">
+              <div className="form-panel">
+                <Eyebrow>Let’s start with you</Eyebrow>
+                <h2>Your home. Your ideas.</h2>
+                <p className="form-intro">
+                  Leave your details and our team will follow up to discuss your
+                  project.
                 </p>
+                <ContactForm compact formLocation="contact" />
+                <div className="ad-call">
+                  <span>Prefer to call or text?</span>
+                  <a href="tel:+13148180815" data-cta="contact_form_call">
+                    (314) 818-0815
+                  </a>
+                  <a href="sms:+13148180815" data-cta="contact_form_text">
+                    Send a text ↗
+                  </a>
+                </div>
+              </div>
+              <div className="next-step-note">
+                <span>01</span>
+                <div>
+                  <h3>What happens next?</h3>
+                  <p>
+                    We review your inquiry, get in touch, and talk through your
+                    space. Photos or inspiration can help, but you can share
+                    those when we connect.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

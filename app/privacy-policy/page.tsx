@@ -72,7 +72,7 @@ export default function PrivacyPolicyPage() {
           { name: "Privacy Policy", url: `${siteUrl}/privacy-policy` },
         ])}
       />
-      <main className="bg-[#FEFAF1]">
+      <main id="main-content" className="bg-[#FEFAF1]">
 
         {/* Page header */}
         <section className="bg-[#081828] py-20 text-[#FEFAF1]">

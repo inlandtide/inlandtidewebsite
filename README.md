@@ -20,8 +20,8 @@ This project is built using modern, serverless web technologies designed for hig
 
 * **Framework:** [Next.js 16](https://nextjs.org/) using the App Router.
 * **Language:** TypeScript.
-* **Styling:** Tailwind CSS v4 plus raw CSS variables in `app/globals.css`.
-* **Fonts:** Cormorant Garamond for headlines and Zilla Slab for subtext and supporting content.
+* **Styling:** Tailwind CSS v4, shared base styles in `app/globals.css`, and the responsive design system in `app/design.css`.
+* **Fonts:** Cormorant Garamond for headlines and Manrope for supporting content and form controls, self-hosted through `next/font`.
 * **Hosting:** [Vercel](https://vercel.com/).
 * **Deployment:** Continuous deployment is configured. Any push to the `main` branch on GitHub automatically triggers a build and deployment on Vercel.
 * **Domain:** `mouldingstl.com` with DNS managed via Cloudflare and pointed to Vercel.
@@ -60,7 +60,13 @@ The `staging/conversion-redesign` branch is a Vercel Preview, separate from the 
 
 `next.config.ts` sets `NEXT_PUBLIC_SITE_MODE` from Vercel's build environment. Only production builds enable real lead delivery, attribution capture, and Meta/GA scripts. Preview and local builds validate and simulate contact submission without storing or emailing it, reject Google Ads webhook requests, display a preview notice, and set noindex via metadata, robots.txt and response headers. Do not set `VERCEL_ENV=production` while testing against real credentials. Promotion to production requires separate owner approval.
 
-The website is structured as a conversion-focused, multi-page site for a luxury finish carpentry and architectural wood finishes company. The current visual direction is immersive and image-forward, with large editorial hero sections, service photography placeholders, and home page service tiles that link to dedicated individual service pages.
+The staging redesign uses a navy, warm ivory, and brass palette, clear free-consultation calls to action, and short inline forms. Only name and email are required; phone, project type, city, timing, and project details are optional. The extra details are included in the existing message field so the email and CRM payload remains compatible. No minimum project price or required budget is advertised.
+
+`/preview-guide` is a review hub available only in preview. Dedicated ad destinations are `/lp/picture-frame-moulding`, `/lp/wainscoting-beadboard`, and `/lp/crown-moulding`. They are noindex, excluded from the sitemap, and canonicalize to the corresponding existing service routes. Ad destination URLs must not change until the owner approves launch. The crawlable service routes retain their original titles, descriptions, detailed service guidance, questions, and structured data.
+
+Known client project photos (the eight `IMG_` source records in the gallery data) are presented as completed work. Stock and otherwise unverified images are labeled design inspiration, not claimed as company projects. The gallery includes keyboard-accessible full-image viewing.
+
+Production analytics retain `generate_lead` on confirmed receipt, with additional `consultation_start`, `consultation_submit`, `consultation_error`, and `consultation_cta_click` diagnostic events. These events contain only page/placement identifiers, never entered contact details. They are not automatically configured as advertising conversions. Preview disables all of them.
 
 | Page | Route | Purpose |
 | :--- | :--- | :--- |

@@ -133,15 +133,22 @@ test('Old website payload stays compatible and formula-like fields remain text',
   assert.equal(r.rows[0][5], 'Direct / unknown');
 });
 
-function route(fetch, env = { GOOGLE_ADS_LEAD_WEBHOOK_KEY: key, GOOGLE_SHEETS_WEBAPP_URL: 'https://example.test/receiver' }) {
+function route(fetch, env = { GOOGLE_ADS_LEAD_WEBHOOK_KEY: key, GOOGLE_SHEETS_WEBAPP_URL: 'https://example.test/receiver' }, preview = false) {
   const exports = {};
   const code = ts.transpileModule(fs.readFileSync('app/api/google-ads-leads/route.ts', 'utf8'),
     { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText;
-  vm.runInNewContext(code, { exports, require: id => id === '../../lib/site-environment' ? {isPreview:false} : id === 'next/server' ? { NextResponse: { json: (body, init) => ({ body, status: init?.status || 200 }) } } : require(id),
+  vm.runInNewContext(code, { exports, require: id => id === '../../lib/site-environment' ? {isPreview:preview} : id === 'next/server' ? { NextResponse: { json: (body, init) => ({ body, status: init?.status || 200 }) } } : require(id),
     Buffer, AbortSignal, process: { env }, fetch });
   return exports.POST;
 }
 const request = body => ({ text: async () => JSON.stringify(body) });
+
+test('Preview native lead endpoint refuses delivery even with valid production configuration', async () => {
+  let calls = 0;
+  const post = route(async () => { calls++; }, undefined, true);
+  assert.equal((await post(request(payload()))).status, 403);
+  assert.equal(calls, 0);
+});
 
 test('HTTP handler refuses invalid or unauthenticated requests before forwarding', async () => {
   let calls = 0;

@@ -1,5 +1,17 @@
 # Changelog
 
+## [2026-09-23 — Conversion redesign preview]
+
+### Changed
+- Redesign the homepage, service pages, gallery, about and contact pages with a consistent navy, ivory and brass design, clearer free-consultation messaging, and responsive call-to-action navigation.
+- Introduce short inline forms with only name and email required, optional project details, preselected service interest, accessible status feedback, and the existing email-first delivery contract.
+- Prioritize documented client project photos, label design inspiration honestly, and add an accessible gallery image viewer.
+- Preserve existing SEO service URLs, titles, descriptions, detailed guidance, internal links and structured data.
+
+### Added
+- Three focused, noindex advertising landing pages, a private preview review hub, and privacy-safe production-only form/CTA diagnostics. Campaign URLs remain unchanged.
+- Add native lead webhook preview-isolation coverage. All staging forms remain simulated; no production leads, emails, CRM records, or advertising conversions are sent.
+
 ## [2026-09-23 — Private conversion staging]
 
 ### Added

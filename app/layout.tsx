@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Cormorant_Garamond, Zilla_Slab } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import JsonLd from "./components/JsonLd";
 import LeadAttribution from "./components/LeadAttribution";
+import ConversionTracking from "./components/ConversionTracking";
 import { isPreview } from "./lib/site-environment";
-import { defaultOgImage, localBusinessSchema, siteName, siteUrl, websiteSchema } from "./data/seo";
+import {
+  defaultOgImage,
+  localBusinessSchema,
+  siteName,
+  siteUrl,
+  websiteSchema,
+} from "./data/seo";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -14,9 +21,9 @@ const cormorant = Cormorant_Garamond({
   weight: ["400", "500", "600", "700"],
 });
 
-const zilla = Zilla_Slab({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-zilla",
+  variable: "--font-manrope",
   display: "swap",
   weight: ["300", "400", "500", "600", "700"],
 });
@@ -24,7 +31,8 @@ const zilla = Zilla_Slab({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Moulding Saint Louis | Luxury Moulding & Finish Carpentry in St. Louis",
+    default:
+      "Moulding Saint Louis | Luxury Moulding & Finish Carpentry in St. Louis",
     template: "%s | Moulding Saint Louis",
   },
   description:
@@ -59,7 +67,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    title: "Moulding Saint Louis | Luxury Moulding & Finish Carpentry in St. Louis",
+    title:
+      "Moulding Saint Louis | Luxury Moulding & Finish Carpentry in St. Louis",
     description:
       "Custom finish carpentry, moulding, wainscoting, casing, mantels, archways, and high-end architectural wood details for St. Louis homes.",
     siteName,
@@ -95,14 +104,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${zilla.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${manrope.variable}`}>
       <body className="antialiased">
-        {!isPreview && <><LeadAttribution />
-        <Script
-          id="meta-pixel"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
+        {!isPreview && (
+          <>
+            <LeadAttribution />
+            <ConversionTracking />
+            <Script
+              id="meta-pixel"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
               n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -114,37 +126,38 @@ export default function RootLayout({
               fbq('init', '3892771434365667');
               fbq('track', 'PageView');
             `,
-          }}
-        />
-        <noscript>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=3892771434365667&ev=PageView&noscript=1"
-            alt=""
-          />
-        </noscript>
-        {/* Google Analytics */}
-        <Script
-          id="google-analytics"
-          src="https://www.googletagmanager.com/gtag/js?id=G-FWKJVE2EMS"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="google-analytics-config"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
+              }}
+            />
+            <noscript>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                height="1"
+                width="1"
+                style={{ display: "none" }}
+                src="https://www.facebook.com/tr?id=3892771434365667&ev=PageView&noscript=1"
+                alt=""
+              />
+            </noscript>
+            {/* Google Analytics */}
+            <Script
+              id="google-analytics"
+              src="https://www.googletagmanager.com/gtag/js?id=G-FWKJVE2EMS"
+              strategy="afterInteractive"
+            />
+            <Script
+              id="google-analytics-config"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-FWKJVE2EMS');
             `,
-          }}
-        />
-        </>}
+              }}
+            />
+          </>
+        )}
         <JsonLd data={localBusinessSchema} />
         <JsonLd data={websiteSchema} />
         {children}

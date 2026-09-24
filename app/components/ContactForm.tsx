@@ -1,16 +1,18 @@
 "use client";
-
-import { useRef, useState } from "react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { getLeadAttribution } from "../lib/browser-attribution";
 import { isPreview } from "../lib/site-environment";
+import { publicServices } from "../data/services";
+import { trackFormEvent } from "../lib/conversion-events";
 
 type FormState = "idle" | "submitting" | "success" | "error";
-
 type ContactFormProps = {
   variant?: "light" | "dark";
   compact?: boolean;
+  defaultService?: string;
+  formLocation?: string;
 };
-
 declare global {
   interface Window {
     fbq?: (...args: unknown[]) => void;
@@ -18,180 +20,264 @@ declare global {
   }
 }
 
-function trackMetaLead() {
-  if (typeof window !== "undefined" && typeof window.fbq === "function") {
-    window.fbq("track", "Lead");
-  }
-}
-
-function trackGALead() {
-  if (typeof window !== "undefined" && typeof window.gtag === "function") {
-    window.gtag("event", "generate_lead");
-  }
-}
-
-export default function ContactForm({ variant = "light", compact = false }: ContactFormProps) {
+export default function ContactForm({
+  variant = "light",
+  compact = false,
+  defaultService = "",
+  formLocation = "contact",
+}: ContactFormProps) {
   const [formState, setFormState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const submitting = useRef(false);
-  const isDark = variant === "dark";
+  const started = useRef(false);
+  const successRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (formState === "success") successRef.current?.focus();
+  }, [formState]);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  function startForm() {
+    if (!started.current) {
+      started.current = true;
+      trackFormEvent("consultation_start", formLocation);
+    }
+  }
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     if (submitting.current) return;
+    const form = event.currentTarget;
+    const values = new FormData(form);
+    const read = (key: string) => String(values.get(key) ?? "").trim();
+    if (!read("name") || !read("email")) {
+      setErrorMsg("Please enter your name and email so we can follow up.");
+      setFormState("error");
+      return;
+    }
     submitting.current = true;
     setFormState("submitting");
     setErrorMsg("");
-
-    const form = e.currentTarget;
-    const name = (form.elements.namedItem("name") as HTMLInputElement).value.trim();
-    const email = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
-    const phone = (form.elements.namedItem("phone") as HTMLInputElement).value.trim();
-    const projectType = (form.elements.namedItem("projectType") as HTMLSelectElement).value.trim();
-    const location = (form.elements.namedItem("location") as HTMLInputElement).value.trim();
-    const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim();
-
-    const enrichedMessage = [
-      projectType ? `Project type: ${projectType}` : "",
-      location ? `Project location: ${location}` : "",
-      message ? `Project details:\n${message}` : "",
+    startForm();
+    trackFormEvent("consultation_submit", formLocation);
+    const message = [
+      read("projectType")
+        ? `Project type: ${read("projectType")}`
+        : "Project type: To discuss",
+      read("location") ? `Project location: ${read("location")}` : "",
+      read("timing") ? `Preferred timing: ${read("timing")}` : "",
+      read("message")
+        ? `Project details:\n${read("message")}`
+        : "Free consultation requested. Please help me explore the options for my home.",
     ]
       .filter(Boolean)
       .join("\n\n");
-
-    const data = {
-      name,
-      email,
-      phone,
-      message: enrichedMessage || message,
-      attribution: getLeadAttribution(),
-    };
-
     try {
-      const res = await fetch("/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          name: read("name"),
+          email: read("email"),
+          phone: read("phone"),
+          message,
+          attribution: isPreview ? undefined : getLeadAttribution(),
+        }),
         keepalive: true,
       });
-
-      const json = await res.json();
-
-      if (!res.ok || json.success !== true) {
-        setErrorMsg(json.error || "Something went wrong. Please try again.");
+      const result = await response.json();
+      if (!response.ok || result.success !== true) {
+        setErrorMsg(
+          result.error ||
+            "We could not confirm your request. Please try again or call (314) 818-0815.",
+        );
         setFormState("error");
+        trackFormEvent("consultation_error", formLocation);
       } else {
         setFormState("success");
         form.reset();
-        // A blocked or broken analytics script must not undo a received lead.
-        if (!isPreview && !json.preview) {
-          try { trackMetaLead(); } catch { /* best-effort tracking */ }
-          try { trackGALead(); } catch { /* best-effort tracking */ }
+        if (!isPreview && !result.preview) {
+          try {
+            window.fbq?.("track", "Lead");
+          } catch {
+            /* A tracking failure cannot undo receipt. */
+          }
+          try {
+            window.gtag?.("event", "generate_lead", {
+              form_location: formLocation,
+            });
+          } catch {
+            /* best effort */
+          }
         }
       }
     } catch {
-      setErrorMsg("Network error. Please check your connection and try again.");
+      setErrorMsg(
+        "We could not confirm your request. Your details are still here—please try again, or call (314) 818-0815.",
+      );
       setFormState("error");
+      trackFormEvent("consultation_error", formLocation);
     } finally {
       submitting.current = false;
     }
   }
-
-  const inputClass = isDark
-    ? "w-full border border-[#B4904E]/35 bg-[#FEFAF1]/5 px-4 py-3 text-sm text-[#FEFAF1] placeholder-[#FEFAF1]/45 outline-none transition focus:border-[#B4904E] focus:bg-[#FEFAF1]/10"
-    : "w-full border border-[#D6D2C6] bg-white/70 px-4 py-3 text-sm text-[#081828] placeholder-[#2E404E]/55 outline-none transition focus:border-[#B4904E] focus:bg-white";
-
-  const labelClass = isDark ? "text-[#FEFAF1]/70" : "text-[#2E404E]";
-
   return (
-    <div className={compact ? "w-full" : "w-full max-w-2xl"}>
+    <div
+      data-contact-form
+      className={`contact-form ${variant === "dark" ? "contact-form-dark" : ""} ${compact ? "" : "form-max-width"}`}
+    >
       {formState === "success" ? (
-        <div role="status" className={`border px-6 py-8 text-center ${isDark ? "border-[#B4904E] bg-[#FEFAF1]/5" : "border-[#B4904E] bg-white"}`}>
-          <p className="font-heading text-3xl font-semibold text-[#B4904E]">{isPreview ? "Preview test complete" : "Message Received"}</p>
-          <p className={`mt-3 text-base leading-7 ${isDark ? "text-[#FEFAF1]/74" : "text-[#2E404E]"}`}>
-            {isPreview ? "This is a staging test. No email, spreadsheet lead, or advertising conversion was created." : "Thank you for reaching out. A member of the Moulding Saint Louis team will review your project details and follow up shortly."}
+        <div
+          className="form-success"
+          role="status"
+          tabIndex={-1}
+          ref={successRef}
+        >
+          <span className="success-check" aria-hidden="true">
+            ✓
+          </span>
+          <h3>
+            {isPreview ? "Preview test complete." : "You’re one step closer."}
+          </h3>
+          <p>
+            {isPreview
+              ? "This is a staging test. No email, spreadsheet lead, or advertising conversion was created."
+              : "Your request has been received. We will review your project and get in touch using the details you shared."}
           </p>
+          {!isPreview && (
+            <p>
+              Have a room photo or a saved idea? Keep it handy for our
+              conversation.
+            </p>
+          )}
           <button
-            onClick={() => setFormState("idle")}
-            className="mt-6 text-sm font-semibold uppercase tracking-[0.22em] text-[#B4904E] underline underline-offset-4 transition hover:opacity-75"
+            type="button"
+            className="text-link"
+            onClick={() => {
+              setFormState("idle");
+              started.current = false;
+            }}
           >
-            Send another message
+            Send another request <span aria-hidden="true">→</span>
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} aria-busy={formState === "submitting"} className="grid gap-4">
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Full Name *" labelClass={labelClass}>
-              <input type="text" name="name" required maxLength={200} className={inputClass} placeholder="Jane Smith" />
-            </Field>
-            <Field label="Email Address *" labelClass={labelClass}>
-              <input type="email" name="email" required maxLength={254} className={inputClass} placeholder="jane@example.com" />
-            </Field>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Phone" labelClass={labelClass}>
-              <input type="tel" name="phone" maxLength={100} className={inputClass} placeholder="Your phone number" />
-            </Field>
-            <Field label="Project Type" labelClass={labelClass}>
-              <select name="projectType" className={inputClass} defaultValue="">
-                <option value="" disabled>Choose a service</option>
-                <option>Luxury & Decorative Moulding</option>
-                <option>Picture Frame Moulding</option>
-                <option>Crown Moulding</option>
-                <option>Wainscoting & Beadboard</option>
-                <option>Chair Rail & Picture Rail</option>
-                <option>Fireplace Mantels & Surrounds</option>
-                <option>Window & Door Casing</option>
-                <option>Archways & Entryways</option>
-                <option>Not sure yet</option>
+        <form
+          onSubmit={handleSubmit}
+          onChange={startForm}
+          aria-busy={formState === "submitting"}
+        >
+          {isPreview && (
+            <p className="form-preview-note">
+              Preview mode: try the form safely. Nothing will be sent.
+            </p>
+          )}
+          <div className="form-grid">
+            <label>
+              Your name <span aria-hidden="true">*</span>
+              <input
+                name="name"
+                type="text"
+                autoComplete="name"
+                required
+                maxLength={200}
+                placeholder="First and last name"
+              />
+            </label>
+            <label>
+              Email address <span aria-hidden="true">*</span>
+              <input
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                maxLength={254}
+                placeholder="you@example.com"
+              />
+            </label>
+            <label>
+              Phone <span className="optional">(optional)</span>
+              <input
+                name="phone"
+                type="tel"
+                autoComplete="tel"
+                maxLength={100}
+                placeholder="Best number to reach you"
+              />
+            </label>
+            <label>
+              I’m interested in
+              <select name="projectType" defaultValue={defaultService}>
+                <option value="">Help me choose</option>
+                {publicServices.map((service) => (
+                  <option key={service.slug} value={service.title}>
+                    {service.title}
+                  </option>
+                ))}
+                <option>Several rooms or services</option>
               </select>
-            </Field>
+            </label>
           </div>
-
-          <Field label="Project Location" labelClass={labelClass}>
-            <input type="text" name="location" maxLength={200} className={inputClass} placeholder="St. Louis, Ladue, Clayton..." />
-          </Field>
-
-          <Field label="Project Details *" labelClass={labelClass}>
-            <textarea
-              name="message"
-              required
-              maxLength={9000}
-              rows={5}
-              className={`${inputClass} resize-none`}
-              placeholder="Tell us about the rooms, details, inspiration, or finish carpentry you have in mind."
-            />
-          </Field>
-
-          {formState === "error" && <p role="alert" className="text-sm text-red-500">{errorMsg}</p>}
-
+          <details className="form-more">
+            <summary>
+              Add project details <span className="optional">(optional)</span>
+              <span aria-hidden="true">+</span>
+            </summary>
+            <div className="form-extra">
+              <div className="form-grid">
+                <label>
+                  City or ZIP code
+                  <input
+                    name="location"
+                    type="text"
+                    maxLength={200}
+                    placeholder="e.g. Chesterfield"
+                  />
+                </label>
+                <label>
+                  When are you thinking?
+                  <select name="timing" defaultValue="">
+                    <option value="">Not sure yet</option>
+                    <option>As soon as possible</option>
+                    <option>Within 1–3 months</option>
+                    <option>Later this year</option>
+                    <option>Just exploring ideas</option>
+                  </select>
+                </label>
+              </div>
+              <label>
+                What would you love to change?
+                <textarea
+                  name="message"
+                  maxLength={8500}
+                  rows={3}
+                  placeholder="A dining room, an entryway, a favorite inspiration link… a sentence or two is plenty."
+                />
+              </label>
+            </div>
+          </details>
+          {formState === "error" && (
+            <p className="form-error" role="alert">
+              {errorMsg}
+            </p>
+          )}
           <button
+            className="button-primary form-submit"
             type="submit"
             disabled={formState === "submitting"}
-            className="mt-2 border border-[#B4904E] bg-[#B4904E] px-8 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-[#081828] transition hover:bg-transparent hover:text-[#B4904E] disabled:cursor-not-allowed disabled:opacity-55"
           >
-            {formState === "submitting" ? "Sending…" : "Request a Consultation"}
+            {formState === "submitting"
+              ? "Sending your request…"
+              : "Request my free consultation"}
+            <span aria-hidden="true">
+              {formState === "submitting" ? "…" : "→"}
+            </span>
           </button>
+          <p className="form-fine-print">
+            Free consultation · No obligation
+            <br />
+            We’ll only use your details to respond to your inquiry.{" "}
+            <Link href="/privacy-policy">Privacy policy</Link>
+          </p>
         </form>
       )}
     </div>
-  );
-}
-
-function Field({
-  label,
-  labelClass,
-  children,
-}: {
-  label: string;
-  labelClass: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <label className="grid gap-2">
-      <span className={`text-xs font-semibold uppercase tracking-[0.22em] ${labelClass}`}>{label}</span>
-      {children}
-    </label>
   );
 }

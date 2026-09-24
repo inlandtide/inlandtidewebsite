@@ -110,7 +110,7 @@ const routeLinks = [
 export default function SeoDashboardPage() {
   return (
     <PageShell>
-      <main className="bg-[#FEFAF1]">
+      <main id="main-content" className="bg-[#FEFAF1]">
         <section className="bg-[#081828] py-24 text-[#FEFAF1] sm:py-32">
           <div className="container-xl grid gap-12 lg:grid-cols-[1fr_0.7fr] lg:items-end">
             <div>

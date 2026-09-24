@@ -3,92 +3,86 @@ import Image from "next/image";
 import Link from "next/link";
 import JsonLd from "../components/JsonLd";
 import { PageShell } from "../components/SiteChrome";
-import { breadcrumbSchema, siteUrl } from "../data/seo";
+import { Arrow, ConsultationSection, Eyebrow } from "../components/Design";
 import { publicServices } from "../data/services";
-
+import { getPresentation } from "../data/presentation";
+import { breadcrumbSchema, siteUrl } from "../data/seo";
 export const metadata: Metadata = {
   title: "Finish Carpentry Services in St. Louis",
   description:
-    "Explore luxury moulding, picture frame moulding, crown moulding, wainscoting, casing, mantels, archways, and finish carpentry services in St. Louis.",
+    "Explore custom picture frame moulding, crown moulding, wainscoting, mantels, casing and architectural trim in St. Louis. Free project consultations.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: "Finish Carpentry Services in St. Louis",
-    description:
-      "Service pages for luxury moulding, wainscoting, casing, mantels, archways, and custom architectural wood finishes.",
-    url: `${siteUrl}/services`,
+    url: siteUrl + "/services",
   },
 };
-
 export default function ServicesPage() {
+  const priority = [
+    "picture-frame-moulding",
+    "wainscoting-beadboard",
+    "crown-moulding",
+  ];
+  const ordered = [...publicServices].sort(
+    (a, b) =>
+      (priority.includes(a.slug) ? priority.indexOf(a.slug) : 9) -
+      (priority.includes(b.slug) ? priority.indexOf(b.slug) : 9),
+  );
   return (
-    <PageShell>
-      <main className="bg-[#FEFAF1]">
-        <JsonLd data={breadcrumbSchema([{ name: "Home", url: siteUrl }, { name: "Services", url: `${siteUrl}/services` }])} />
-        <section className="relative flex min-h-[620px] items-center overflow-hidden bg-[#081828] text-[#FEFAF1]">
-          <Image
-            src="/images/placeholders/wainscoting-beadboard.jpg"
-            alt="Wainscoting placeholder"
-            fill
-            priority
-            className="object-cover opacity-45"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,24,40,0.45),rgba(8,24,40,0.92))]" />
-          <div className="container-xl relative py-24 text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.45em] text-[#B4904E]">Services</p>
-            <h1 className="mx-auto mt-6 max-w-6xl font-heading text-6xl font-semibold leading-[0.92] text-balance sm:text-8xl">
-              Finish carpentry services with architectural presence.
+    <PageShell ctaHref="#consultation">
+      <main id="main-content">
+        <JsonLd
+          data={breadcrumbSchema([
+            { name: "Home", url: siteUrl },
+            { name: "Services", url: siteUrl + "/services" },
+          ])}
+        />
+        <section className="page-intro">
+          <div className="container-xl">
+            <Eyebrow>Custom finish carpentry in St. Louis</Eyebrow>
+            <h1>
+              Details that make
+              <br />a home feel like yours.
             </h1>
-            <p className="mx-auto mt-7 max-w-3xl text-xl leading-9 text-[#FEFAF1]/78">
-              Premium moulding, wainscoting, trim, mantels, casing, archways, and custom wood details for St. Louis interiors.
+            <p>
+              From a single statement wall to a coordinated trim update,
+              discover the details that bring warmth, character, and a finished
+              feel to your rooms.
             </p>
           </div>
         </section>
-
-        <section className="py-24 sm:py-32">
-          <div className="container-xl">
-            <div className="grid gap-8">
-              {publicServices.map((service, index) => (
+        <section className="services-index">
+          <div className="container-xl style-grid">
+            {ordered.map((service, index) => {
+              const p = getPresentation(service);
+              return (
                 <Link
+                  className="style-card"
                   key={service.slug}
-                  href={`/services/${service.slug}`}
-                  className="group grid overflow-hidden border border-[#D6D2C6] bg-white shadow-sm transition hover:border-[#B4904E] hover:shadow-2xl lg:grid-cols-[0.88fr_1.12fr]"
+                  href={"/services/" + service.slug}
                 >
-                  <div className={`relative min-h-[340px] ${index % 2 === 1 ? "lg:order-2" : ""}`}>
+                  <div className="style-image">
                     <Image
-                      src={`/images/placeholders/${service.slug}.jpg`}
-                      alt={`${service.title} placeholder`}
+                      src={p.image}
+                      alt={p.alt}
                       fill
-                      className="object-cover transition duration-700 group-hover:scale-105"
+                      sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"
+                      className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-[#081828]/10" />
+                    <span>{p.label}</span>
                   </div>
-                  <div className="flex flex-col justify-center p-8 sm:p-12">
-                    <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">0{index + 1} / Service</p>
-                    <h2 className="mt-4 font-heading text-5xl font-semibold leading-[0.98] text-[#081828] text-balance sm:text-6xl">
-                      {service.title}
-                    </h2>
-                    <p className="mt-6 max-w-2xl text-lg leading-8 text-[#2E404E]">{service.summary}</p>
-                    <p className="mt-8 text-xs font-semibold uppercase tracking-[0.28em] text-[#B4904E]">Explore Service →</p>
+                  <div className="style-card-heading">
+                    <span className="small-label">0{index + 1}</span>
+                    <Arrow diagonal />
                   </div>
+                  <h2>{service.title}</h2>
+                  <p>{service.summary}</p>
                 </Link>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </section>
-
-        <section className="bg-[#081828] py-20 text-[#FEFAF1]">
-          <div className="container-xl flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">Not Sure Where to Start?</p>
-              <h2 className="mt-4 max-w-4xl font-heading text-5xl font-semibold leading-tight text-balance">
-                Share your inspiration and we will help identify the right finish carpentry path.
-              </h2>
-            </div>
-            <Link href="/contact" className="shrink-0 border border-[#B4904E] bg-[#B4904E] px-8 py-4 text-center text-sm font-semibold uppercase tracking-[0.24em] text-[#081828] transition hover:bg-transparent hover:text-[#B4904E]">
-              Request a Consultation
-            </Link>
-          </div>
-        </section>
+        <ConsultationSection location="services" />
       </main>
     </PageShell>
   );
