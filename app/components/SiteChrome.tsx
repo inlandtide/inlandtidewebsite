@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { publicServices } from "../data/services";
+import { isPreview } from "../lib/site-environment";
 
 export function SiteHeader() {
   return (
@@ -117,6 +118,7 @@ export function SiteFooter() {
 export function PageShell({ children }: { children: React.ReactNode }) {
   return (
     <>
+      {isPreview && <div className="bg-[#D6D2C6] px-4 py-2 text-center text-xs text-[#081828]">Private design preview · Forms are for testing; no messages or leads are sent.</div>}
       <SiteHeader />
       {children}
       <SiteFooter />

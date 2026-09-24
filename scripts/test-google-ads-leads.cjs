@@ -137,7 +137,7 @@ function route(fetch, env = { GOOGLE_ADS_LEAD_WEBHOOK_KEY: key, GOOGLE_SHEETS_WE
   const exports = {};
   const code = ts.transpileModule(fs.readFileSync('app/api/google-ads-leads/route.ts', 'utf8'),
     { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText;
-  vm.runInNewContext(code, { exports, require: id => id === 'next/server' ? { NextResponse: { json: (body, init) => ({ body, status: init?.status || 200 }) } } : require(id),
+  vm.runInNewContext(code, { exports, require: id => id === '../../lib/site-environment' ? {isPreview:false} : id === 'next/server' ? { NextResponse: { json: (body, init) => ({ body, status: init?.status || 200 }) } } : require(id),
     Buffer, AbortSignal, process: { env }, fetch });
   return exports.POST;
 }

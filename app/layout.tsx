@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Cormorant_Garamond, Zilla_Slab } from "next/font/google";
 import JsonLd from "./components/JsonLd";
 import LeadAttribution from "./components/LeadAttribution";
+import { isPreview } from "./lib/site-environment";
 import { defaultOgImage, localBusinessSchema, siteName, siteUrl, websiteSchema } from "./data/seo";
 import "./globals.css";
 
@@ -44,11 +45,11 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   robots: {
-    index: true,
-    follow: true,
+    index: !isPreview,
+    follow: !isPreview,
     googleBot: {
-      index: true,
-      follow: true,
+      index: !isPreview,
+      follow: !isPreview,
       "max-image-preview": "large",
       "max-snippet": -1,
       "max-video-preview": -1,
@@ -96,7 +97,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cormorant.variable} ${zilla.variable}`}>
       <body className="antialiased">
-        <LeadAttribution />
+        {!isPreview && <><LeadAttribution />
         <Script
           id="meta-pixel"
           strategy="afterInteractive"
@@ -143,6 +144,7 @@ export default function RootLayout({
             `,
           }}
         />
+        </>}
         <JsonLd data={localBusinessSchema} />
         <JsonLd data={websiteSchema} />
         {children}

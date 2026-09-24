@@ -2,6 +2,7 @@ import { randomUUID } from "node:crypto";
 import { after, NextRequest, NextResponse } from "next/server";
 import { summarizeAttribution } from "../../lib/lead-attribution";
 import { type ContactLead, saveToSheets, sendNotification } from "../../lib/contact-delivery";
+import { isPreview } from "../../lib/site-environment";
 
 // Includes email, spreadsheet fallback and post-response work; external calls have
 // shorter timeouts. after() keeps Vercel alive even after the visitor leaves.
@@ -28,6 +29,10 @@ export async function POST(req: NextRequest) {
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
     return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
+  }
+
+  if (isPreview) {
+    return NextResponse.json({ success: true, preview: true }, { status: 200 });
   }
 
   const reference = randomUUID();

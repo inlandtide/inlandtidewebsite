@@ -54,6 +54,12 @@ Most active service and hero images use committed high-resolution imagery docume
 
 ## Site Structure
 
+### Private staging
+
+The `staging/conversion-redesign` branch is a Vercel Preview, separate from the production `main` branch. Its private share link is managed in the deployment's Share dialog. Anyone possessing that link can view it; it is not an identity restriction. Keep the token out of this public repository.
+
+`next.config.ts` sets `NEXT_PUBLIC_SITE_MODE` from Vercel's build environment. Only production builds enable real lead delivery, attribution capture, and Meta/GA scripts. Preview and local builds validate and simulate contact submission without storing or emailing it, reject Google Ads webhook requests, display a preview notice, and set noindex via metadata, robots.txt and response headers. Do not set `VERCEL_ENV=production` while testing against real credentials. Promotion to production requires separate owner approval.
+
 The website is structured as a conversion-focused, multi-page site for a luxury finish carpentry and architectural wood finishes company. The current visual direction is immersive and image-forward, with large editorial hero sections, service photography placeholders, and home page service tiles that link to dedicated individual service pages.
 
 | Page | Route | Purpose |

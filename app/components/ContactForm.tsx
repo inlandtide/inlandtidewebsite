@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { getLeadAttribution } from "../lib/browser-attribution";
+import { isPreview } from "../lib/site-environment";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
@@ -83,8 +84,10 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
         setFormState("success");
         form.reset();
         // A blocked or broken analytics script must not undo a received lead.
-        try { trackMetaLead(); } catch { /* best-effort tracking */ }
-        try { trackGALead(); } catch { /* best-effort tracking */ }
+        if (!isPreview && !json.preview) {
+          try { trackMetaLead(); } catch { /* best-effort tracking */ }
+          try { trackGALead(); } catch { /* best-effort tracking */ }
+        }
       }
     } catch {
       setErrorMsg("Network error. Please check your connection and try again.");
@@ -104,9 +107,9 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
     <div className={compact ? "w-full" : "w-full max-w-2xl"}>
       {formState === "success" ? (
         <div role="status" className={`border px-6 py-8 text-center ${isDark ? "border-[#B4904E] bg-[#FEFAF1]/5" : "border-[#B4904E] bg-white"}`}>
-          <p className="font-heading text-3xl font-semibold text-[#B4904E]">Message Received</p>
+          <p className="font-heading text-3xl font-semibold text-[#B4904E]">{isPreview ? "Preview test complete" : "Message Received"}</p>
           <p className={`mt-3 text-base leading-7 ${isDark ? "text-[#FEFAF1]/74" : "text-[#2E404E]"}`}>
-            Thank you for reaching out. A member of the Moulding Saint Louis team will review your project details and follow up shortly.
+            {isPreview ? "This is a staging test. No email, spreadsheet lead, or advertising conversion was created." : "Thank you for reaching out. A member of the Moulding Saint Louis team will review your project details and follow up shortly."}
           </p>
           <button
             onClick={() => setFormState("idle")}

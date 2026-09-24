@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-09-23 — Private conversion staging]
+
+### Added
+- Create an isolated preview of the current production site for design review. Preview builds disable live lead delivery and analytics, show a test-form notice, and emit noindex metadata and headers.
+- Keep production URLs, search metadata, and existing lead delivery behavior intact. The staging branch is not merged to main.
+- Add a regression test proving preview form requests cannot send emails or append lead records.
+
 ## [2026-09-23]
 
 ### Changed
