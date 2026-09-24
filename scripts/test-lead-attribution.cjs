@@ -70,6 +70,7 @@ test('Email preserves attribution and escaping; unconfirmed background storage s
       },
     });
     const route = load('app/api/contact/route.ts', {
+      '../../lib/site-environment':{isPreview:false},
       '../../lib/lead-attribution':core,
       '../../lib/contact-delivery':delivery,
       'next/server':{after:callback=>pending.push(callback),NextResponse:{json:(body,init)=>({body,...init})}},

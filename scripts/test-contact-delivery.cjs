@@ -13,9 +13,10 @@ function load(path, dependencies = {}, globals = {}) {
 const core = load('app/lib/lead-attribution.ts');
 const valid = {name:'Test <Lead>',email:'test@example.com',phone:'+13145550100',message:'<b>Example inquiry</b>'};
 const deferred = () => { let resolve; const promise = new Promise(r=>{resolve=r}); return {promise,resolve}; };
-function setup({email = async()=>true, sheet = async()=>true} = {}) {
+function setup({email = async()=>true, sheet = async()=>true, preview = false} = {}) {
   const pending = [], calls = [];
   const route = load('app/api/contact/route.ts', {
+    '../../lib/site-environment':{isPreview:preview},
     '../../lib/lead-attribution':core,
     '../../lib/contact-delivery':{
       sendNotification: async(...args)=>{calls.push(['email',...args]);return email(...args)},
@@ -25,6 +26,16 @@ function setup({email = async()=>true, sheet = async()=>true} = {}) {
   });
   return {...route,pending,calls,submit:(body=valid)=>route.POST({json:async()=>body})};
 }
+
+test('Preview validates the form but never sends email, appends Sheets, or schedules work', async()=>{
+  const app = setup({preview:true});
+  const result = await app.submit();
+  assert.equal(result.status,200);
+  assert.equal(result.body.preview,true);
+  assert.equal(app.calls.length,0);
+  assert.equal(app.pending.length,0);
+  assert.equal((await app.submit({...valid,email:'bad'})).status,400);
+});
 
 test('Success waits for email acceptance, then returns before any spreadsheet work', async()=>{
   const email = deferred(), sheet = deferred();

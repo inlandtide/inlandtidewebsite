@@ -1,0 +1,41 @@
+"use client";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+export default function MobileContactBar({ href }: { href: string }) {
+  const [formVisible, setFormVisible] = useState(false);
+  useEffect(() => {
+    const forms = document.querySelectorAll("[data-contact-form]");
+    if (!forms.length) return;
+    const visible = new Set<Element>();
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
+      }
+      setFormVisible(visible.size > 0);
+    });
+    forms.forEach((form) => observer.observe(form));
+    return () => observer.disconnect();
+  }, []);
+  return (
+    <div
+      className={`mobile-contact-bar${formVisible ? " is-hidden" : ""}`}
+      aria-hidden={formVisible}
+    >
+      <a
+        href="tel:+13148180815"
+        data-cta="mobile_call"
+        tabIndex={formVisible ? -1 : 0}
+      >
+        Call us
+      </a>
+      <Link
+        href={href}
+        data-cta="mobile_consultation"
+        tabIndex={formVisible ? -1 : 0}
+      >
+        Free consultation <span aria-hidden="true">↗</span>
+      </Link>
+    </div>
+  );
+}

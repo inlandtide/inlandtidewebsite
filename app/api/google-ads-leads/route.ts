@@ -1,5 +1,6 @@
 import { timingSafeEqual } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
+import { isPreview } from "../../lib/site-environment";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -7,6 +8,7 @@ export const maxDuration = 60;
 // Google retries 5xx responses. A successful HTTP request to Apps Script alone
 // is not a receipt: its error pages and application errors can also return 200.
 export async function POST(req: NextRequest) {
+  if (isPreview) return NextResponse.json({ message: "Lead delivery is disabled on this preview" }, { status: 403 });
   const key = process.env.GOOGLE_ADS_LEAD_WEBHOOK_KEY;
   const sheetsUrl = process.env.GOOGLE_SHEETS_WEBAPP_URL;
   if (!key || !sheetsUrl) {

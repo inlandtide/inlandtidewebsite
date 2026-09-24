@@ -1,154 +1,125 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import JsonLd from "../components/JsonLd";
+import GalleryCollection from "../components/GalleryCollection";
 import { PageShell } from "../components/SiteChrome";
+import { ActionLink, ConsultationSection, Eyebrow } from "../components/Design";
 import { breadcrumbSchema, defaultOgImage, siteUrl } from "../data/seo";
 import { publicGalleryCategories } from "../data/gallery";
-
 export const metadata: Metadata = {
   title: "Project Gallery",
   description:
-    "Explore Moulding Saint Louis project photos organized by decorative moulding, picture frame moulding, wainscoting, casing, and fireplace mantels.",
+    "Explore recent Moulding Saint Louis wall moulding projects and design inspiration for picture frame moulding, wainscoting, crown, mantels and casing.",
   alternates: { canonical: "/gallery" },
   openGraph: {
     title: "Project Gallery | Moulding Saint Louis",
-    description:
-      "A curated gallery of finish carpentry, moulding, mantels, casing, and wainscoting inspiration for St. Louis homes.",
-    url: `${siteUrl}/gallery`,
+    description: "Real project details and inspiration for your home.",
+    url: siteUrl + "/gallery",
     images: [defaultOgImage],
   },
 };
-
-function GalleryTile({ image, index }: { image: (typeof publicGalleryCategories)[number]["images"][number]; index: number }) {
-  const aspectClass = image.orientation === "portrait" ? "aspect-[4/5]" : index % 5 === 0 ? "aspect-[16/10] lg:col-span-2" : "aspect-[4/3]";
-
-  return (
-    <figure className={`group relative overflow-hidden border border-[#D6D2C6] bg-[#081828] ${aspectClass}`}>
-      <Image
-        src={image.src}
-        alt={image.alt}
-        fill
-        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-        className="object-cover transition duration-700 group-hover:scale-105"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#081828]/70 via-transparent to-transparent opacity-70 transition group-hover:opacity-45" />
-      <figcaption className="absolute bottom-0 left-0 right-0 translate-y-2 p-5 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-        <p className="text-xs uppercase tracking-[0.22em] text-[#FEFAF1]/80">Project Detail</p>
-      </figcaption>
-    </figure>
-  );
-}
-
+const isProject = (name: string) => name.startsWith("IMG_");
 export default function GalleryPage() {
-  const featured = publicGalleryCategories[0]?.images[8] ?? publicGalleryCategories[0]?.images[0];
-
+  const projects = publicGalleryCategories.flatMap((category) =>
+    category.images.filter((image) => isProject(image.sourceName)),
+  );
   return (
-    <PageShell>
-      <main className="bg-[#FEFAF1]">
-        <JsonLd data={breadcrumbSchema([{ name: "Home", url: siteUrl }, { name: "Gallery", url: `${siteUrl}/gallery` }])} />
-
-        <section className="relative overflow-hidden bg-[#081828] text-[#FEFAF1]">
-          {featured ? (
-            <Image
-              src={featured.src}
-              alt="Moulding Saint Louis gallery hero image"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover opacity-42"
-            />
-          ) : null}
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,24,40,0.54),rgba(8,24,40,0.94))]" />
-          <div className="container-xl relative py-28 sm:py-36 lg:py-44">
-            <div className="max-w-5xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.42em] text-[#B4904E]">Project Gallery</p>
-              <h1 className="mt-7 font-heading text-6xl font-semibold leading-[0.95] text-balance sm:text-8xl lg:text-9xl">
-                Finish carpentry, organized by detail.
-              </h1>
-              <p className="mt-8 max-w-3xl text-xl leading-9 text-[#FEFAF1]/80">
-                Browse a curated collection of moulding, mantels, casing, and wainscoting photos grouped by the type of finish detail shown.
-              </p>
-              <div className="mt-10 flex flex-wrap gap-4">
-                <Link href="/contact" className="border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-[#081828] transition hover:bg-transparent hover:text-[#B4904E]">
-                  Request a Consultation
-                </Link>
-                <Link href="/services" className="border border-[#FEFAF1]/45 px-7 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-[#FEFAF1] transition hover:border-[#B4904E] hover:text-[#B4904E]">
-                  Explore Services
-                </Link>
-              </div>
-            </div>
+    <PageShell ctaHref="#consultation">
+      <main id="main-content">
+        <JsonLd
+          data={breadcrumbSchema([
+            { name: "Home", url: siteUrl },
+            { name: "Gallery", url: siteUrl + "/gallery" },
+          ])}
+        />
+        <section className="page-intro">
+          <div className="container-xl">
+            <Eyebrow>Work & inspiration</Eyebrow>
+            <h1>
+              Find the detail{" "}
+              <br />
+              you will fall in love with.
+            </h1>
+            <p>
+              A closer look at our recent wall moulding work, followed by design
+              inspiration to help you imagine the possibilities in your home.
+            </p>
+            <ActionLink href="#consultation" secondary>
+              Let’s talk about your favorite
+            </ActionLink>
           </div>
         </section>
-
-        <section className="bg-[#FEFAF1] py-20 sm:py-28">
+        <section id="recent-projects" className="gallery-section">
           <div className="container-xl">
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="section-heading-row">
+              <div>
+                <Eyebrow>From our project gallery</Eyebrow>
+                <h2 className="section-title">Recent work. Real details.</h2>
+              </div>
+              <p className="body-copy">
+                Select a photograph to see the full view.
+              </p>
+            </div>
+            <GalleryCollection
+              images={projects
+                .toReversed()
+                .map((image) => ({
+                  ...image,
+                  alt: image.src.includes("picture-frame")
+                    ? "Blue picture frame wall moulding from our project gallery"
+                    : "Custom decorative wall paneling from our project gallery",
+                }))}
+              label="Moulding Saint Louis project"
+            />
+          </div>
+        </section>
+        <section className="inspiration-intro">
+          <div className="container-xl">
+            <Eyebrow>Explore a look for your home</Eyebrow>
+            <h2 className="section-title">A little more inspiration.</h2>
+            <p className="body-copy">
+              These reference interiors illustrate styles and possibilities.
+              They are design inspiration, separate from the recent Moulding
+              Saint Louis project photos above.
+            </p>
+            <nav className="gallery-jump-links" aria-label="Gallery categories">
               {publicGalleryCategories.map((category) => (
-                <a key={category.slug} href={`#${category.slug}`} className="group border border-[#D6D2C6] bg-white p-6 transition hover:-translate-y-1 hover:border-[#B4904E] hover:bg-[#081828] hover:shadow-2xl">
-                  <div className="relative aspect-[16/10] overflow-hidden bg-[#D6D2C6]">
-                    <Image
-                      src={category.images[0].src}
-                      alt={`${category.title} gallery preview`}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover transition duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  <h2 className="mt-6 font-heading text-4xl font-semibold leading-tight text-[#081828] transition group-hover:text-[#FEFAF1]">
-                    {category.title}
-                  </h2>
-                  <p className="mt-4 leading-7 text-[#2E404E] transition group-hover:text-[#FEFAF1]/75">{category.description}</p>
+                <a href={"#" + category.slug} key={category.slug}>
+                  {category.title}
                 </a>
               ))}
-            </div>
+            </nav>
           </div>
         </section>
-
-        <section className="space-y-24 bg-[#FEFAF1] pb-24 sm:pb-32">
-          {publicGalleryCategories.map((category) => (
-            <div key={category.slug} id={category.slug} className="scroll-mt-28">
-              <div className="container-xl">
-                <div className="mb-10 grid gap-8 border-t border-[#B4904E]/30 pt-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
-                  <div>
-                    <h2 className="font-heading text-5xl font-semibold leading-none text-[#081828] text-balance sm:text-7xl">
-                      {category.title}
-                    </h2>
-                  </div>
-                  <div className="max-w-2xl text-lg leading-8 text-[#2E404E] lg:justify-self-end">
-                    <p>{category.description}</p>
-                    <Link href={`/services/${category.slug}`} className="mt-4 inline-block font-semibold text-[#081828] underline underline-offset-4">Explore {category.title.toLowerCase()} services</Link>
-                  </div>
-                </div>
-
-                <div className="grid auto-rows-[220px] gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[260px]">
-                  {category.images.map((image, index) => (
-                    <GalleryTile key={`${category.slug}-${image.sourceName}`} image={image} index={index} />
-                  ))}
-                </div>
+        {publicGalleryCategories.map((category) => (
+          <section
+            className="gallery-section"
+            id={category.slug}
+            key={category.slug}
+          >
+            <div className="container-xl">
+              <div className="gallery-category-heading">
+                <h2>{category.title}</h2>
+                <Link href={"/services/" + category.slug}>
+                  Explore the service ↗
+                </Link>
               </div>
+              <GalleryCollection
+                images={category.images
+                  .filter((image) => !isProject(image.sourceName))
+                  .map((image) => ({
+                    ...image,
+                    alt: category.title + " design inspiration",
+                  }))}
+                label={category.title + " · Design inspiration"}
+              />
             </div>
-          ))}
-        </section>
-
-        <section className="bg-[#081828] py-20 text-[#FEFAF1]">
-          <div className="container-xl grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div>
-              <p className="text-sm uppercase tracking-[0.38em] text-[#B4904E]">Ready to plan your detail?</p>
-              <h2 className="mt-5 font-heading text-5xl font-semibold leading-none text-balance sm:text-7xl">
-                Bring the right inspiration into the first conversation.
-              </h2>
-            </div>
-            <div className="lg:justify-self-end">
-              <p className="max-w-xl text-lg leading-8 text-[#FEFAF1]/76">
-                If one of these details feels close to what you want, send it with your consultation request. We will help translate the look into a practical approach for your home.
-              </p>
-              <Link href="/contact" className="mt-8 inline-flex border border-[#B4904E] bg-[#B4904E] px-8 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-[#081828] transition hover:bg-transparent hover:text-[#B4904E]">
-                Start a Conversation
-              </Link>
-            </div>
-          </div>
-        </section>
+          </section>
+        ))}
+        <ConsultationSection
+          location="gallery"
+          title="Found a detail you love?"
+        />
       </main>
     </PageShell>
   );

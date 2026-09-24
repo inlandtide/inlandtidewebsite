@@ -1,5 +1,28 @@
 # Changelog
 
+## [2026-09-23 — Preview mobile polish]
+
+- Preserve spaces at editorial heading line breaks when narrow layouts hide the desktop break, verified on a 320px phone viewport.
+
+## [2026-09-23 — Conversion redesign preview]
+
+### Changed
+- Redesign the homepage, service pages, gallery, about and contact pages with a consistent navy, ivory and brass design, clearer free-consultation messaging, and responsive call-to-action navigation.
+- Introduce short inline forms with only name and email required, optional project details, preselected service interest, accessible status feedback, and the existing email-first delivery contract.
+- Prioritize documented client project photos, label design inspiration honestly, and add an accessible gallery image viewer.
+- Preserve existing SEO service URLs, titles, descriptions, detailed guidance, internal links and structured data.
+
+### Added
+- Three focused, noindex advertising landing pages, a private preview review hub, and privacy-safe production-only form/CTA diagnostics. Campaign URLs remain unchanged.
+- Add native lead webhook preview-isolation coverage. All staging forms remain simulated; no production leads, emails, CRM records, or advertising conversions are sent.
+
+## [2026-09-23 — Private conversion staging]
+
+### Added
+- Create an isolated preview of the current production site for design review. Preview builds disable live lead delivery and analytics, show a test-form notice, and emit noindex metadata and headers.
+- Keep production URLs, search metadata, and existing lead delivery behavior intact. The staging branch is not merged to main.
+- Add a regression test proving preview form requests cannot send emails or append lead records.
+
 ## [2026-09-23]
 
 ### Changed
