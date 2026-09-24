@@ -29,7 +29,7 @@ export default function AboutPage() {
           <div className="container-xl">
             <Eyebrow>Local people. Considered craftsmanship.</Eyebrow>
             <h1>
-              The right detail looks
+              The right detail looks{" "}
               <br />
               like it always belonged.
             </h1>

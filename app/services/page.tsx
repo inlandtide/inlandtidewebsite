@@ -41,7 +41,7 @@ export default function ServicesPage() {
           <div className="container-xl">
             <Eyebrow>Custom finish carpentry in St. Louis</Eyebrow>
             <h1>
-              Details that make
+              Details that make{" "}
               <br />a home feel like yours.
             </h1>
             <p>

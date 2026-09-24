@@ -31,7 +31,7 @@ export default function ContactPage() {
             <div className="contact-page-copy">
               <Eyebrow>Free consultation · St. Louis</Eyebrow>
               <h1>
-                Every beautiful room
+                Every beautiful room{" "}
                 <br />
                 starts with a conversation.
               </h1>

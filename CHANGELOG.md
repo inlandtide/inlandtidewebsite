@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-09-23 — Preview mobile polish]
+
+- Preserve spaces at editorial heading line breaks when narrow layouts hide the desktop break, verified on a 320px phone viewport.
+
 ## [2026-09-23 — Conversion redesign preview]
 
 ### Changed

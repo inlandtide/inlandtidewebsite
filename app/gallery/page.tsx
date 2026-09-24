@@ -36,7 +36,7 @@ export default function GalleryPage() {
           <div className="container-xl">
             <Eyebrow>Work & inspiration</Eyebrow>
             <h1>
-              Find the detail
+              Find the detail{" "}
               <br />
               you will fall in love with.
             </h1>
