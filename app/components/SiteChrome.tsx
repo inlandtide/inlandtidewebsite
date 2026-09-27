@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { publicServices } from "../data/services";
+import { MobileNavigation } from "./MobileNavigation";
 
 export function SiteHeader() {
   return (
@@ -59,6 +60,7 @@ export function SiteHeader() {
             <span className="sm:hidden">Contact</span>
             <span className="hidden sm:inline">Request a Consultation</span>
           </Link>
+          <MobileNavigation services={publicServices.map(({ slug, title }) => ({ slug, title }))} />
         </div>
       </div>
     </header>

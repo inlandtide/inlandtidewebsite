@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-09-27]
+
+### Fixed
+- Added a keyboard-accessible mobile navigation menu with service, company, gallery, contact, and call links while preserving the desktop header.
+
 ## [2026-09-23]
 
 ### Changed
