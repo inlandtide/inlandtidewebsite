@@ -1,7 +1,7 @@
 // Private, spreadsheet-bound CRM. Never expose these methods from doGet/doPost.
 var CRM = {
-  sheets: ['Lead Tracking', 'Closed Won', 'Closed Lost'], first: 6, width: 28,
-  stages: ['New', 'Needs review', 'Contacted', 'Consultation booked', 'Proposal sent', 'Follow-up', 'On hold', 'Closed Won', 'Closed Lost'],
+  sheets: ['Lead Tracking', 'Closed Won', 'Closed Lost', 'Inactive'], first: 6, width: 28,
+  stages: ['New', 'Needs review', 'Contacted', 'Consultation booked', 'Needs estimate', 'Proposal sent', 'Follow-up', 'On hold', 'Unresponsive', 'Closed Won', 'Closed Lost'],
   owners: ['Unassigned', 'Tim', 'Ryan'],
   losses: ['Price', 'Timing', 'No response', 'Went another direction', 'Outside service area', 'Spam / invalid', 'Other'],
   fields: ['Client','Stage','Owner','Next action','Follow-up date','Attention','Proposal amount','Contract value','Collected revenue','Balance remaining','Phone','Email','Location / address','Project type','Notes','Consultation date','Proposal sent date','Deposit received','Install complete','Closed date','Lost reason','Lead source','Campaign','Lead received','Updated','Lead ID','Original inquiry','Revision']
@@ -21,7 +21,8 @@ function onOpen() {
 }
 function crmDashboard() { crmBook_().setActiveSheet(crmBook_().getSheetByName('Dashboard')); }
 function crmId_() { return 'ML-' + Utilities.getUuid(); }
-function crmDestination_(stage) { return stage === 'Closed Won' || stage === 'Closed Lost' ? stage : 'Lead Tracking'; }
+function crmIsClosed_(stage) { return stage === 'Closed Won' || stage === 'Closed Lost'; }
+function crmDestination_(stage) { return crmIsClosed_(stage) ? stage : stage === 'On hold' || stage === 'Unresponsive' ? 'Inactive' : 'Lead Tracking'; }
 function crmRows_() {
   var all = [];
   CRM.sheets.forEach(function(name) {
@@ -37,7 +38,7 @@ function crmFind_(id) {
   return matches[0] || null;
 }
 function crmFormula_(sheet, row) {
-  sheet.getRange(row,6).setFormula('=IF(A'+row+'="","",IF(B'+row+'="Closed Lost","Closed",IF(B'+row+'="Closed Won",IF(H'+row+'="","Add contract value",IF(I'+row+'="","Add collected amount",IF(I'+row+'<H'+row+',"Payment outstanding","Won"))),IF(E'+row+'="","Set follow-up",IF(E'+row+'<TODAY(),"Overdue",IF(E'+row+'=TODAY(),"Due today","Scheduled"))))))');
+  sheet.getRange(row,6).setFormula('=IF(A'+row+'="","",IF(OR(B'+row+'="On hold",B'+row+'="Unresponsive"),IF(E'+row+'="",B'+row+',IF(E'+row+'<=TODAY(),"Review reactivation","Paused until "&TEXT(E'+row+',"mmm d"))),IF(B'+row+'="Closed Lost","Closed",IF(B'+row+'="Closed Won",IF(H'+row+'="","Add contract value",IF(I'+row+'="","Add collected amount",IF(I'+row+'<H'+row+',"Payment outstanding","Won"))),IF(E'+row+'="","Set follow-up",IF(E'+row+'<TODAY(),"Overdue",IF(E'+row+'=TODAY(),"Due today","Scheduled")))))))');
   sheet.getRange(row,10).setFormula('=IF(OR(A'+row+'="",H'+row+'="",I'+row+'=""),"",MAX(0,H'+row+'-I'+row+'))');
 }
 function crmWrite_(sheet, row, values) {
@@ -67,9 +68,9 @@ function crmLog_(v, action, detail) {
 }
 function crmMove_(record, oldStage) {
   var v=record.values, target=crmDestination_(v[1]);
-  if(target === record.sheet.getName()) return record;
-  if(target !== 'Lead Tracking' && !v[19]) v[19]=new Date();
-  if(target === 'Lead Tracking') v[19]='';
+  if(!crmIsClosed_(v[1])) v[19]='';
+  if(target === record.sheet.getName()) { record.sheet.getRange(record.row,20).setValue(v[19]); return record; }
+  if(crmIsClosed_(v[1]) && !v[19]) v[19]=new Date();
   // Copy first. If interrupted, reconcile detects identical IDs and retains the destination.
   var dest=crmAppend_(target,v); SpreadsheetApp.flush();
   if(dest.sheet.getRange(dest.row,26).getValue() !== v[25]) throw new Error('Move could not be verified; source retained.');
@@ -137,7 +138,7 @@ function onEdit(e) {
     // Bottom to top keeps multi-row paste positions stable during moves.
     for(var row=e.range.getLastRow();row>=Math.max(CRM.first,e.range.getRow());row--) {
       var v=sh.getRange(row,1,1,CRM.width).getValues()[0]; if(!v[0]) continue;
-      if(!v[25]) {v[25]=crmId_(); v[1]=v[1]|| (name==='Lead Tracking'?'New':name);v[2]=v[2]||'Unassigned';v[21]=v[21]||'Manual / unknown';}
+      if(!v[25]) {v[25]=crmId_(); v[1]=v[1]|| (name==='Lead Tracking'?'New':name==='Inactive'?'On hold':name);v[2]=v[2]||'Unassigned';v[21]=v[21]||'Manual / unknown';}
       if(CRM.stages.indexOf(v[1])<0) throw new Error('Choose a Stage from the dropdown.');
       v[24]=new Date();v[27]=(Number(v[27])||0)+1;
       // Only derived/system fields are rewritten; another editor's other cells remain intact.
@@ -158,7 +159,7 @@ function crmSerialize_(r) {
 }
 function crmGetSelected() {
   var sh=crmBook_().getActiveSheet(), range=sh.getActiveRange();
-  if(CRM.sheets.indexOf(sh.getName())<0 || !range || range.getRow()<CRM.first) throw new Error('Select a lead row in Lead Tracking, Closed Won or Closed Lost, then click Load selected lead.');
+  if(CRM.sheets.indexOf(sh.getName())<0 || !range || range.getRow()<CRM.first) throw new Error('Select a lead row in Lead Tracking, Inactive, Closed Won or Closed Lost, then click Load selected lead.');
   var id=sh.getRange(range.getRow(),26).getValue(); if(!id) throw new Error('This row has no saved lead yet. Use Add a lead.');
   return crmSerialize_(crmFind_(id));
 }
@@ -181,7 +182,8 @@ function crmSaveCard(input) { return crmLock_(function(){
   if(CRM.stages.indexOf(v[1])<0 || CRM.owners.indexOf(v[2])<0) throw new Error('Choose a valid stage and owner.');
   if(v[20]&&CRM.losses.indexOf(v[20])<0)throw new Error('Choose a lost reason from the list.');
   v[25]=input.id||crmId_();v[24]=new Date();v[27]=(Number(v[27])||0)+1;
-  if(!existing && crmDestination_(v[1])!=='Lead Tracking'&&!v[19])v[19]=new Date();
+  if(!crmIsClosed_(v[1]))v[19]='';
+  if(!existing && crmIsClosed_(v[1])&&!v[19])v[19]=new Date();
   var old=existing?existing.values[1]:'';
   var r=existing||crmAppend_(crmDestination_(v[1]),v);
   if(existing){crmWrite_(r.sheet,r.row,v);r.values=v;r=crmMove_(r,old);}
@@ -199,15 +201,34 @@ function crmEnable(){
   PropertiesService.getScriptProperties().setProperty('CRM_READY','v1');crmSyncSilent_();
   console.log('CRM is ready. Reload the spreadsheet to load the Moulding CRM menu.');
 }
+// Run once after the Inactive tab has been created; safe to repeat.
+function crmUpgradeStages(){return crmLock_(function(){
+  CRM.sheets.forEach(function(n){
+    var sh=crmBook_().getSheetByName(n);
+    if(!sh || sh.getRange(5,26).getValue()!=='Lead ID')throw new Error('CRM schema missing for '+n);
+    sh.getRange(CRM.first,2,sh.getMaxRows()-CRM.first+1,1).setDataValidation(SpreadsheetApp.newDataValidation().requireValueInList(CRM.stages,true).setAllowInvalid(false).build());
+  });
+  crmReconcile_(); crmRows_().forEach(function(r){crmFormula_(r.sheet,r.row);});
+  console.log('Stages upgraded. Needs estimate stays active; On hold and Unresponsive route to Inactive.');
+});}
 function crmVerification(){return crmLock_(function(){
   var id='VERIFY-'+Utilities.getUuid(), sh=crmBook_().getSheetByName('Web Forms'), before=sh.getLastRow(), counts=crmRows_().length;
   try {
     sh.appendRow([new Date(),'[TEST CRM] Workflow verification','crm-verification@example.com','5550100','Project location: Test city','Internal CRM check','','','','','','', '',id]);
     var known={};crmRows_().forEach(function(r){known[r.values[25]]=r;});
     if(!crmImportRow_(sh,sh.getLastRow(),known)||crmImportRow_(sh,sh.getLastRow(),known))throw new Error('Intake dedupe failed');
-    ['Closed Won','Closed Lost','Follow-up'].forEach(function(stage){var r=crmFind_(id);r.values[1]=stage;crmWrite_(r.sheet,r.row,r.values);crmMove_(r);if(crmFind_(id).sheet.getName()!==crmDestination_(stage))throw new Error('Stage routing failed');});
+    ['Needs estimate','On hold','Unresponsive','Closed Won','Closed Lost','On hold','Follow-up'].forEach(function(stage){
+      var r=crmFind_(id);r.values[1]=stage;crmWrite_(r.sheet,r.row,r.values);crmMove_(r);
+      r=crmFind_(id);
+      if(r.sheet.getName()!==crmDestination_(stage))throw new Error('Stage routing failed');
+      if(!crmIsClosed_(stage)&&r.values[19])throw new Error('Inactive / active lead has a closed date');
+      if(r.sheet.getName()==='Inactive'){
+        var allKnown={};crmRows_().forEach(function(x){allKnown[x.values[25]]=x;});
+        if(crmImportRow_(sh,before+1,allKnown))throw new Error('Inactive lead imported twice');
+      }
+    });
     if(sh.getLastRow()!==before+1 || sh.getRange(before+1,14).getValue()!==id)throw new Error('Archive changed during move');
-    console.log('CRM check passed: intake, duplicate prevention, Won/Lost/reopen routing, archive retention.');
+    console.log('CRM check passed: intake, inactive duplicate prevention, Needs estimate / On hold / Unresponsive / Won / Lost / reopen routing, closed dates, archive retention.');
   } finally {
     var r=crmFind_(id);if(r)r.sheet.deleteRow(r.row);
     if(sh.getLastRow()===before+1&&sh.getRange(before+1,14).getValue()===id)sh.deleteRow(before+1);
@@ -218,7 +239,7 @@ function crmCardHtml_(){return `<!doctype html><html><head><base target="_top"><
 *{box-sizing:border-box}body{margin:0;background:#f7f6f2;color:#081828;font:13px Arial,sans-serif}header{background:#081828;color:#fefaf1;padding:20px 17px}small{letter-spacing:2px;color:#c5a86f;font-size:10px}h1{font:25px Georgia,serif;margin:8px 0}header p{font-size:12px;color:#d6d2c6;line-height:1.5;margin:0}.toolbar{padding:12px 16px;display:flex;gap:8px}button{cursor:pointer;border:1px solid #c7c9ca;border-radius:6px;background:white;padding:9px;font-weight:600;color:#081828}main{padding:0 16px 85px}section{background:white;border:1px solid #e0e1dc;border-radius:9px;padding:13px;margin-bottom:12px}h2{font-size:11px;text-transform:uppercase;letter-spacing:1.1px;margin:0 0 12px;color:#63717b}label{display:block;font-size:12px;font-weight:600;margin-top:12px}input,select,textarea{display:block;width:100%;border:1px solid #ccd1d3;border-radius:5px;padding:9px;background:#fff;font:13px Arial;color:#081828;margin-top:5px}textarea{min-height:80px;resize:vertical}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.check{display:flex;align-items:center;gap:8px}.check input{width:auto;margin:0}#message{font-size:12px;line-height:1.5;white-space:pre-wrap;padding:0 17px 12px;color:#52626e}footer{position:fixed;bottom:0;background:#f7f6f2;padding:12px 16px;width:100%;border-top:1px solid #d6d2c6}#save{width:100%;background:#b4904e;color:#081828;border:0;padding:12px}.hint{font-size:11px;color:#63717b;line-height:1.5}#original{white-space:pre-wrap;font-size:12px;line-height:1.5}details{margin-top:10px}summary{cursor:pointer;font-size:12px;font-weight:bold}button:disabled{opacity:.5;cursor:wait}.error{color:#9b3030!important}
 </style></head><body><header><small>MOULDING SAINT LOUIS</small><h1>Lead workspace</h1><p>Keep the next step clear.<br>Everything saves back to your CRM.</p></header><div class="toolbar"><button onclick="load()">Load selected lead</button><button onclick="fresh()">+ New</button></div><div id="message" role="status"></div><main><form id="form"></form><details><summary>Original form submission</summary><p id="original">No linked submission.</p></details></main><footer><button id="save" type="submit" form="form">Save lead</button></footer><script>
 var current={id:'',revision:0}, dirty=false;
-var stages=['New','Needs review','Contacted','Consultation booked','Proposal sent','Follow-up','On hold','Closed Won','Closed Lost'];
+var stages=${JSON.stringify(CRM.stages)};
 var owners=['Unassigned','Tim','Ryan'], losses=['','Price','Timing','No response','Went another direction','Outside service area','Spam / invalid','Other'];
 var groups=[['Next step',[[0,'Client name','text'],[1,'Stage','select',stages],[2,'Owner','select',owners],[3,'Next action','text'],[4,'Follow-up date','date']]],['Contact & project',[[10,'Phone','tel'],[11,'Email','email'],[12,'Location / address','text'],[13,'Project type','text'],[14,'Working notes','textarea']]],['Value & milestones',[[6,'Proposal amount ($)','number'],[7,'Contract value ($)','number'],[8,'Collected revenue ($)','number'],[15,'Consultation date','date'],[16,'Proposal sent date','date'],[17,'Deposit received','checkbox'],[18,'Install complete','checkbox'],[19,'Closed date','date'],[20,'Lost reason','select',losses]]],['Attribution',[[21,'Lead source','text'],[22,'Campaign','text'],[23,'Lead received','date']]]];
 var form=document.getElementById('form');groups.forEach(function(g){var s=document.createElement('section'),h=document.createElement('h2');h.textContent=g[0];s.appendChild(h);g[1].forEach(function(f){var l=document.createElement('label');l.textContent=f[1];var el=document.createElement(f[2]==='select'?'select':f[2]==='textarea'?'textarea':'input');el.id='f'+f[0];if(el.tagName==='INPUT')el.type=f[2];if(f[2]==='number'){el.min=0;el.step='.01';}if(f[2]==='select')f[3].forEach(function(v){var o=document.createElement('option');o.value=v;o.textContent=v||'Select when closing lost';el.appendChild(o);});if(f[0]===0)el.required=true;if(f[2]==='checkbox')l.className='check';el.oninput=function(){dirty=true;};l.appendChild(el);s.appendChild(l);});if(g[0]==='Value & milestones'){var p=document.createElement('p');p.className='hint';p.textContent='Leave unknown amounts blank. Contract value is booked work; collected revenue is money actually received. Lost value uses the proposal amount.';s.appendChild(p);}form.appendChild(s);});

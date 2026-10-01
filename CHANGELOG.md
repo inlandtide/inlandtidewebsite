@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-10-01] — CRM stages
+
+- Add Needs estimate between consultation and proposal; route On hold and Unresponsive to an editable Inactive tab while preserving stable IDs, notes, amounts and form history.
+- Keep inactive leads outside win rate and active pipeline totals, with dashboard counts and optional reactivation reminders; update the lead card, guide and intake deployment.
+- Add regression coverage for inactive deduplication, close-date handling and reopening; verify the live stage workflow with isolated test data.
+
 ## [2026-09-27]
 
 ### Fixed

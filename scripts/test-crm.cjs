@@ -11,7 +11,7 @@ function setup(){
         setValues(v){v.forEach((a,i)=>a.forEach((x,j)=>{rows[r+i-1]??=Array(28).fill('');rows[r+i-1][c+j-1]=x;}));return this;},setValue(v){return this.setValues([[v]]);},setFormula(v){return this.setValue(v);},setNumberFormat(){return this;},setDataValidation(){return this;}};}};
     sheets[name]=sh;return sh;
   }
-  ['Lead Tracking','Closed Won','Closed Lost'].forEach(n=>sheet(n));sheet('Web Forms',1);sheet('Activity',1);
+  ['Lead Tracking','Closed Won','Closed Lost','Inactive'].forEach(n=>sheet(n));sheet('Web Forms',1);sheet('Activity',1);
   const builder={requireValueInList(){return this;},setAllowInvalid(){return this;},requireCheckbox(){return this;},build(){return {};}};
   const context={Date,console,PropertiesService:{getScriptProperties:()=>({getProperty:()=> 'v1'})},LockService:{getScriptLock:()=>({waitLock(){},releaseLock(){}})},Utilities:{getUuid:()=>String(++next),formatDate:d=>d.toISOString().slice(0,10),parseDate:s=>new Date(s+'T12:00:00Z')},SpreadsheetApp:{flush(){},newDataValidation:()=>builder,getActiveSpreadsheet:()=>({getSheetByName:n=>sheets[n],getSpreadsheetTimeZone:()=> 'America/Chicago'})}};
   vm.createContext(context);vm.runInContext(fs.readFileSync('integrations/google-apps-script/Code.gs','utf8'),context);vm.runInContext(fs.readFileSync('integrations/google-apps-script/CRM.gs','utf8'),context);
@@ -42,4 +42,25 @@ test('Lead card rejects stale saves, preserves blanks, and does not execute form
   assert.equal(c.crmFind_(r.id).values[0],'Example');
 });
 test('Won and lost records stay closed on intake reconciliation',()=>{const {c,sheets:s}=setup();const known={};s['Web Forms'].appendRow(intake());c.crmImportRow_(s['Web Forms'],2,known);const id=s['Web Forms'].rows[1][13];const r=c.crmFind_(id);r.values[1]='Closed Won';c.crmWrite_(r.sheet,r.row,r.values);c.crmMove_(r);c.crmSyncSilent_();assert.equal(c.crmFind_(id).sheet.getName(),'Closed Won');assert.equal(c.crmRows_().length,1);});
+test('Estimate and inactive stages preserve the record, avoid duplicate intake, and reopen without a closed date',()=>{
+  const {c,sheets:s}=setup();s['Web Forms'].appendRow(intake());c.crmImportRow_(s['Web Forms'],2,{});
+  const id=s['Web Forms'].rows[1][13];const original=JSON.stringify(s['Web Forms'].rows[1]);
+  let card=c.crmSerialize_(c.crmFind_(id));
+  for(const stage of ['Needs estimate','On hold','Unresponsive','Closed Won','On hold','Follow-up']){
+    card=c.crmSaveCard({id,revision:card.revision,fields:{1:stage,6:'2500',14:'Preserve these notes'}});
+    const r=c.crmFind_(id);
+    assert.equal(r.sheet.getName(),c.crmDestination_(stage));
+    assert.equal(r.values[6],2500);assert.equal(r.values[14],'Preserve these notes');
+    assert.equal(r.values[11],'sample@example.com');
+    assert.equal(Boolean(r.values[19]),stage==='Closed Won');
+    c.crmSyncSilent_();assert.equal(c.crmRows_().length,1);
+    assert.equal(JSON.stringify(s['Web Forms'].rows[1]),original);
+  }
+});
+test('A new inactive card never gets a closed date, and the sidebar shares the server stage list',()=>{
+  const {c}=setup();
+  const card=c.crmSaveCard({fields:{0:'Example',1:'Unresponsive',2:'Tim',19:'2026-10-01'}});
+  assert.equal(card.sheet,'Inactive');assert.equal(c.crmFind_(card.id).values[19],'');
+  const html=c.crmCardHtml_();assert.ok(html.includes('var stages='+JSON.stringify(c.CRM.stages)+';'));
+});
 test('Lead-card HTML uses textContent for data and parses separately from Apps Script',()=>{const {c}=setup();const html=c.crmCardHtml_();new vm.Script(html.match(/<script>([\s\S]*)<\/script>/)[1]);assert.ok(!html.includes('innerHTML'));assert.ok(html.includes('textContent=r.values[26]'));});
