@@ -58,3 +58,12 @@ The following user-supplied CKC Woodworks photos were converted from WebP where 
 | `IMG_5473.webp` | `/public/images/ckc-woodworks/ckc-woodworks-shop-capacity-02.jpg` | 2048×1536 |
 | `IMG_5474.webp` | `/public/images/ckc-woodworks/ckc-woodworks-shop-capacity-03.jpg` | 2048×1536 |
 | `IMG_5464.webp` | `/public/images/ckc-woodworks/ckc-woodworks-workbench.jpg` | 2048×1536 |
+
+## Custom Residential Services — CKC Capability Photography
+
+The following service-page assets are repository-held JPEG copies of the supplied CKC Woodworks photography. They preserve the original full 4:3 compositions and visually support the manufacturing capability behind the custom residential offerings.
+
+| Site Asset | Source Asset | Site Dimensions |
+|---|---|---:|
+| `/public/images/placeholders/custom-cabinetry-casework.jpg` | `/public/images/ckc-woodworks/ckc-woodworks-custom-casework.jpg` | 2048×1536 |
+| `/public/images/placeholders/custom-built-ins-shelving.jpg` | `/public/images/ckc-woodworks/ckc-woodworks-cabinetry-production.jpg` | 2048×1536 |

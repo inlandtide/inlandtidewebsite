@@ -131,6 +131,36 @@ export const services: Service[] = [
     highlights: ["Refined room transitions", "Custom cased openings", "Coordinated architectural details"],
     cta: "Enhance an Entryway",
   },
+  {
+    title: "Custom Cabinetry & Casework",
+    slug: "custom-cabinetry-casework",
+    summary:
+      "Tailored cabinetry, casework, and architectural woodwork planned around your rooms, storage needs, and the way your home is lived in.",
+    hero:
+      "Custom cabinetry and casework bring order, function, and a more permanent architectural presence to the spaces that work hardest in your home.",
+    details: [
+      "The strongest cabinetry is designed around the room rather than forced into it. We help homeowners plan cabinets, casework, and specialty wood details that feel considered from proportion and storage to surrounding trim and finish.",
+      "Our connection to CKC Woodworks gives Moulding Saint Louis access to proven manufacturing capability for more involved custom work. That means residential cabinetry and casework can be approached with the same focus on precision, production quality, and carefully resolved details found in commercial woodwork.",
+    ],
+    idealFor: ["Libraries and studies", "Mudrooms", "Fireplace walls", "Dining rooms", "Specialty storage"],
+    highlights: ["Room-specific cabinet planning", "Custom casework and architectural details", "CKC Woodworks manufacturing capability"],
+    cta: "Discuss Custom Cabinetry",
+  },
+  {
+    title: "Custom Built-ins & Shelving",
+    slug: "custom-built-ins-shelving",
+    summary:
+      "Purpose-built shelving, bookcases, media walls, and storage that bring function and tailored architectural detail to the home.",
+    hero:
+      "Custom built-ins and shelving can make a room work harder while giving it the quiet, permanent character of well-planned architecture.",
+    details: [
+      "Whether the goal is a library wall, a media room feature, a mudroom drop zone, or more useful storage in a living space, we plan built-ins around how the room is actually used. Every proportion, shelf layout, trim return, and finish should relate to the rest of the home.",
+      "With CKC Woodworks manufacturing capability behind the work, Moulding Saint Louis can take on residential built-ins and specialty shelving with a higher level of fabrication capacity. The result is custom work that feels integrated, substantial, and made for the space.",
+    ],
+    idealFor: ["Living rooms", "Home offices", "Libraries", "Media walls", "Mudrooms"],
+    highlights: ["Tailored storage layouts", "Integrated trim and finish details", "Built with CKC Woodworks capability"],
+    cta: "Plan Custom Built-ins",
+  },
 
   {
     title: "Gazebos & Pergolas",

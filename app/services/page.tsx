@@ -9,7 +9,7 @@ import { publicServices } from "../data/services";
 export const metadata: Metadata = {
   title: "Finish Carpentry Services in St. Louis",
   description:
-    "Explore luxury moulding, picture frame moulding, crown moulding, wainscoting, casing, mantels, archways, and finish carpentry services in St. Louis.",
+    "Explore luxury moulding, custom cabinetry, built-ins, shelving, casing, mantels, commercial manufacturing, and finish carpentry services in St. Louis.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: "Finish Carpentry Services in St. Louis",
@@ -18,6 +18,22 @@ export const metadata: Metadata = {
     url: `${siteUrl}/services`,
   },
 };
+
+const serviceCards = [
+  ...publicServices.map((service) => ({
+    ...service,
+    href: `/services/${service.slug}`,
+    image: `/images/placeholders/${service.slug}.jpg`,
+  })),
+  {
+    title: "Commercial Manufacturing",
+    slug: "commercial-manufacturing",
+    summary:
+      "Commercial cabinetry, casework, doors, specialty runs, and architectural woodwork through CKC Woodworks, a union shop with more than 40 years of experience.",
+    href: "/commercial",
+    image: "/images/ckc-woodworks/ckc-woodworks-cnc-panel-processing.jpg",
+  },
+];
 
 export default function ServicesPage() {
   return (
@@ -39,7 +55,7 @@ export default function ServicesPage() {
               Finish carpentry services with architectural presence.
             </h1>
             <p className="mx-auto mt-7 max-w-3xl text-xl leading-9 text-[#FEFAF1]/78">
-              Premium moulding, wainscoting, trim, mantels, casing, archways, and custom wood details for St. Louis interiors.
+              Premium moulding, cabinetry, built-ins, trim, mantels, casing, archways, commercial manufacturing, and custom wood details for St. Louis interiors.
             </p>
           </div>
         </section>
@@ -47,23 +63,23 @@ export default function ServicesPage() {
         <section className="py-24 sm:py-32">
           <div className="container-xl">
             <div className="grid gap-8">
-              {publicServices.map((service, index) => (
+              {serviceCards.map((service, index) => (
                 <Link
                   key={service.slug}
-                  href={`/services/${service.slug}`}
+                  href={service.href}
                   className="group grid overflow-hidden border border-[#D6D2C6] bg-white shadow-sm transition hover:border-[#B4904E] hover:shadow-2xl lg:grid-cols-[0.88fr_1.12fr]"
                 >
                   <div className={`relative min-h-[340px] ${index % 2 === 1 ? "lg:order-2" : ""}`}>
                     <Image
-                      src={`/images/placeholders/${service.slug}.jpg`}
-                      alt={`${service.title} placeholder`}
+                      src={service.image}
+                      alt={`${service.title} by Moulding Saint Louis`}
                       fill
                       className="object-cover transition duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-[#081828]/10" />
                   </div>
                   <div className="flex flex-col justify-center p-8 sm:p-12">
-                    <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">0{index + 1} / Service</p>
+                    <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">{String(index + 1).padStart(2, "0")} / Service</p>
                     <h2 className="mt-4 font-heading text-5xl font-semibold leading-[0.98] text-[#081828] text-balance sm:text-6xl">
                       {service.title}
                     </h2>

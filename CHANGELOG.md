@@ -9,6 +9,9 @@
 
 ### Changed
 - Moved Commercial Woodwork from the primary navigation into the bottom of the Services lists across desktop, mobile, and footer navigation. Expanded the CKC page to describe how its commercial craftsmanship also strengthens Moulding Saint Louis's residential custom casing, cabinetry, doors, built-ins, specialty trim, and woodwork capabilities.
+- Added Custom Cabinetry & Casework and Custom Built-ins & Shelving as dedicated service pages, service-hub entries, homepage `It's all in the details` tiles, navigation items, form choices, Service schema offers, and sitemap routes. Each residential page explains how CKC Woodworks manufacturing capability supports the custom work.
+- Renamed the existing CKC page and its service-navigation entry to Commercial Manufacturing, added it as the third new homepage tile, and created a new custom-capability section below the home page Experience section to connect residential custom work with the CKC manufacturing bench.
+- Added two repository-held 2048×1536 CKC capability images for the new custom service pages while preserving their full original compositions.
 
 ## [2026-10-01] — CRM stages
 

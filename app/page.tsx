@@ -35,6 +35,27 @@ const experiencePoints = [
   "Clear expectations, careful installation, and respectful jobsite care",
 ];
 
+const customCapabilities = [
+  {
+    href: "/services/custom-cabinetry-casework",
+    eyebrow: "Custom Cabinetry & Casework",
+    title: "Made around the way your rooms work.",
+    body: "Tailored cabinetry, casework, and architectural wood details built to bring more function, storage, and permanence to the home.",
+  },
+  {
+    href: "/services/custom-built-ins-shelving",
+    eyebrow: "Custom Built-ins & Shelving",
+    title: "Storage with a sense of place.",
+    body: "Bookcases, media walls, mudroom storage, and shelving that feel connected to the architecture rather than added after the fact.",
+  },
+  {
+    href: "/commercial",
+    eyebrow: "Commercial Manufacturing",
+    title: "CKC capability behind the craft.",
+    body: "The manufacturing experience of CKC Woodworks expands what Moulding Saint Louis can bring to both residential and commercial work.",
+  },
+];
+
 type ServiceIconProps = {
   slug: string;
   title: string;
@@ -111,6 +132,29 @@ function ServiceIcon({ slug, title }: ServiceIconProps) {
         <path d="M12 40V23c0-7 5-13 12-13s12 6 12 13v17" />
         <path d="M18 40V24c0-4 2.5-8 6-8s6 4 6 8v16" />
         <path d="M9 40h30" />
+      </svg>
+    ),
+    "custom-cabinetry-casework": (
+      <svg {...commonProps}>
+        <path d="M9 12h30v27H9z" />
+        <path d="M24 12v27M12 18h9M27 18h9" />
+        <path d="M18 26h.1M30 26h.1" />
+        <path d="M7 40h34" />
+      </svg>
+    ),
+    "custom-built-ins-shelving": (
+      <svg {...commonProps}>
+        <path d="M10 8h28v32H10z" />
+        <path d="M10 18h28M10 28h28" />
+        <path d="M18 8v20M30 8v20" />
+        <path d="M15 34h18" />
+      </svg>
+    ),
+    "commercial-manufacturing": (
+      <svg {...commonProps}>
+        <path d="M8 39V18l8 5V14l8 5V9l8 5 6-3v28H8Z" />
+        <path d="M15 39v-8h7v8M29 25h3M35 25h1M29 32h3M35 32h1" />
+        <path d="M6 39h36" />
       </svg>
     ),
     contact: (
@@ -222,6 +266,25 @@ export default function Home() {
                 </Link>
               ))}
               <Link
+                href="/commercial"
+                className="group flex min-h-[360px] flex-col border border-[#D6D2C6] bg-white p-7 text-[#2E404E] shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#B4904E] hover:bg-[#081828] hover:shadow-2xl"
+              >
+                <div className="flex items-start justify-between gap-6">
+                  <ServiceIcon slug="commercial-manufacturing" title="Commercial Manufacturing" />
+                  <span className="mt-8 h-px flex-1 bg-[#D6D2C6] transition-colors duration-300 group-hover:bg-[#B4904E]/60" />
+                  <span className="mt-5 text-[#B4904E]">◆</span>
+                </div>
+                <h3 className="mt-8 font-heading text-4xl font-semibold leading-tight text-[#081828] text-balance transition-colors duration-300 group-hover:text-[#FEFAF1]">
+                  Commercial Manufacturing
+                </h3>
+                <p className="mt-5 flex-1 text-base leading-7 text-[#2E404E] transition-colors duration-300 group-hover:text-[#FEFAF1]/82">
+                  CKC Woodworks brings union-shop manufacturing capability to commercial cabinetry, casework, doors, specialty runs, and architectural woodwork.
+                </p>
+                <p className="mt-7 border-t border-[#D6D2C6] pt-5 text-xs font-semibold uppercase tracking-[0.25em] text-[#B4904E] transition-colors duration-300 group-hover:border-[#B4904E]/45">
+                  Explore Commercial Work
+                </p>
+              </Link>
+              <Link
                 href="/contact"
                 className="group flex min-h-[360px] flex-col border border-[#D6D2C6] bg-white p-7 text-[#2E404E] shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#B4904E] hover:bg-[#081828] hover:shadow-2xl"
               >
@@ -271,6 +334,50 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="custom-capability" className="relative scroll-mt-28 overflow-hidden bg-[#D6D2C6]/45 py-24 sm:py-32">
+          <div className="container-xl">
+            <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.4em] text-[#B4904E]">Custom Capability</p>
+                <h2 className="mt-5 max-w-3xl font-heading text-5xl font-semibold leading-[0.98] text-[#081828] text-balance sm:text-7xl">
+                  More of your home can be made for you.
+                </h2>
+                <p className="mt-7 max-w-2xl text-lg leading-8 text-[#2E404E]">
+                  The experience behind CKC Woodworks gives Moulding Saint Louis a deeper level of custom manufacturing capability for residential cabinetry, built-ins, shelving, doors, casing, and specialty wood details.
+                </p>
+                <p className="mt-5 max-w-2xl text-lg leading-8 text-[#2E404E]">
+                  It is the same commitment to proportion, finish, and thoughtful planning—now applied to the parts of a home that need to work as beautifully as they look.
+                </p>
+              </div>
+              <div className="relative aspect-[4/3] overflow-hidden border border-[#B4904E]/45 bg-[#081828] shadow-2xl">
+                <Image
+                  src="/images/ckc-woodworks/ckc-woodworks-cabinetry-production.jpg"
+                  alt="CKC Woodworks cabinetry production capability supporting custom residential woodwork"
+                  fill
+                  sizes="(min-width: 1024px) 52vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,24,40,0.05),rgba(8,24,40,0.65))]" />
+                <div className="absolute bottom-0 left-0 right-0 p-7 text-[#FEFAF1]">
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#B4904E]">CKC Woodworks</p>
+                  <p className="mt-2 font-heading text-3xl font-semibold leading-tight">A deeper bench of custom capability.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-14 grid gap-5 md:grid-cols-3">
+              {customCapabilities.map((capability, index) => (
+                <Link key={capability.href} href={capability.href} className="group border border-[#D6D2C6] bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:border-[#B4904E] hover:bg-[#081828] hover:shadow-xl">
+                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#B4904E]">0{index + 1} / {capability.eyebrow}</p>
+                  <h3 className="mt-6 font-heading text-3xl font-semibold leading-tight text-[#081828] transition-colors group-hover:text-[#FEFAF1]">{capability.title}</h3>
+                  <p className="mt-4 leading-7 text-[#2E404E] transition-colors group-hover:text-[#FEFAF1]/80">{capability.body}</p>
+                  <p className="mt-7 text-xs font-semibold uppercase tracking-[0.22em] text-[#B4904E]">Learn More →</p>
+                </Link>
+              ))}
             </div>
           </div>
         </section>

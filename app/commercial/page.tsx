@@ -48,12 +48,12 @@ const shopPhotos = [
 ];
 
 export const metadata: Metadata = {
-  title: "Commercial Woodwork & Casework in St. Louis",
+  title: "Commercial Manufacturing & Woodwork in St. Louis",
   description:
     "Commercial cabinetry, casework, doors, specialty runs, and architectural woodwork in St. Louis through CKC Woodworks, a union shop with more than 40 years of experience.",
   alternates: { canonical: "/commercial" },
   openGraph: {
-    title: "Commercial Woodwork & Casework in St. Louis",
+    title: "Commercial Manufacturing & Woodwork in St. Louis",
     description:
       "A union commercial woodshop for custom cabinetry, casework, doors, specialty runs, and architectural millwork in St. Louis.",
     url: `${siteUrl}/commercial`,
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Commercial Woodwork & Casework in St. Louis",
+    title: "Commercial Manufacturing & Woodwork in St. Louis",
     description:
       "Commercial cabinetry, casework, doors, specialty runs, and architectural woodwork through CKC Woodworks.",
     images: [`${siteUrl}/images/ckc-woodworks/ckc-woodworks-cnc-panel-processing.jpg`],
@@ -84,7 +84,7 @@ export default function CommercialPage() {
         <JsonLd
           data={breadcrumbSchema([
             { name: "Home", url: siteUrl },
-            { name: "Commercial", url: `${siteUrl}/commercial` },
+            { name: "Commercial Manufacturing", url: `${siteUrl}/commercial` },
           ])}
         />
 
@@ -98,12 +98,12 @@ export default function CommercialPage() {
                       Home
                     </Link>
                   </li>
-                  <li aria-current="page"><span aria-hidden="true">/ </span>Commercial</li>
+                  <li aria-current="page"><span aria-hidden="true">/ </span>Commercial Manufacturing</li>
                 </ol>
               </nav>
-              <p className="mt-10 text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">Commercial woodwork</p>
+              <p className="mt-10 text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">Commercial manufacturing</p>
               <h1 className="mt-5 max-w-4xl font-heading text-6xl font-semibold leading-[0.92] text-balance sm:text-7xl lg:text-8xl">
-                The capability to take commercial woodwork further.
+                Commercial manufacturing built for serious woodwork.
               </h1>
               <p className="mt-7 max-w-2xl text-xl leading-9 text-[#FEFAF1]/78">
                 Moulding Saint Louis now brings the commercial capability of CKC Woodworks to St. Louis projects that demand custom cabinetry, casework, doors, specialty runs, and architectural woodwork done right.

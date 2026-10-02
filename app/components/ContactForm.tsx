@@ -141,7 +141,9 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
                 <option>Fireplace Mantels & Surrounds</option>
                 <option>Window & Door Casing</option>
                 <option>Archways & Entryways</option>
-                <option>Commercial Woodwork / CKC Woodworks</option>
+                <option>Custom Cabinetry & Casework</option>
+                <option>Custom Built-ins & Shelving</option>
+                <option>Commercial Manufacturing / CKC Woodworks</option>
                 <option>Not sure yet</option>
               </select>
             </Field>

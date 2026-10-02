@@ -39,6 +39,10 @@ export const localBusinessSchema = {
     "Picture frame moulding",
     "Fireplace mantels",
     "Window and door casing",
+    "Custom cabinetry",
+    "Custom casework",
+    "Custom built-ins",
+    "Custom shelving",
     "Architectural wood finishes",
   ],
   makesOffer: publicServices.map((service) => ({
@@ -68,7 +72,7 @@ export const commercialWoodworkSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "@id": `${siteUrl}/commercial#service`,
-  name: "Commercial Woodwork & Casework in St. Louis",
+  name: "Commercial Manufacturing & Woodwork in St. Louis",
   serviceType: [
     "Commercial cabinetry",
     "Commercial casework",

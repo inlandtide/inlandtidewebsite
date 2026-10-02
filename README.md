@@ -68,8 +68,10 @@ The website is structured as a conversion-focused, multi-page site for a luxury 
 | Fireplace Mantels & Surrounds | `/services/fireplace-mantels-surrounds` | Dedicated page for fireplace focal point details. |
 | Window & Door Casing | `/services/window-door-casing` | Dedicated page for upgraded interior casing. |
 | Archways & Entryways | `/services/archways-entryways` | Dedicated page for entry transitions and cased openings. |
+| Custom Cabinetry & Casework | `/services/custom-cabinetry-casework` | Dedicated page for tailored cabinetry, casework, and architectural woodwork for the home. |
+| Custom Built-ins & Shelving | `/services/custom-built-ins-shelving` | Dedicated page for tailored shelving, storage, libraries, media walls, and built-ins. |
 | Gazebos & Pergolas (Archived) | `/services/gazebos-pergolas` | Source content and image records are retained for future restoration; the route returns a noindex 404 and is excluded from visitor-facing navigation, the gallery, and the sitemap. |
-| Commercial Woodwork | `/commercial` | Commercial cabinetry, casework, doors, specialty runs, and architectural woodwork through CKC Woodworks. |
+| Commercial Manufacturing | `/commercial` | Commercial cabinetry, casework, doors, specialty runs, and architectural woodwork through CKC Woodworks. |
 | About | `/about` | Local ownership and company values page for Moulding Saint Louis. |
 | Gallery | `/gallery` | Rebuilt visual portfolio organized by uploaded photo filename categories. |
 | Contact | `/contact` | Dedicated consultation request page. |
@@ -77,7 +79,7 @@ The website is structured as a conversion-focused, multi-page site for a luxury 
 
 The gallery page has been rebuilt as a curated, image-forward portfolio organized from uploaded photo filename categories. Active gallery images are committed under `/public/images/gallery/`, with source-to-site mapping documented in `docs/gallery-image-asset-mapping.md`.
 
-The Commercial Woodwork page uses user-supplied CKC Woodworks shop photography committed under `/public/images/ckc-woodworks/`. It introduces CKC as Moulding Saint Louis's commercial woodwork capability and links to the official CKC Woodworks website.
+The Commercial Manufacturing page uses user-supplied CKC Woodworks shop photography committed under `/public/images/ckc-woodworks/`. It introduces CKC as Moulding Saint Louis's commercial manufacturing capability and links to the official CKC Woodworks website. The Custom Cabinetry & Casework and Custom Built-ins & Shelving pages also explain how CKC manufacturing capability strengthens the custom residential work available through Moulding Saint Louis.
 
 ## Business Positioning
 

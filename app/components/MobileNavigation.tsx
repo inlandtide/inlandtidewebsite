@@ -82,7 +82,7 @@ export function MobileNavigation({ services }: { services: ServiceLink[] }) {
                 onClick={closeMenu}
                 className="block border-b border-[#B4904E]/25 py-2.5 pl-3 text-sm font-semibold text-[#B4904E] transition hover:text-[#FEFAF1] focus-visible:text-[#FEFAF1]"
               >
-                Commercial Woodwork
+                Commercial Manufacturing
               </Link>
             </div>
             <div className="grid grid-cols-2 gap-x-4 border-b border-[#B4904E]/25 py-2 text-sm font-semibold uppercase tracking-[0.12em]">

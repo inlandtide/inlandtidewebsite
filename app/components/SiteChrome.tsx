@@ -43,7 +43,7 @@ export function SiteHeader() {
                 href="/commercial"
                 className="block border-t border-[#B4904E]/20 px-4 py-3 text-sm font-semibold normal-case tracking-normal text-[#B4904E] transition hover:bg-[#FEFAF1]/5 hover:text-[#FEFAF1]"
               >
-                Commercial Woodwork
+                Commercial Manufacturing
               </Link>
             </div>
           </div>
@@ -102,7 +102,7 @@ export function SiteFooter() {
           {publicServices.slice(4).map((service) => (
             <FooterLink key={service.slug} href={`/services/${service.slug}`}>{service.title}</FooterLink>
           ))}
-          <FooterLink href="/commercial">Commercial Woodwork</FooterLink>
+          <FooterLink href="/commercial">Commercial Manufacturing</FooterLink>
         </FooterColumn>
 
         <FooterColumn title="Company">

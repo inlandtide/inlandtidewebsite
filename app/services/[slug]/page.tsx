@@ -181,6 +181,46 @@ const editorialBestForBySlug: Record<string, EditorialBestFor> = {
     ],
     closing: "A fit when the transition between rooms should become part of the design story.",
   },
+  "custom-cabinetry-casework": {
+    headline: "Storage and architectural detail designed around the room.",
+    intro:
+      "Custom cabinetry and casework are at their best when function, proportion, and finish are planned together. The work should solve a real need while feeling like it has always belonged in the home.",
+    useCases: [
+      {
+        title: "Living spaces with a focal wall",
+        body: "Cabinetry or casework can give a fireplace wall, dining room, or living space a stronger purpose while integrating storage and architectural detail into one composed feature.",
+      },
+      {
+        title: "Hardworking rooms that need order",
+        body: "Mudrooms, studies, and utility spaces benefit from tailored cabinetry that organizes daily life without giving up the elevated finish of the rest of the home.",
+      },
+      {
+        title: "Specialty spaces with specific requirements",
+        body: "When an unusual layout, storage need, or architectural detail calls for more than an off-the-shelf solution, custom casework creates a precise response to the room.",
+      },
+    ],
+    closing: "A fit when storage should feel architectural, not added on.",
+  },
+  "custom-built-ins-shelving": {
+    headline: "Built-in function with a sense of permanence.",
+    intro:
+      "Built-ins and shelving should make the space more useful without feeling separate from it. Careful layout, scale, trim coordination, and finish turn simple storage into a defining part of the room.",
+    useCases: [
+      {
+        title: "Libraries, studies, and home offices",
+        body: "Wall-to-wall shelving, library cabinets, and custom desk zones bring order to rooms that need to support focus, collections, and daily use.",
+      },
+      {
+        title: "Living rooms and media walls",
+        body: "A well-composed built-in can give the main gathering space a stronger focal point, more useful storage, and a tailored relationship to the trim and fireplace details around it.",
+      },
+      {
+        title: "Mudrooms and transitional spaces",
+        body: "Benches, cubbies, shelving, and storage cabinets help high-traffic spaces work better while keeping the entry experience intentional and refined.",
+      },
+    ],
+    closing: "A fit when a room needs more function without losing its point of view.",
+  },
   "gazebos-pergolas": {
     headline: "Outdoor spaces that should feel built for gathering.",
     intro:
@@ -293,8 +333,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
   const guidance = serviceGuidance[service.slug];
   const galleryCategory = publicGalleryCategories.find((category) => category.slug === service.slug);
-  const relatedServices = publicServices.filter((item) => item.slug !== service.slug &&
-    ["picture-frame-moulding", "crown-moulding", "wainscoting-beadboard", "chair-rail-picture-rail"].includes(item.slug)).slice(0, 3);
+  const relatedServiceSlugs = ["custom-cabinetry-casework", "custom-built-ins-shelving"].includes(service.slug)
+    ? ["custom-cabinetry-casework", "custom-built-ins-shelving", "window-door-casing"]
+    : ["picture-frame-moulding", "crown-moulding", "wainscoting-beadboard", "chair-rail-picture-rail"];
+  const relatedServices = publicServices.filter((item) => item.slug !== service.slug && relatedServiceSlugs.includes(item.slug)).slice(0, 3);
 
   return (
     <PageShell>
