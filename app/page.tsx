@@ -203,7 +203,7 @@ export default function Home() {
               <span className="text-[#B4904E]">Saint Louis</span>
             </h1>
             <p className="mx-auto mt-8 max-w-4xl text-[1.4rem] leading-[1.35] text-[#FEFAF1]/86 sm:text-[1.7rem]">
-              High-end moulding, wainscoting, casing, mantels, archways, and custom finish carpentry with a refined customer experience from first conversation to final walkthrough.
+              High-end moulding, cabinetry, built-ins, and finish carpentry—backed by CKC Woodworks manufacturing capability and refined care from first conversation to final walkthrough.
             </p>
             <div className="mt-11 flex flex-col justify-center gap-4 sm:flex-row">
               <Link href="/contact" className="border border-[#B4904E] bg-[#B4904E] px-8 py-4 text-sm font-semibold uppercase tracking-[0.26em] text-[#081828] transition hover:bg-transparent hover:text-[#B4904E]">

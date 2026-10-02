@@ -13,6 +13,7 @@
 - Renamed the existing CKC page and its service-navigation entry to Commercial Manufacturing, added it as the third new homepage tile, and created a new custom-capability section below the home page Experience section to connect residential custom work with the CKC manufacturing bench.
 - Added two repository-held 2048×1536 CKC capability images for the new custom service pages while preserving their full original compositions.
 - Added an `Our Custom Woodshop` collection to the public Gallery using all eight previously uploaded CKC Woodworks shop photos, with a direct link to Commercial Manufacturing.
+- Updated the homepage hero statement to introduce CKC Woodworks manufacturing capability while preserving the existing concise, customer-care-focused message.
 
 ## [2026-10-01] — CRM stages
 
