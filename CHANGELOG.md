@@ -18,6 +18,7 @@
 - Moved `Our Custom Woodshop` to the beginning of the public Gallery sequence, making it the lead hero image, first category tile, and first full collection visitors see.
 - Added the 1750 Salzman, St. Louis, MO business address to the sitewide footer, Contact page, and LocalBusiness structured data.
 - Reordered the homepage `It’s all in the details` grid so Custom Cabinetry & Casework and Custom Built-ins & Shelving occupy the left and center positions of the second desktop row.
+- Rebuilt the About page around Moulding Saint Louis’s locally owned St. Louis service, passion for bringing spaces together, and CKC Woodworks manufacturing capability for custom cabinetry, casework, built-ins, doors, and specialty woodwork. Added three full-composition CKC woodshop views, including two elevated shop overviews.
 
 ## [2026-10-01] — CRM stages
 
