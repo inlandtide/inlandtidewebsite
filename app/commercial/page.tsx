@@ -101,7 +101,7 @@ export default function CommercialPage() {
                   <li aria-current="page"><span aria-hidden="true">/ </span>Commercial Manufacturing</li>
                 </ol>
               </nav>
-              <p className="mt-10 text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">Commercial manufacturing</p>
+              <p className="mt-10 text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">CKC Woodworks</p>
               <h1 className="mt-5 max-w-4xl font-heading text-6xl font-semibold leading-[0.92] text-balance sm:text-7xl lg:text-8xl">
                 Commercial manufacturing built for serious woodwork.
               </h1>
