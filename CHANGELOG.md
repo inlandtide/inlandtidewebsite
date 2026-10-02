@@ -7,6 +7,9 @@
 - Added a Commercial navigation link for desktop, mobile, and footer navigation; added the commercial route to the sitemap and dedicated Service structured data.
 - Added the supplied CKC Woodworks shop photography under `/public/images/ckc-woodworks/`, preserving every supplied 4:3 composition and documenting source-to-site mapping.
 
+### Changed
+- Moved Commercial Woodwork from the primary navigation into the bottom of the Services lists across desktop, mobile, and footer navigation. Expanded the CKC page to describe how its commercial craftsmanship also strengthens Moulding Saint Louis's residential custom casing, cabinetry, doors, built-ins, specialty trim, and woodwork capabilities.
+
 ## [2026-10-01] — CRM stages
 
 - Add Needs estimate between consultation and proposal; route On hold and Unresponsive to an editable Inactive tab while preserving stable IDs, notes, amounts and form history.

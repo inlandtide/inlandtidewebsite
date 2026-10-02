@@ -184,10 +184,13 @@ export default function CommercialPage() {
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">CKC Woodworks</p>
               <h2 className="mt-5 font-heading text-5xl font-semibold leading-[0.98] text-[#081828] text-balance sm:text-6xl">
-                Commercial roots. Expanded possibilities.
+                Commercial roots. The same craftsmanship at home.
               </h2>
               <p className="mt-7 text-lg leading-8 text-[#2E404E]">
                 CKC Woodworks is a St. Louis commercial woodshop with a long history of bringing custom builds from plans to production. Now part of Moulding Saint Louis, CKC remains dedicated to the commercial work that calls for scale, precision, coordination, and craft.
+              </p>
+              <p className="mt-5 text-lg leading-8 text-[#2E404E]">
+                That capability also means Moulding Saint Louis can now bring the same level of craftsmanship to residential homes: custom casing, cabinetry, doors, built-ins, specialty trim, and other wood details made to fit the home and the way it is lived in.
               </p>
               <a
                 href="https://ckcwoodworks.com/"

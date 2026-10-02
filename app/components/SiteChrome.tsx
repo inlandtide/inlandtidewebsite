@@ -39,9 +39,14 @@ export function SiteHeader() {
                   </Link>
                 ))}
               </div>
+              <Link
+                href="/commercial"
+                className="block border-t border-[#B4904E]/20 px-4 py-3 text-sm font-semibold normal-case tracking-normal text-[#B4904E] transition hover:bg-[#FEFAF1]/5 hover:text-[#FEFAF1]"
+              >
+                Commercial Woodwork
+              </Link>
             </div>
           </div>
-          <Link className="transition hover:text-[#B4904E]" href="/commercial">Commercial</Link>
           <Link className="transition hover:text-[#B4904E]" href="/about">About</Link>
           <Link className="transition hover:text-[#B4904E]" href="/gallery">Gallery</Link>
           <Link className="transition hover:text-[#B4904E]" href="/contact">Contact</Link>
@@ -97,10 +102,10 @@ export function SiteFooter() {
           {publicServices.slice(4).map((service) => (
             <FooterLink key={service.slug} href={`/services/${service.slug}`}>{service.title}</FooterLink>
           ))}
+          <FooterLink href="/commercial">Commercial Woodwork</FooterLink>
         </FooterColumn>
 
         <FooterColumn title="Company">
-          <FooterLink href="/commercial">Commercial</FooterLink>
           <FooterLink href="/about">About</FooterLink>
           <FooterLink href="/gallery">Gallery</FooterLink>
           <FooterLink href="/contact">Contact</FooterLink>
