@@ -355,8 +355,8 @@ export default function Home() {
               </div>
               <div className="relative aspect-[4/3] overflow-hidden border border-[#B4904E]/45 bg-[#081828] shadow-2xl">
                 <Image
-                  src="/images/ckc-woodworks/ckc-woodworks-cabinetry-production.jpg"
-                  alt="CKC Woodworks cabinetry production capability supporting custom residential woodwork"
+                  src="/images/ckc-woodworks/ckc-woodworks-shop-overview.jpg"
+                  alt="Overview of the CKC Woodworks custom manufacturing shop supporting residential woodwork"
                   fill
                   sizes="(min-width: 1024px) 52vw, 100vw"
                   className="object-cover"

@@ -51,7 +51,7 @@ The following user-supplied CKC Woodworks photos were converted from WebP where 
 | Source File | Site Asset | Site Dimensions |
 |---|---|---:|
 | `1000021682.JPG` | `/public/images/ckc-woodworks/ckc-woodworks-cnc-panel-processing.jpg` | 2048×1536 |
-| `IMG_5477.webp` | `/public/images/ckc-woodworks/ckc-woodworks-shop-overview.jpg` | 2048×1536 |
+| `IMG_5477.webp` | `/public/images/ckc-woodworks/ckc-woodworks-shop-overview.jpg` | 2048×1536; used in the Home page Custom Capability section |
 | `IMG_5463.webp` | `/public/images/ckc-woodworks/ckc-woodworks-cabinetry-production.jpg` | 2048×1536 |
 | `IMG_5466.webp` | `/public/images/ckc-woodworks/ckc-woodworks-custom-casework.jpg` | 2048×1536 |
 | `IMG_5472.webp` | `/public/images/ckc-woodworks/ckc-woodworks-shop-capacity-01.jpg` | 2048×1536 |
