@@ -15,6 +15,7 @@
 - Added an `Our Custom Woodshop` collection to the public Gallery using all eight previously uploaded CKC Woodworks shop photos, with a direct link to Commercial Manufacturing.
 - Updated the homepage hero statement to introduce CKC Woodworks manufacturing capability while preserving the existing concise, customer-care-focused message.
 - Updated the Home page Custom Capability section to use the user-selected full-composition CKC Woodworks shop overview photo.
+- Moved `Our Custom Woodshop` to the beginning of the public Gallery sequence, making it the lead hero image, first category tile, and first full collection visitors see.
 
 ## [2026-10-01] — CRM stages
 

@@ -516,6 +516,12 @@ export const galleryCategories: GalleryCategory[] = [
   }
 ];
 
-export const publicGalleryCategories = galleryCategories.filter((category) => !category.archived);
+export const publicGalleryCategories = galleryCategories
+  .filter((category) => !category.archived)
+  .sort((a, b) => {
+    if (a.slug === "our-custom-woodshop") return -1;
+    if (b.slug === "our-custom-woodshop") return 1;
+    return 0;
+  });
 
 export const galleryImageCount = publicGalleryCategories.reduce((total, category) => total + category.images.length, 0);
