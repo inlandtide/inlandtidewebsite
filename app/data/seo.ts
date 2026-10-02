@@ -1,3 +1,4 @@
+import { businessAddress } from "./business";
 import { publicServices } from "./services";
 
 export const siteUrl = "https://mouldingstl.com";
@@ -17,6 +18,10 @@ export const localBusinessSchema = {
   image: [logoUrl, defaultOgImage],
   description:
     "Moulding Saint Louis provides luxury moulding, wainscoting, casing, mantels, archways, and custom finish carpentry for St. Louis homes.",
+  address: {
+    "@type": "PostalAddress",
+    ...businessAddress,
+  },
   areaServed: [
     {
       "@type": "City",

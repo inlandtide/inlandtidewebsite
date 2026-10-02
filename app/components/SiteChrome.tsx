@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { businessAddressLabel, businessAddressMapUrl } from "../data/business";
 import { publicServices } from "../data/services";
 import { MobileNavigation } from "./MobileNavigation";
 
@@ -109,6 +110,16 @@ export function SiteFooter() {
           <FooterLink href="/about">About</FooterLink>
           <FooterLink href="/gallery">Gallery</FooterLink>
           <FooterLink href="/contact">Contact</FooterLink>
+          <address className="not-italic">
+            <a
+              href={businessAddressMapUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="transition hover:text-[#B4904E]"
+            >
+              {businessAddressLabel}
+            </a>
+          </address>
           <a href="tel:+13148180815" className="transition hover:text-[#B4904E]">(314) 818-0815</a>
         </FooterColumn>
       </div>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import ContactForm from "../components/ContactForm";
 import JsonLd from "../components/JsonLd";
 import { PageShell } from "../components/SiteChrome";
+import { businessAddressLabel, businessAddressMapUrl } from "../data/business";
 import { breadcrumbSchema, siteUrl } from "../data/seo";
 
 export const metadata: Metadata = {
@@ -43,6 +44,12 @@ export default function ContactPage() {
               </h1>
               <p className="mt-7 max-w-3xl text-xl leading-9 text-[#FEFAF1]/76">
                 Share the rooms, project type, and inspiration you have in mind. We will review your inquiry and help determine the best next step. You can also call (314) 818-0815.
+              </p>
+              <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#B4904E]">
+                Woodshop location: {" "}
+                <a href={businessAddressMapUrl} target="_blank" rel="noreferrer" className="text-[#FEFAF1] underline underline-offset-4 transition hover:text-[#B4904E]">
+                  {businessAddressLabel}
+                </a>
               </p>
 
               <div className="mt-10 border border-[#B4904E]/45 bg-[#FEFAF1]/5 p-6 sm:p-9">
