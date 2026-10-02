@@ -117,7 +117,11 @@ export default function GalleryPage() {
                   </div>
                   <div className="max-w-2xl text-lg leading-8 text-[#2E404E] lg:justify-self-end">
                     <p>{category.description}</p>
-                    <Link href={`/services/${category.slug}`} className="mt-4 inline-block font-semibold text-[#081828] underline underline-offset-4">Explore {category.title.toLowerCase()} services</Link>
+                    {category.slug === "our-custom-woodshop" ? (
+                      <Link href="/commercial" className="mt-4 inline-block font-semibold text-[#081828] underline underline-offset-4">Explore Commercial Manufacturing</Link>
+                    ) : (
+                      <Link href={`/services/${category.slug}`} className="mt-4 inline-block font-semibold text-[#081828] underline underline-offset-4">Explore {category.title.toLowerCase()} services</Link>
+                    )}
                   </div>
                 </div>
 

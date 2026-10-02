@@ -380,6 +380,77 @@ export const galleryCategories: GalleryCategory[] = [
     ]
   },
   {
+    "slug": "our-custom-woodshop",
+    "title": "Our Custom Woodshop",
+    "description": "A look inside the CKC Woodworks shop: the people, equipment, bench space, and manufacturing capacity behind custom residential and commercial woodwork.",
+    "images": [
+      {
+        "src": "/images/ckc-woodworks/ckc-woodworks-cnc-panel-processing.jpg",
+        "alt": "CKC Woodworks panel-processing equipment in the custom woodshop",
+        "width": 2048,
+        "height": 1536,
+        "orientation": "landscape",
+        "sourceName": "1000021682.JPG"
+      },
+      {
+        "src": "/images/ckc-woodworks/ckc-woodworks-shop-overview.jpg",
+        "alt": "Overview of the CKC Woodworks custom woodshop in St. Louis",
+        "width": 2048,
+        "height": 1536,
+        "orientation": "landscape",
+        "sourceName": "IMG_5477.webp"
+      },
+      {
+        "src": "/images/ckc-woodworks/ckc-woodworks-cabinetry-production.jpg",
+        "alt": "CKC Woodworks team and cabinetry production in the custom woodshop",
+        "width": 2048,
+        "height": 1536,
+        "orientation": "landscape",
+        "sourceName": "IMG_5463.webp"
+      },
+      {
+        "src": "/images/ckc-woodworks/ckc-woodworks-custom-casework.jpg",
+        "alt": "Custom casework in production at CKC Woodworks",
+        "width": 2048,
+        "height": 1536,
+        "orientation": "landscape",
+        "sourceName": "IMG_5466.webp"
+      },
+      {
+        "src": "/images/ckc-woodworks/ckc-woodworks-shop-capacity-01.jpg",
+        "alt": "Wide view of CKC Woodworks shop capacity and equipment",
+        "width": 2048,
+        "height": 1536,
+        "orientation": "landscape",
+        "sourceName": "IMG_5472.webp"
+      },
+      {
+        "src": "/images/ckc-woodworks/ckc-woodworks-shop-capacity-02.jpg",
+        "alt": "CKC Woodworks material storage and commercial woodworking equipment",
+        "width": 2048,
+        "height": 1536,
+        "orientation": "landscape",
+        "sourceName": "IMG_5473.webp"
+      },
+      {
+        "src": "/images/ckc-woodworks/ckc-woodworks-shop-capacity-03.jpg",
+        "alt": "CKC Woodworks fabrication area and custom woodworking benches",
+        "width": 2048,
+        "height": 1536,
+        "orientation": "landscape",
+        "sourceName": "IMG_5474.webp"
+      },
+      {
+        "src": "/images/ckc-woodworks/ckc-woodworks-workbench.jpg",
+        "alt": "CKC Woodworks workbench and custom cabinetry fabrication area",
+        "width": 2048,
+        "height": 1536,
+        "orientation": "landscape",
+        "sourceName": "IMG_5464.webp"
+      }
+    ]
+  },
+  {
     "slug": "gazebos-pergolas",
     "title": "Gazebos & Pergolas",
     "archived": true,

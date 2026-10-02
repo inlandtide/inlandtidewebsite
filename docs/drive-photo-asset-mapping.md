@@ -46,7 +46,7 @@ The following user-supplied project photo was converted from WebP to a gallery-r
 
 ## Commercial Page — CKC Woodworks Shop Photography
 
-The following user-supplied CKC Woodworks photos were converted from WebP where needed and committed as full-composition, 4:3 JPEG assets for the Commercial Woodwork page.
+The following user-supplied CKC Woodworks photos were converted from WebP where needed and committed as full-composition, 4:3 JPEG assets for the Commercial Manufacturing page and the `Our Custom Woodshop` Gallery collection.
 
 | Source File | Site Asset | Site Dimensions |
 |---|---|---:|

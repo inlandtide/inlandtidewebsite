@@ -77,7 +77,7 @@ The website is structured as a conversion-focused, multi-page site for a luxury 
 | Contact | `/contact` | Dedicated consultation request page. |
 | SEO Dashboard | `/seo-dashboard` | Internal noindex dashboard based on the SEO implementation report for tracking SEO foundations and next actions. |
 
-The gallery page has been rebuilt as a curated, image-forward portfolio organized from uploaded photo filename categories. Active gallery images are committed under `/public/images/gallery/`, with source-to-site mapping documented in `docs/gallery-image-asset-mapping.md`.
+The gallery page has been rebuilt as a curated, image-forward portfolio organized from uploaded photo filename categories. Active project gallery images are committed under `/public/images/gallery/`, and the `Our Custom Woodshop` collection uses committed CKC shop photography under `/public/images/ckc-woodworks/`; source-to-site mapping is documented in `docs/drive-photo-asset-mapping.md`.
 
 The Commercial Manufacturing page uses user-supplied CKC Woodworks shop photography committed under `/public/images/ckc-woodworks/`. It introduces CKC as Moulding Saint Louis's commercial manufacturing capability and links to the official CKC Woodworks website. The Custom Cabinetry & Casework and Custom Built-ins & Shelving pages also explain how CKC manufacturing capability strengthens the custom residential work available through Moulding Saint Louis.
 
