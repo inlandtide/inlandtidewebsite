@@ -17,6 +17,7 @@
 - Updated the Home page Custom Capability section to use the user-selected full-composition CKC Woodworks shop overview photo.
 - Moved `Our Custom Woodshop` to the beginning of the public Gallery sequence, making it the lead hero image, first category tile, and first full collection visitors see.
 - Added the 1750 Salzman, St. Louis, MO business address to the sitewide footer, Contact page, and LocalBusiness structured data.
+- Reordered the homepage `It’s all in the details` grid so Custom Cabinetry & Casework and Custom Built-ins & Shelving occupy the left and center positions of the second desktop row.
 
 ## [2026-10-01] — CRM stages
 

@@ -56,6 +56,23 @@ const customCapabilities = [
   },
 ];
 
+const homepageServiceOrder = [
+  "luxury-decorative-moulding",
+  "picture-frame-moulding",
+  "crown-moulding",
+  "custom-cabinetry-casework",
+  "custom-built-ins-shelving",
+  "wainscoting-beadboard",
+  "chair-rail-picture-rail",
+  "fireplace-mantels-surrounds",
+  "window-door-casing",
+  "archways-entryways",
+];
+
+const homepageServices = [...publicServices].sort(
+  (a, b) => homepageServiceOrder.indexOf(a.slug) - homepageServiceOrder.indexOf(b.slug),
+);
+
 type ServiceIconProps = {
   slug: string;
   title: string;
@@ -243,7 +260,7 @@ export default function Home() {
             </div>
 
             <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {publicServices.map((service) => (
+              {homepageServices.map((service) => (
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}
