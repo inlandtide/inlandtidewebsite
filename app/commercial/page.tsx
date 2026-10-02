@@ -101,9 +101,8 @@ export default function CommercialPage() {
                   <li aria-current="page"><span aria-hidden="true">/ </span>Commercial Manufacturing</li>
                 </ol>
               </nav>
-              <p className="mt-10 text-sm font-semibold uppercase tracking-[0.35em] text-[#B4904E]">CKC Woodworks</p>
-              <h1 className="mt-5 max-w-4xl font-heading text-6xl font-semibold leading-[0.92] text-balance sm:text-7xl lg:text-8xl">
-                Commercial manufacturing built for serious woodwork.
+              <h1 className="mt-10 max-w-4xl font-heading text-6xl font-semibold leading-[0.92] text-balance sm:text-7xl lg:text-8xl">
+                CKC Woodworks
               </h1>
               <p className="mt-7 max-w-2xl text-xl leading-9 text-[#FEFAF1]/78">
                 Moulding Saint Louis now brings the commercial capability of CKC Woodworks to St. Louis projects that demand custom cabinetry, casework, doors, specialty runs, and architectural woodwork done right.
