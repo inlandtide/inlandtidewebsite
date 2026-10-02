@@ -141,6 +141,7 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
                 <option>Fireplace Mantels & Surrounds</option>
                 <option>Window & Door Casing</option>
                 <option>Archways & Entryways</option>
+                <option>Commercial Woodwork / CKC Woodworks</option>
                 <option>Not sure yet</option>
               </select>
             </Field>
@@ -157,7 +158,7 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
               maxLength={9000}
               rows={5}
               className={`${inputClass} resize-none`}
-              placeholder="Tell us about the rooms, details, inspiration, or finish carpentry you have in mind."
+              placeholder="Tell us about the space, scope, details, or woodwork you have in mind."
             />
           </Field>
 

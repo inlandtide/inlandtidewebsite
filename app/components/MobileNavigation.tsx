@@ -79,6 +79,7 @@ export function MobileNavigation({ services }: { services: ServiceLink[] }) {
               ))}
             </div>
             <div className="grid grid-cols-2 gap-x-4 border-b border-[#B4904E]/25 py-2 text-sm font-semibold uppercase tracking-[0.12em]">
+              <Link href="/commercial" onClick={closeMenu} className="py-3 hover:text-[#B4904E]">Commercial</Link>
               <Link href="/about" onClick={closeMenu} className="py-3 hover:text-[#B4904E]">About</Link>
               <Link href="/gallery" onClick={closeMenu} className="py-3 hover:text-[#B4904E]">Gallery</Link>
               <Link href="/contact" onClick={closeMenu} className="py-3 hover:text-[#B4904E]">Contact</Link>

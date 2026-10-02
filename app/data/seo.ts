@@ -64,6 +64,31 @@ export const websiteSchema = {
   inLanguage: "en-US",
 };
 
+export const commercialWoodworkSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${siteUrl}/commercial#service`,
+  name: "Commercial Woodwork & Casework in St. Louis",
+  serviceType: [
+    "Commercial cabinetry",
+    "Commercial casework",
+    "Commercial doors",
+    "Specialty woodwork runs",
+    "Architectural woodwork",
+  ],
+  description:
+    "Commercial cabinetry, casework, doors, specialty runs, and architectural woodwork in St. Louis through CKC Woodworks, a union shop with more than 40 years of experience.",
+  url: `${siteUrl}/commercial`,
+  areaServed: {
+    "@type": "City",
+    name: "St. Louis",
+    addressRegion: "MO",
+    addressCountry: "US",
+  },
+  provider: { "@id": `${siteUrl}/#business` },
+  sameAs: ["https://ckcwoodworks.com/"],
+};
+
 export function serviceSchema(service: { title: string; slug: string; summary: string; hero: string }) {
   return {
     "@context": "https://schema.org",

@@ -43,3 +43,18 @@ The following user-supplied project photo was converted from WebP to a gallery-r
 | Source File | Gallery Asset | Site Dimensions |
 |---|---|---:|
 | `IMG_5965_without_green_tape.webp` | `/public/images/gallery/picture-frame-moulding-12.jpg` | 2048×1536 |
+
+## Commercial Page — CKC Woodworks Shop Photography
+
+The following user-supplied CKC Woodworks photos were converted from WebP where needed and committed as full-composition, 4:3 JPEG assets for the Commercial Woodwork page.
+
+| Source File | Site Asset | Site Dimensions |
+|---|---|---:|
+| `1000021682.JPG` | `/public/images/ckc-woodworks/ckc-woodworks-cnc-panel-processing.jpg` | 2048×1536 |
+| `IMG_5477.webp` | `/public/images/ckc-woodworks/ckc-woodworks-shop-overview.jpg` | 2048×1536 |
+| `IMG_5463.webp` | `/public/images/ckc-woodworks/ckc-woodworks-cabinetry-production.jpg` | 2048×1536 |
+| `IMG_5466.webp` | `/public/images/ckc-woodworks/ckc-woodworks-custom-casework.jpg` | 2048×1536 |
+| `IMG_5472.webp` | `/public/images/ckc-woodworks/ckc-woodworks-shop-capacity-01.jpg` | 2048×1536 |
+| `IMG_5473.webp` | `/public/images/ckc-woodworks/ckc-woodworks-shop-capacity-02.jpg` | 2048×1536 |
+| `IMG_5474.webp` | `/public/images/ckc-woodworks/ckc-woodworks-shop-capacity-03.jpg` | 2048×1536 |
+| `IMG_5464.webp` | `/public/images/ckc-woodworks/ckc-woodworks-workbench.jpg` | 2048×1536 |

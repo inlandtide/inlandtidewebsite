@@ -41,6 +41,7 @@ export function SiteHeader() {
               </div>
             </div>
           </div>
+          <Link className="transition hover:text-[#B4904E]" href="/commercial">Commercial</Link>
           <Link className="transition hover:text-[#B4904E]" href="/about">About</Link>
           <Link className="transition hover:text-[#B4904E]" href="/gallery">Gallery</Link>
           <Link className="transition hover:text-[#B4904E]" href="/contact">Contact</Link>
@@ -99,6 +100,7 @@ export function SiteFooter() {
         </FooterColumn>
 
         <FooterColumn title="Company">
+          <FooterLink href="/commercial">Commercial</FooterLink>
           <FooterLink href="/about">About</FooterLink>
           <FooterLink href="/gallery">Gallery</FooterLink>
           <FooterLink href="/contact">Contact</FooterLink>

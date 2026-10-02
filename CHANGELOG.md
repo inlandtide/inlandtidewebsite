@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-10-02]
+
+### Added
+- Launched the Commercial Woodwork page at `/commercial`, introducing CKC Woodworks as the commercial capability of Moulding Saint Louis. Added commercial cabinetry, casework, door, specialty-run, union-shop, and 40+ years of experience messaging, with a direct link to the official CKC Woodworks website.
+- Added a Commercial navigation link for desktop, mobile, and footer navigation; added the commercial route to the sitemap and dedicated Service structured data.
+- Added the supplied CKC Woodworks shop photography under `/public/images/ckc-woodworks/`, preserving every supplied 4:3 composition and documenting source-to-site mapping.
+
 ## [2026-10-01] — CRM stages
 
 - Add Needs estimate between consultation and proposal; route On hold and Unresponsive to an editable Inactive tab while preserving stable IDs, notes, amounts and form history.

@@ -69,12 +69,15 @@ The website is structured as a conversion-focused, multi-page site for a luxury 
 | Window & Door Casing | `/services/window-door-casing` | Dedicated page for upgraded interior casing. |
 | Archways & Entryways | `/services/archways-entryways` | Dedicated page for entry transitions and cased openings. |
 | Gazebos & Pergolas (Archived) | `/services/gazebos-pergolas` | Source content and image records are retained for future restoration; the route returns a noindex 404 and is excluded from visitor-facing navigation, the gallery, and the sitemap. |
+| Commercial Woodwork | `/commercial` | Commercial cabinetry, casework, doors, specialty runs, and architectural woodwork through CKC Woodworks. |
 | About | `/about` | Local ownership and company values page for Moulding Saint Louis. |
 | Gallery | `/gallery` | Rebuilt visual portfolio organized by uploaded photo filename categories. |
 | Contact | `/contact` | Dedicated consultation request page. |
 | SEO Dashboard | `/seo-dashboard` | Internal noindex dashboard based on the SEO implementation report for tracking SEO foundations and next actions. |
 
 The gallery page has been rebuilt as a curated, image-forward portfolio organized from uploaded photo filename categories. Active gallery images are committed under `/public/images/gallery/`, with source-to-site mapping documented in `docs/gallery-image-asset-mapping.md`.
+
+The Commercial Woodwork page uses user-supplied CKC Woodworks shop photography committed under `/public/images/ckc-woodworks/`. It introduces CKC as Moulding Saint Louis's commercial woodwork capability and links to the official CKC Woodworks website.
 
 ## Business Positioning
 
