@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-03 — CKC copy refinements
+
+- Replace direct ownership wording throughout the homepage, About, and Commercial pages with Moulding Saint Louis’s role as the residential arm of CKC Woodworks, including About search/social descriptions.
+- Describe the full commercial architectural millwork shop’s equipment, craftspeople, and production capacity in warmer residential language.
+- Expand all public client references to Chanel, Clayco, McCarthy, MICDS, Alberici, Energizer, Kendra Scott, BJC, SSM, and more.
+
 ## 2026-10-03
 
 - Clarify that CKC Woodworks owns Moulding Saint Louis, with commercial and residential brands sharing one company and a full commercial woodshop.

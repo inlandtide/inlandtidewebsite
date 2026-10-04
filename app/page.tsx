@@ -52,7 +52,7 @@ const customCapabilities = [
     href: "/commercial",
     eyebrow: "Commercial Manufacturing",
     title: "Our commercial woodshop at work.",
-    body: "CKC Woodworks owns Moulding Saint Louis, bringing the same full commercial woodshop and skilled craftspeople to residential and commercial projects.",
+    body: "As the residential arm of CKC Woodworks, Moulding Saint Louis brings the precision and manufacturing capabilities of our commercial architectural millwork shop to your home.",
   },
 ];
 
@@ -364,10 +364,10 @@ export default function Home() {
                   More of your home can be made for you.
                 </h2>
                 <p className="mt-7 max-w-2xl text-lg leading-8 text-[#2E404E]">
-                  CKC Woodworks owns Moulding Saint Louis. As the residential brand of the same company, we bring the equipment, skilled craftspeople, and production capacity of a full commercial woodshop to your home.
+                  As the residential arm of CKC Woodworks, Moulding Saint Louis brings the equipment, skilled craftspeople, and production capacity of a full commercial architectural millwork shop directly to your home.
                 </p>
                 <p className="mt-5 max-w-2xl text-lg leading-8 text-[#2E404E]">
-                  CKC has been trusted with projects for MICDS and Chanel boutiques nationwide. Through Moulding Saint Louis, we bring those ultra-luxury capabilities to the residential market—creating custom cabinetry, built-ins, shelving, doors, casing, and specialty wood details with the same care for proportion and finish.
+                  CKC Woodworks has been trusted with projects for Chanel, Clayco, McCarthy, MICDS, Alberici, Energizer, Kendra Scott, BJC, SSM, and more. Through Moulding Saint Louis, we bring those ultra-luxury capabilities to the residential market—creating custom cabinetry, built-ins, shelving, doors, casing, and specialty wood details with the same care for proportion and finish.
                 </p>
               </div>
               <div className="relative aspect-[4/3] overflow-hidden border border-[#B4904E]/45 bg-[#081828] shadow-2xl">
