@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-03
+
+- Clarify that CKC Woodworks owns Moulding Saint Louis, with commercial and residential brands sharing one company and a full commercial woodshop.
+- Rewrite the homepage Custom Capability section and About/Commercial copy to explain the shared equipment, craftspeople, and production capacity.
+- Add CKC’s work for MICDS and Chanel boutiques nationwide as examples of experience brought to residential projects.
+- Move Custom Cabinetry & Casework to fourth and Custom Built-ins & Shelving to fifth among service choices in both desktop and mobile navigation.
+
+
 ## [2026-10-02]
 
 ### Added

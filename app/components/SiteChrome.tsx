@@ -4,6 +4,13 @@ import { businessAddressLabel, businessAddressMapUrl } from "../data/business";
 import { publicServices } from "../data/services";
 import { MobileNavigation } from "./MobileNavigation";
 
+const priorityServiceSlugs = ["custom-cabinetry-casework", "custom-built-ins-shelving"];
+const navigationServices = [
+  ...publicServices.slice(0, 3),
+  ...priorityServiceSlugs.flatMap((slug) => publicServices.filter((service) => service.slug === slug)),
+  ...publicServices.slice(3).filter((service) => !priorityServiceSlugs.includes(service.slug)),
+];
+
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-[#B4904E]/25 bg-[#081828]/95 text-[#FEFAF1] backdrop-blur">
@@ -30,7 +37,7 @@ export function SiteHeader() {
                 Services Overview
               </Link>
               <div className="grid gap-1 py-2">
-                {publicServices.map((service) => (
+                {navigationServices.map((service) => (
                   <Link
                     key={service.slug}
                     href={`/services/${service.slug}`}
@@ -67,7 +74,7 @@ export function SiteHeader() {
             <span className="sm:hidden">Contact</span>
             <span className="hidden sm:inline">Request a Consultation</span>
           </Link>
-          <MobileNavigation services={publicServices.map(({ slug, title }) => ({ slug, title }))} />
+          <MobileNavigation services={navigationServices.map(({ slug, title }) => ({ slug, title }))} />
         </div>
       </div>
     </header>

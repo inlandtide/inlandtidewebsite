@@ -9,12 +9,12 @@ import { breadcrumbSchema, siteUrl } from "../data/seo";
 export const metadata: Metadata = {
   title: { absolute: "About Moulding Saint Louis" },
   description:
-    "Moulding Saint Louis is independently owned and operated in St. Louis, pairing refined finish carpentry with CKC Woodworks manufacturing capability for custom cabinetry, casework, built-ins, and architectural woodwork.",
+    "Moulding Saint Louis is the residential brand owned by CKC Woodworks, bringing a full commercial woodshop to custom cabinetry, built-ins, and finish carpentry in St. Louis.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About Moulding Saint Louis",
     description:
-      "Locally owned finish carpentry, custom cabinetry, and architectural woodwork for St. Louis homes—backed by CKC Woodworks manufacturing capability.",
+      "The residential brand of CKC Woodworks, bringing full commercial woodshop capability to finish carpentry, custom cabinetry, and architectural woodwork for St. Louis homes.",
     url: `${siteUrl}/about`,
   },
 };
@@ -30,7 +30,7 @@ const values = [
   },
   {
     title: "A deeper manufacturing bench",
-    body: "CKC Woodworks brings union-shop capability and more than 40 years of commercial woodworking experience behind the work.",
+    body: "Our CKC Woodworks commercial woodshop brings skilled craftspeople, dedicated equipment, and more than 40 years of woodworking experience to every project.",
   },
   {
     title: "Clear care from start to finish",
@@ -66,10 +66,10 @@ export default function AboutPage() {
               </h1>
               <div className="mt-8 max-w-2xl space-y-5 text-lg leading-8 text-[#FEFAF1]/78">
                 <p>
-                  Moulding Saint Louis is independently owned and operated in St. Louis. We bring thoughtful finish carpentry, custom wood details, and a customer experience built around care to the places people call home.
+                  Moulding Saint Louis is owned by CKC Woodworks and is its residential brand in St. Louis. We bring thoughtful finish carpentry, custom wood details, and a customer experience built around care to the places people call home.
                 </p>
                 <p>
-                  Our connection to CKC Woodworks expands that promise with a deeper manufacturing bench for custom cabinetry, casework, built-ins, doors, casing, and specialty woodwork—so more of a home can be planned as one complete story.
+                  Our shared ownership of CKC Woodworks means the full capabilities of our commercial woodshop are part of what we bring to your home. Custom cabinetry, casework, built-ins, doors, casing, and specialty woodwork can be planned and crafted together as one complete story.
                 </p>
               </div>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -94,7 +94,7 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,24,40,0.04),rgba(8,24,40,0.7))]" />
               <div className="absolute bottom-0 left-0 right-0 p-7 sm:p-9">
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#B4904E]">CKC Woodworks</p>
-                <p className="mt-2 font-heading text-3xl font-semibold leading-tight sm:text-4xl">A deeper bench of custom capability.</p>
+                <p className="mt-2 font-heading text-3xl font-semibold leading-tight sm:text-4xl">A full commercial woodshop. A world of possibilities.</p>
               </div>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function AboutPage() {
                   That point of view shapes everything from luxury moulding and fireplace surrounds to custom cabinetry, casework, shelving, and specialty wood details. We listen first, then help clarify the right balance of proportion, materials, function, and finish.
                 </p>
                 <p>
-                  With CKC Woodworks behind the work, more involved residential projects can benefit from union-shop manufacturing capability, commercial-grade precision, and decades of experience in custom woodwork—while still receiving the personal attention of a locally owned St. Louis team.
+                  CKC Woodworks has been trusted with projects for MICDS and Chanel boutiques nationwide. Through Moulding Saint Louis, we bring those ultra-luxury capabilities to the residential market—with the equipment, production capacity, and experienced craftspeople of our own commercial woodshop, and the personal attention of a locally owned St. Louis team.
                 </p>
               </div>
               <div className="mt-9 border-l-4 border-[#B4904E] bg-[#D6D2C6]/35 p-6">

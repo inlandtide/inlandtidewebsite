@@ -51,8 +51,8 @@ const customCapabilities = [
   {
     href: "/commercial",
     eyebrow: "Commercial Manufacturing",
-    title: "CKC capability behind the craft.",
-    body: "The manufacturing experience of CKC Woodworks expands what Moulding Saint Louis can bring to both residential and commercial work.",
+    title: "Our commercial woodshop at work.",
+    body: "CKC Woodworks owns Moulding Saint Louis, bringing the same full commercial woodshop and skilled craftspeople to residential and commercial projects.",
   },
 ];
 
@@ -364,10 +364,10 @@ export default function Home() {
                   More of your home can be made for you.
                 </h2>
                 <p className="mt-7 max-w-2xl text-lg leading-8 text-[#2E404E]">
-                  The experience behind CKC Woodworks gives Moulding Saint Louis a deeper level of custom manufacturing capability for residential cabinetry, built-ins, shelving, doors, casing, and specialty wood details.
+                  CKC Woodworks owns Moulding Saint Louis. As the residential brand of the same company, we bring the equipment, skilled craftspeople, and production capacity of a full commercial woodshop to your home.
                 </p>
                 <p className="mt-5 max-w-2xl text-lg leading-8 text-[#2E404E]">
-                  It is the same commitment to proportion, finish, and thoughtful planning—now applied to the parts of a home that need to work as beautifully as they look.
+                  CKC has been trusted with projects for MICDS and Chanel boutiques nationwide. Through Moulding Saint Louis, we bring those ultra-luxury capabilities to the residential market—creating custom cabinetry, built-ins, shelving, doors, casing, and specialty wood details with the same care for proportion and finish.
                 </p>
               </div>
               <div className="relative aspect-[4/3] overflow-hidden border border-[#B4904E]/45 bg-[#081828] shadow-2xl">
@@ -381,7 +381,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,24,40,0.05),rgba(8,24,40,0.65))]" />
                 <div className="absolute bottom-0 left-0 right-0 p-7 text-[#FEFAF1]">
                   <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#B4904E]">CKC Woodworks</p>
-                  <p className="mt-2 font-heading text-3xl font-semibold leading-tight">A deeper bench of custom capability.</p>
+                  <p className="mt-2 font-heading text-3xl font-semibold leading-tight">Our full commercial woodshop. Your custom possibilities.</p>
                 </div>
               </div>
             </div>

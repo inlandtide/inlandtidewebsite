@@ -105,7 +105,7 @@ export default function CommercialPage() {
                 CKC Woodworks
               </h1>
               <p className="mt-7 max-w-2xl text-xl leading-9 text-[#FEFAF1]/78">
-                Moulding Saint Louis now brings the commercial capability of CKC Woodworks to St. Louis projects that demand custom cabinetry, casework, doors, specialty runs, and architectural woodwork done right.
+                CKC Woodworks owns Moulding Saint Louis. We are one company serving commercial projects through CKC Woodworks and residential homes through Moulding Saint Louis—with the same full commercial woodshop, experienced craftspeople, and commitment to exceptional work.
               </p>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <a
@@ -153,7 +153,7 @@ export default function CommercialPage() {
                 </h2>
               </div>
               <p className="max-w-3xl text-lg leading-8 text-[#2E404E]">
-                CKC Woodworks adds established commercial shop capacity to the Moulding Saint Louis family. From a one-of-a-kind built-in to demanding casework, doors, and specialty production, the work is backed by decades of commercial woodworking experience and a union team ready for the details that matter.
+                CKC Woodworks has been trusted with projects for MICDS and Chanel boutiques nationwide. Our full commercial woodshop brings the equipment, production capacity, and skilled union team needed for custom cabinetry, casework, doors, and specialty production—from a one-of-a-kind piece to substantial commercial work.
               </p>
             </div>
 
@@ -186,10 +186,10 @@ export default function CommercialPage() {
                 Commercial roots. The same craftsmanship at home.
               </h2>
               <p className="mt-7 text-lg leading-8 text-[#2E404E]">
-                CKC Woodworks is a St. Louis commercial woodshop with a long history of bringing custom builds from plans to production. Now part of Moulding Saint Louis, CKC remains dedicated to the commercial work that calls for scale, precision, coordination, and craft.
+                CKC Woodworks is a St. Louis commercial woodshop with a long history of bringing custom builds from plans to production. CKC owns Moulding Saint Louis; the two names represent the commercial and residential sides of the same company. CKC continues to serve projects that call for scale, precision, coordination, and craft.
               </p>
               <p className="mt-5 text-lg leading-8 text-[#2E404E]">
-                That capability also means Moulding Saint Louis can now bring the same level of craftsmanship to residential homes: custom casing, cabinetry, doors, built-ins, specialty trim, and other wood details made to fit the home and the way it is lived in.
+                Through Moulding Saint Louis, we bring CKC’s ultra-luxury capabilities to the residential market. The same woodshop that serves demanding commercial projects can craft custom casing, cabinetry, doors, built-ins, specialty trim, and other details made to fit your home and the way you live.
               </p>
               <a
                 href="https://ckcwoodworks.com/"
