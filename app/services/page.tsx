@@ -3,21 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 import JsonLd from "../components/JsonLd";
 import { PageShell } from "../components/SiteChrome";
-import { breadcrumbSchema, siteUrl } from "../data/seo";
+import { breadcrumbSchema, pageMetadata, siteUrl } from "../data/seo";
 import { publicServices } from "../data/services";
 
-export const metadata: Metadata = {
-  title: "Finish Carpentry Services in St. Louis",
-  description:
-    "Explore luxury moulding, custom cabinetry, built-ins, shelving, casing, mantels, commercial manufacturing, and finish carpentry services in St. Louis.",
-  alternates: { canonical: "/services" },
-  openGraph: {
-    title: "Finish Carpentry Services in St. Louis",
-    description:
-      "Service pages for luxury moulding, wainscoting, casing, mantels, archways, and custom architectural wood finishes.",
-    url: `${siteUrl}/services`,
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Custom Cabinetry, Moulding & Finish Carpentry in St. Louis",
+  description: "Explore St. Louis moulding, wainscoting, custom cabinetry, built-ins, mantels and interior trim services. Plan your project with a free consultation.",
+  path: "/services",
+  absoluteTitle: true,
+  image: `${siteUrl}/images/placeholders/wainscoting-beadboard.jpg`,
+  imageAlt: "Wainscoting and interior wall trim inspiration",
+});
 
 const serviceCards = [
   ...publicServices.map((service) => ({
@@ -43,9 +39,10 @@ export default function ServicesPage() {
         <section className="relative flex min-h-[620px] items-center overflow-hidden bg-[#081828] text-[#FEFAF1]">
           <Image
             src="/images/placeholders/wainscoting-beadboard.jpg"
-            alt="Wainscoting placeholder"
+            alt="Wainscoting and decorative wall trim inspiration"
             fill
             priority
+            sizes="100vw"
             className="object-cover opacity-45"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,24,40,0.45),rgba(8,24,40,0.92))]" />
@@ -74,6 +71,7 @@ export default function ServicesPage() {
                       src={service.image}
                       alt={`${service.title} by Moulding Saint Louis`}
                       fill
+                      sizes="(min-width: 1280px) 560px, (min-width: 1024px) 44vw, 100vw"
                       className="object-cover transition duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-[#081828]/10" />

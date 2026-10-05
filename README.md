@@ -94,16 +94,17 @@ The site includes foundational SEO support for local search visibility in St. Lo
 | SEO Area | File or Location | Purpose |
 | :--- | :--- | :--- |
 | Sitewide metadata | `app/layout.tsx` | Defines default titles, descriptions, Open Graph, Twitter cards, robots directives, and canonical metadata. |
-| Page metadata | Individual `page.tsx` files | Defines page-specific titles, descriptions, canonical URLs, and social metadata. |
+| Page metadata | Individual `page.tsx` files and `pageMetadata()` in `app/data/seo.ts` | Defines page-specific titles, descriptions, canonical URLs, and matching social cards, including site identity and images. |
 | Structured data helpers | `app/data/seo.ts` and `app/components/JsonLd.tsx` | Provides JSON-LD for local business, website, services, and breadcrumbs. |
 | Sitemap | `app/sitemap.ts` | Generates `https://mouldingstl.com/sitemap.xml` for the homepage, service pages, and supporting pages. |
 | Robots | `app/robots.ts` | Allows crawler access and points search engines to the sitemap. |
-| Service planning content | `app/data/service-guidance.ts` | Supplies installation-focused metadata, introductions, and visible FAQs for picture frame moulding, crown moulding, and wainscoting. |
+| Service planning content | `app/data/service-guidance.ts` | Supplies unique search metadata, introductions, and visible planning questions for all ten active residential services. FAQs explain scope and estimate factors without invented prices or promises. |
+| Page edit dates | `app/data/page-updates.ts` | Maintains actual significant page-edit dates for sitemap `lastmod`. Update affected routes when content, metadata, links or structured data changes; never advance dates just because a build runs. |
 | SEO Dashboard | `app/seo-dashboard/page.tsx` | Presents a manual SEO checklist, keyword targets, and links to Search Console and Analytics. It has no live data connection and remains noindex. |
 
 Google Search Console access to the `mouldingstl.com` domain property was verified on September 7, 2026, and the existing sitemap was submitted and processed successfully with 13 discovered pages. Performance data is available in Search Console. The website dashboard does not fetch that data: its keyword list is a set of targets, not measured rankings. Historical SimilarWeb estimates were unavailable, which does not imply zero visitors.
 
-The sitemap excludes the dashboard and archived service. It omits `lastModified` until accurate page-edit dates are maintained; rebuilding the website should not mark every page as substantively updated. Service pages include visible breadcrumbs and links to related services and matching gallery sections.
+The sitemap excludes the dashboard and archived service. Its `lastModified` values use manually maintained page-edit dates, not build timestamps. Service pages include visible breadcrumbs, context-specific related services, and matching gallery links. Cabinetry and built-ins link to the CKC shop photos and About page; the shop gallery links back to those residential services. LocalBusiness structured data includes the confirmed Monday–Friday 8am–5pm contact hours and CKC parent organization. The commercial Service identifies CKC Woodworks as its provider.
 
 ## Integrations & Data Flow
 

@@ -4,20 +4,16 @@ import Link from "next/link";
 import JsonLd from "../components/JsonLd";
 import { PageShell } from "../components/SiteChrome";
 import { businessAddressLabel, businessAddressMapUrl } from "../data/business";
-import { breadcrumbSchema, siteUrl } from "../data/seo";
+import { breadcrumbSchema, pageMetadata, siteUrl } from "../data/seo";
 
-export const metadata: Metadata = {
-  title: { absolute: "About Moulding Saint Louis" },
-  description:
-    "As the residential arm of CKC Woodworks, Moulding Saint Louis brings commercial architectural millwork capabilities to custom cabinetry, built-ins, and finish carpentry in St. Louis.",
-  alternates: { canonical: "/about" },
-  openGraph: {
-    title: "About Moulding Saint Louis",
-    description:
-      "The residential arm of CKC Woodworks, bringing full commercial architectural millwork shop capability to finish carpentry, custom cabinetry, and architectural woodwork for St. Louis homes.",
-    url: `${siteUrl}/about`,
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: "About Moulding Saint Louis",
+  description: "The residential arm of CKC Woodworks, bringing a full architectural millwork shop to custom cabinetry, built-ins and finish carpentry for St. Louis homes.",
+  path: "/about",
+  absoluteTitle: true,
+  image: `${siteUrl}/images/ckc-woodworks/ckc-woodworks-shop-overview.jpg`,
+  imageAlt: "CKC Woodworks architectural millwork shop in St. Louis",
+});
 
 const values = [
   {

@@ -4,20 +4,16 @@ import ContactForm from "../components/ContactForm";
 import JsonLd from "../components/JsonLd";
 import { PageShell } from "../components/SiteChrome";
 import { businessAddressLabel, businessAddressMapUrl } from "../data/business";
-import { breadcrumbSchema, siteUrl } from "../data/seo";
+import { breadcrumbSchema, pageMetadata, siteUrl } from "../data/seo";
 
-export const metadata: Metadata = {
-  title: "Request a Finish Carpentry Consultation",
-  description:
-    "Contact Moulding Saint Louis at (314) 818-0815 to discuss luxury moulding, wainscoting, casing, mantels, archways, and custom finish carpentry in St. Louis.",
-  alternates: { canonical: "/contact" },
-  openGraph: {
-    title: "Request a Finish Carpentry Consultation",
-    description:
-      "Start a conversation about custom moulding, wainscoting, trim, mantels, archways, and architectural wood finishes for your St. Louis home.",
-    url: `${siteUrl}/contact`,
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Free St. Louis Moulding & Cabinetry Consultation",
+  description: "Request a free consultation for moulding, wainscoting, custom cabinetry, built-ins or finish carpentry in St. Louis. Call or text (314) 818-0815.",
+  path: "/contact",
+  absoluteTitle: true,
+  image: `${siteUrl}/images/placeholders/contact-fireplace-surround.jpg`,
+  imageAlt: "Fireplace mantel and surround inspiration",
+});
 
 export default function ContactPage() {
   return (
@@ -28,9 +24,10 @@ export default function ContactPage() {
           <div className="relative hidden overflow-hidden lg:block">
             <Image
               src="/images/placeholders/contact-fireplace-surround.jpg"
-              alt="Fireplace mantel inspiration placeholder"
+              alt="Fireplace mantel and wood surround inspiration"
               fill
               priority
+              sizes="(min-width: 1024px) 46vw, 100vw"
               className="object-cover opacity-82"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#081828]/35" />
@@ -43,8 +40,9 @@ export default function ContactPage() {
                 Tell us about the details you want to add to your home.
               </h1>
               <p className="mt-7 max-w-3xl text-xl leading-9 text-[#FEFAF1]/76">
-                Share the rooms, project type, and inspiration you have in mind. We will review your inquiry and help determine the best next step. You can also call (314) 818-0815.
+                Share the rooms, project type, and inspiration you have in mind for a free consultation. We will review your inquiry and help determine the best next step. You can also <a href="tel:3148180815" className="underline underline-offset-4">call</a> or <a href="sms:+13148180815" className="underline underline-offset-4">text (314) 818-0815</a>.
               </p>
+              <p className="mt-4 text-base text-[#FEFAF1]/76">Contact hours: Monday–Friday, 8am–5pm.</p>
               <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#B4904E]">
                 Woodshop location: {" "}
                 <a href={businessAddressMapUrl} target="_blank" rel="noreferrer" className="text-[#FEFAF1] underline underline-offset-4 transition hover:text-[#B4904E]">

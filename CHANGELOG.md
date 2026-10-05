@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-04 — Local SEO and service content
+
+- Add unique installation/design introductions, search descriptions and visible planning questions to the seven remaining active service pages, including Custom Cabinetry & Casework and Custom Built-ins & Shelving. Preserve existing picture frame moulding, crown and wainscoting guidance.
+- Improve page-specific titles and descriptions across the homepage, Services, About, Gallery and Contact. Use a shared metadata helper so canonical URLs, Open Graph site identity/images and Twitter cards agree with each page.
+- Add service-specific related links and connect cabinetry/built-ins to CKC shop photos and About; link the shop gallery back to residential custom services.
+- Link the existing Privacy Policy from the sitewide footer so visitors and crawlers can reach it, and include cabinetry/built-ins in the footer's service description.
+- Align service copy and LocalBusiness structured data with Moulding Saint Louis's role as CKC Woodworks' residential arm. Add confirmed contact hours and identify CKC as the commercial service provider, replacing the inaccurate Service `sameAs` relationship.
+- Add accurate image descriptions and responsive image sizes on Services, Gallery and Contact. Mention free consultations and confirmed contact hours visibly on Contact, with call/text links.
+- Maintain explicit significant page-edit dates for sitemap `lastmod`; do not change dates on every build. Keep the internal dashboard noindex and the archived gazebo/pergola service excluded.
+
 ## 2026-10-03 — CKC copy refinements
 
 - Replace direct ownership wording throughout the homepage, About, and Commercial pages with Moulding Saint Louis’s role as the residential arm of CKC Woodworks, including About search/social descriptions.

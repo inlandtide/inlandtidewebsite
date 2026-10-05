@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import JsonLd from "../../components/JsonLd";
 import { PageShell } from "../../components/SiteChrome";
-import { breadcrumbSchema, serviceSchema, siteUrl } from "../../data/seo";
+import { breadcrumbSchema, pageMetadata, serviceSchema, siteUrl } from "../../data/seo";
 import { getService, publicServices, type Service } from "../../data/services";
 import { serviceGuidance } from "../../data/service-guidance";
 import { publicGalleryCategories } from "../../data/gallery";
@@ -297,30 +297,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const title = guidance?.title ?? `${service.title} in St. Louis`;
   const description = guidance?.description ?? `${service.title} by Moulding Saint Louis. ${service.summary}`;
 
-  return {
-    title: guidance ? { absolute: title } : title,
+  return pageMetadata({
+    title,
     description,
-    alternates: { canonical: `/services/${service.slug}` },
-    openGraph: {
-      title,
-      description,
-      url: `${siteUrl}/services/${service.slug}`,
-      images: [
-        {
-          url: `${siteUrl}/images/placeholders/${service.slug}.jpg`,
-          width: 1800,
-          height: 1200,
-          alt: `${service.title} by Moulding Saint Louis`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [`${siteUrl}/images/placeholders/${service.slug}.jpg`],
-    },
-  };
+    path: `/services/${service.slug}`,
+    absoluteTitle: Boolean(guidance),
+    image: `${siteUrl}/images/placeholders/${service.slug}.jpg`,
+    imageAlt: `${service.title} by Moulding Saint Louis`,
+  });
 }
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -333,15 +317,26 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
   const guidance = serviceGuidance[service.slug];
   const galleryCategory = publicGalleryCategories.find((category) => category.slug === service.slug);
-  const relatedServiceSlugs = ["custom-cabinetry-casework", "custom-built-ins-shelving"].includes(service.slug)
-    ? ["custom-cabinetry-casework", "custom-built-ins-shelving", "window-door-casing"]
-    : ["picture-frame-moulding", "crown-moulding", "wainscoting-beadboard", "chair-rail-picture-rail"];
-  const relatedServices = publicServices.filter((item) => item.slug !== service.slug && relatedServiceSlugs.includes(item.slug)).slice(0, 3);
+  const relatedServicesBySlug: Record<string, string[]> = {
+    "luxury-decorative-moulding": ["picture-frame-moulding", "crown-moulding", "window-door-casing"],
+    "picture-frame-moulding": ["wainscoting-beadboard", "chair-rail-picture-rail", "crown-moulding"],
+    "crown-moulding": ["window-door-casing", "luxury-decorative-moulding", "custom-built-ins-shelving"],
+    "wainscoting-beadboard": ["picture-frame-moulding", "chair-rail-picture-rail", "window-door-casing"],
+    "chair-rail-picture-rail": ["wainscoting-beadboard", "picture-frame-moulding", "crown-moulding"],
+    "fireplace-mantels-surrounds": ["custom-built-ins-shelving", "custom-cabinetry-casework", "luxury-decorative-moulding"],
+    "window-door-casing": ["archways-entryways", "crown-moulding", "custom-cabinetry-casework"],
+    "archways-entryways": ["window-door-casing", "luxury-decorative-moulding", "custom-built-ins-shelving"],
+    "custom-cabinetry-casework": ["custom-built-ins-shelving", "window-door-casing", "fireplace-mantels-surrounds"],
+    "custom-built-ins-shelving": ["custom-cabinetry-casework", "fireplace-mantels-surrounds", "crown-moulding"],
+  };
+  const relatedServices = (relatedServicesBySlug[service.slug] ?? [])
+    .map((relatedSlug) => publicServices.find((item) => item.slug === relatedSlug))
+    .filter((item): item is Service => Boolean(item));
 
   return (
     <PageShell>
       <main className="bg-[#FEFAF1]">
-        <JsonLd data={serviceSchema(service)} />
+        <JsonLd data={serviceSchema(service, guidance?.introduction)} />
         <JsonLd data={breadcrumbSchema([
           { name: "Home", url: siteUrl },
           { name: "Services", url: `${siteUrl}/services` },
@@ -411,7 +406,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                     A better project begins with a clear conversation.
                   </h2>
                   <p className="mt-5 leading-8 text-[#FEFAF1]/76">
-                    Tell us about the rooms involved, the look you want, and any inspiration you already have. We will help clarify the right approach, materials, and next steps.
+                    Tell us about the rooms involved, the look you want, and any inspiration you already have. Your consultation is free. We will help clarify the right approach, materials, and next steps.
                   </p>
                 </div>
               </div>
@@ -447,6 +442,9 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               ))}
             </div>
             {galleryCategory && <Link href={`/gallery#${galleryCategory.slug}`} className="mt-8 inline-block text-[#FEFAF1] underline underline-offset-4">View {service.title.toLowerCase()} photos in the gallery</Link>}
+            {["custom-cabinetry-casework", "custom-built-ins-shelving"].includes(service.slug) && (
+              <p className="mt-8 leading-8 text-[#FEFAF1]/80">See the equipment and production space behind our custom work in the <Link href="/gallery#our-custom-woodshop" className="underline underline-offset-4">CKC Woodworks shop photo collection</Link>, or learn more about <Link href="/about" className="underline underline-offset-4">our St. Louis team and woodshop capabilities</Link>.</p>
+            )}
             <p className="mt-10 max-w-4xl leading-8 text-[#FEFAF1]/80">Serving St. Louis area homes, including Chesterfield, Clayton, Creve Coeur, Kirkwood, Ladue, Town and Country, Webster Groves and Wildwood. Share your project location when you <Link href="/contact" className="underline underline-offset-4">request a consultation</Link>.</p>
           </div>
         </section>

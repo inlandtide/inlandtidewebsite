@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { businessAddress } from "./business";
 import { publicServices } from "./services";
 
@@ -5,6 +6,46 @@ export const siteUrl = "https://mouldingstl.com";
 export const siteName = "Moulding Saint Louis";
 export const logoUrl = `${siteUrl}/moulding-stl-inverted-logo.png`;
 export const defaultOgImage = `${siteUrl}/images/placeholders/hero-workshop.jpg`;
+
+// Keep each page's search and sharing metadata in sync. Nested social metadata
+// replaces layout defaults in Next.js, so include the image and site details here.
+export function pageMetadata({ title, description, path, image = defaultOgImage, imageAlt = "Moulding Saint Louis architectural woodwork", absoluteTitle = false }: {
+  title: string;
+  description: string;
+  path: string;
+  image?: string;
+  imageAlt?: string;
+  absoluteTitle?: boolean;
+}): Metadata {
+  return {
+    title: absoluteTitle ? { absolute: title } : title,
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      siteName,
+      title,
+      description,
+      url: `${siteUrl}${path === "/" ? "" : path}`,
+      images: [{ url: image, alt: imageAlt }],
+    },
+    twitter: { card: "summary_large_image", title, description, images: [image] },
+  };
+}
+
+const ckcOrganization = {
+  "@type": "Organization",
+  "@id": "https://ckcwoodworks.com/#organization",
+  name: "CKC Woodworks",
+  url: "https://ckcwoodworks.com/",
+};
+
+const stLouisServiceArea = {
+  "@type": "City",
+  name: "St. Louis",
+  containedInPlace: { "@type": "State", name: "Missouri" },
+};
 
 export const localBusinessSchema = {
   "@context": "https://schema.org",
@@ -17,24 +58,25 @@ export const localBusinessSchema = {
   logo: logoUrl,
   image: [logoUrl, defaultOgImage],
   description:
-    "Moulding Saint Louis provides luxury moulding, wainscoting, casing, mantels, archways, and custom finish carpentry for St. Louis homes.",
+    "As the residential arm of CKC Woodworks, Moulding Saint Louis provides custom cabinetry, built-ins, moulding, wainscoting and finish carpentry for St. Louis homes.",
+  parentOrganization: ckcOrganization,
   address: {
     "@type": "PostalAddress",
     ...businessAddress,
   },
   areaServed: [
-    {
-      "@type": "City",
-      name: "St. Louis",
-      addressRegion: "MO",
-      addressCountry: "US",
-    },
+    stLouisServiceArea,
     {
       "@type": "AdministrativeArea",
       name: "Greater St. Louis",
-      addressCountry: "US",
     },
   ],
+  openingHoursSpecification: [{
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "08:00",
+    closes: "17:00",
+  }],
   priceRange: "$$$",
   knowsAbout: [
     "Finish carpentry",
@@ -88,31 +130,21 @@ export const commercialWoodworkSchema = {
   description:
     "Commercial cabinetry, casework, doors, specialty runs, and architectural woodwork in St. Louis through CKC Woodworks, a union shop with more than 40 years of experience.",
   url: `${siteUrl}/commercial`,
-  areaServed: {
-    "@type": "City",
-    name: "St. Louis",
-    addressRegion: "MO",
-    addressCountry: "US",
-  },
-  provider: { "@id": `${siteUrl}/#business` },
-  sameAs: ["https://ckcwoodworks.com/"],
+  areaServed: stLouisServiceArea,
+  provider: ckcOrganization,
 };
 
-export function serviceSchema(service: { title: string; slug: string; summary: string; hero: string }) {
+export function serviceSchema(service: { title: string; slug: string; summary: string; hero: string }, introduction?: string) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
     "@id": `${siteUrl}/services/${service.slug}#service`,
     name: `${service.title} in St. Louis`,
     serviceType: service.title,
-    description: service.hero || service.summary,
+    description: introduction ?? (service.hero || service.summary),
     url: `${siteUrl}/services/${service.slug}`,
-    areaServed: {
-      "@type": "City",
-      name: "St. Louis",
-      addressRegion: "MO",
-      addressCountry: "US",
-    },
+    areaServed: stLouisServiceArea,
+    image: `${siteUrl}/images/placeholders/${service.slug}.jpg`,
     provider: { "@id": `${siteUrl}/#business` },
   };
 }

@@ -140,7 +140,7 @@ export const services: Service[] = [
       "Custom cabinetry and casework bring order, function, and a more permanent architectural presence to the spaces that work hardest in your home.",
     details: [
       "The strongest cabinetry is designed around the room rather than forced into it. We help homeowners plan cabinets, casework, and specialty wood details that feel considered from proportion and storage to surrounding trim and finish.",
-      "Our connection to CKC Woodworks gives Moulding Saint Louis access to proven manufacturing capability for more involved custom work. That means residential cabinetry and casework can be approached with the same focus on precision, production quality, and carefully resolved details found in commercial woodwork.",
+      "As the residential arm of CKC Woodworks, Moulding Saint Louis brings the equipment, skilled craftspeople, and production capacity of a full commercial architectural millwork shop directly to your home. Residential cabinetry and casework benefit from that same focus on precision, production quality, and carefully resolved details.",
     ],
     idealFor: ["Libraries and studies", "Mudrooms", "Fireplace walls", "Dining rooms", "Specialty storage"],
     highlights: ["Room-specific cabinet planning", "Custom casework and architectural details", "CKC Woodworks manufacturing capability"],
@@ -155,7 +155,7 @@ export const services: Service[] = [
       "Custom built-ins and shelving can make a room work harder while giving it the quiet, permanent character of well-planned architecture.",
     details: [
       "Whether the goal is a library wall, a media room feature, a mudroom drop zone, or more useful storage in a living space, we plan built-ins around how the room is actually used. Every proportion, shelf layout, trim return, and finish should relate to the rest of the home.",
-      "With CKC Woodworks manufacturing capability behind the work, Moulding Saint Louis can take on residential built-ins and specialty shelving with a higher level of fabrication capacity. The result is custom work that feels integrated, substantial, and made for the space.",
+      "As the residential arm of CKC Woodworks, Moulding Saint Louis brings a full commercial architectural millwork shop to the planning and fabrication of residential built-ins and specialty shelving. Custom dimensions, coordinated components, and carefully fitted wood details help the finished work feel integrated and made for the space.",
     ],
     idealFor: ["Living rooms", "Home offices", "Libraries", "Media walls", "Mudrooms"],
     highlights: ["Tailored storage layouts", "Integrated trim and finish details", "Built with CKC Woodworks capability"],

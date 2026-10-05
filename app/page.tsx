@@ -4,7 +4,7 @@ import Link from "next/link";
 import ContactForm from "./components/ContactForm";
 import JsonLd from "./components/JsonLd";
 import { PageShell } from "./components/SiteChrome";
-import { breadcrumbSchema, defaultOgImage, siteName, siteUrl } from "./data/seo";
+import { breadcrumbSchema, pageMetadata, siteUrl } from "./data/seo";
 import { publicServices } from "./data/services";
 
 const promises = [
@@ -14,20 +14,12 @@ const promises = [
   "Exceptional Customer Care",
 ];
 
-export const metadata: Metadata = {
-  title: "Luxury Moulding, Wainscoting & Finish Carpentry in St. Louis",
-  description:
-    "Moulding Saint Louis creates high-end moulding, wainscoting, casing, mantels, archways, and custom finish carpentry for St. Louis homes.",
-  alternates: { canonical: "/" },
-  openGraph: {
-    title: "Luxury Moulding, Wainscoting & Finish Carpentry in St. Louis",
-    description:
-      "Custom wood details, architectural moulding, wainscoting, casing, mantels, and archways for St. Louis homes.",
-    url: siteUrl,
-    siteName,
-    images: [{ url: defaultOgImage, width: 1800, height: 1200, alt: "Moulding Saint Louis finish carpentry" }],
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: "St. Louis Moulding & Finish Carpentry | Moulding Saint Louis",
+  description: "Custom moulding, wainscoting, cabinetry, built-ins and finish carpentry for St. Louis homes. The residential arm of CKC Woodworks. Free consultations.",
+  path: "/",
+  absoluteTitle: true,
+});
 
 const experiencePoints = [
   "Thoughtful consultation before recommendations begin",

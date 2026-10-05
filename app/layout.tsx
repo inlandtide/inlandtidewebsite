@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | Moulding Saint Louis",
   },
   description:
-    "Luxury moulding, wainscoting, crown moulding, casing, mantels, archways, and architectural wood finishes for St. Louis homes.",
+    "Custom moulding, wainscoting, cabinetry, built-ins and finish carpentry for St. Louis homes, with the architectural millwork capabilities of CKC Woodworks.",
   applicationName: siteName,
   keywords: [
     "Moulding Saint Louis",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: "Moulding Saint Louis | Luxury Moulding & Finish Carpentry in St. Louis",
     description:
-      "Custom finish carpentry, moulding, wainscoting, casing, mantels, archways, and high-end architectural wood details for St. Louis homes.",
+      "Custom moulding, wainscoting, cabinetry, built-ins and finish carpentry for St. Louis homes, with the architectural millwork capabilities of CKC Woodworks.",
     siteName,
     images: [
       {
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Moulding Saint Louis | Luxury Moulding & Finish Carpentry",
     description:
-      "High-end moulding, wainscoting, casing, mantels, archways, and custom finish carpentry for St. Louis homes.",
+      "Custom moulding, wainscoting, cabinetry, built-ins and finish carpentry for St. Louis homes, with the architectural millwork capabilities of CKC Woodworks.",
     images: [defaultOgImage],
   },
   icons: {

@@ -96,7 +96,7 @@ export function SiteFooter() {
             />
           </Link>
           <p className="mt-6 max-w-sm leading-7 text-[#FEFAF1]/72">
-            Luxury moulding, finish carpentry, and architectural wood finishes for St. Louis homes.
+            Luxury moulding, custom cabinetry, built-ins, and finish carpentry for St. Louis homes.
           </p>
         </div>
 
@@ -117,6 +117,7 @@ export function SiteFooter() {
           <FooterLink href="/about">About</FooterLink>
           <FooterLink href="/gallery">Gallery</FooterLink>
           <FooterLink href="/contact">Contact</FooterLink>
+          <FooterLink href="/privacy-policy">Privacy Policy</FooterLink>
           <address className="not-italic">
             <a
               href={businessAddressMapUrl}

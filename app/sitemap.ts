@@ -1,10 +1,9 @@
 import type { MetadataRoute } from "next";
 import { siteUrl } from "./data/seo";
 import { publicServices } from "./data/services";
+import { pageLastModified } from "./data/page-updates";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Omit lastModified until dates reflect actual page edits, not build times.
-
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: siteUrl,
@@ -44,5 +43,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  return [...staticRoutes, ...serviceRoutes];
+  return [...staticRoutes, ...serviceRoutes].map((entry) => {
+    const lastModified = pageLastModified[new URL(entry.url).pathname];
+    return lastModified ? { ...entry, lastModified } : entry;
+  });
 }
