@@ -2,7 +2,7 @@
 // Update only the affected routes when publishing a meaningful page change;
 // never derive these values from the build date.
 export const pageLastModified: Record<string, string> = {
-  "/": "2026-10-04",
+  "/": "2026-10-06",
   "/services": "2026-10-04",
   "/commercial": "2026-10-04",
   "/about": "2026-10-04",
