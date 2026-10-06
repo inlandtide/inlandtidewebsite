@@ -330,7 +330,7 @@ export default function Home() {
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.4em] text-[#B4904E]">The Experience</p>
               <h2 className="mt-5 font-heading text-5xl font-semibold leading-[0.98] text-balance sm:text-7xl">
-                Premium finish carpentry should feel personal, organized, and cared for.
+                Premium finish carpentry should feel cared for.
               </h2>
               <p className="mt-7 text-lg leading-8 text-[#FEFAF1]/76">
                 Moulding Saint Louis is independently owned and operated in St. Louis. We focus on custom wood details and high-end finishes that make a home feel more intentional, substantial, and complete.

@@ -3,6 +3,7 @@
 ## 2026-10-06 — Homepage hero copy
 
 - Shorten the homepage hero statement to keep the high-end residential scope and CKC Woodworks connection while removing the longer manufacturing-capability and process language.
+- Shorten the homepage Experience heading to “Premium finish carpentry should feel cared for.”
 
 ## 2026-10-04 — Local SEO and service content
 
