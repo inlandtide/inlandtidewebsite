@@ -6,6 +6,7 @@
 - Reuse seven high-resolution repository-held Picture Frame Moulding projects with full compositions preserved. Make installation and painting explicit throughout the landing experience, add high-intent phone and consultation CTAs, and preselect Picture Frame Moulding in the shared lead form so successful submissions retain existing Meta and GA conversion tracking.
 - Update the landing page hero headline to “The finishing touch for your home.”
 - Replace the split hero with an image-first responsive hero that uses newly supplied Picture Frame Moulding photography in full composition: a dining-room view on desktop and hallway view on mobile. Add the remaining supplied stairway and painted-wall photos to the project gallery.
+- Rework the above-the-fold experience into an edge-to-edge photography treatment: make the header transparent over the image, use the painted gallery-wall photo on desktop, and reduce the copy to the service name, installed-and-painted promise, and one consultation CTA.
 
 ## 2026-10-06 — Homepage hero copy
 

@@ -93,10 +93,10 @@ export const metadata: Metadata = {
     siteName: "Moulding Saint Louis",
     images: [
       {
-        url: `${siteUrl}/images/landing/picture-frame-moulding/picture-frame-dining-room.webp`,
+        url: `${siteUrl}/images/landing/picture-frame-moulding/picture-frame-painted-gallery-wall.webp`,
         width: 2048,
         height: 1536,
-        alt: "Custom picture frame moulding in a finished St. Louis dining room",
+        alt: "Custom picture frame moulding on a deep green painted gallery wall in a St. Louis home",
       },
     ],
   },
@@ -105,33 +105,26 @@ export const metadata: Metadata = {
     title: "Picture Frame Moulding in St. Louis | Moulding Saint Louis",
     description:
       "Custom picture frame moulding, installed and painted for a finished architectural look in your St. Louis home.",
-    images: [`${siteUrl}/images/landing/picture-frame-moulding/picture-frame-dining-room.webp`],
+    images: [`${siteUrl}/images/landing/picture-frame-moulding/picture-frame-painted-gallery-wall.webp`],
   },
 };
 
 function HeroContent() {
   return (
-    <div className="absolute inset-0 z-10 flex items-end lg:items-center">
-      <div className="container-xl w-full pb-10 lg:pb-0">
-        <div className="max-w-xl lg:max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.34em] text-[#B4904E]">Picture Frame Moulding · St. Louis</p>
-          <h1 className="mt-5 font-heading text-6xl font-semibold leading-[0.92] text-balance sm:text-7xl lg:text-8xl">
-            The finishing touch for your home
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-8 text-[#FEFAF1]/88 sm:text-xl sm:leading-9">
-            Custom picture frame moulding, precisely installed and professionally painted for an architectural finish that belongs in your home.
-          </p>
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <a href="#request-consultation" className="border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#081828] hover:text-[#B4904E]">
-              Request a Consultation
-            </a>
-            <a href="tel:+13148180815" className="border border-[#FEFAF1]/55 bg-[#081828]/20 px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#FEFAF1] backdrop-blur-sm transition hover:border-[#B4904E] hover:text-[#B4904E]">
-              Call (314) 818-0815
-            </a>
+    <div className="absolute inset-x-0 bottom-0 z-10">
+      <div className="container-xl pb-28 sm:pb-9 lg:pb-12">
+        <div className="flex max-w-3xl flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h1 className="font-heading text-5xl font-semibold leading-[0.92] text-balance sm:text-6xl lg:text-7xl">
+              Picture Frame Moulding
+            </h1>
+            <p className="mt-3 hidden text-sm font-semibold uppercase tracking-[0.22em] text-[#FEFAF1]/90 sm:block">
+              Installed &amp; painted in St. Louis
+            </p>
           </div>
-          <p className="mt-6 text-sm leading-7 text-[#FEFAF1]/72">
-            Locally owned in St. Louis · Custom layout · Installation &amp; painting
-          </p>
+          <a href="#request-consultation" className="hidden shrink-0 border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#081828] hover:text-[#B4904E] sm:block">
+            Request a Consultation
+          </a>
         </div>
       </div>
     </div>
@@ -141,7 +134,7 @@ function HeroContent() {
 export default function PictureFrameMouldingLandingPage() {
   return (
     <main className="min-h-screen bg-[#FEFAF1] pb-20 text-[#2E404E] md:pb-0">
-      <header className="border-b border-[#B4904E]/30 bg-[#081828] text-[#FEFAF1]">
+      <header className="absolute inset-x-0 top-0 z-20 bg-[linear-gradient(180deg,rgba(8,24,40,0.82)_0%,rgba(8,24,40,0)_100%)] text-[#FEFAF1]">
         <div className="container-xl flex min-h-20 items-center justify-between gap-5 py-3">
           <Link href="/" aria-label="Visit the full Moulding Saint Louis website" className="shrink-0">
             <Image
@@ -165,7 +158,7 @@ export default function PictureFrameMouldingLandingPage() {
       </header>
 
       <section className="overflow-hidden bg-[#081828] text-[#FEFAF1]">
-        <div className="relative min-h-[680px] lg:hidden">
+        <div className="relative min-h-[100svh] lg:hidden">
           <Image
             src="/images/landing/picture-frame-moulding/picture-frame-hallway-gallery.webp"
             alt="Picture frame moulding lining a finished hallway with a curated art gallery"
@@ -174,20 +167,20 @@ export default function PictureFrameMouldingLandingPage() {
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,24,40,0.08)_0%,rgba(8,24,40,0.34)_38%,rgba(8,24,40,0.97)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(8,24,40,0.92)_0%,rgba(8,24,40,0.48)_25%,rgba(8,24,40,0.04)_62%,rgba(8,24,40,0.12)_100%)]" />
           <HeroContent />
         </div>
 
-        <div className="relative hidden h-[calc(100svh-6rem)] min-h-[640px] max-h-[760px] lg:block">
+        <div className="relative hidden h-[100svh] min-h-[680px] lg:block">
           <Image
-            src="/images/landing/picture-frame-moulding/picture-frame-dining-room.webp"
-            alt="Finished dining room featuring a deep green picture frame moulding wall, white built-ins, and layered trim detail"
+            src="/images/landing/picture-frame-moulding/picture-frame-painted-gallery-wall.webp"
+            alt="Deep green picture frame moulding gallery wall with framed art and white wainscoting"
             fill
             priority
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,24,40,1)_0%,rgba(8,24,40,0.96)_26%,rgba(8,24,40,0.67)_45%,rgba(8,24,40,0.15)_67%,rgba(8,24,40,0)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(8,24,40,0.92)_0%,rgba(8,24,40,0.45)_25%,rgba(8,24,40,0.02)_64%,rgba(8,24,40,0.13)_100%)]" />
           <HeroContent />
         </div>
       </section>
