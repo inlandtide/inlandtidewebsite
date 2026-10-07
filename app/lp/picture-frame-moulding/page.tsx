@@ -122,7 +122,7 @@ export default function PictureFrameMouldingLandingPage() {
           <div className="max-w-xl">
             <p className="text-sm font-semibold uppercase tracking-[0.38em] text-[#B4904E]">Picture Frame Moulding · St. Louis</p>
             <h1 className="mt-5 font-heading text-6xl font-semibold leading-[0.92] text-balance sm:text-7xl lg:text-8xl">
-              Make the walls feel finished.
+              The finishing touch for your home
             </h1>
             <p className="mt-7 text-xl leading-9 text-[#FEFAF1]/82">
               Custom picture frame moulding, precisely installed and professionally painted for an architectural finish that belongs in your home.
