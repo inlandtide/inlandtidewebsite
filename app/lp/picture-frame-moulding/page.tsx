@@ -6,6 +6,24 @@ import { siteUrl } from "../../data/seo";
 
 const galleryImages = [
   {
+    src: "/images/landing/picture-frame-moulding/picture-frame-hallway-gallery.webp",
+    alt: "Picture frame moulding lining a finished hallway with a curated art gallery",
+    width: 1536,
+    height: 2048,
+  },
+  {
+    src: "/images/landing/picture-frame-moulding/picture-frame-stairway.webp",
+    alt: "Stairway with white picture frame moulding, stained oak stair details, and framed art",
+    width: 1536,
+    height: 2048,
+  },
+  {
+    src: "/images/landing/picture-frame-moulding/picture-frame-painted-gallery-wall.webp",
+    alt: "Deep green painted picture frame moulding wall with framed artwork and white wainscoting",
+    width: 2048,
+    height: 1536,
+  },
+  {
     src: "/images/gallery/picture-frame-moulding-03.jpg",
     alt: "Deep blue hallway with detailed picture frame moulding and tailored wall rails",
     width: 2200,
@@ -75,10 +93,10 @@ export const metadata: Metadata = {
     siteName: "Moulding Saint Louis",
     images: [
       {
-        url: `${siteUrl}/images/gallery/picture-frame-moulding-01.jpg`,
-        width: 2200,
-        height: 1468,
-        alt: "Custom picture frame moulding in a refined St. Louis home",
+        url: `${siteUrl}/images/landing/picture-frame-moulding/picture-frame-dining-room.webp`,
+        width: 2048,
+        height: 1536,
+        alt: "Custom picture frame moulding in a finished St. Louis dining room",
       },
     ],
   },
@@ -87,9 +105,38 @@ export const metadata: Metadata = {
     title: "Picture Frame Moulding in St. Louis | Moulding Saint Louis",
     description:
       "Custom picture frame moulding, installed and painted for a finished architectural look in your St. Louis home.",
-    images: [`${siteUrl}/images/gallery/picture-frame-moulding-01.jpg`],
+    images: [`${siteUrl}/images/landing/picture-frame-moulding/picture-frame-dining-room.webp`],
   },
 };
+
+function HeroContent() {
+  return (
+    <div className="absolute inset-0 z-10 flex items-end lg:items-center">
+      <div className="container-xl w-full pb-10 lg:pb-0">
+        <div className="max-w-xl lg:max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.34em] text-[#B4904E]">Picture Frame Moulding · St. Louis</p>
+          <h1 className="mt-5 font-heading text-6xl font-semibold leading-[0.92] text-balance sm:text-7xl lg:text-8xl">
+            The finishing touch for your home
+          </h1>
+          <p className="mt-6 max-w-xl text-lg leading-8 text-[#FEFAF1]/88 sm:text-xl sm:leading-9">
+            Custom picture frame moulding, precisely installed and professionally painted for an architectural finish that belongs in your home.
+          </p>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <a href="#request-consultation" className="border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#081828] hover:text-[#B4904E]">
+              Request a Consultation
+            </a>
+            <a href="tel:+13148180815" className="border border-[#FEFAF1]/55 bg-[#081828]/20 px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#FEFAF1] backdrop-blur-sm transition hover:border-[#B4904E] hover:text-[#B4904E]">
+              Call (314) 818-0815
+            </a>
+          </div>
+          <p className="mt-6 text-sm leading-7 text-[#FEFAF1]/72">
+            Locally owned in St. Louis · Custom layout · Installation &amp; painting
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function PictureFrameMouldingLandingPage() {
   return (
@@ -118,39 +165,30 @@ export default function PictureFrameMouldingLandingPage() {
       </header>
 
       <section className="overflow-hidden bg-[#081828] text-[#FEFAF1]">
-        <div className="container-xl grid gap-10 py-12 sm:py-16 lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:py-20">
-          <div className="max-w-xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.38em] text-[#B4904E]">Picture Frame Moulding · St. Louis</p>
-            <h1 className="mt-5 font-heading text-6xl font-semibold leading-[0.92] text-balance sm:text-7xl lg:text-8xl">
-              The finishing touch for your home
-            </h1>
-            <p className="mt-7 text-xl leading-9 text-[#FEFAF1]/82">
-              Custom picture frame moulding, precisely installed and professionally painted for an architectural finish that belongs in your home.
-            </p>
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <a href="#request-consultation" className="border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-transparent hover:text-[#B4904E]">
-                Request a Consultation
-              </a>
-              <a href="tel:+13148180815" className="border border-[#FEFAF1]/50 px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#FEFAF1] transition hover:border-[#B4904E] hover:text-[#B4904E]">
-                Call (314) 818-0815
-              </a>
-            </div>
-            <p className="mt-7 text-sm leading-7 text-[#FEFAF1]/65">
-              Locally owned in St. Louis · Custom layout · Installation &amp; painting
-            </p>
-          </div>
+        <div className="relative min-h-[680px] lg:hidden">
+          <Image
+            src="/images/landing/picture-frame-moulding/picture-frame-hallway-gallery.webp"
+            alt="Picture frame moulding lining a finished hallway with a curated art gallery"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,24,40,0.08)_0%,rgba(8,24,40,0.34)_38%,rgba(8,24,40,0.97)_100%)]" />
+          <HeroContent />
+        </div>
 
-          <figure className="overflow-hidden border border-[#B4904E]/45 bg-[#081828] shadow-2xl">
-            <Image
-              src="/images/gallery/picture-frame-moulding-01.jpg"
-              alt="Refined hall with gray picture frame moulding panels, crown detail, and polished stone flooring"
-              width={2200}
-              height={1468}
-              priority
-              sizes="(min-width: 1024px) 58vw, 100vw"
-              className="h-auto w-full"
-            />
-          </figure>
+        <div className="relative hidden h-[calc(100svh-6rem)] min-h-[640px] max-h-[760px] lg:block">
+          <Image
+            src="/images/landing/picture-frame-moulding/picture-frame-dining-room.webp"
+            alt="Finished dining room featuring a deep green picture frame moulding wall, white built-ins, and layered trim detail"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,24,40,1)_0%,rgba(8,24,40,0.96)_26%,rgba(8,24,40,0.67)_45%,rgba(8,24,40,0.15)_67%,rgba(8,24,40,0)_100%)]" />
+          <HeroContent />
         </div>
       </section>
 
