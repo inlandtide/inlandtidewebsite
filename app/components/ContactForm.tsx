@@ -8,6 +8,8 @@ type FormState = "idle" | "submitting" | "success" | "error";
 type ContactFormProps = {
   variant?: "light" | "dark";
   compact?: boolean;
+  defaultProjectType?: string;
+  submitLabel?: string;
 };
 
 declare global {
@@ -29,7 +31,7 @@ function trackGALead() {
   }
 }
 
-export default function ContactForm({ variant = "light", compact = false }: ContactFormProps) {
+export default function ContactForm({ variant = "light", compact = false, defaultProjectType = "", submitLabel = "Request a Consultation" }: ContactFormProps) {
   const [formState, setFormState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const submitting = useRef(false);
@@ -131,7 +133,7 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
               <input type="tel" name="phone" maxLength={100} className={inputClass} placeholder="Your phone number" />
             </Field>
             <Field label="Project Type" labelClass={labelClass}>
-              <select name="projectType" className={inputClass} defaultValue="">
+              <select name="projectType" className={inputClass} defaultValue={defaultProjectType}>
                 <option value="" disabled>Choose a service</option>
                 <option>Luxury & Decorative Moulding</option>
                 <option>Picture Frame Moulding</option>
@@ -171,7 +173,7 @@ export default function ContactForm({ variant = "light", compact = false }: Cont
             disabled={formState === "submitting"}
             className="mt-2 border border-[#B4904E] bg-[#B4904E] px-8 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-[#081828] transition hover:bg-transparent hover:text-[#B4904E] disabled:cursor-not-allowed disabled:opacity-55"
           >
-            {formState === "submitting" ? "Sending…" : "Request a Consultation"}
+            {formState === "submitting" ? "Sending…" : submitLabel}
           </button>
         </form>
       )}

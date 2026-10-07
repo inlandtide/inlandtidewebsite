@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-07 — Picture Frame Moulding Facebook landing page
+
+- Add a photo-led Picture Frame Moulding landing page at `/lp/picture-frame-moulding` for Facebook ads. Keep it noindex/no-follow, outside the public navigation and sitemap, while retaining a discreet path to the full Moulding Saint Louis website.
+- Reuse seven high-resolution repository-held Picture Frame Moulding projects with full compositions preserved. Make installation and painting explicit throughout the landing experience, add high-intent phone and consultation CTAs, and preselect Picture Frame Moulding in the shared lead form so successful submissions retain existing Meta and GA conversion tracking.
+
 ## 2026-10-06 — Homepage hero copy
 
 - Shorten the homepage hero statement to keep the high-end residential scope and CKC Woodworks connection while removing the longer manufacturing-capability and process language.

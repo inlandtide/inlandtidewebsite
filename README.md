@@ -75,6 +75,7 @@ The website is structured as a conversion-focused, multi-page site for a luxury 
 | About | `/about` | Local ownership and company values page for Moulding Saint Louis. |
 | Gallery | `/gallery` | Rebuilt visual portfolio organized by uploaded photo filename categories. |
 | Contact | `/contact` | Dedicated consultation request page. |
+| Picture Frame Moulding Facebook Landing Page | `/lp/picture-frame-moulding` | Private, noindex/no-follow ad landing page. It is intentionally excluded from site navigation and the sitemap, provides an unobtrusive path back to the full site, and reuses repository-held Picture Frame Moulding project images. |
 | SEO Dashboard | `/seo-dashboard` | Internal noindex dashboard based on the SEO implementation report for tracking SEO foundations and next actions. |
 
 The gallery page has been rebuilt as a curated, image-forward portfolio organized from uploaded photo filename categories. Active project gallery images are committed under `/public/images/gallery/`, and the `Our Custom Woodshop` collection uses committed CKC shop photography under `/public/images/ckc-woodworks/`; source-to-site mapping is documented in `docs/drive-photo-asset-mapping.md`.

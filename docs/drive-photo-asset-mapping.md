@@ -44,6 +44,17 @@ The following user-supplied project photo was converted from WebP to a gallery-r
 |---|---|---:|
 | `IMG_5965_without_green_tape.webp` | `/public/images/gallery/picture-frame-moulding-12.jpg` | 2048×1536 |
 
+## Picture Frame Moulding Facebook Landing Page
+
+The private, noindex Picture Frame Moulding Facebook landing page at `/lp/picture-frame-moulding` reuses the following repository-held Picture Frame Moulding gallery assets. Each is served in its original aspect ratio with no crop.
+
+| Page Placement | Site Asset | Site Dimensions |
+|---|---|---:|
+| Hero | `/public/images/gallery/picture-frame-moulding-01.jpg` | 2200×1468 |
+| Installation & painting story | `/public/images/gallery/picture-frame-moulding-07.jpg` | 2200×1468 |
+| Project gallery | `/public/images/gallery/picture-frame-moulding-03.jpg`, `-05.jpg`, `-11.jpg`, `-12.jpg` | 2200×1468, 2200×1467, 2200×1467, 2048×1536 |
+| Consultation section | `/public/images/gallery/picture-frame-moulding-09.jpg` | 2200×1669 |
+
 ## Commercial Page — CKC Woodworks Shop Photography
 
 The following user-supplied CKC Woodworks photos were converted from WebP where needed and committed as full-composition, 4:3 JPEG assets for the Commercial Manufacturing page and the `Our Custom Woodshop` Gallery collection.
