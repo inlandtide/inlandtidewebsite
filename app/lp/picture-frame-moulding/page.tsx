@@ -117,10 +117,10 @@ function HeroContent() {
             </p>
           </div>
           <div className="hidden shrink-0 gap-3 sm:flex">
-            <a href="tel:+13148180815" className="border border-[#FEFAF1]/80 bg-[#081828]/70 px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.18em] text-[#FEFAF1] backdrop-blur-sm transition hover:border-[#B4904E] hover:bg-[#B4904E] hover:text-[#081828] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FEFAF1]">
+            <a href="tel:+13148180815" className="border border-[#FEFAF1]/80 bg-[#081828]/70 px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.18em] text-[#FEFAF1] backdrop-blur-sm transition hover:!border-[#B4904E] hover:!bg-[#B4904E] hover:!text-[#081828] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FEFAF1]">
               Call Now
             </a>
-            <a href="#request-consultation" className="border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:border-[#FEFAF1] hover:bg-[#081828] hover:text-[#FEFAF1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FEFAF1]">
+            <a href="#request-consultation" className="border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:!border-[#FEFAF1] hover:!bg-[#081828] hover:!text-[#FEFAF1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FEFAF1]">
               Request a Consultation
             </a>
           </div>
@@ -200,10 +200,10 @@ export default function PictureFrameMouldingLandingPage() {
           </div>
         </div>
         <div className="container-xl mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-          <a href="#request-consultation" className="border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#081828] hover:text-[#FEFAF1]">
+          <a href="#request-consultation" className="border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:!border-[#081828] hover:!bg-[#081828] hover:!text-[#FEFAF1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#081828]">
             Start Your Project
           </a>
-          <a href="tel:+13148180815" className="border border-[#081828] bg-[#FEFAF1] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#081828] hover:text-[#FEFAF1]">
+          <a href="tel:+13148180815" className="border border-[#081828] bg-[#FEFAF1] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:!border-[#081828] hover:!bg-[#081828] hover:!text-[#FEFAF1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#081828]">
             Call (314) 818-0815
           </a>
         </div>
@@ -234,7 +234,7 @@ export default function PictureFrameMouldingLandingPage() {
                 Moulding Saint Louis handles the detail from planning through final paint. That means a single team accountable for the proportion, installation, surface preparation, and finished look.
               </p>
             </div>
-            <a href="#request-consultation" className="mt-9 inline-flex border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#FEFAF1] hover:text-[#081828]">
+            <a href="#request-consultation" className="mt-9 inline-flex border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:!border-[#081828] hover:!bg-[#081828] hover:!text-[#FEFAF1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#081828]">
               Start My Project
             </a>
           </div>
@@ -280,10 +280,10 @@ export default function PictureFrameMouldingLandingPage() {
             ))}
           </div>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <a href="#request-consultation" className="inline-flex justify-center border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#081828] hover:text-[#FEFAF1]">
+            <a href="#request-consultation" className="inline-flex justify-center border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:!border-[#081828] hover:!bg-[#081828] hover:!text-[#FEFAF1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#081828]">
               Request a Consultation
             </a>
-            <a href="tel:+13148180815" className="inline-flex justify-center border border-[#081828] bg-white px-7 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#081828] hover:text-[#FEFAF1]">
+            <a href="tel:+13148180815" className="inline-flex justify-center border border-[#081828] bg-white px-7 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:!border-[#081828] hover:!bg-[#081828] hover:!text-[#FEFAF1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#081828]">
               Call (314) 818-0815
             </a>
           </div>
