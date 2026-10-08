@@ -18,12 +18,6 @@ const galleryImages = [
     height: 2048,
   },
   {
-    src: "/images/landing/picture-frame-moulding/picture-frame-painted-gallery-wall.webp",
-    alt: "Deep green painted picture frame moulding wall with framed artwork and white wainscoting",
-    width: 2048,
-    height: 1536,
-  },
-  {
     src: "/images/gallery/picture-frame-moulding-03.jpg",
     alt: "Deep blue hallway with detailed picture frame moulding and tailored wall rails",
     width: 2200,
@@ -93,10 +87,10 @@ export const metadata: Metadata = {
     siteName: "Moulding Saint Louis",
     images: [
       {
-        url: `${siteUrl}/images/landing/picture-frame-moulding/picture-frame-painted-gallery-wall.webp`,
+        url: `${siteUrl}/images/landing/picture-frame-moulding/picture-frame-dining-room.webp`,
         width: 2048,
         height: 1536,
-        alt: "Custom picture frame moulding on a deep green painted gallery wall in a St. Louis home",
+        alt: "Custom picture frame moulding in a finished St. Louis dining room",
       },
     ],
   },
@@ -105,7 +99,7 @@ export const metadata: Metadata = {
     title: "Picture Frame Moulding in St. Louis | Moulding Saint Louis",
     description:
       "Custom picture frame moulding, installed and painted for a finished architectural look in your St. Louis home.",
-    images: [`${siteUrl}/images/landing/picture-frame-moulding/picture-frame-painted-gallery-wall.webp`],
+    images: [`${siteUrl}/images/landing/picture-frame-moulding/picture-frame-dining-room.webp`],
   },
 };
 
@@ -122,9 +116,14 @@ function HeroContent() {
               Installed &amp; painted in St. Louis
             </p>
           </div>
-          <a href="#request-consultation" className="hidden shrink-0 border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#081828] hover:text-[#B4904E] sm:block">
-            Request a Consultation
-          </a>
+          <div className="hidden shrink-0 gap-3 sm:flex">
+            <a href="tel:+13148180815" className="border border-[#FEFAF1]/80 bg-[#081828]/70 px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.18em] text-[#FEFAF1] backdrop-blur-sm transition hover:border-[#FEFAF1] hover:bg-[#FEFAF1] hover:text-[#081828]">
+              Call Now
+            </a>
+            <a href="#request-consultation" className="border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#FEFAF1] hover:text-[#081828]">
+              Request a Consultation
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -173,8 +172,8 @@ export default function PictureFrameMouldingLandingPage() {
 
         <div className="relative hidden h-[100svh] min-h-[680px] lg:block">
           <Image
-            src="/images/landing/picture-frame-moulding/picture-frame-painted-gallery-wall.webp"
-            alt="Deep green picture frame moulding gallery wall with framed art and white wainscoting"
+            src="/images/landing/picture-frame-moulding/picture-frame-dining-room.webp"
+            alt="Finished dining room featuring picture frame moulding, custom built-ins, and layered trim detail"
             fill
             priority
             sizes="100vw"
@@ -199,6 +198,14 @@ export default function PictureFrameMouldingLandingPage() {
             <p className="font-heading text-3xl font-semibold text-[#081828]">Finished with paint</p>
             <p className="mt-2 leading-7 text-[#2E404E]">We prepare and paint the completed moulding so the final treatment feels cohesive.</p>
           </div>
+        </div>
+        <div className="container-xl mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+          <a href="#request-consultation" className="border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#081828] hover:text-[#FEFAF1]">
+            Start Your Project
+          </a>
+          <a href="tel:+13148180815" className="border border-[#081828] bg-[#FEFAF1] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#081828] hover:text-[#FEFAF1]">
+            Call (314) 818-0815
+          </a>
         </div>
       </section>
 
@@ -227,7 +234,7 @@ export default function PictureFrameMouldingLandingPage() {
                 Moulding Saint Louis handles the detail from planning through final paint. That means a single team accountable for the proportion, installation, surface preparation, and finished look.
               </p>
             </div>
-            <a href="#request-consultation" className="mt-9 inline-flex border border-[#081828] bg-[#081828] px-7 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#FEFAF1] transition hover:border-[#B4904E] hover:bg-[#B4904E] hover:text-[#081828]">
+            <a href="#request-consultation" className="mt-9 inline-flex border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#FEFAF1] hover:text-[#081828]">
               Start My Project
             </a>
           </div>
@@ -272,6 +279,14 @@ export default function PictureFrameMouldingLandingPage() {
               </article>
             ))}
           </div>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <a href="#request-consultation" className="inline-flex justify-center border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#081828] hover:text-[#FEFAF1]">
+              Request a Consultation
+            </a>
+            <a href="tel:+13148180815" className="inline-flex justify-center border border-[#081828] bg-white px-7 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#081828] hover:text-[#FEFAF1]">
+              Call (314) 818-0815
+            </a>
+          </div>
         </div>
       </section>
 
@@ -312,9 +327,12 @@ export default function PictureFrameMouldingLandingPage() {
         </div>
       </footer>
 
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-[#B4904E]/40 bg-[#081828]/95 p-3 backdrop-blur md:hidden">
-        <a href="#request-consultation" className="block border border-[#B4904E] bg-[#B4904E] px-5 py-3 text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#081828]">
-          Request a Consultation
+      <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 gap-2 border-t border-[#B4904E]/40 bg-[#081828]/95 p-3 backdrop-blur md:hidden">
+        <a href="tel:+13148180815" className="block border border-[#FEFAF1] bg-[#FEFAF1] px-3 py-3 text-center text-xs font-semibold uppercase tracking-[0.15em] text-[#081828]">
+          Call Now
+        </a>
+        <a href="#request-consultation" className="block border border-[#B4904E] bg-[#B4904E] px-3 py-3 text-center text-xs font-semibold uppercase tracking-[0.15em] text-[#081828]">
+          Start My Project
         </a>
       </div>
     </main>

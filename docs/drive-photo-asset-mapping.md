@@ -50,9 +50,9 @@ The private, noindex Picture Frame Moulding Facebook landing page at `/lp/pictur
 
 | Page Placement | Site Asset | Site Dimensions |
 |---|---|---:|
-| Full-image desktop hero | `/public/images/landing/picture-frame-moulding/picture-frame-painted-gallery-wall.webp` | 2048×1536 |
+| Full-image desktop hero | `/public/images/landing/picture-frame-moulding/picture-frame-dining-room.webp` | 2048×1536 |
 | Full-image mobile hero | `/public/images/landing/picture-frame-moulding/picture-frame-hallway-gallery.webp` | 1536×2048 |
-| Project gallery additions | `/public/images/landing/picture-frame-moulding/picture-frame-hallway-gallery.webp`, `picture-frame-stairway.webp`, `picture-frame-painted-gallery-wall.webp` | 1536×2048, 1536×2048, 2048×1536 |
+| Project gallery additions | `/public/images/landing/picture-frame-moulding/picture-frame-hallway-gallery.webp`, `picture-frame-stairway.webp` | 1536×2048, 1536×2048 |
 | Installation & painting story | `/public/images/gallery/picture-frame-moulding-07.jpg` | 2200×1468 |
 | Project gallery | `/public/images/gallery/picture-frame-moulding-03.jpg`, `-05.jpg`, `-11.jpg`, `-12.jpg` | 2200×1468, 2200×1467, 2200×1467, 2048×1536 |
 | Consultation section | `/public/images/gallery/picture-frame-moulding-09.jpg` | 2200×1669 |
