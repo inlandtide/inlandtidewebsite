@@ -117,10 +117,10 @@ function HeroContent() {
             </p>
           </div>
           <div className="hidden shrink-0 gap-3 sm:flex">
-            <a href="tel:+13148180815" className="border border-[#FEFAF1]/80 bg-[#081828]/70 px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.18em] text-[#FEFAF1] backdrop-blur-sm transition hover:border-[#FEFAF1] hover:bg-[#FEFAF1] hover:text-[#081828]">
+            <a href="tel:+13148180815" className="border border-[#FEFAF1]/80 bg-[#081828]/70 px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.18em] text-[#FEFAF1] backdrop-blur-sm transition hover:border-[#B4904E] hover:bg-[#B4904E] hover:text-[#081828] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FEFAF1]">
               Call Now
             </a>
-            <a href="#request-consultation" className="border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:bg-[#FEFAF1] hover:text-[#081828]">
+            <a href="#request-consultation" className="border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:border-[#FEFAF1] hover:bg-[#081828] hover:text-[#FEFAF1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FEFAF1]">
               Request a Consultation
             </a>
           </div>

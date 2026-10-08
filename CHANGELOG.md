@@ -8,6 +8,7 @@
 - Replace the split hero with an image-first responsive hero that uses newly supplied Picture Frame Moulding photography in full composition: a dining-room view on desktop and hallway view on mobile. Add the remaining supplied stairway and painted-wall photos to the project gallery.
 - Rework the above-the-fold experience into an edge-to-edge photography treatment: make the header transparent over the image, use the painted gallery-wall photo on desktop, and reduce the copy to the service name, installed-and-painted promise, and one consultation CTA.
 - Remove the painted gallery-wall photo from the landing page, restore the dining-room image as its desktop hero, and increase conversion paths with consultation and call CTAs after the service benefits and planning process. Strengthen “Start My Project” and the mobile actions with high-contrast Antique Brass and Saint Louis Navy treatments.
+- Strengthen the desktop hero consultation and call action hover states with solid Antique Brass/Navy and Navy/Ivory color swaps, plus visible keyboard focus treatments.
 
 ## 2026-10-06 — Homepage hero copy
 
