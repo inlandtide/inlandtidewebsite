@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-12 — Homepage installation specialist positioning
+
+- Add a prominent Antique Brass “St. Louis Installation Specialists” label above the Moulding Saint Louis hero title. Update the hero supporting copy, homepage metadata description, and promise strip to make expert installation a clearer part of the residential offering.
+
 ## 2026-10-07 — Picture Frame Moulding Facebook landing page
 
 - Add a photo-led Picture Frame Moulding landing page at `/lp/picture-frame-moulding` for Facebook ads. Keep it noindex/no-follow, outside the public navigation and sitemap, while retaining a discreet path to the full Moulding Saint Louis website.

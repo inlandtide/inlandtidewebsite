@@ -8,7 +8,7 @@ import { breadcrumbSchema, pageMetadata, siteUrl } from "./data/seo";
 import { publicServices } from "./data/services";
 
 const promises = [
-  "Finish Carpentry Specialists",
+  "Installation Specialists",
   "Custom Wood Details",
   "Locally Owned & Operated in St. Louis",
   "Exceptional Customer Care",
@@ -16,7 +16,7 @@ const promises = [
 
 export const metadata: Metadata = pageMetadata({
   title: "St. Louis Moulding & Finish Carpentry | Moulding Saint Louis",
-  description: "Custom moulding, wainscoting, cabinetry, built-ins and finish carpentry for St. Louis homes. The residential arm of CKC Woodworks. Free consultations.",
+  description: "St. Louis installation specialists for custom moulding, wainscoting, cabinetry, built-ins and finish carpentry. The residential arm of CKC Woodworks. Free consultations.",
   path: "/",
   absoluteTitle: true,
 });
@@ -207,12 +207,15 @@ export default function Home() {
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,24,40,0.55),rgba(8,24,40,0.90))]" />
           <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#081828] to-transparent" />
           <div className="container-xl relative py-24 text-center">
+            <p className="mx-auto mb-8 inline-flex items-center border border-[#B4904E] bg-[#B4904E] px-5 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-[#081828] shadow-[0_12px_32px_rgba(0,0,0,0.22)] sm:px-7 sm:text-sm sm:tracking-[0.3em]">
+              St. Louis Installation Specialists
+            </p>
             <h1 className="mx-auto flex w-full max-w-[1500px] flex-col items-center font-heading text-[4.875rem] font-semibold leading-[0.76] text-balance sm:text-[7.5rem] lg:text-[11.25rem]">
               <span className="text-[#FEFAF1]">Moulding{" "}</span>
               <span className="text-[#B4904E]">Saint Louis</span>
             </h1>
             <p className="mx-auto mt-8 max-w-4xl text-[1.4rem] leading-[1.35] text-[#FEFAF1]/86 sm:text-[1.7rem]">
-              High-end moulding, cabinetry, built-ins, and finish carpentry—backed by CKC Woodworks.
+              High-end moulding, cabinetry, built-ins, and finish carpentry—expertly installed and backed by CKC Woodworks.
             </p>
             <div className="mt-11 flex flex-col justify-center gap-4 sm:flex-row">
               <Link href="/contact" className="border border-[#B4904E] bg-[#B4904E] px-8 py-4 text-sm font-semibold uppercase tracking-[0.26em] text-[#081828] transition hover:bg-transparent hover:text-[#B4904E]">
