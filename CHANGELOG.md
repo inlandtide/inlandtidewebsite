@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-13 — Homepage installation eyebrow refinement
+
+- Restyle the “St. Louis Installation Specialists” hero label as an editorial Antique Brass eyebrow with subtle divider rules, removing its filled-box/button appearance while keeping the message prominent above the site title.
+
 ## 2026-10-12 — Homepage installation specialist positioning
 
 - Add a prominent Antique Brass “St. Louis Installation Specialists” label above the Moulding Saint Louis hero title. Update the hero supporting copy, homepage metadata description, and promise strip to make expert installation a clearer part of the residential offering.

@@ -207,9 +207,11 @@ export default function Home() {
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,24,40,0.55),rgba(8,24,40,0.90))]" />
           <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#081828] to-transparent" />
           <div className="container-xl relative py-24 text-center">
-            <p className="mx-auto mb-8 inline-flex items-center border border-[#B4904E] bg-[#B4904E] px-5 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-[#081828] shadow-[0_12px_32px_rgba(0,0,0,0.22)] sm:px-7 sm:text-sm sm:tracking-[0.3em]">
-              St. Louis Installation Specialists
-            </p>
+            <div className="mx-auto mb-8 flex max-w-[360px] flex-col items-center gap-3 text-[#B4904E] sm:max-w-none sm:flex-row sm:justify-center sm:gap-5">
+              <span aria-hidden="true" className="h-px w-12 bg-[#B4904E]/75 sm:w-16" />
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] sm:text-sm sm:tracking-[0.3em]">St. Louis Installation Specialists</p>
+              <span aria-hidden="true" className="h-px w-12 bg-[#B4904E]/75 sm:w-16" />
+            </div>
             <h1 className="mx-auto flex w-full max-w-[1500px] flex-col items-center font-heading text-[4.875rem] font-semibold leading-[0.76] text-balance sm:text-[7.5rem] lg:text-[11.25rem]">
               <span className="text-[#FEFAF1]">Moulding{" "}</span>
               <span className="text-[#B4904E]">Saint Louis</span>
