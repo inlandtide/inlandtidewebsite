@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import Link from "next/link";
 import ContactForm from "../../components/ContactForm";
 import { siteUrl } from "../../data/seo";
@@ -103,6 +103,20 @@ export const metadata: Metadata = {
   },
 };
 
+function ResponsiveHeroImage() {
+  const common = { alt: "Picture frame moulding in a finished home interior", fill: true, sizes: "100vw" };
+  const { props: desktop } = getImageProps({ ...common, src: "/images/landing/picture-frame-moulding/picture-frame-dining-room.webp" });
+  const { props: mobile } = getImageProps({ ...common, src: "/images/landing/picture-frame-moulding/picture-frame-hallway-gallery.webp" });
+
+  return (
+    <picture>
+      <source media="(min-width: 1024px)" srcSet={desktop.srcSet} sizes={desktop.sizes} />
+      {/* getImageProps keeps Next.js optimization while the browser selects one hero. */}
+      <img {...mobile} alt={common.alt} loading="eager" fetchPriority="high" className="object-cover" />
+    </picture>
+  );
+}
+
 function HeroContent() {
   return (
     <div className="absolute inset-x-0 bottom-0 z-10">
@@ -112,16 +126,17 @@ function HeroContent() {
             <h1 className="font-heading text-5xl font-semibold leading-[0.92] text-balance sm:text-6xl lg:text-7xl">
               Picture Frame Moulding
             </h1>
-            <p className="mt-3 hidden text-sm font-semibold uppercase tracking-[0.22em] text-[#FEFAF1]/90 sm:block">
+            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#FEFAF1]/90 sm:text-sm">
               Installed &amp; painted in St. Louis
             </p>
+            <p className="mt-3 text-base text-[#FEFAF1]/90">Start with a free consultation.</p>
           </div>
           <div className="hidden shrink-0 gap-3 sm:flex">
             <a href="tel:+13148180815" className="border border-[#FEFAF1]/80 bg-[#081828]/70 px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.18em] text-[#FEFAF1] backdrop-blur-sm transition hover:!border-[#B4904E] hover:!bg-[#B4904E] hover:!text-[#081828] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FEFAF1]">
               Call Now
             </a>
             <a href="#request-consultation" className="border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:!border-[#FEFAF1] hover:!bg-[#081828] hover:!text-[#FEFAF1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FEFAF1]">
-              Request a Consultation
+              Free Consultation
             </a>
           </div>
         </div>
@@ -157,28 +172,8 @@ export default function PictureFrameMouldingLandingPage() {
       </header>
 
       <section className="overflow-hidden bg-[#081828] text-[#FEFAF1]">
-        <div className="relative min-h-[100svh] lg:hidden">
-          <Image
-            src="/images/landing/picture-frame-moulding/picture-frame-hallway-gallery.webp"
-            alt="Picture frame moulding lining a finished hallway with a curated art gallery"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(8,24,40,0.92)_0%,rgba(8,24,40,0.48)_25%,rgba(8,24,40,0.04)_62%,rgba(8,24,40,0.12)_100%)]" />
-          <HeroContent />
-        </div>
-
-        <div className="relative hidden h-[100svh] min-h-[680px] lg:block">
-          <Image
-            src="/images/landing/picture-frame-moulding/picture-frame-dining-room.webp"
-            alt="Finished dining room featuring picture frame moulding, custom built-ins, and layered trim detail"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
+        <div className="relative min-h-[100svh] lg:h-[100svh] lg:min-h-[680px]">
+          <ResponsiveHeroImage />
           <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(8,24,40,0.92)_0%,rgba(8,24,40,0.45)_25%,rgba(8,24,40,0.02)_64%,rgba(8,24,40,0.13)_100%)]" />
           <HeroContent />
         </div>
@@ -281,7 +276,7 @@ export default function PictureFrameMouldingLandingPage() {
           </div>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <a href="#request-consultation" className="inline-flex justify-center border border-[#B4904E] bg-[#B4904E] px-7 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:!border-[#081828] hover:!bg-[#081828] hover:!text-[#FEFAF1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#081828]">
-              Request a Consultation
+              Free Consultation
             </a>
             <a href="tel:+13148180815" className="inline-flex justify-center border border-[#081828] bg-white px-7 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#081828] transition hover:!border-[#081828] hover:!bg-[#081828] hover:!text-[#FEFAF1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#081828]">
               Call (314) 818-0815
@@ -292,8 +287,14 @@ export default function PictureFrameMouldingLandingPage() {
 
       <section id="request-consultation" className="scroll-mt-8 bg-[#081828] py-20 text-[#FEFAF1] sm:py-28">
         <div className="container-xl grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.38em] text-[#B4904E]">Request a Consultation</p>
+          <div className="border border-[#B4904E]/35 bg-[#FEFAF1]/5 p-6 sm:p-9 lg:order-2">
+            <h2 className="mb-3 font-heading text-4xl font-semibold leading-tight">Request a free consultation</h2>
+            <p className="mb-7 text-base leading-7 text-[#FEFAF1]/76">Leave your contact details and we will follow up about your picture frame moulding project. Share room details if you have them.</p>
+            <ContactForm variant="dark" compact fixedProjectType="Picture Frame Moulding" messageRequired={false} submitLabel="Request My Free Consultation" />
+            <p className="mt-5 text-sm leading-6 text-[#FEFAF1]/65">We use your details to respond about your project. <Link href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-[#FEFAF1]">Privacy policy<span className="sr-only"> (opens in a new tab)</span></Link>.</p>
+          </div>
+          <div className="lg:order-1">
+            <p className="text-sm font-semibold uppercase tracking-[0.38em] text-[#B4904E]">A Personal Approach</p>
             <h2 className="mt-5 max-w-xl font-heading text-5xl font-semibold leading-[0.98] text-balance sm:text-7xl">
               Tell us what you want the room to feel like.
             </h2>
@@ -310,10 +311,7 @@ export default function PictureFrameMouldingLandingPage() {
                 className="h-auto w-full"
               />
             </div>
-            <p className="mt-6 text-sm text-[#FEFAF1]/70">Prefer to talk first? Call or text <a href="tel:+13148180815" className="font-semibold text-[#B4904E] underline underline-offset-4">(314) 818-0815</a>.</p>
-          </div>
-          <div className="border border-[#B4904E]/35 bg-[#FEFAF1]/5 p-6 sm:p-9">
-            <ContactForm variant="dark" compact defaultProjectType="Picture Frame Moulding" submitLabel="Request My Consultation" />
+            <p className="mt-6 text-sm text-[#FEFAF1]/70">Prefer to talk first? <a href="tel:+13148180815" className="font-semibold text-[#B4904E] underline underline-offset-4">Call</a> or <a href="sms:+13148180815" className="font-semibold text-[#B4904E] underline underline-offset-4">text (314) 818-0815</a>.</p>
           </div>
         </div>
       </section>
@@ -321,6 +319,7 @@ export default function PictureFrameMouldingLandingPage() {
       <footer className="border-t border-[#B4904E]/30 bg-[#081828] py-8 text-[#FEFAF1]">
         <div className="container-xl flex flex-col items-center justify-between gap-5 text-center sm:flex-row sm:text-left">
           <p className="text-sm text-[#FEFAF1]/60">Picture frame moulding, thoughtfully installed and painted in St. Louis.</p>
+          <Link href="/privacy-policy" className="text-sm text-[#FEFAF1]/65 underline underline-offset-4 hover:text-[#FEFAF1]">Privacy policy</Link>
           <Link href="/" className="text-xs font-semibold uppercase tracking-[0.22em] text-[#B4904E] transition hover:text-[#FEFAF1]">
             Visit the full Moulding Saint Louis website →
           </Link>
@@ -332,7 +331,7 @@ export default function PictureFrameMouldingLandingPage() {
           Call Now
         </a>
         <a href="#request-consultation" className="block border border-[#B4904E] bg-[#B4904E] px-3 py-3 text-center text-xs font-semibold uppercase tracking-[0.15em] text-[#081828]">
-          Start My Project
+          Free Consultation
         </a>
       </div>
     </main>

@@ -75,12 +75,14 @@ The website is structured as a conversion-focused, multi-page site for a luxury 
 | About | `/about` | Local ownership and company values page for Moulding Saint Louis. |
 | Gallery | `/gallery` | Rebuilt visual portfolio organized by uploaded photo filename categories. |
 | Contact | `/contact` | Dedicated consultation request page. |
-| Picture Frame Moulding Facebook Landing Page | `/lp/picture-frame-moulding` | Private, noindex/no-follow ad landing page. It is intentionally excluded from site navigation and the sitemap, provides an unobtrusive path back to the full site, and reuses repository-held Picture Frame Moulding project images. |
+| Picture Frame Moulding Ad Landing Page | `/lp/picture-frame-moulding` | Publicly accessible, noindex/no-follow landing page for Google and Meta ads. It is excluded from site navigation and the sitemap, provides an unobtrusive path back to the full site, and reuses repository-held Picture Frame Moulding images. |
 | SEO Dashboard | `/seo-dashboard` | Internal noindex dashboard based on the SEO implementation report for tracking SEO foundations and next actions. |
 
 The gallery page has been rebuilt as a curated, image-forward portfolio organized from uploaded photo filename categories. Active project gallery images are committed under `/public/images/gallery/`, and the `Our Custom Woodshop` collection uses committed CKC shop photography under `/public/images/ckc-woodworks/`; source-to-site mapping is documented in `docs/drive-photo-asset-mapping.md`.
 
 The Commercial Manufacturing page uses user-supplied CKC Woodworks shop photography committed under `/public/images/ckc-woodworks/`. It introduces CKC as Moulding Saint Louis's commercial manufacturing capability and links to the official CKC Woodworks website. The Custom Cabinetry & Casework and Custom Built-ins & Shelving pages also explain how CKC manufacturing capability strengthens the custom residential work available through Moulding Saint Louis.
+
+The Picture Frame Moulding ad page puts its form first on mobile and identifies the consultation as free. It fixes the project type in a hidden input and makes project details optional; name and email remain required. The shared form's default behavior on the rest of the website is unchanged. The page inherits sitewide GA4, Meta Pixel, and lead-source attribution, and uses the same successful-submission tracking and email/Sheets delivery as other forms. Its responsive hero uses Next.js `getImageProps` with a native picture element so the browser selects the applicable photograph.
 
 ## Business Positioning
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-13 — Picture Frame Moulding ad landing page improvements
+
+- Make the free consultation explicit in the hero, mobile action bar, and lead form. Keep the installed-and-painted St. Louis promise visible on mobile.
+- Put the consultation form before its supporting photo and introduction on mobile so ad visitors reach the inputs directly from every consultation CTA; retain the two-column desktop composition.
+- Fix Picture Frame Moulding as hidden project metadata and make the project description optional on this landing page. Keep the general site's default service selector and required description, and preserve the existing email/Sheets payload and success-only GA4/Meta lead tracking.
+- Add contact autofill hints, landing-page privacy links, and a working text-message link.
+- Serve the existing mobile/desktop hero photographs through one optimized responsive picture so the browser selects the applicable image instead of preloading both. Keep the landing page noindex/no-follow and out of the sitemap.
+
 ## 2026-10-13 — Homepage installation eyebrow refinement
 
 - Restyle the “St. Louis Installation Specialists” hero label as an editorial Antique Brass eyebrow with subtle divider rules, removing its filled-box/button appearance while keeping the message prominent above the site title.

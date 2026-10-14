@@ -9,6 +9,8 @@ type ContactFormProps = {
   variant?: "light" | "dark";
   compact?: boolean;
   defaultProjectType?: string;
+  fixedProjectType?: string;
+  messageRequired?: boolean;
   submitLabel?: string;
 };
 
@@ -31,7 +33,7 @@ function trackGALead() {
   }
 }
 
-export default function ContactForm({ variant = "light", compact = false, defaultProjectType = "", submitLabel = "Request a Consultation" }: ContactFormProps) {
+export default function ContactForm({ variant = "light", compact = false, defaultProjectType = "", fixedProjectType = "", messageRequired = true, submitLabel = "Request a Consultation" }: ContactFormProps) {
   const [formState, setFormState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const submitting = useRef(false);
@@ -48,7 +50,7 @@ export default function ContactForm({ variant = "light", compact = false, defaul
     const name = (form.elements.namedItem("name") as HTMLInputElement).value.trim();
     const email = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
     const phone = (form.elements.namedItem("phone") as HTMLInputElement).value.trim();
-    const projectType = (form.elements.namedItem("projectType") as HTMLSelectElement).value.trim();
+    const projectType = (form.elements.namedItem("projectType") as HTMLInputElement | HTMLSelectElement).value.trim();
     const location = (form.elements.namedItem("location") as HTMLInputElement).value.trim();
     const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim();
 
@@ -101,6 +103,11 @@ export default function ContactForm({ variant = "light", compact = false, defaul
     : "w-full border border-[#D6D2C6] bg-white/70 px-4 py-3 text-sm text-[#081828] placeholder-[#2E404E]/55 outline-none transition focus:border-[#B4904E] focus:bg-white";
 
   const labelClass = isDark ? "text-[#FEFAF1]/70" : "text-[#2E404E]";
+  const locationField = (
+    <Field label="Project Location" labelClass={labelClass}>
+      <input type="text" name="location" autoComplete="address-level2" maxLength={200} className={inputClass} placeholder="St. Louis, Ladue, Clayton..." />
+    </Field>
+  );
 
   return (
     <div className={compact ? "w-full" : "w-full max-w-2xl"}>
@@ -119,20 +126,21 @@ export default function ContactForm({ variant = "light", compact = false, defaul
         </div>
       ) : (
         <form onSubmit={handleSubmit} aria-busy={formState === "submitting"} className="grid gap-4">
+          {fixedProjectType && <input type="hidden" name="projectType" value={fixedProjectType} />}
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Full Name *" labelClass={labelClass}>
-              <input type="text" name="name" required maxLength={200} className={inputClass} placeholder="Jane Smith" />
+              <input type="text" name="name" autoComplete="name" required maxLength={200} className={inputClass} placeholder="Jane Smith" />
             </Field>
             <Field label="Email Address *" labelClass={labelClass}>
-              <input type="email" name="email" required maxLength={254} className={inputClass} placeholder="jane@example.com" />
+              <input type="email" name="email" autoComplete="email" required maxLength={254} className={inputClass} placeholder="jane@example.com" />
             </Field>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Phone" labelClass={labelClass}>
-              <input type="tel" name="phone" maxLength={100} className={inputClass} placeholder="Your phone number" />
+              <input type="tel" name="phone" autoComplete="tel" maxLength={100} className={inputClass} placeholder="Your phone number" />
             </Field>
-            <Field label="Project Type" labelClass={labelClass}>
+            {fixedProjectType ? locationField : <Field label="Project Type" labelClass={labelClass}>
               <select name="projectType" className={inputClass} defaultValue={defaultProjectType}>
                 <option value="" disabled>Choose a service</option>
                 <option>Luxury & Decorative Moulding</option>
@@ -148,19 +156,17 @@ export default function ContactForm({ variant = "light", compact = false, defaul
                 <option>Commercial Manufacturing / CKC Woodworks</option>
                 <option>Not sure yet</option>
               </select>
-            </Field>
+            </Field>}
           </div>
 
-          <Field label="Project Location" labelClass={labelClass}>
-            <input type="text" name="location" maxLength={200} className={inputClass} placeholder="St. Louis, Ladue, Clayton..." />
-          </Field>
+          {!fixedProjectType && locationField}
 
-          <Field label="Project Details *" labelClass={labelClass}>
+          <Field label={messageRequired ? "Project Details *" : "Project Details (optional)"} labelClass={labelClass}>
             <textarea
               name="message"
-              required
+              required={messageRequired}
               maxLength={9000}
-              rows={5}
+              rows={messageRequired ? 5 : 3}
               className={`${inputClass} resize-none`}
               placeholder="Tell us about the space, scope, details, or woodwork you have in mind."
             />
