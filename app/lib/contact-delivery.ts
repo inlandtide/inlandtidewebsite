@@ -11,7 +11,7 @@ function escapeHtml(value: unknown) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
-function notification(lead: ContactLead, reference: string, sheetsFailed: boolean) {
+function notification(lead: ContactLead, reference: string, crmFailed: boolean) {
   const { name, email, phone, message, attribution } = lead;
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
@@ -23,14 +23,14 @@ function notification(lead: ContactLead, reference: string, sheetsFailed: boolea
       ["Landing page", attribution.landingPage || "Unknown"], ["Referring site", attribution.referringSite || "Not provided"],
     ].map(([label, value]) => `<tr><td style="padding: 7px 0; color: #B4904E; vertical-align: top;">${escapeHtml(label)}</td><td style="padding: 7px 0; color: #FEFAF1; overflow-wrap: anywhere;">${escapeHtml(value)}</td></tr>`).join("");
 
-    const sheetsAlertBanner = sheetsFailed
+    const crmAlertBanner = crmFailed
       ? `
         <div style="background: #7f1d1d; border: 2px solid #ef4444; padding: 16px 20px; margin-bottom: 24px; text-align: center;">
           <p style="color: #fecaca; font-family: Georgia, serif; font-size: 15px; font-weight: bold; margin: 0; letter-spacing: 1px;">
-            GOOGLE SHEETS SAVE WAS NOT CONFIRMED
+            CRM SAVE WAS NOT CONFIRMED
           </p>
           <p style="color: #fca5a5; font-family: Georgia, serif; font-size: 13px; margin: 8px 0 0 0;">
-            Your original notification email contains this lead. Check Web Forms before adding it manually: a timeout can occur after a row is saved. Please check the Google Apps Script integration.
+            Your original notification email contains this lead. The CRM save could not be confirmed after retries. This email contains the full inquiry and its reference. Check Form Submission Archives before adding it manually.
           </p>
         </div>
       `
@@ -40,20 +40,20 @@ function notification(lead: ContactLead, reference: string, sheetsFailed: boolea
       from: "Moulding Saint Louis <contact@mouldingstl.com>",
       to: NOTIFY_EMAILS,
       reply_to: String(email),
-      subject: !sheetsFailed
+      subject: !crmFailed
         ? `New Consultation Request [${attribution.leadSource}] — ${String(name)}`
-        : `⚠️ [CHECK SHEETS] New Consultation Request [${attribution.leadSource}] — ${String(name)}`,
+        : `⚠️ [CHECK CRM] New Consultation Request [${attribution.leadSource}] — ${String(name)}`,
       html: `
         <div style="font-family: Georgia, serif; max-width: 640px; margin: 0 auto; background: #081828; color: #FEFAF1; padding: 34px; border: 1px solid #B4904E;">
           <h2 style="color: #B4904E; margin-top: 0; font-size: 24px; letter-spacing: 2px; text-transform: uppercase;">
             New Consultation Request
           </h2>
           <p style="color: #FEFAF1; line-height: 1.6; margin-top: 0;">
-            A new Moulding Saint Louis inquiry was submitted through mouldingstl.com. The spreadsheet is updated separately; this email is your copy of the lead.
+            A new Moulding Saint Louis inquiry was submitted through mouldingstl.com. The CRM is updated in the background; this email is your copy of the lead.
           </p>
           <hr style="border: 0; border-top: 1px solid #B4904E; margin: 24px 0;" />
 
-          ${sheetsAlertBanner}
+          ${crmAlertBanner}
 
           <table style="width: 100%; border-collapse: collapse; margin-bottom: 12px;">${attributionRows}</table>
           <p style="font-size: 12px; line-height: 1.6; color: #FEFAF1;">${escapeHtml(attribution.attributionDetails)}</p>
@@ -90,7 +90,7 @@ function notification(lead: ContactLead, reference: string, sheetsFailed: boolea
 
 // Bound external requests so a slow integration cannot consume the whole invocation.
 // Log references and timing only, never the submitted personal information.
-export async function sendNotification(lead: ContactLead, reference: string, sheetsFailed = false) {
+export async function sendNotification(lead: ContactLead, reference: string, crmFailed = false) {
   const started = Date.now();
   if (!process.env.RESEND_API) {
     console.error("Contact email not configured", { reference });
@@ -102,41 +102,44 @@ export async function sendNotification(lead: ContactLead, reference: string, she
       headers: {
         Authorization: `Bearer ${process.env.RESEND_API}`,
         "Content-Type": "application/json",
-        "Idempotency-Key": `contact/${reference}/${sheetsFailed ? "sheets-alert" : "notification"}`,
+        "Idempotency-Key": `contact/${reference}/${crmFailed ? "crm-alert" : "notification"}`,
       },
-      body: JSON.stringify(notification(lead, reference, sheetsFailed)),
+      body: JSON.stringify(notification(lead, reference, crmFailed)),
       signal: AbortSignal.timeout(10000),
     });
     const receipt = await response.json().catch(() => null);
     const accepted = response.ok && typeof receipt?.id === "string" && receipt.id.length > 0;
-    console[accepted ? "info" : "error"]("Contact email receipt", { reference, accepted, sheetsFailed, status: response.status, durationMs: Date.now() - started });
+    console[accepted ? "info" : "error"]("Contact email receipt", { reference, accepted, crmFailed, status: response.status, durationMs: Date.now() - started });
     return accepted;
   } catch {
-    console.error("Contact email request failed or timed out", { reference, sheetsFailed, durationMs: Date.now() - started });
+    console.error("Contact email request failed or timed out", { reference, crmFailed, durationMs: Date.now() - started });
     return false;
   }
 }
 
-export async function saveToSheets(lead: ContactLead, reference: string) {
-  const started = Date.now();
-  const url = process.env.GOOGLE_SHEETS_WEBAPP_URL;
-  if (!url) {
-    console.error("Contact spreadsheet not configured", { reference });
-    return false;
+export async function saveToCRM(lead: ContactLead, reference: string) {
+  const key = process.env.CRM_INGEST_SECRET;
+  if (!key) { console.error('CRM delivery is not configured', { reference }); return false; }
+  const payload = {
+    externalId: reference, name: lead.name, email: lead.email, phone: lead.phone,
+    message: lead.message, campaign: lead.attribution.campaign,
+    sourceLabel: lead.attribution.leadSource, attribution: lead.attribution,
+  };
+  // A lost response may follow a committed save. Every retry keeps the same ID
+  // and content; the CRM acknowledges that receipt without creating another lead.
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    const started = Date.now();
+    try {
+      const response = await fetch('https://crm.ckcwoodworks.com/api/intake/website_msl', {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'x-crm-key': key },
+        body: JSON.stringify(payload), signal: AbortSignal.timeout(8000), redirect: 'error',
+      });
+      const receipt = await response.json().catch(() => null);
+      const saved = response.ok && receipt?.status === 'success' && receipt?.integration === 'crm_intake_v1' && typeof receipt?.id === 'string';
+      console[saved ? 'info' : 'error']('CRM delivery receipt', { reference, saved, attempt, status: response.status, durationMs: Date.now() - started });
+      if (saved) return true;
+      if (response.status >= 400 && response.status < 500 && ![408, 429].includes(response.status)) return false;
+    } catch { console.error('CRM delivery request failed or timed out', { reference, attempt }); }
   }
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: lead.name, email: lead.email, phone: lead.phone, message: lead.message, ...lead.attribution }),
-      signal: AbortSignal.timeout(20000),
-    });
-    const receipt = await response.json().catch(() => null);
-    const saved = response.ok && receipt?.status === "success";
-    console[saved ? "info" : "error"]("Contact spreadsheet receipt", { reference, saved, status: response.status, durationMs: Date.now() - started });
-    return saved;
-  } catch {
-    console.error("Contact spreadsheet request failed or timed out", { reference, durationMs: Date.now() - started });
-    return false;
-  }
+  return false;
 }

@@ -4,12 +4,10 @@ import { NextRequest, NextResponse } from "next/server";
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
-// Google retries 5xx responses. A successful HTTP request to Apps Script alone
-// is not a receipt: its error pages and application errors can also return 200.
+// Google retries 5xx responses. Acknowledge only a committed CRM receipt.
 export async function POST(req: NextRequest) {
   const key = process.env.GOOGLE_ADS_LEAD_WEBHOOK_KEY;
-  const sheetsUrl = process.env.GOOGLE_SHEETS_WEBAPP_URL;
-  if (!key || !sheetsUrl) {
+  if (!key) {
     return NextResponse.json({ message: "Lead integration unavailable" }, { status: 503 });
   }
 
@@ -36,12 +34,12 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const response = await fetch(sheetsUrl, {
+    const response = await fetch('https://crm.ckcwoodworks.com/api/intake/google_ads', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
-      signal: AbortSignal.timeout(45_000),
-      redirect: "follow",
+      signal: AbortSignal.timeout(20_000),
+      redirect: "error",
     });
     const receipt = await response.json().catch(() => null);
     if (!response.ok || receipt?.status !== "success" ||

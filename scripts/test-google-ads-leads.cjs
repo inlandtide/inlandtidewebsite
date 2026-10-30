@@ -133,7 +133,7 @@ test('Old website payload stays compatible and formula-like fields remain text',
   assert.equal(r.rows[0][5], 'Direct / unknown');
 });
 
-function route(fetch, env = { GOOGLE_ADS_LEAD_WEBHOOK_KEY: key, GOOGLE_SHEETS_WEBAPP_URL: 'https://example.test/receiver' }) {
+function route(fetch, env = { GOOGLE_ADS_LEAD_WEBHOOK_KEY: key,  }) {
   const exports = {};
   const code = ts.transpileModule(fs.readFileSync('app/api/google-ads-leads/route.ts', 'utf8'),
     { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText;
@@ -165,9 +165,9 @@ test('Google receives 200 only for confirmed native saves/duplicates; storage er
   assert.equal((await html(request(payload()))).status, 502);
 });
 
-test('HTTP receiver and Apps Script integration save once across a repeated delivery', async () => {
+test('Public Google relay forwards the same native identity directly to the CRM on every retry', async () => {
   const r = receiver();
-  const post = route(async (_url, init) => ({ ok: true, json: async () => r.post(JSON.parse(init.body)) }));
+  const post = route(async (_url, init) => { assert.equal(_url,'https://crm.ckcwoodworks.com/api/intake/google_ads'); return { ok: true, json: async () => r.post(JSON.parse(init.body)) }; });
   assert.equal((await post(request(payload()))).status, 200);
   assert.equal((await post(request(payload()))).status, 200);
   assert.equal(r.rows.length, 1);

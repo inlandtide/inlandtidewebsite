@@ -57,11 +57,11 @@ test('Blocked or corrupt local storage does not block attribution or a form subm
   }
 });
 test('Email preserves attribution and escaping; unconfirmed background storage sends a separate alert', async () => {
-  for (const receipt of [{status:'success'}, {status:'error'}, null]) {
+  for (const receipt of [{status:'success',integration:'crm_intake_v1',id:'crm-record'}, {status:'error'}, null]) {
     const sent = [], pending = [];
     let posted;
     const delivery = load('app/lib/contact-delivery.ts', {'./lead-attribution':core}, {
-      process:{env:{RESEND_API:'test',GOOGLE_SHEETS_WEBAPP_URL:'https://example.test'}}, AbortSignal,
+      process:{env:{RESEND_API:'test',CRM_INGEST_SECRET:'test-key'}}, AbortSignal,
       fetch:async (url,init)=>{
         if (url === 'https://api.resend.com/emails') {
           sent.push(JSON.parse(init.body)); return {ok:true,status:200,json:async()=>({id:'test'})};
@@ -80,10 +80,10 @@ test('Email preserves attribution and escaping; unconfirmed background storage s
     assert.equal(posted,undefined);
     assert.equal(sent.length,1);
     await pending[0]();
-    assert.equal(posted.leadSource,'Meta Ads');
+    assert.equal(posted.sourceLabel,'Meta Ads');
     assert.equal(sent.length,receipt?.status==='success'?1:2);
     assert.ok(sent[0].subject.includes('[Meta Ads]'));
-    assert.equal(sent.at(-1).subject.includes('[CHECK SHEETS]'),receipt?.status!=='success');
+    assert.equal(sent.at(-1).subject.includes('[CHECK CRM]'),receipt?.status!=='success');
     assert.ok(sent[0].html.includes('&lt;script&gt;'));
     assert.ok(!sent[0].html.includes('<script>'));
   }

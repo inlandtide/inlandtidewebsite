@@ -1,9 +1,9 @@
 import { randomUUID } from "node:crypto";
 import { after, NextRequest, NextResponse } from "next/server";
 import { summarizeAttribution } from "../../lib/lead-attribution";
-import { type ContactLead, saveToSheets, sendNotification } from "../../lib/contact-delivery";
+import { type ContactLead, saveToCRM, sendNotification } from "../../lib/contact-delivery";
 
-// Includes email, spreadsheet fallback and post-response work; external calls have
+// Includes email, CRM fallback and post-response work; external calls have
 // shorter timeouts. after() keeps Vercel alive even after the visitor leaves.
 export const maxDuration = 60;
 
@@ -26,19 +26,22 @@ export async function POST(req: NextRequest) {
   if (name.length > 200 || email.length > 254 || phone.length > 100 || message.length > 10000) {
     return NextResponse.json({ error: "Please shorten your form entry and try again." }, { status: 400 });
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) || /[\r\n\u0000-\u001f]/.test(email)) {
     return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
   }
 
-  const reference = randomUUID();
+  if (body.submissionId !== undefined && (typeof body.submissionId !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(body.submissionId))) {
+    return NextResponse.json({ error: 'Please submit a valid form.' }, { status: 400 });
+  }
+  const reference = body.submissionId || randomUUID();
   const lead: ContactLead = { name: name.trim(), email: email.trim(), phone: phone.trim(), message: message.trim(), attribution: summarizeAttribution(body.attribution) };
   const started = Date.now();
   const emailed = await sendNotification(lead, reference);
 
   if (emailed) {
     after(async () => {
-      // Do not blindly retry an append: a lost receipt may hide a successful save.
-      if (!await saveToSheets(lead, reference)) {
+      // Retries reuse the same CRM identity, so a lost receipt cannot duplicate a lead.
+      if (!await saveToCRM(lead, reference)) {
         await sendNotification(lead, reference, true);
       }
     });
@@ -47,10 +50,10 @@ export async function POST(req: NextRequest) {
   }
 
   // Email is normally the fast durable handoff. During an email outage, wait for
-  // a confirmed spreadsheet save instead of claiming receipt or losing the lead.
-  if (await saveToSheets(lead, reference)) {
+  // a confirmed CRM save instead of claiming receipt or losing the lead.
+  if (await saveToCRM(lead, reference)) {
     after(async () => { await sendNotification(lead, reference); });
-    console.info("Contact accepted via spreadsheet fallback", { reference, durationMs: Date.now() - started });
+    console.info("Contact accepted via CRM fallback", { reference, durationMs: Date.now() - started });
     return NextResponse.json({ success: true }, { status: 200 });
   }
 

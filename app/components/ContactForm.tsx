@@ -37,6 +37,7 @@ export default function ContactForm({ variant = "light", compact = false, defaul
   const [formState, setFormState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const submitting = useRef(false);
+  const delivery = useRef<{ content: string; id: string; attribution: ReturnType<typeof getLeadAttribution> } | null>(null);
   const isDark = variant === "dark";
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -62,12 +63,15 @@ export default function ContactForm({ variant = "light", compact = false, defaul
       .filter(Boolean)
       .join("\n\n");
 
+    const content = JSON.stringify([name, email, phone, enrichedMessage]);
+    if (delivery.current?.content !== content) delivery.current = { content, id: crypto.randomUUID(), attribution: getLeadAttribution() };
     const data = {
+      submissionId: delivery.current.id,
       name,
       email,
       phone,
       message: enrichedMessage || message,
-      attribution: getLeadAttribution(),
+      attribution: delivery.current.attribution,
     };
 
     try {
@@ -86,6 +90,7 @@ export default function ContactForm({ variant = "light", compact = false, defaul
       } else {
         setFormState("success");
         form.reset();
+        delivery.current = null;
         // A blocked or broken analytics script must not undo a received lead.
         try { trackMetaLead(); } catch { /* best-effort tracking */ }
         try { trackGALead(); } catch { /* best-effort tracking */ }
