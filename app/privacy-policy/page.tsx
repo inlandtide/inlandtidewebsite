@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
 };
 
-const lastUpdated = "September 7, 2026";
+const lastUpdated = "October 30, 2026";
 
 const sections = [
   {
@@ -39,11 +39,16 @@ const sections = [
   },
   {
     heading: "Contact Form Submissions",
-    body: "When you submit a contact or consultation request through our website, your submission and available lead-source information are processed by our backend and delivered to our team via a transactional email service. A copy may also be stored in our lead spreadsheet for record-keeping. We use these records to respond to inquiries and evaluate our marketing sources. We do not share these lead records with third parties for their own marketing purposes.",
+    body: "When you submit a contact or consultation request through our website or our Google, Facebook, or Instagram lead forms, your submission and available lead-source information are processed by our backend and stored in our customer relationship management system. Internal notifications are delivered to our team through a transactional email service. Original submissions may be retained separately from active lead records for record-keeping and marketing analysis. We use these records to respond to inquiries and evaluate our marketing sources. We do not share these lead records with third parties for their own marketing purposes.",
   },
   {
     heading: "Service Providers",
-    body: "We may engage trusted third-party service providers to help us operate our website and deliver our services. These providers are given access to your personal information only to the extent necessary to perform their functions and are obligated not to disclose or use it for any other purpose. Current service providers include Vercel (website hosting), Resend (transactional email delivery), and Google (analytics and lead spreadsheet storage).",
+    body: "We may engage trusted third-party service providers to help us operate our website and deliver our services. These providers are given access to your personal information only to the extent necessary to perform their functions and are obligated not to disclose or use it for any other purpose. Current service providers include Vercel (website and CRM hosting), Neon (CRM database storage), Resend (transactional email delivery), Google (analytics and lead advertising), and Meta (Facebook and Instagram lead advertising).",
+  },
+  {
+    id: "data-requests",
+    heading: "Personal Information and Deletion Requests",
+    body: "To request access to, correction of, or deletion of personal information you submitted through our website or lead forms, use our contact page at mouldingstl.com/contact or call (314) 818-0815. Tell us the contact details you used and what you would like us to do so we can locate your records. We may need to verify your identity before processing the request.",
   },
   {
     heading: "Security",
@@ -103,7 +108,7 @@ export default function PrivacyPolicyPage() {
 
               {/* Sections */}
               {sections.map((section) => (
-                <div key={section.heading} className="mt-12">
+                <div key={section.heading} id={section.id} className="mt-12">
                   <h2 className="font-heading text-3xl font-semibold text-[#081828] sm:text-4xl">
                     {section.heading}
                   </h2>
