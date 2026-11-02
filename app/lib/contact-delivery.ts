@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import type { summarizeAttribution } from "./lead-attribution";
 
 const NOTIFY_EMAILS = ["tim@inlandtide.com", "ryan@inlandtide.com"];
@@ -88,9 +89,45 @@ function notification(lead: ContactLead, reference: string, crmFailed: boolean) 
     };
 }
 
+
+// Profile-aware delivery retains a durable original before acknowledging. During
+// a CRM outage the independent email service remains an emergency lead copy.
+async function sendProfileNotification(lead: ContactLead, reference: string, crmFailed: boolean, mail: ReturnType<typeof notification> & {text?: string}, fetcher: typeof fetch, env: NodeJS.ProcessEnv, logger: Pick<Console, "error">): Promise<boolean | null> {
+  if (env.CRM_NOTIFICATION_PREFERENCES !== "true") return null;
+  const event = crmFailed ? "crm-alert" : "notification";
+  const payload = { externalId: reference, name: lead.name, email: lead.email, phone: lead.phone,
+    message: lead.message, campaign: lead.attribution.campaign, sourceLabel: lead.attribution.leadSource, attribution: lead.attribution };
+  try {
+    const response = await fetcher("https://crm.ckcwoodworks.com/api/intake/website_msl/notify", {
+      method: "POST", headers: { "Content-Type": "application/json", "x-crm-key": env.CRM_INGEST_SECRET || "" },
+      body: JSON.stringify({ reference, crmFailed, lead: payload, mail }), signal: AbortSignal.timeout(25000), redirect: "error",
+    });
+    const receipt = await response.json().catch(() => null);
+    if (response.ok && receipt?.accepted === true && receipt?.integration === "crm_notification_preferences_v1") return true;
+    // An identity conflict must never send different content under the same key.
+    if (response.status === 409) return false;
+  } catch { /* Fall through to independent email; never log contact details. */ }
+  logger.error("CRM notification broker unavailable; using emergency email", { reference, crmFailed });
+  if (!env.RESEND_API) return false;
+  const results = await Promise.all(NOTIFY_EMAILS.map(async recipient => {
+    try {
+      const id = createHash("sha256").update(`website-notice:website_msl:${reference}:${event}:${recipient}`).digest("hex");
+      const response = await fetcher("https://api.resend.com/emails", {
+        method: "POST", headers: { Authorization: `Bearer ${env.RESEND_API}`, "Content-Type": "application/json", "Idempotency-Key": "ckc-crm-" + id },
+        body: JSON.stringify({ ...mail, to: [recipient], text: mail.text || lead.message }), signal: AbortSignal.timeout(10000),
+      });
+      const receipt = await response.json().catch(() => null);
+      return response.ok && typeof receipt?.id === "string" && receipt.id.length > 0;
+    } catch { return false; }
+  }));
+  return results.every(Boolean);
+}
+
 // Bound external requests so a slow integration cannot consume the whole invocation.
 // Log references and timing only, never the submitted personal information.
 export async function sendNotification(lead: ContactLead, reference: string, crmFailed = false) {
+  const profileResult = await sendProfileNotification(lead, reference, crmFailed, notification(lead, reference, crmFailed), fetch, process.env, console);
+  if (profileResult !== null) return profileResult;
   const started = Date.now();
   if (!process.env.RESEND_API) {
     console.error("Contact email not configured", { reference });
