@@ -51,7 +51,8 @@ export default function GalleryPage() {
               src={featured.src}
               alt={featured.alt}
               fill
-              priority
+              loading="eager"
+              fetchPriority="high"
               sizes="100vw"
               className="object-cover opacity-42"
             />

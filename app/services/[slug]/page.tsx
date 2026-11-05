@@ -347,7 +347,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             src={`/images/placeholders/${service.slug}.jpg`}
             alt={`${service.title} by Moulding Saint Louis`}
             fill
-            priority
+            loading="eager"
+            fetchPriority="high"
             sizes="100vw"
             className="object-cover opacity-62"
           />

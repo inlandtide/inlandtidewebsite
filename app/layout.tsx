@@ -40,20 +40,8 @@ export const metadata: Metadata = {
     "window and door casing St. Louis",
     "architectural wood finishes",
   ],
-  alternates: {
-    canonical: "/",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
+  // Canonical and indexing directives belong to real pages. Root defaults also
+  // render on unmatched URLs, where Next.js supplies its own noindex 404.
   openGraph: {
     type: "website",
     locale: "en_US",
