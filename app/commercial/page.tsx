@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import JsonLd from "../components/JsonLd";
 import { PageShell } from "../components/SiteChrome";
-import { breadcrumbSchema, commercialWoodworkSchema, siteName, siteUrl } from "../data/seo";
+import { breadcrumbSchema, commercialWoodworkSchema, indexableRobots, siteName, siteUrl } from "../data/seo";
 
 const capabilities = [
   {
@@ -52,6 +52,7 @@ export const metadata: Metadata = {
   description:
     "Commercial cabinetry, casework, doors, specialty runs, and architectural woodwork in St. Louis through CKC Woodworks, a union shop with more than 40 years of experience.",
   alternates: { canonical: "/commercial" },
+  robots: indexableRobots,
   openGraph: {
     title: "Commercial Manufacturing & Woodwork in St. Louis",
     description:
@@ -130,7 +131,8 @@ export default function CommercialPage() {
                 src="/images/ckc-woodworks/ckc-woodworks-cnc-panel-processing.jpg"
                 alt="CKC Woodworks commercial panel-processing equipment in St. Louis"
                 fill
-                priority
+                loading="eager"
+                fetchPriority="high"
                 sizes="(min-width: 1024px) 48vw, 100vw"
                 className="object-cover"
               />

@@ -156,7 +156,8 @@ export default function PictureFrameMouldingLandingPage() {
               alt="Moulding Saint Louis"
               width={1600}
               height={1768}
-              priority
+              sizes="(min-width: 40rem) 4.53rem, 3.62rem"
+              loading="eager"
               className="h-16 w-auto sm:h-20"
             />
           </Link>

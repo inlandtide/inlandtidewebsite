@@ -83,7 +83,8 @@ export default function AboutPage() {
                 src="/images/ckc-woodworks/ckc-woodworks-shop-overview.jpg"
                 alt="Elevated overview of the CKC Woodworks custom manufacturing shop"
                 fill
-                priority
+                loading="eager"
+                fetchPriority="high"
                 sizes="(min-width: 1024px) 54vw, 100vw"
                 className="object-cover"
               />

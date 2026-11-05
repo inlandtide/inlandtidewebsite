@@ -201,7 +201,8 @@ export default function Home() {
             src="/images/placeholders/home-hero-moulding-interior.jpg"
             alt="Bright luxury interior with decorative wall moulding and refined finish carpentry"
             fill
-            priority
+            loading="eager"
+            fetchPriority="high"
             className="object-cover opacity-42"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,24,40,0.55),rgba(8,24,40,0.90))]" />

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-04 — Technical SEO and image delivery
+
+- Supply responsive sizes for the existing header, footer and ad-page logos, preserving their CSS dimensions, proportions and appearance while allowing smaller optimized downloads.
+- Replace deprecated hero image priority props with eager loading and high fetch priority; the production HTML includes matching high-priority responsive preloads.
+- Complete the structured-data address with `1750 Salzman Ave` and postal code `63133`; use CKC's `https://ckcwoodworks.com/#business` identity for the parent company and commercial provider. Keep the visible address unchanged.
+- Move canonical/indexing directives to actual pages so unknown and archived service URLs retain true 404/noindex responses without inheriting homepage canonical or conflicting Googlebot directives. Keep the ad page and dashboard excluded from search.
+- Update significant sitemap edit dates for the sitewide schema correction and add read-only production-response SEO regression checks. Review startup JavaScript without changing contact delivery, attribution or analytics timing.
+- Record the separately configured Vercel `www.mouldingstl.com` permanent 308 redirect to the apex; no Cloudflare change was required.
+
 ## 2026-10-13 — Picture Frame Moulding ad landing page improvements
 
 - Make the free consultation explicit in the hero, mobile action bar, and lead form. Keep the installed-and-painted St. Louis promise visible on mobile.

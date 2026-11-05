@@ -1,7 +1,8 @@
 export const businessAddress = {
-  streetAddress: "1750 Salzman",
+  streetAddress: "1750 Salzman Ave",
   addressLocality: "St. Louis",
   addressRegion: "MO",
+  postalCode: "63133",
   addressCountry: "US",
 } as const;
 

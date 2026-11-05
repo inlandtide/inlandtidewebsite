@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageShell } from "../components/SiteChrome";
-import { breadcrumbSchema, siteUrl } from "../data/seo";
+import { breadcrumbSchema, indexableRobots, siteUrl } from "../data/seo";
 import JsonLd from "../components/JsonLd";
 
 export const metadata: Metadata = {
@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   description:
     "Privacy Policy for Moulding Saint Louis. Learn how we collect, use, and protect your personal information when you visit mouldingstl.com.",
   alternates: { canonical: "/privacy-policy" },
+  robots: indexableRobots,
   openGraph: {
     title: "Privacy Policy | Moulding Saint Louis",
     description: "Learn how Moulding Saint Louis collects, uses, and protects your personal information.",

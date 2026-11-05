@@ -21,8 +21,9 @@ export function SiteHeader() {
             alt="Moulding Saint Louis"
             width={1600}
             height={1768}
+            sizes="(min-width: 64rem) 6.34rem, (min-width: 40rem) 5.43rem, 4.53rem"
             className="h-20 w-auto object-contain sm:h-24 lg:h-28"
-            priority
+            loading="eager"
           />
         </Link>
 
@@ -92,6 +93,7 @@ export function SiteFooter() {
               alt="Moulding Saint Louis"
               width={1600}
               height={1768}
+              sizes="(min-width: 40rem) 10.86rem, 9.05rem"
               className="h-40 w-auto object-contain sm:h-48"
             />
           </Link>

@@ -7,6 +7,18 @@ export const siteName = "Moulding Saint Louis";
 export const logoUrl = `${siteUrl}/moulding-stl-inverted-logo.png`;
 export const defaultOgImage = `${siteUrl}/images/placeholders/hero-workshop.jpg`;
 
+export const indexableRobots: Metadata["robots"] = {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+  },
+};
+
 // Keep each page's search and sharing metadata in sync. Nested social metadata
 // replaces layout defaults in Next.js, so include the image and site details here.
 export function pageMetadata({ title, description, path, image = defaultOgImage, imageAlt = "Moulding Saint Louis architectural woodwork", absoluteTitle = false }: {
@@ -21,6 +33,7 @@ export function pageMetadata({ title, description, path, image = defaultOgImage,
     title: absoluteTitle ? { absolute: title } : title,
     description,
     alternates: { canonical: path },
+    robots: indexableRobots,
     openGraph: {
       type: "website",
       locale: "en_US",
@@ -36,7 +49,7 @@ export function pageMetadata({ title, description, path, image = defaultOgImage,
 
 const ckcOrganization = {
   "@type": "Organization",
-  "@id": "https://ckcwoodworks.com/#organization",
+  "@id": "https://ckcwoodworks.com/#business",
   name: "CKC Woodworks",
   url: "https://ckcwoodworks.com/",
 };

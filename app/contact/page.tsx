@@ -26,7 +26,8 @@ export default function ContactPage() {
               src="/images/placeholders/contact-fireplace-surround.jpg"
               alt="Fireplace mantel and wood surround inspiration"
               fill
-              priority
+              loading="eager"
+              fetchPriority="high"
               sizes="(min-width: 1024px) 46vw, 100vw"
               className="object-cover opacity-82"
             />

@@ -96,8 +96,8 @@ The site includes foundational SEO support for local search visibility in St. Lo
 
 | SEO Area | File or Location | Purpose |
 | :--- | :--- | :--- |
-| Sitewide metadata | `app/layout.tsx` | Defines default titles, descriptions, Open Graph, Twitter cards, robots directives, and canonical metadata. |
-| Page metadata | Individual `page.tsx` files and `pageMetadata()` in `app/data/seo.ts` | Defines page-specific titles, descriptions, canonical URLs, and matching social cards, including site identity and images. |
+| Sitewide metadata | `app/layout.tsx` | Defines default titles, descriptions, Open Graph and Twitter cards. Canonical and indexing directives belong to real pages so they do not leak into unmatched 404 routes. |
+| Page metadata | Individual `page.tsx` files and `pageMetadata()` in `app/data/seo.ts` | Defines page-specific titles, descriptions, canonical URLs, indexing directives, and matching social cards, including site identity and images. |
 | Structured data helpers | `app/data/seo.ts` and `app/components/JsonLd.tsx` | Provides JSON-LD for local business, website, services, and breadcrumbs. |
 | Sitemap | `app/sitemap.ts` | Generates `https://mouldingstl.com/sitemap.xml` for the homepage, service pages, and supporting pages. |
 | Robots | `app/robots.ts` | Allows crawler access and points search engines to the sitemap. |
@@ -108,6 +108,8 @@ The site includes foundational SEO support for local search visibility in St. Lo
 Google Search Console access to the `mouldingstl.com` domain property was verified on September 7, 2026, and the existing sitemap was submitted and processed successfully with 13 discovered pages. Performance data is available in Search Console. The website dashboard does not fetch that data: its keyword list is a set of targets, not measured rankings. Historical SimilarWeb estimates were unavailable, which does not imply zero visitors.
 
 The sitemap excludes the dashboard and archived service. Its `lastModified` values use manually maintained page-edit dates, not build timestamps. Service pages include visible breadcrumbs, context-specific related services, and matching gallery links. Cabinetry and built-ins link to the CKC shop photos and About page; the shop gallery links back to those residential services. LocalBusiness structured data includes the confirmed Monday–Friday 8am–5pm contact hours and CKC parent organization. The commercial Service identifies CKC Woodworks as its provider.
+
+The November 4 technical SEO changes preserve visible content and layout. Responsive logo hints match the existing rendered dimensions; hero images use eager loading and high fetch priority. Structured data uses the full `1750 Salzman Ave`, `63133` address and CKC's established `https://ckcwoodworks.com/#business` identity. Unknown and archived routes return 404 with noindex, without a homepage canonical or inherited positive indexing directives. See `docs/technical-seo-2026-11-04.md` for verification, redirect configuration and the read-only regression command.
 
 ## Integrations & Data Flow
 
