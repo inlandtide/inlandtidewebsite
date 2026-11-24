@@ -58,6 +58,7 @@ test('A ZIP, a clear short scope, a longer description and optional ad-page deta
   for (const message of [
     'Project location: Clayton 63105\n\nProject details:\nInterior',
     'Project location: Clayton\n\nProject details:\nWainscoting.',
+    'Project location: Clayton\n\nProject details:\nkitchen project',
     'Project location: Clayton\n\nProject details:\nInterior\nWe would like crown in the living room.',
     'Project type: Picture Frame Moulding\n\nProject location: Clayton',
   ]) {

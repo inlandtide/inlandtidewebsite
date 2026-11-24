@@ -191,7 +191,11 @@ export default function ContactForm({ variant = "light", compact = false, defaul
             />
           </Field>
 
-          {formState === "error" && <p role="alert" className="text-sm text-red-500">{errorMsg}</p>}
+          {formState === "error" && (
+            <p role="alert" className="border border-l-4 border-amber-700 bg-amber-50 px-4 py-3 text-lg font-semibold leading-7 text-amber-950">
+              {errorMsg}
+            </p>
+          )}
 
           <button
             type="submit"
