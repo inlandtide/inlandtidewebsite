@@ -7,6 +7,16 @@ import { type ContactLead, saveToCRM, sendNotification } from "../../lib/contact
 // shorter timeouts. after() keeps Vercel alive even after the visitor leaves.
 export const maxDuration = 60;
 
+// Read the labeled message sent by the shared form, including already-open copies.
+function needsProjectClarification(message: string) {
+  const fields = message.trim().match(
+    /^(?:Project type: [^\r\n]+\r?\n\r?\n)?Project location: \p{L}+\r?\n\r?\nProject details:\s*(\p{L}+)[.!?]?$/iu,
+  );
+  if (!fields) return false;
+  // Short descriptions can identify a service perfectly well on their own.
+  return !/^(?:archways?|baseboards?|beadboard|bookcases?|cabinetry|cabinets?|carpentry|casework|casings?|crown|doors?|mantels?|millwork|mouldings?|moldings?|paneling|panelling|shelves|shelving|trim|trimwork|wainscoting|woodwork)$/i.test(fields[1]);
+}
+
 export async function POST(req: NextRequest) {
   let body;
   try {
@@ -35,6 +45,13 @@ export async function POST(req: NextRequest) {
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) || /[\r\n\u0000-\u001f]/.test(email)) {
     return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
+  }
+
+  if (needsProjectClarification(message)) {
+    console.info("Consultation form requested project clarification");
+    return NextResponse.json({
+      error: "Please add your ZIP code to Project Location or tell us a little more about the work in Project Details.",
+    }, { status: 422 });
   }
 
   if (body.submissionId !== undefined && (typeof body.submissionId !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(body.submissionId))) {

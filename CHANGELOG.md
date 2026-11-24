@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-24 — Clarification for unclear consultation requests
+
+- When the location and project details are both a single word and the details do not identify a common service, the form asks for a ZIP code or more detail before sending email or creating a lead. The visitor keeps their draft. Short service requests and the optional details on the picture-frame landing page still work.
+
 ## 2026-11-24 — Consultation form spam protection
 
 - The home, contact and picture-frame landing page forms share an offscreen bot trap. The server discards filled traps before email and CRM delivery, and the forms skip conversion tracking for those submissions.

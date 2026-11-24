@@ -44,6 +44,30 @@ test('Empty consultation trap still delivers a real inquiry', async()=>{
   assert.deepEqual(app.calls.map(call=>call[0]), ['email', 'crm']);
 });
 
+test('An unclear one-word location and scope request clarification before any delivery', async()=>{
+  const app = setup();
+  const message = 'Project type: Luxury & Decorative Moulding\n\nProject location: cuppedia\n\nProject details:\nclementia';
+  const result = await app.submit({...valid, projectWebsite:'', message});
+  assert.equal(result.status, 422);
+  assert.match(result.body.error, /ZIP code/);
+  assert.equal(app.pending.length, 0);
+  assert.equal(app.calls.length, 0);
+});
+
+test('A ZIP, a clear short scope, a longer description and optional ad-page details still deliver', async()=>{
+  for (const message of [
+    'Project location: Clayton 63105\n\nProject details:\nInterior',
+    'Project location: Clayton\n\nProject details:\nWainscoting.',
+    'Project location: Clayton\n\nProject details:\nInterior\nWe would like crown in the living room.',
+    'Project type: Picture Frame Moulding\n\nProject location: Clayton',
+  ]) {
+    const app = setup();
+    assert.equal((await app.submit({...valid, message})).status, 200);
+    for (const work of app.pending) await work();
+    assert.deepEqual(app.calls.map(call=>call[0]), ['email', 'crm']);
+  }
+});
+
 test('Success waits for email acceptance, then returns before any CRM work', async()=>{
   const email = deferred(), crm = deferred();
   const app = setup({email:()=>email.promise,crm:()=>crm.promise});
