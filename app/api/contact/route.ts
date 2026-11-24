@@ -18,6 +18,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Please submit a valid form." }, { status: 400 });
   }
 
+  // Older, already-open forms omit this field. A filled trap ends processing before any delivery.
+  if (body.projectWebsite !== undefined &&
+      (typeof body.projectWebsite !== "string" || body.projectWebsite.trim() !== "")) {
+    console.info("Consultation form filtered by bot trap");
+    return NextResponse.json({ success: true }, { status: 200 });
+  }
+
   const { name, email, phone = "", message } = body;
   if (typeof name !== "string" || !name.trim() || typeof email !== "string" || !email.trim() ||
       typeof message !== "string" || !message.trim() || typeof phone !== "string") {

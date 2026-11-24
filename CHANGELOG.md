@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-24 — Consultation form spam protection
+
+- The home, contact and picture-frame landing page forms share an offscreen bot trap. The server discards filled traps before email and CRM delivery, and the forms skip conversion tracking for those submissions.
+- Vercel Firewall limits consultation POST requests by IP to five per five-minute fixed window per region. A visitor who reaches the limit keeps their draft and sees a retry message and the office phone number.
+
 ## 2026-11-04 — Technical SEO and image delivery
 
 - Supply responsive sizes for the existing header, footer and ad-page logos, preserving their CSS dimensions, proportions and appearance while allowing smaller optimized downloads.

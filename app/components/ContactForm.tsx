@@ -54,6 +54,7 @@ export default function ContactForm({ variant = "light", compact = false, defaul
     const projectType = (form.elements.namedItem("projectType") as HTMLInputElement | HTMLSelectElement).value.trim();
     const location = (form.elements.namedItem("location") as HTMLInputElement).value.trim();
     const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim();
+    const projectWebsite = (form.elements.namedItem("projectWebsite") as HTMLInputElement).value.trim();
 
     const enrichedMessage = [
       projectType ? `Project type: ${projectType}` : "",
@@ -70,6 +71,7 @@ export default function ContactForm({ variant = "light", compact = false, defaul
       name,
       email,
       phone,
+      projectWebsite,
       message: enrichedMessage || message,
       attribution: delivery.current.attribution,
     };
@@ -82,6 +84,12 @@ export default function ContactForm({ variant = "light", compact = false, defaul
         keepalive: true,
       });
 
+      // The firewall can return an HTML or empty response before this request reaches Next.js.
+      if (res.status === 429) {
+        setErrorMsg("Please wait five minutes before trying again, or call (314) 818-0815.");
+        setFormState("error");
+        return;
+      }
       const json = await res.json();
 
       if (!res.ok || json.success !== true) {
@@ -92,8 +100,10 @@ export default function ContactForm({ variant = "light", compact = false, defaul
         form.reset();
         delivery.current = null;
         // A blocked or broken analytics script must not undo a received lead.
-        try { trackMetaLead(); } catch { /* best-effort tracking */ }
-        try { trackGALead(); } catch { /* best-effort tracking */ }
+        if (!projectWebsite) {
+          try { trackMetaLead(); } catch { /* best-effort tracking */ }
+          try { trackGALead(); } catch { /* best-effort tracking */ }
+        }
       }
     } catch {
       setErrorMsg("Network error. Please check your connection and try again.");
@@ -131,6 +141,10 @@ export default function ContactForm({ variant = "light", compact = false, defaul
         </div>
       ) : (
         <form onSubmit={handleSubmit} aria-busy={formState === "submitting"} className="grid gap-4">
+          <label aria-hidden="true" className="sr-only pointer-events-none">
+            Leave this field empty
+            <input type="text" name="projectWebsite" tabIndex={-1} autoComplete="off" />
+          </label>
           {fixedProjectType && <input type="hidden" name="projectType" value={fixedProjectType} />}
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Full Name *" labelClass={labelClass}>

@@ -26,6 +26,24 @@ function setup({email = async()=>true, crm = async()=>true} = {}) {
   return {...route,pending,calls,submit:(body=valid)=>route.POST({json:async()=>body})};
 }
 
+test('A filled consultation trap produces no email, CRM delivery or deferred work', async()=>{
+  for (const value of ['https://example.invalid', true, null]) {
+    const app = setup();
+    const response = await app.submit({...valid, projectWebsite:value});
+    assert.equal(response.status, 200);
+    assert.equal(response.body.success, true);
+    assert.equal(app.calls.length, 0);
+    assert.equal(app.pending.length, 0);
+  }
+});
+
+test('Empty consultation trap still delivers a real inquiry', async()=>{
+  const app = setup();
+  assert.equal((await app.submit({...valid, projectWebsite:''})).status, 200);
+  for (const work of app.pending) await work();
+  assert.deepEqual(app.calls.map(call=>call[0]), ['email', 'crm']);
+});
+
 test('Success waits for email acceptance, then returns before any CRM work', async()=>{
   const email = deferred(), crm = deferred();
   const app = setup({email:()=>email.promise,crm:()=>crm.promise});
