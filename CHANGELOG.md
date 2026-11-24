@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-24 — Consultation requests with a blank location
+
+- Visitors who leave the location blank and enter an unclear one-word project description now see the clarification prompt before email or CRM delivery. Project type is optional.
+
 ## 2026-11-24 — More visible consultation warnings
 
 - The consultation form shows feedback in larger, semibold text on a pale amber background just above the submit button.

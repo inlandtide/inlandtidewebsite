@@ -10,7 +10,7 @@ export const maxDuration = 60;
 // Read the labeled message sent by the shared form, including already-open copies.
 function needsProjectClarification(message: string) {
   const fields = message.trim().match(
-    /^(?:Project type: [^\r\n]+\r?\n\r?\n)?Project location: \p{L}+\r?\n\r?\nProject details:\s*(\p{L}+)[.!?]?$/iu,
+    /^(?:Project type: [^\r\n]+\r?\n\r?\n)?(?:Project location: \p{L}+\r?\n\r?\n)?Project details:\s*(\p{L}+)[.!?]?$/iu,
   );
   if (!fields) return false;
   // Short descriptions can identify a service perfectly well on their own.

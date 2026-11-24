@@ -44,12 +44,18 @@ test('Empty consultation trap still delivers a real inquiry', async()=>{
   assert.deepEqual(app.calls.map(call=>call[0]), ['email', 'crm']);
 });
 
-test('An unclear one-word location and scope request clarification before any delivery', async()=>{
+test('Unclear one-word details request clarification with a missing or one-word location', async()=>{
   const app = setup();
-  const message = 'Project type: Luxury & Decorative Moulding\n\nProject location: cuppedia\n\nProject details:\nclementia';
-  const result = await app.submit({...valid, projectWebsite:'', message});
-  assert.equal(result.status, 422);
-  assert.match(result.body.error, /ZIP code/);
+  for (const message of [
+    'Project details:\ntsst',
+    'Project type: Not sure yet\n\nProject details:\ntsst',
+    'Project location: Clayton\n\nProject details:\ntsst',
+    'Project type: Luxury & Decorative Moulding\n\nProject location: cuppedia\n\nProject details:\nclementia',
+  ]) {
+    const result = await app.submit({...valid, projectWebsite:'', message});
+    assert.equal(result.status, 422);
+    assert.match(result.body.error, /ZIP code/);
+  }
   assert.equal(app.pending.length, 0);
   assert.equal(app.calls.length, 0);
 });
@@ -59,6 +65,8 @@ test('A ZIP, a clear short scope, a longer description and optional ad-page deta
     'Project location: Clayton 63105\n\nProject details:\nInterior',
     'Project location: Clayton\n\nProject details:\nWainscoting.',
     'Project location: Clayton\n\nProject details:\nkitchen project',
+    'Project details:\nkitchen project',
+    'Project details:\nWainscoting',
     'Project location: Clayton\n\nProject details:\nInterior\nWe would like crown in the living room.',
     'Project type: Picture Frame Moulding\n\nProject location: Clayton',
   ]) {
